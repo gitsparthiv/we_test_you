@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+  }
+body {
+  background: #f4f6f9;
+  color: #1a1a1a;
+}
+section {
+    scroll-margin-top: 100px;
+  }
+  
+  
+a {
+  text-decoration: none;
+}
+/* ================= NAVBAR ================= */
+
+/* ================= NAVBAR ================= */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 22px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0b1c2d;
+    color: white;
+    z-index: 1000;
+    transition: all 0.4s ease;
+  }
+  
+  /* When Scrolled */
+  .navbar.scrolled {
+    background: rgba(11, 28, 45, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    padding: 16px 8%;
+  }
+  
+  /* LOGO */
+  
+  .logo {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+  
+  .logo-main {
+    color: white;
+  }
+  
+  .logo-highlight {
+    color: #1e5eff;
+    margin: 0 4px;
+  }
+  
+  /* NAV LINKS */
+  
+  .nav-links a {
+    position: relative;
+    margin-left: 30px;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover text color */
+  .nav-links a:hover {
+    color: #1e5eff;
+  }
+  
+  /* Underline animation */
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -6px;
+    background: #1e5eff;
+    transition: width 0.3s ease;
+  }
+  
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+  .hero-section {
+    position: relative;
+    height: 90vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Dark overlay + blur effect */
+  .hero-overlay {
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(6px);
+    background: rgba(11, 28, 45, 0.65);
+    display: flex;
+    align-items: center;
+    padding: 0 8%;
+  }
+  
+  /* Content */
+  .hero-content {
+    max-width: 700px;
+    color: white;
+  }
+  
+  .hero-content h2 {
+    font-size: 46px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  
+  .hero-content h2 span {
+    color: #1e5eff;
+  }
+  
+  .hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #d0d8e6;
+  }
+  
+  /* Button */
+  .hero-btn {
+    display: inline-block;
+    background: #1e5eff;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s ease;
+  }
+  
+  .hero-btn:hover {
+    background: #163fb8;
+    transform: translateY(-2px);
+  }
+  .typing {
+    color: #1e5eff;
+    border-right: 3px solid #1e5eff;
+    padding-right: 5px;
+    animation: blink 0.8s infinite;
+  }
+  
+  @keyframes blink {
+    0% { border-color: #1e5eff; }
+    50% { border-color: transparent; }
+    100% { border-color: #1e5eff; }
+  }
+  
