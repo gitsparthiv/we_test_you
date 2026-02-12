@@ -9,8 +9,8 @@ function HighlightSection({ id, title, text }) {
   
   const styles = {
     section: {
-      background: "#0b1c2d",
-      color: "#fff",
+      background: "#e0f2fe",
+      color: "#0f172a",
       padding: "60px 8%",
       textAlign: "center"
     },
@@ -21,7 +21,7 @@ function HighlightSection({ id, title, text }) {
     text: {
       maxWidth: "800px",
       margin: "auto",
-      color: "#d0d8e6",
+      color: "#334155",
       fontSize: "17px"
     }
   };

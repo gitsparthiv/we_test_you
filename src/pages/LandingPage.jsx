@@ -2,6 +2,8 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import HighlightSection from "../components/HighlightSection";
 import Footer from "../components/Footer";
+import Cohort from "../components/Cohort";
+import Register from "../components/Register";
 
 function LandingPage() {
   return (
@@ -20,7 +22,8 @@ function LandingPage() {
         title="Test Location & Pattern"
         text="Registered students will receive detailed venue address, reporting time, hall ticket, and examination guidelines via email and SMS."
       />
-
+      <Cohort />
+      <Register />
       <Footer />
     </>
   );
