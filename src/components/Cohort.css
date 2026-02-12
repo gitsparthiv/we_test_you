@@ -31,9 +31,9 @@
 /* METHOD SECTION */
 
 .method-section {
-  padding: 80px 8%;
+  padding: 70px 8%;
   text-align: center;
-  background: #f4f6f9;
+  background: #f8fafc;
 }
 
 .method-section h2 {
@@ -47,11 +47,10 @@
 }
 
 .method-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: white;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
 }
 
 .method-card h4 {

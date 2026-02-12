@@ -13,18 +13,28 @@ function Hero() {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
+  // Smooth scroll to register section
+  const handleScrollToRegister = () => {
+    const section = document.getElementById("register-section");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     const currentWord = words[currentWordIndex];
-    let typingSpeed = isDeleting ? 50 : 80;
+    const typingSpeed = isDeleting ? 50 : 80;
 
-    const timeout = setTimeout(() => {
+    const timer = setTimeout(() => {
       if (!isDeleting) {
+        // Typing
         setDisplayText(currentWord.substring(0, displayText.length + 1));
 
         if (displayText === currentWord) {
           setTimeout(() => setIsDeleting(true), 1200);
         }
       } else {
+        // Deleting
         setDisplayText(currentWord.substring(0, displayText.length - 1));
 
         if (displayText === "") {
@@ -34,8 +44,8 @@ function Hero() {
       }
     }, typingSpeed);
 
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentWordIndex, words]);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, currentWordIndex]);
 
   return (
     <section
@@ -53,12 +63,12 @@ function Hero() {
 
           <p>
             Structured offline mock examinations for CBSE Classes 10, 11 & 12
-            in real board-style environment.
+            in a real board-style environment.
           </p>
 
-          <a href="#register" className="hero-btn">
+          <button className="hero-btn" onClick={handleScrollToRegister}>
             Register for Upcoming Mock Test
-          </a>
+          </button>
         </div>
       </div>
     </section>
