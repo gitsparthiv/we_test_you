@@ -15,9 +15,9 @@ function Header() {
   return (
     <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="logo">
-        <span className="logo-main">WE</span>
-        <span className="logo-highlight">TEST</span>
-        <span className="logo-main">YOU</span>
+        {/* <span className="logo-main">WE</span> */}
+        <span className="logo-highlight">WETESTYOU</span>
+        {/* <span className="logo-main">YOU</span> */}
       </div>
 
       <nav className="nav-links">
