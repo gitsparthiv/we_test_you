@@ -233,3 +233,104 @@
   text-align: center;
 }
 
+/* ============================= */
+/* EXTRA RESPONSIVENESS FIXES    */
+/* ============================= */
+
+/* Prevent horizontal scroll everywhere */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Make hero section wrap safely */
+.hero-section {
+  flex-wrap: wrap;
+}
+
+/* Large Tablets */
+@media (max-width: 1024px) {
+  .hero-section {
+    gap: 40px;
+  }
+
+  .hero-left h1 {
+    font-size: 40px;
+  }
+
+  .features {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-left {
+    width: 100%;
+  }
+
+  .hero-left p {
+    max-width: 100%;
+  }
+
+  .hero-right {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .cohorts {
+    flex-direction: column;
+  }
+
+  .cohort-card {
+    width: 100%;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .hero-section {
+    padding: 30px 20px;
+  }
+
+  .hero-left h1 {
+    font-size: 30px;
+  }
+
+  .hero-left p {
+    font-size: 14px;
+  }
+
+  .form-card {
+    padding: 25px;
+  }
+
+  .features {
+    flex-direction: column;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 400px) {
+  .hero-left h1 {
+    font-size: 24px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .admission-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
