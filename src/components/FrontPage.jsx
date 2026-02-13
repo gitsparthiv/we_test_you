@@ -53,12 +53,14 @@ const FrontPage = ({ pricing, onRegister }) => {
             Structured offline mock examinations designed to simulate
             real board exam experience for Classes 10, 11 & 12.
           </p>
+          <br />
 
           <div className="features">
             <span>✔ Real Exam Simulation</span>
             <span>✔ Manual Evaluation</span>
             <span>✔ Performance Analytics</span>
           </div>
+          <br />
 
           {/* Cohort Description Section Restored */}
           <div className="cohorts">
@@ -69,6 +71,7 @@ const FrontPage = ({ pricing, onRegister }) => {
                 <li>✔ 15+ Chapter-wise Tests</li>
                 <li>✔ 5 Full Syllabus Mock Exams</li>
               </ul>
+              <br />
               <button type="button">Read More</button>
             </div>
 
@@ -79,6 +82,7 @@ const FrontPage = ({ pricing, onRegister }) => {
                 <li>✔ 20+ Chapter-wise Tests</li>
                 <li>✔ Monthly Combined Mock</li>
               </ul>
+              <br />
               <button type="button">Read More</button>
             </div>
 
@@ -89,6 +93,7 @@ const FrontPage = ({ pricing, onRegister }) => {
                 <li>✔ 25+ Chapter-wise Tests</li>
                 <li>✔ 8 Full Board Pattern Exams</li>
               </ul>
+              <br />
               <button type="button">Read More</button>
             </div>
           </div>
