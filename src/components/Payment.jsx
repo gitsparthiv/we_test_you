@@ -1,49 +1,33 @@
 import "./Payment.css";
 
-function Payment({ selectedData }) {
+const Payment = ({ cohort, price }) => {
 
-  // If no data received yet
-  if (!selectedData) {
-    return (
-      <div className="payment-container">
-        <div className="payment-card">
-          <h2>No Registration Found</h2>
-          <p>Please complete the registration form first.</p>
-        </div>
-      </div>
-    );
-  }
-
-  const { cohort, amount, venue } = selectedData;
+  const handlePayment = () => {
+    alert("Redirecting to Payment Gateway...");
+    // Integrate Razorpay / Stripe here later
+  };
 
   return (
-    <div className="payment-container" id="payment-section">
+    <div className="payment-container">
       <div className="payment-card">
+        <h2>Payment Summary</h2>
 
-        <h2 className="payment-title">
-          Mock Test Registration Payment
-        </h2>
-
-        <div className="payment-details">
-          <p><strong>Selected Cohort:</strong> {cohort}</p>
-          <p><strong>Test Venue:</strong> {venue}</p>
+        <div className="summary-row">
+          <span>Cohort:</span>
+          <strong>{cohort}</strong>
         </div>
 
-        <div className="amount-box">
-          <h3>Total Amount Payable</h3>
-          <p className="amount">₹ {amount}</p>
+        <div className="summary-row">
+          <span>Amount:</span>
+          <strong>₹ {price}</strong>
         </div>
 
-        <button
-          className="pay-btn"
-          onClick={() => alert("Payment Gateway Integration Pending")}
-        >
-          Proceed to Secure Payment
+        <button className="pay-btn" onClick={handlePayment}>
+          Proceed to Payment
         </button>
-
       </div>
     </div>
   );
-}
+};
 
 export default Payment;

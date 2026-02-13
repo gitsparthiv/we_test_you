@@ -1,13 +1,21 @@
 import "./Cohort.css";
+
+export const cohortPricing = {
+  "Class 10": 2999,
+  "Class 11": 3999,
+  "Class 12": 4999,
+};
+
 function Cohort({ onSelect }) {
 
-  const handleSelect = (cohort, price) => {
-    // send selected cohort + price to parent
+  const handleSelect = (cohort) => {
     if (onSelect) {
-      onSelect({ cohort, price });
+      onSelect({
+        cohort,
+        price: cohortPricing[cohort],
+      });
     }
 
-    // scroll to register section
     const registerSection = document.getElementById("register-section");
     if (registerSection) {
       registerSection.scrollIntoView({ behavior: "smooth" });
@@ -23,18 +31,13 @@ function Cohort({ onSelect }) {
 
       <div className="pricing-grid">
 
-        {/* Class 10 */}
         <div className="pricing-card">
           <h3>Class 10</h3>
           <p className="tagline">Foundation Board Mastery</p>
 
-          <p className="old-price">₹4999</p>
-          <h1 className="price">₹2999</h1>
-          <p className="per">Complete Chapter Test Series</p>
-
           <button
             className="choose-btn"
-            onClick={() => handleSelect("Class 10", 2999)}
+            onClick={() => handleSelect("Class 10")}
           >
             Register Now
           </button>
@@ -48,19 +51,14 @@ function Cohort({ onSelect }) {
           </ul>
         </div>
 
-        {/* Class 11 */}
         <div className="pricing-card popular">
           <div className="badge">Most Enrolled</div>
           <h3>Class 11</h3>
           <p className="tagline">Strong Concept Reinforcement</p>
 
-          <p className="old-price">₹5999</p>
-          <h1 className="price">₹3999</h1>
-          <p className="per">Complete Chapter Test Series</p>
-
           <button
             className="choose-btn dark"
-            onClick={() => handleSelect("Class 11", 3999)}
+            onClick={() => handleSelect("Class 11")}
           >
             Register Now
           </button>
@@ -74,18 +72,13 @@ function Cohort({ onSelect }) {
           </ul>
         </div>
 
-        {/* Class 12 */}
         <div className="pricing-card">
           <h3>Class 12</h3>
           <p className="tagline">Board + Competitive Focus</p>
 
-          <p className="old-price">₹6999</p>
-          <h1 className="price">₹4999</h1>
-          <p className="per">Complete Chapter Test Series</p>
-
           <button
             className="choose-btn"
-            onClick={() => handleSelect("Class 12", 4999)}
+            onClick={() => handleSelect("Class 12")}
           >
             Register Now
           </button>
