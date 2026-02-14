@@ -44,7 +44,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 30px;
-  color: #d7ff45;
+  color: #fd0000;
   font-size: 18px;
 }
 
@@ -85,8 +85,8 @@ html, body {
 
 /* ===== HERO TEXT ===== */
 .hero-text {
-  font-size: 75px;
-  font-weight: 600;
+  font-size: 80px;
+  font-weight: 700;
   color: #d7ff45;
   line-height: 1.1;
 }
@@ -98,7 +98,7 @@ html, body {
 /* ===== FORM ===== */
 form {
   width: 80%;
-  max-width: 450px;
+  max-width: 550px;
   display: flex;
   flex-direction: column;
   gap: 25px;
