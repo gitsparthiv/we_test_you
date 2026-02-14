@@ -16,7 +16,6 @@
 
 body{
     font-family:'Oswald', sans-serif;
-    overflow-x:hidden;
 }
 
 /* ===== NAVBAR ===== */
@@ -28,10 +27,9 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:8px 50px;
-    z-index:1000;
+    padding:20px 60px;
+    z-index:10;
 }
-
 
 .logo{
     color:#d7ff45;
@@ -56,26 +54,6 @@ body{
     text-decoration:none;
 }
 
-.menu{
-    width:28px;
-    height:2px;
-    background:#d7ff45;
-    position:relative;
-}
-
-.menu::before,
-.menu::after{
-    content:"";
-    position:absolute;
-    width:28px;
-    height:2px;
-    background:#d7ff45;
-    left:0;
-}
-
-.menu::before{ top:-8px; }
-.menu::after{ top:8px; }
-
 /* ===== MAIN CONTAINER ===== */
 .main-container{
     height:100vh;
@@ -83,7 +61,7 @@ body{
     flex-direction:column;
 }
 
-/* ===== TOP 2/3 SECTION ===== */
+/* ===== TOP SECTION ===== */
 .top-section{
     height:66.66vh;
     display:flex;
@@ -92,7 +70,7 @@ body{
 /* LEFT SIDE */
 .left{
     flex:1;
-    background:linear-gradient(rgba(255,120,0,0.85), rgba(255,120,0,0.85)),
+    background:linear-gradient(rgba(222,158,103,0.85), rgba(255,198,148,0.85)),
     url("./3gin9vh8_cbse-_625x300_19_December_24.webp") center/cover no-repeat;
 
     display:flex;
@@ -103,8 +81,11 @@ body{
 /* RIGHT SIDE */
 .right{
     flex:1;
-    background:linear-gradient(rgba(0,84,122,0.85), rgba(0,84,122,0.85)),
-    url("https://images.unsplash.com/photo-1571019613914-85f342c55f65?q=80&w=1974&auto=format&fit=crop") center/cover no-repeat;
+    background:#2f6f8f;   /* solid color like your screenshot */
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:85px;      /* push form below navbar */
 }
 
 /* HERO TEXT */
@@ -119,24 +100,52 @@ body{
     color:#000;
 }
 
-/* ===== BOTTOM 1/3 SECTION ===== */
-.bottom-section{
-    height:33.33vh;
+/* ===== FORM ===== */
+form{
+    width:80%;
+    max-width:450px;
     display:flex;
-    justify-content:center;
-    align-items:center;
+    flex-direction:column;
     gap:25px;
-    padding:0 40px;
-    background:#111;
+}
+
+form input{
+    padding:18px;
+    font-size:18px;
+    border:none;
+    background:rgba(255,255,255,0.2);
+    color:white;
+    font-family:'Oswald', sans-serif;
+}
+
+form input::placeholder{
+    color:#e0e0e0;
+}
+
+form button{
+    padding:18px;
+    font-size:18px;
+    border:none;
+    background:#d7ff45;
+    font-weight:600;
+    cursor:pointer;
+    font-family:'Oswald', sans-serif;
+}
+
+/* ===== BOTTOM SECTION ===== */
+.bottom-section{
+    height:33.34vh; /* slight adjustment to avoid gap */
+    display:flex;
+    background:#000;
+    padding:30px 60px;
+    gap:30px;
 }
 
 .box{
     flex:1;
-    height:80%;
-    border-radius:8px;
+    border-radius:12px;
 }
 
-/* Distinct Colors */
 .box:nth-child(1){ background:#ff4d4d; }
 .box:nth-child(2){ background:#ffa64d; }
 .box:nth-child(3){ background:#ffff4d; }
@@ -144,34 +153,19 @@ body{
 .box:nth-child(5){ background:#4da6ff; }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width:1000px){
-    .hero-text{
-        font-size:60px;
-    }
-}
-
 @media(max-width:768px){
     .top-section{
         flex-direction:column;
+        height:auto;
     }
 
     .left, .right{
-        height:50%;
+        height:50vh;
     }
 
     .bottom-section{
         flex-direction:column;
         height:auto;
-        padding:20px;
-    }
-
-    .box{
-        width:100%;
-        height:120px;
-    }
-
-    .navbar{
-        padding:20px;
     }
 }
 </style>
@@ -179,31 +173,36 @@ body{
 
 <body>
 
-<!-- NAVBAR -->
 <div class="navbar">
     <div class="logo">WeTestYou</div>
-
     <div class="nav-right">
         <a href="#" class="book-btn">Book Your Seat</a>
         <div>Log In</div>
-        <div class="menu"></div>
     </div>
 </div>
 
 <div class="main-container">
 
-    <!-- Top 2/3 -->
     <div class="top-section">
+
         <div class="left">
             <div class="hero-text">
                 Tuitions Teach You.<br>
                 <span>We Test You.</span>
             </div>
         </div>
-        <div class="right"></div>
+
+        <div class="right">
+            <form>
+                <input type="text" placeholder="Student Name" required>
+                <input type="tel" placeholder="Mobile Number" required>
+                <input type="email" placeholder="Email Address" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
     </div>
 
-    <!-- Bottom 1/3 -->
     <div class="bottom-section">
         <div class="box"></div>
         <div class="box"></div>
@@ -215,4 +214,4 @@ body{
 </div>
 
 </body>
-</html>....uplift the navbar and logo slidely
+</html>
