@@ -175,7 +175,7 @@ form button {
 
 
 .box:nth-child(1) {
-  background-image: url("https://images.unsplash.com/photo-1584697964403-87f0c5b5b33f");
+  background-image: url("../assets/proctored_exam.png");
 }
 
 .box:nth-child(2) {
@@ -183,7 +183,7 @@ form button {
 }
 
 .box:nth-child(3) {
-  background-image: url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee");
+  background-image: url("../assets/near_ur_location.jpg");
 }
 
 .box:nth-child(4) {
@@ -191,7 +191,7 @@ form button {
 }
 
 .box:nth-child(5) {
-  background-image: url("https://images.unsplash.com/photo-1607083206869-4c7672e72a8a");
+  background-image: url("../assets/discount_image.png");
 }
 
 

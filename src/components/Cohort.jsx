@@ -1,100 +1,52 @@
+import React from "react";
 import "./Cohort.css";
 
-export const cohortPricing = {
-  "Class 10": 2999,
-  "Class 11": 3999,
-  "Class 12": 4999,
-};
+import img1 from "../assets/3gin9vh8_cbse-_625x300_19_December_24.webp";
+import img2 from "../assets/creating-mock-test-scenarios-ar-generative-ai_1198295-118233.jpg";
+import img3 from "../assets/exam-hall.webp";
 
-function Cohort({ onSelect }) {
-
-  const handleSelect = (cohort) => {
-    if (onSelect) {
-      onSelect({
-        cohort,
-        price: cohortPricing[cohort],
-      });
-    }
-
-    const registerSection = document.getElementById("register-section");
-    if (registerSection) {
-      registerSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
+const Cohort = () => {
   return (
-    <section className="pricing-section">
-      <h2>Choose Your Testing Cohort</h2>
-      <p className="pricing-sub">
-        Admissions Open Now – Limited Seats Per Batch
-      </p>
+    <div className="main">
 
-      <div className="pricing-grid">
+      <div className="title">
+        <h1>THE R/NESS DIFFERENCE</h1>
+      </div>
 
-        <div className="pricing-card">
-          <h3>Class 10</h3>
-          <p className="tagline">Foundation Board Mastery</p>
+      <div className="grid">
 
-          <button
-            className="choose-btn"
-            onClick={() => handleSelect("Class 10")}
-          >
-            Register Now
-          </button>
-
-          <ul>
-            <li>✔ Science, Maths, English</li>
-            <li>✔ 15+ Chapter-wise Tests</li>
-            <li>✔ 5 Full Syllabus Mock Exams</li>
-            <li>✔ Detailed Written Feedback</li>
-            <li>✔ Parent Progress Updates</li>
-          </ul>
+        <div className="card">
+          <img src={img1} alt="Elite Trainers" />
+          <div className="text">
+            ELITE TRAINERS<br />YOU CAN TRUST
+          </div>
         </div>
 
-        <div className="pricing-card popular">
-          <div className="badge">Most Enrolled</div>
-          <h3>Class 11</h3>
-          <p className="tagline">Strong Concept Reinforcement</p>
-
-          <button
-            className="choose-btn dark"
-            onClick={() => handleSelect("Class 11")}
-          >
-            Register Now
-          </button>
-
-          <ul>
-            <li>✔ Physics, Chemistry, Maths</li>
-            <li>✔ 20+ Chapter-wise Tests</li>
-            <li>✔ Monthly Combined Mock</li>
-            <li>✔ Performance Analytics Sheet</li>
-            <li>✔ Exam Writing Strategy Session</li>
-          </ul>
+        <div className="card">
+          <img src={img2} alt="Workouts" />
+          <div className="text">
+            WORKOUTS THAT<br />DELIVER RESULTS
+          </div>
         </div>
 
-        <div className="pricing-card">
-          <h3>Class 12</h3>
-          <p className="tagline">Board + Competitive Focus</p>
+        <div className="card">
+          <img src={img3} alt="Urban Energy" />
+          <div className="text">
+            AN UNMATCHED<br />URBAN ENERGY
+          </div>
+        </div>
 
-          <button
-            className="choose-btn"
-            onClick={() => handleSelect("Class 12")}
-          >
-            Register Now
-          </button>
-
-          <ul>
-            <li>✔ Physics, Chemistry, Maths</li>
-            <li>✔ 25+ Chapter-wise Tests</li>
-            <li>✔ 8 Full Board Pattern Exams</li>
-            <li>✔ Rank Prediction & Analysis</li>
-            <li>✔ Personal Review Meeting</li>
-          </ul>
+        <div className="card">
+          <img src={img1} alt="Community" />
+          <div className="text">
+            A COMMUNITY THAT<br />INSPIRES
+          </div>
         </div>
 
       </div>
-    </section>
+
+    </div>
   );
-}
+};
 
 export default Cohort;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import HighlightSection from "../components/HighlightSection";
 import Footer from "../components/Footer";
-import Cohort, { cohortPricing } from "../components/Cohort";
+import Cohort from "../components/Cohort";
 import Payment from "../components/Payment";
 import FrontPage from "../components/FrontPage";
 
@@ -19,7 +19,6 @@ function LandingPage() {
       {!selectedData && (
         <>
           <FrontPage
-            pricing={cohortPricing}
             onRegister={handleRegistration}
           />
 
@@ -40,12 +39,7 @@ function LandingPage() {
         </>
       )}
 
-      {selectedData && (
-        <Payment
-          cohort={selectedData.cohort}
-          price={selectedData.price}
-        />
-      )}
+      
     </>
   );
 }

@@ -10,7 +10,6 @@ const FrontPage = () => {
         <div className="logo">WeTestYou</div>
         <div className="nav-right">
           <a href="#" className="book-btn">Book Your Seat</a>
-          <div>Log In</div>
         </div>
       </div>
 
