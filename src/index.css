@@ -1,180 +1,38 @@
+/* ===== GOOGLE FONT ===== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
 
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
 }
+
+/* ===== GLOBAL SETTINGS ===== */
 html {
-    scroll-behavior: smooth;
-  }
+  scroll-behavior: smooth;
+}
+
 body {
+  font-family: 'Poppins', sans-serif;
   background: #f4f6f9;
   color: #1a1a1a;
+  overflow-x: hidden;
 }
-section {
-    scroll-margin-top: 100px;
-    transition: all 0.3s ease;
-  }
-  
-  
+
+/* Remove default link styling */
 a {
   text-decoration: none;
+  color: inherit;
 }
-/* ================= NAVBAR ================= */
 
-/* ================= NAVBAR ================= */
-
-.navbar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    padding: 22px 8%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #ffffff;
-    border-bottom: 1px solid #e5e7eb;
-    color: white;
-    z-index: 1000;
-    transition: all 0.4s ease;
-  }
-  
-  /* When Scrolled */
-  .navbar.scrolled {
-    background: rgba(255,255,255,0.95);
-  backdrop-filter: blur(8px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 16px 8%;
-  }
-  
-  /* LOGO */
-  
-  .logo {
-    font-weight: 800;
-    font-size: 22px;
-    letter-spacing: 1px;
-    cursor: pointer;
-  }
-  
-  .logo-main {
-    color: white;
-  }
-  
-  .logo-highlight {
-    color: #1e5eff;
-    margin: 0 4px;
-  }
-  
-  /* NAV LINKS */
-  
-  .nav-links a {
-    position: relative;
-    margin-left: 30px;
-    color: #1e293b;
-    font-weight: 500;
-    transition: color 0.3s ease;
-  }
-  
-  /* Hover text color */
-  .nav-links a:hover {
-    color: #2563eb;
-  }
-  
-  /* Underline animation */
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 2px;
-    left: 0;
-    bottom: -6px;
-    background: #1e5eff;
-    transition: width 0.3s ease;
-  }
-  
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-  .hero-section {
-    position: relative;
-    height: 90vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Dark overlay + blur effect */
-  .hero-overlay {
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  
-    background: linear-gradient(
-      to right,
-      rgba(255,255,255,0.85),
-      rgba(255,255,255,0.6)
-    );
-  
-    display: flex;
-    align-items: center;
-    padding: 0 8%;
-  }
-  
-  
-  /* Content */
-  .hero-content {
-    max-width: 700px;
-    color: white;
-  }
-  
-  .hero-content h2 {
-    color: #0f172a;
-  font-weight: 800;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-size: 42px 
+/* Section smooth scroll spacing */
+section {
+  scroll-margin-top: 100px;
 }
-  
-  .hero-content h2 span {
-    color: #2563eb;
-  }
-  
-  .hero-content p {
-    font-size: 18px;
-    margin-bottom: 30px;
-    color: #475569;
-  }
-  
-  /* Button */
-  .hero-btn {
-    display: inline-block;
-    background: #1e5eff;
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: 0.3s ease;
-  }
-  
-  .hero-btn:hover {
-    background: #163fb8;
-    transform: translateY(-2px);
-  }
-  .typing {
-    color: #1e5eff;
-    border-right: 3px solid #1e5eff;
-    padding-right: 5px;
-    animation: blink 0.8s infinite;
-  }
-  
-  @keyframes blink {
-    0% { border-color: #1e5eff; }
-    50% { border-color: transparent; }
-    100% { border-color: #1e5eff; }
-  }
-  
+
+/* Remove default Vite root padding if present */
+#root {
+  margin: 0;
+  padding: 0;
+}
