@@ -5,6 +5,7 @@ import Cohort from "../components/Cohort";
 import Payment from "../components/Payment";
 import FrontPage from "../components/FrontPage";
 import OurSpace from "../components/OurSpace";
+import FreeClass from "../components/FreeClass";
 
 function LandingPage() {
 
@@ -37,6 +38,7 @@ function LandingPage() {
 
           <Cohort />
           <OurSpace/>
+          <FreeClass />
           <Footer />
         </>
       )}
