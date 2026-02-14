@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ===== SECTION ===== */
+.hero-section{
+    position:relative;
+    height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    font-family:'Oswald', sans-serif;
+}
+
+/* ===== BACKGROUND IMAGE ===== */
+.hero-bg{
+    flex:1;
+    background-position:center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    display:flex;
+    align-items:flex-end;
+}
+
+/* ===== BLACK CONTENT BOX ===== */
+.content-box{
+    width:40%;
+    background:#000;
+    color:#fff;
+    padding:60px;
+}
+
+.content-box h1{
+    font-size:90px;
+    line-height:0.9;
+    font-weight:700;
+}
+
+.content-box p{
+    margin-top:25px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    line-height:1.6;
+    color:#ccc;
+}
+
+/* ===== TICKER ===== */
+.ticker{
+    height:60px;
+    background:#d8ff2f;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+}
+
+.ticker-track{
+    display:flex;
+    white-space:nowrap;
+    animation:scroll 18s linear infinite;
+}
+
+.ticker-track span{
+    font-weight:700;
+    font-size:20px;
+    margin-right:60px;
+    color:#000;
+}
+
+/* RIGHT TO LEFT ANIMATION */
+@keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 1000px){
+    .content-box{
+        width:60%;
+        padding:40px;
+    }
+
+    .content-box h1{
+        font-size:60px;
+    }
+}
+
+@media(max-width: 600px){
+    .content-box{
+        width:100%;
+    }
+
+    .content-box h1{
+        font-size:40px;
+    }
+}
