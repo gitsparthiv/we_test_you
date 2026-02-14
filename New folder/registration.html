@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Seat | WeTestYou</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Oswald', sans-serif;
+    background:linear-gradient(135deg, #ff7a00, #00547a);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Form Container */
+.form-container{
+    background:#ffffff;
+    padding:40px;
+    width:400px;
+    border-radius:12px;
+    box-shadow:0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+.form-container h1{
+    text-align:center;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+/* Input Fields */
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
+}
+
+.form-group input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:6px;
+    font-size:14px;
+    transition:0.3s;
+}
+
+.form-group input:focus{
+    outline:none;
+    border-color:#00547a;
+    box-shadow:0 0 5px rgba(0,84,122,0.3);
+}
+
+/* Submit Button */
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:6px;
+    background:#000;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#333;
+}
+
+/* Responsive */
+@media(max-width:480px){
+    .form-container{
+        width:90%;
+        padding:25px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Book Your Seat</h1>
+
+    <form>
+        <div class="form-group">
+            <label>Student Name</label>
+            <input type="text" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Mobile Number</label>
+            <input type="tel" placeholder="Enter your mobile number" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email" required>
+        </div>
+
+        <button type="submit">Book Your Seat</button>
+    </form>
+</div>
+
+</body>
+</html>

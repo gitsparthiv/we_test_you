@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
+import {useTypewriter,Cursor} from "react-simple-typewriter";
 import "./FrontPage.css";
 
 const FrontPage = ({ pricing, onRegister }) => {
@@ -26,6 +27,16 @@ const FrontPage = ({ pricing, onRegister }) => {
     }
   }
 
+  const {text} = useTypewriter({
+    words: [ "Exam-Ready.",
+    "Board-Prepared.",
+    "Mentally Strong.",
+    "Performance Confident."],
+    loop: {},
+    typeSpeed: 50,
+
+  });
+
   onRegister({
     cohort: selectedCohort,
     price,
@@ -48,7 +59,9 @@ const FrontPage = ({ pricing, onRegister }) => {
             Tuitions Teach You.<br />
             <span>We Test You.</span>
           </h1>
+          <h3 style={{ marginTop: '20px' }}>
 
+          </h3>
           <p>
             Structured offline mock examinations designed to simulate
             real board exam experience for Classes 10, 11 & 12.
