@@ -65,13 +65,30 @@ html, body {
 /* ===== LEFT SIDE ===== */
 .left {
   flex: 1;
-  background:
-    linear-gradient(rgba(255, 220, 188, 0.85), rgba(247, 174, 111, 0.85)),
-    url("../assets/3gin9vh8_cbse-_625x300_19_December_24.webp") center/cover no-repeat;
-
+  position: relative;
+  background: url("../assets/3gin9vh8_cbse-_625x300_19_December_24.webp") center/cover no-repeat;
   display: flex;
   align-items: center;
   padding-left: 80px;
+  overflow: hidden;
+}
+
+/* Dark overlay like bottom cards */
+.left::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55); /* Adjust darkness here */
+}
+
+/* Make text appear above overlay */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  font-size: 80px;
+  font-weight: 700;
+  color: #d7ff45;
+  line-height: 1.1;
 }
 
 /* ===== RIGHT SIDE ===== */
@@ -92,7 +109,7 @@ html, body {
 }
 
 .hero-text span {
-  color: #000;
+  color: #000000;
 }
 
 /* ===== FORM ===== */
