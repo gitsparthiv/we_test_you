@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Our New Space</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Oswald', sans-serif;
+}
+
+/* ===== SECTION ===== */
+.hero-section{
+    position:relative;
+    height:100vh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+}
+
+/* ===== BACKGROUND IMAGE ===== */
+.hero-bg{
+    flex:1;
+    background:url("./exam-hall.webp") center center / cover no-repeat;
+    display:flex;
+    align-items:flex-end;
+}
+
+/* ===== BLACK CONTENT BOX ===== */
+.content-box{
+    width:40%;
+    background:#000;
+    color:#fff;
+    padding:60px;
+}
+
+.content-box h1{
+    font-size:90px;
+    line-height:0.9;
+    font-weight:700;
+}
+
+.content-box p{
+    margin-top:25px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+    line-height:1.6;
+    color:#ccc;
+}
+
+/* ===== TICKER ===== */
+.ticker{
+    height:60px;
+    background:#d8ff2f;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+}
+
+.ticker-track{
+    display:flex;
+    white-space:nowrap;
+    animation:scroll 18s linear infinite;
+}
+
+.ticker-track span{
+    font-weight:700;
+    font-size:20px;
+    margin-right:60px;
+    color:#000;
+}
+
+/* RIGHT TO LEFT */
+@keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+
+</style>
+</head>
+<body>
+
+<section class="hero-section">
+
+    <div class="hero-bg">
+        <div class="content-box">
+            <h1>EXPLORE OUR<br>NEW SPACE</h1>
+            <p>
+                We are a trusted fitness community with an energetic, urban soul,
+                led by elite trainers who are as invested in your journey as you are.
+                We believe in training with purpose.
+            </p>
+        </div>
+    </div>
+
+    <div class="ticker">
+        <div class="ticker-track">
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+
+            <!-- duplicate for smooth infinite -->
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+            <span>/ CHECK OUT OUR NEW SPACE</span>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>

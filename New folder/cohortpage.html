@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The R/NESS Difference</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    font-family:'Oswald', sans-serif;
+    overflow:hidden; /* prevents extra scroll */
+}
+
+/* ===== MAIN CONTAINER ===== */
+.main{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    padding:60px;
+    gap:60px;
+}
+
+/* ===== TITLE ===== */
+.title h1{
+    font-size:120px;
+    color:#e6e6e6;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+/* ===== IMAGE GRID ===== */
+.grid{
+    flex:1;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:40px; /* Proper equal gap */
+}
+
+/* ===== CARD ===== */
+.card{
+    position:relative;
+    overflow:hidden;
+}
+
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    filter:brightness(65%);
+}
+
+/* ===== TEXT OVERLAY ===== */
+.text{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    color:#d8ff2f;
+    font-size:28px;
+    font-weight:600;
+    line-height:1.2;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1200px){
+    .title h1{
+        font-size:80px;
+    }
+}
+
+@media(max-width:900px){
+    .grid{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+    .title h1{
+        font-size:48px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="main">
+
+    <div class="title">
+        <h1>THE R/NESS DIFFERENCE</h1>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <img src="./3gin9vh8_cbse-_625x300_19_December_24.webp">
+            <div class="text">ELITE TRAINERS<br>YOU CAN TRUST</div>
+        </div>
+
+        <div class="card">
+            <img src="./creating-mock-test-scenarios-ar-generative-ai_1198295-118233.jpg">
+            <div class="text">WORKOUTS THAT<br>DELIVER RESULTS</div>
+        </div>
+
+        <div class="card">
+            <img src="./exam-hall.webp">
+            <div class="text">AN UNMATCHED<br>URBAN ENERGY</div>
+        </div>
+
+        <div class="card">
+            <img src="./3gin9vh8_cbse-_625x300_19_December_24.webp">
+            <div class="text">A COMMUNITY THAT<br>INSPIRES</div>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
