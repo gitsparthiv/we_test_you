@@ -37,12 +37,12 @@ const FrontPage = () => {
 
       {/* BOTTOM SECTION */}
       <div className="bottom-section">
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-        <div className="box"></div>
-      </div>
+  <div className="box"><p>Proctored Exam</p></div>
+  <div className="box"><p>Online / Offline Exam</p></div>
+  <div className="box"><p>Near Your Location</p></div>
+  <div className="box"><p>You Can Choose Subject</p></div>
+  <div className="box"><p>Discount on Individual Subject</p></div>
+</div>
 
     </div>
   );
