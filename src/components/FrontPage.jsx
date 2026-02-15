@@ -54,8 +54,7 @@ const FrontPage = () => {
         <div className="left">
           <div className="hero-content">
             <h2>
-              Tuition Teaches You.
-              Offline Mock Tests Make You<br />
+              Tuition Teaches You.<br/>              Offline Mock Tests Make You<br />
               <span className="typing">{displayText}</span>
             </h2>
 
@@ -64,14 +63,14 @@ const FrontPage = () => {
               in a real board-style environment.
             </p>
 
-            <button className="hero-btn">
+            {/* <button className="hero-btn">
               Register for Upcoming Mock Test
-            </button>
+            </button> */}
           </div>
         </div>
 
         <div className="right">
-  <div className="form-card">
+  {/* <div className="form-card">
     <h2>Register</h2>
 
     <form>
@@ -94,19 +93,33 @@ const FrontPage = () => {
         Register Now
       </button>
     </form>
-  </div>
+  </div> */}
 </div>
 
       </div>
+      
+      <div className="floating-box">
+  <p>
+    Step into structured offline mock exams  
+    designed to boost your board confidence.
+  </p>
+
+  <button className="floating-btn">
+  <span>Book Your Class</span>
+  <span className="arrow">→</span>
+</button>
+
+</div>
+
 
       {/* BOTTOM SECTION */}
-      <div className="bottom-section">
+      {/* <div className="bottom-section">
         <div className="box"><p>Proctored Exam</p></div>
         <div className="box"><p>Online / Offline Exam</p></div>
         <div className="box"><p>Near Your Location</p></div>
         <div className="box"><p>You Can Choose Subject</p></div>
         <div className="box"><p>Discount on Individual Subject</p></div>
-      </div>
+      </div> */}
 
     </div>
   );
