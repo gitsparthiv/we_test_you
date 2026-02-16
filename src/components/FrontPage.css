@@ -102,24 +102,6 @@ position: relative;
    /* Adjust darkness here */
 }
 
-/* Make text appear above overlay */
-/* .hero-text {
-  position: relative;
-  z-index: 2;
-  font-size: 80px;
-  font-weight: 700;
-  color: #d7ff45;
-  line-height: 1.1;
-} */
-
-/* ===== RIGHT SIDE ===== */
-/* .right {
-  flex: 1;
-  background: #2f6f8f;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
 
 /* ===== HERO TEXT ===== */
 .hero-text {
@@ -396,16 +378,21 @@ position: relative;
 /* ===== BOTTOM LEFT RIBBON IMAGE ===== */
 .ribbon-wrapper {
  
-  width: 100%;
+  width: 50%;
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 99;
+  
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .bottom-left-ribbon {
-  width: 300px;
-  height: auto;
+  width: auto;
+  height: 200px;
+  margin :0px;
   display: block;
 }
 
