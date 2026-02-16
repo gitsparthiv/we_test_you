@@ -16,7 +16,8 @@ html, body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  position: relative;
+/* justify-content: space-between; */
+position: relative;
 
   /* FULL PAGE BACKGROUND IMAGE */
   background: url("../assets/3gin9vh8_cbse-_625x300_19_December_24.webp") center/cover no-repeat;
@@ -75,12 +76,12 @@ html, body {
   height: 66.66vh;
   display: flex;
 }
-.top-section,
+/* .top-section,
 .bottom-section,
 .navbar {
   position: relative;
   z-index: 2;
-}
+} */
 
 /* ===== LEFT SIDE ===== */
 .left {
@@ -102,14 +103,14 @@ html, body {
 }
 
 /* Make text appear above overlay */
-.hero-text {
+/* .hero-text {
   position: relative;
   z-index: 2;
   font-size: 80px;
   font-weight: 700;
   color: #d7ff45;
   line-height: 1.1;
-}
+} */
 
 /* ===== RIGHT SIDE ===== */
 /* .right {
@@ -132,7 +133,10 @@ html, body {
   color: #161619;
 }
 .hero-content {
-  position: relative;
+  /* position: relative; */
+  position: absolute;
+  top: 50%;
+  left: 5%;
   z-index: 2;
   max-width: 900px;
   color: #fff;
@@ -174,22 +178,22 @@ html, body {
 }
 
 
-.right {
+/* .right {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-}
+} */
 
 
-.form-card {
+/* .form-card {
   width: 100%;
   max-width: 420px;
-  padding: 35px 30px;   /* Equal top & bottom padding */
+  padding: 35px 30px;   
   border-radius: 20px;
 
-  /* Glass effect */
+ 
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -209,7 +213,7 @@ html, body {
   margin-bottom: 30px;
   text-align: center;
   font-weight: 600;
-}
+} */
 
 
 /* ===== BOTTOM SECTION ===== */
@@ -249,7 +253,7 @@ html, body {
   position: relative;
   z-index: 2;
 }
-.input-group {
+/* .input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 18px;
@@ -271,8 +275,8 @@ html, body {
   font-size: 14px;
 }
 .submit-btn {
-  margin: 20px auto 0 auto;   /* center horizontally */
-  padding: 12px 30px;         /* better button shape */
+  margin: 20px auto 0 auto;   
+  padding: 12px 30px;         better button shape
   border-radius: 8px;
   border: none;
   background: #d7ff45;
@@ -281,17 +285,17 @@ html, body {
   cursor: pointer;
   transition: 0.3s ease;
   display: block;             /* required for margin auto to work */
-  width: fit-content;         /* shrink to content width */
-}
+  /* width: fit-content;         shrink to content width */
+/* } */
 
-.submit-btn:hover {
+/* .submit-btn:hover {
   background: #bde634;
   transform: translateY(-2px);
 }
 
 .input-group input::placeholder {
   color: #ddd;
-}
+} */ 
 
 
 
@@ -385,5 +389,23 @@ html, body {
 
 .floating-btn:hover .arrow {
   transform: translateX(5px); /* nice arrow movement */
+}
+
+/* ===== BOTTOM LEFT RIBBON IMAGE ===== */
+
+/* ===== BOTTOM LEFT RIBBON IMAGE ===== */
+.ribbon-wrapper {
+ 
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.bottom-left-ribbon {
+  width: 300px;
+  height: auto;
+  display: block;
 }
 

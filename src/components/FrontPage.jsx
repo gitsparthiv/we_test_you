@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import ribbon from "../assets/ribbon.png"; // adjust path if needed
+
 import "./FrontPage.css";
 
 const FrontPage = () => {
@@ -69,7 +71,7 @@ const FrontPage = () => {
           </div>
         </div>
 
-        <div className="right">
+        {/* <div className="right"> */}
   {/* <div className="form-card">
     <h2>Register</h2>
 
@@ -94,7 +96,7 @@ const FrontPage = () => {
       </button>
     </form>
   </div> */}
-</div>
+{/* </div> */}
 
       </div>
       
@@ -110,6 +112,16 @@ const FrontPage = () => {
 </button>
 
 </div>
+{/* Bottom Left Ribbon Image */}
+
+<div className="ribbon-wrapper">
+    <img
+      src={ribbon}
+      alt="features ribbon"
+      className="bottom-left-ribbon"
+    />
+</div>
+
 
 
       {/* BOTTOM SECTION */}
