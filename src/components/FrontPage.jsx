@@ -46,7 +46,8 @@ const FrontPage = () => {
       <div className="navbar">
         <div className="logo">WeTestU</div>
         <div className="nav-right">
-          <a href="#" className="book-btn">Book Your Seat</a>
+          <a href="#" className="book-btn">Book Your Seat<span class="arrow">→</span>
+</a>
         </div>
       </div>
 
