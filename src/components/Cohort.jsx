@@ -1,9 +1,9 @@
 import React from "react";
 import "./Cohort.css";
 
-import img1 from "../assets/class10pic.jpeg";
-import img2 from "../assets/creating-mock-test-scenarios-ar-generative-ai_1198295-118233.jpg";
-import img3 from "../assets/exam-hall.webp";
+import img1 from "../assets/class10new.png";
+import img2 from "../assets/11.png";
+import img3 from "../assets/class_12.png";
 
 const Cohort = () => {
   return (
