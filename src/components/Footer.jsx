@@ -1,5 +1,6 @@
 import React from "react";
 import "./Footer.css";
+import { WhatsAppIcon, GmailIcon } from "./Icons";
 
 const Footer = () => {
   return (
@@ -7,9 +8,9 @@ const Footer = () => {
 
       {/* Top Contact Bar */}
       <div className="top-bar">
-        <div>500 Terry Francine Street, SF, CA 94158</div>
-        <div>info@mysite.com</div>
-        <div>123-456-7890</div>
+        <div>Sunrise Greens, Canal Bank Rd, Newtown, Ghuni, West Bengal 700162</div>
+        <div>foranything@algo2trade.com </div>
+        <div>+91 98747 95959</div>
       </div>
 
       {/* Main Gradient Section */}
@@ -27,8 +28,8 @@ const Footer = () => {
         </div>
 
         <div className="social-icons">
-          <span>▶</span>
-          <span>📷</span>
+          <span><WhatsAppIcon /></span>
+          <span><GmailIcon /></span>
         </div>
 
         <div className="copyright">

@@ -1,6 +1,6 @@
 import React from "react";
 import "./OurSpace.css";
-import bgImage from "../assets/our_class2.jpg";
+import bgImage from "../assets/our_class2-modified.jpg";
 
 const OurSpace = () => {
   return (
@@ -12,31 +12,26 @@ const OurSpace = () => {
       >
         <div className="content-box">
           <h1>
-            EXPLORE OUR<br />NEW SPACE
+            PROCTORED<br />EXAMINATION CENTRE
           </h1>
 
-          {/* <p>
-            We are a trusted fitness community with an energetic, urban soul,
-            led by elite trainers who are as invested in your journey as you are.
-            We believe in training with purpose.
-          </p> */}
         </div>
       </div>
 
       <div className="ticker">
         <div className="ticker-track">
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
+          <span>/ Proctored Exam </span>
+          <span>/ Online / Offline Exam</span>
+          <span>/ Near Your Location</span>
+          <span>/ You Can Choose Subject</span>
+          <span>/ Discount on Individual Subject</span>
 
           {/* duplicate for smooth infinite scroll */}
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
-          <span>/ CHECK OUT OUR NEW SPACE</span>
+          <span>/ Proctored Exam </span>
+          <span>/ Online / Offline Exam</span>
+          <span>/ Near Your Location</span>
+          <span>/ You Can Choose Subject</span>
+          <span>/ Discount on Individual Subject</span>
         </div>
       </div>
 

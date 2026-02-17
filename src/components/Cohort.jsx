@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cohort.css";
 
-import img1 from "../assets/class10.avif";
+import img1 from "../assets/class10pic.jpeg";
 import img2 from "../assets/creating-mock-test-scenarios-ar-generative-ai_1198295-118233.jpg";
 import img3 from "../assets/exam-hall.webp";
 
@@ -39,7 +39,7 @@ const Cohort = () => {
           <img src={img2} alt="Class 11" />
           <div className="overlay">
             <h2>Class 11</h2>
-            <h3>Strong Concept Reinforcement</h3>
+            <h3>Concept Reinforcement</h3>
 
             <ul>
               <li>✔ Physics, Chemistry, Maths</li>

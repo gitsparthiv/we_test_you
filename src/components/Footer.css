@@ -1,6 +1,6 @@
 .footer-container {
     background: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Bebas Neue', cursive;
 }
 
 /* Top Info Bar */
@@ -10,6 +10,7 @@
     padding: 20px 60px;
     color: white;
     font-size: 14px;
+    letter-spacing: 1px;
 }
 
 /* Main Gradient Section */
@@ -25,10 +26,10 @@
 
 /* Big Text */
 .big-text {
-    font-size: 220px;
+    font-size: 400px;
     font-weight: 900;
     color: #e6e6e6;
-    letter-spacing: 10px;
+    letter-spacing: 5px;
 }
 
 /* Bottom Section */
@@ -41,21 +42,29 @@
     color: white;
     font-size: 14px;
 }
-
 .bottom-links span {
-    margin-right: 30px;
+    margin: 0 15px;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+/* Social Icons */
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icons span,
+.social-icons svg {
+    margin: 0 5px;
+    font-size: 24px;   /* 88px was too large */
     cursor: pointer;
 }
 
-.social-icons span {
-    margin: 0 10px;
-    font-size: 18px;
-    cursor: pointer;
-}
-
-.copyright a {
+/* Copyright Link */
+.copyright {
     color: white;
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    letter-spacing: 2px;
 }
 
 /* Responsive */
