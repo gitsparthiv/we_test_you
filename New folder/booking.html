@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Class</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:Arial,sans-serif;
+}
+
+/* HEADER */
+.header{padding:60px 80px 20px;}
+.header h1{
+    font-family:'Bebas Neue',cursive;
+    font-size:140px;
+}
+
+/* TOP BAR */
+.top-bar{
+    position:sticky;
+    top:0;
+    background:#000;
+    z-index:200;
+    padding:20px 80px;
+    border-bottom:1px solid #222;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.calendar-left{display:flex;align-items:center;gap:20px;}
+.month{opacity:.7;}
+.date-scroll{display:flex;gap:15px;}
+
+.date-item{
+    padding:8px 16px;
+    border-radius:20px;
+    opacity:.6;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.date-item.active{
+    background:#fff;
+    color:#000;
+    opacity:1;
+}
+
+.service{opacity:.8;cursor:pointer;}
+
+/* DAY SECTION */
+.day-wrapper{
+    display:flex;
+    padding:60px 80px;
+    border-bottom:1px solid #111;
+}
+
+.day-sticky{
+    width:180px;
+    font-size:14px;
+    color:#aaa;
+    position:sticky;
+    top:120px;
+    height:fit-content;
+}
+
+.sessions{flex:1;}
+
+/* SESSION ROW */
+.class-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:30px 0;
+    border-bottom:1px solid #222;
+}
+
+.class-info h2{
+    font-family:'Bebas Neue',cursive;
+    font-size:34px;
+}
+
+.class-info p{font-size:14px;opacity:.7;}
+.spots{opacity:.7;font-size:14px;}
+
+.book-btn{
+    background:#d9ff00;
+    border:none;
+    padding:12px 28px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* LOAD MORE */
+.load-container{
+    text-align:center;
+    padding:50px 0 0;
+}
+
+.load-btn{
+    background:#d9ff00;
+    padding:14px 40px;
+    border:none;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* HIDE ALL SESSIONS BY DEFAULT */
+.session-item{
+    display:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .header h1{font-size:70px}
+    .header,.top-bar,.day-wrapper{padding:30px}
+    .day-wrapper{flex-direction:column}
+    .day-sticky{position:relative;top:0;margin-bottom:20px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>BOOK A CLASS</h1>
+</div>
+
+<div class="top-bar">
+    <div class="calendar-left">
+        <div class="month">July 2035</div>
+        <div class="date-scroll">
+            <div class="date-item active" data-day="day1">Thu 12</div>
+            <div class="date-item" data-day="day2">Fri 13</div>
+            <div class="date-item" data-day="day3">Sat 14</div>
+        </div>
+    </div>
+    <div class="service">Service ▼</div>
+</div>
+
+<!-- DAY 1 -->
+<div class="day-wrapper" id="day1">
+    <div class="day-sticky">July 12<br>Thursday</div>
+    <div class="sessions">
+
+        <!-- EXISTING DATA -->
+        <div class="class-row session-item">
+            <div class="class-info"><h2>Urban Strike</h2><p>6:00 am (45 min)</p></div>
+            <div class="spots">40 spots left</div>
+            <button class="book-btn">Book</button>
+        </div>
+
+        <div class="class-row session-item">
+            <div class="class-info"><h2>Cardio Conditioning</h2><p>7:00 am (45 min)</p></div>
+            <div class="spots">35 spots left</div>
+            <button class="book-btn">Book</button>
+        </div>
+
+        <div class="class-row session-item">
+            <div class="class-info"><h2>Strength Training</h2><p>8:00 am (1 hr)</p></div>
+            <div class="spots">30 spots left</div>
+            <button class="book-btn">Book</button>
+        </div>
+
+        <div class="class-row session-item">
+            <div class="class-info"><h2>Urban GRIT</h2><p>5:00 pm (1 hr)</p></div>
+            <div class="spots">25 spots left</div>
+            <button class="book-btn">Book</button>
+        </div>
+
+        
+
+    </div>
+</div>
+<!-- day 2 -->
+<div class="day-wrapper" id="day2">
+<div class="day-sticky">July 13<br>Friday</div>
+<div class="sessions">
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Urban GRIT</h2><p>6:00 am (1 hr)</p></div>
+<div class="spots">32 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Boxing Core</h2><p>7:30 am (45 min)</p></div>
+<div class="spots">28 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Strength Lab</h2><p>9:00 am (1 hr)</p></div>
+<div class="spots">25 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Cardio Burn</h2><p>5:00 pm (45 min)</p></div>
+<div class="spots">20 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Evening HIIT</h2><p>6:30 pm (45 min)</p></div>
+<div class="spots">18 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+
+
+</div>
+</div>
+<!-- day3 -->
+<div class="day-wrapper" id="day3">
+<div class="day-sticky">July 14<br>Saturday</div>
+<div class="sessions">
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Weekend Warrior</h2><p>7:00 am (1 hr)</p></div>
+<div class="spots">35 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Boxing Burn</h2><p>8:30 am (1 hr)</p></div>
+<div class="spots">30 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Core Attack</h2><p>10:00 am (45 min)</p></div>
+<div class="spots">22 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Urban Flow</h2><p>12:00 pm (1 hr)</p></div>
+<div class="spots">19 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+<div class="class-row session-item">
+<div class="class-info"><h2>Power Lift</h2><p>5:00 pm (1 hr)</p></div>
+<div class="spots">16 spots left</div>
+<button class="book-btn">Book</button>
+</div>
+
+
+
+</div>
+</div>
+<div class="load-container">
+    <button class="load-btn" id="globalLoadBtn">
+        Load more sessions
+    </button>
+</div>
+
+<script>
+// SCROLL ACTIVE DATE
+const sections = document.querySelectorAll(".day-wrapper");
+const dates = document.querySelectorAll(".date-item");
+
+window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(sec => {
+        if (pageYOffset >= sec.offsetTop - 200) {
+            current = sec.id;
+        }
+    });
+    dates.forEach(d => {
+        d.classList.toggle("active", d.dataset.day === current);
+    });
+});
+
+
+// GLOBAL LOAD MORE (REVEAL REAL DATA ONLY)
+
+const allSessions = document.querySelectorAll(".session-item");
+const loadBtn = document.getElementById("globalLoadBtn");
+
+let visibleCount = 4;   // show first 4 sessions overall
+const step = 3;         // reveal 3 more each click
+
+function updateSessions() {
+
+    allSessions.forEach((session, index) => {
+        session.style.display = index < visibleCount ? "flex" : "none";
+    });
+
+    if (visibleCount >= allSessions.length) {
+        loadBtn.style.display = "none";
+    }
+}
+
+updateSessions();
+
+loadBtn.addEventListener("click", () => {
+    visibleCount += step;
+    updateSessions();
+});
+</script>
+
+
+
+</body>
+</html>
