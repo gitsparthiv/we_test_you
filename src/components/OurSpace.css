@@ -57,10 +57,26 @@
     align-items:center;
 }
 
-.ticker-track{
+/* .ticker-track{
     display:flex;
     white-space:nowrap;
     animation:scroll 18s linear infinite;
+} */
+.ticker-track{
+    display:flex;
+    /* white-space:nowrap; */
+    width:max-content;
+    animation:scroll 20s linear infinite;
+}
+.ticker-content {
+    display: flex;
+    white-space: nowrap;
+    flex-shrink: 0;   /* IMPORTANT */
+}
+
+@keyframes scroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
 }
 
 .ticker-track span{
@@ -68,13 +84,14 @@
     font-size:20px;
     margin-right:60px;
     color:#000;
+    /* display: inline-block; */
 }
 
 /* RIGHT TO LEFT ANIMATION */
-@keyframes scroll{
+/* @keyframes scroll{
     0%{ transform:translateX(0); }
     100%{ transform:translateX(-50%); }
-}
+} */
 
 /* ===== RESPONSIVE ===== */
 @media(max-width: 1000px){
