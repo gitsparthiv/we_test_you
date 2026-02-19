@@ -108,7 +108,7 @@ const FrontPage = () => {
   </p>
 
   <button className="floating-btn">
-  <span>Book Your Class</span>
+  <span>Book Your Seat</span>
   <span className="arrow">→</span>
 </button>
 
