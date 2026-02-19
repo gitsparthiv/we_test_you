@@ -1,11 +1,13 @@
 import React from "react";
 import "./Cohort.css";
+import { useNavigate } from "react-router-dom";
 
 import img1 from "../assets/class10new.png";
 import img2 from "../assets/11.png";
 import img3 from "../assets/class_12.png";
 
 const Cohort = () => {
+  const navigate = useNavigate();
   return (
     <div className="cohort-container">
 
@@ -30,7 +32,9 @@ const Cohort = () => {
               <li>✔ Parent Progress Updates</li>
             </ul>
 
-            <button>Register Now</button>
+            <button onClick={() => navigate("/book-seat")}>
+  Register Now
+</button>
           </div>
         </div>
 
@@ -49,7 +53,9 @@ const Cohort = () => {
               <li>✔ Exam Writing Strategy Session</li>
             </ul>
 
-            <button>Register Now</button>
+            <button onClick={() => navigate("/book-seat")}>
+  Register Now
+</button>
           </div>
         </div>
 
@@ -68,7 +74,9 @@ const Cohort = () => {
               <li>✔ Personal Review Meeting</li>
             </ul>
 
-            <button>Register Now</button>
+            <button onClick={() => navigate("/book-seat")}>
+  Register Now
+</button>
           </div>
         </div>
 

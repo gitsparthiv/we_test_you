@@ -77,20 +77,24 @@
 
 .overlay button {
     background: #d7ff45;
-  color: #000000;
-  border: none;
-  padding: 14px 20px;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  width: 100%;
+    color: #000000;
+    border: none;
+    outline: none;
+    font-family: 'Oswald', sans-serif; 
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
 
-  display: flex;
-  justify-content: space-between;  /* THIS spreads text + arrow */
-  align-items: center;
+    display: flex;
+    justify-content: center;   /* ✅ CENTER TEXT */
+    align-items: center;
 
-  transition: 0.3s ease;
+    transition: 0.3s ease;
 }
+
+
 
 .overlay button:hover {
     background: #b6e600;
