@@ -81,3 +81,155 @@
         letter-spacing: 5px;
     }
 }
+/* Modal Overlay (Background Dark Effect) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);   /* dark transparent */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Modal Box */
+.modal-box {
+    background: white;
+    width: 600px;
+    max-width: 90%;
+    padding: 40px;
+    border-radius: 10px;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Modal Title */
+.modal-box h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-family: 'Bebas Neue', cursive;
+}
+
+/* Scrollable Content */
+.modal-content {
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Close Button Bottom Right */
+.close-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    padding: 8px 18px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Smooth Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.terms-wrapper {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.terms-title {
+    font-size: 30px;
+    color: #c94b00;   /* Brand orange */
+    margin-bottom: 5px;
+}
+
+.effective-date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    font-size: 15px;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+.terms-section {
+    margin-bottom: 20px;
+}
+
+.terms-section h4 {
+    color: #7a1e00;   /* Dark red */
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.terms-section p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.terms-section ul {
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+.terms-section li {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
+/* ===== REFUND POLICY STYLING ===== */
+
+.refund-wrapper {
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.refund-title {
+    font-size: 30px;
+    color: #c94b00;   /* Brand orange */
+    margin-bottom: 5px;
+}
+
+.refund-section {
+    margin-bottom: 20px;
+}
+
+.refund-section h4 {
+    color: #7a1e00;   /* Dark red */
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.refund-section p {
+    font-size: 14px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.refund-section ul {
+    padding-left: 20px;
+    margin: 5px 0;
+}
+
+.refund-section li {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 4px;
+}
