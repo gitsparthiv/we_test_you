@@ -10,6 +10,9 @@ html, body {
   font-family: 'Oswald', sans-serif;
   overflow-x: hidden;
 }
+button {
+  font-family: inherit;
+}
 
 /* ===== MAIN CONTAINER ===== */
 .main-container {
@@ -84,7 +87,9 @@ position: relative;
 
   font-size: 20px;
   font-weight: 700;
-
+  border: none;              /* ✅ ADD THIS */
+  outline: none;             /* ✅ ADD THIS */
+  cursor: pointer;           
   text-decoration: none;
   border-radius: 0;
 

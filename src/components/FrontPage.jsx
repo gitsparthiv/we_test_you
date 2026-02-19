@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ribbon from "../assets/ribbon.png"; // adjust path if needed
-
+import { useNavigate } from "react-router-dom";
 import "./FrontPage.css";
 
 const FrontPage = () => {
+  const navigate = useNavigate();
   const words = [
     "Exam-Ready.",
     "Board-Prepared.",
@@ -46,8 +47,12 @@ const FrontPage = () => {
       <div className="navbar">
         <div className="logo">WeTestU</div>
         <div className="nav-right">
-          <a href="#" className="book-btn">Book Your Seat<span class="arrow">→</span>
-</a>
+        <button
+  className="book-btn"
+  onClick={() => navigate("/book-seat")}
+>
+  Book Your Seat <span className="arrow">→</span>
+</button>
         </div>
       </div>
 
@@ -107,7 +112,10 @@ const FrontPage = () => {
     designed to boost your board confidence.
   </p>
 
-  <button className="floating-btn">
+  <button
+  className="floating-btn"
+  onClick={() => navigate("/book-seat")}
+>
   <span>Book Your Seat</span>
   <span className="arrow">→</span>
 </button>
