@@ -3,313 +3,315 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a Class</title>
+<title>Registration 2026-27</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
 body{
     background:#000;
     color:#fff;
-    font-family:Arial,sans-serif;
+    font-family:Arial, sans-serif;
+    padding:50px;
 }
 
-/* HEADER */
-.header{padding:60px 80px 20px;}
-.header h1{
-    font-family:'Bebas Neue',cursive;
-    font-size:140px;
-}
-
-/* TOP BAR */
-.top-bar{
-    position:sticky;
-    top:0;
+/* MAIN CONTAINER */
+.main-box{
+    position:relative;
     background:#000;
-    z-index:200;
-    padding:20px 80px;
-    border-bottom:1px solid #222;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
 }
 
-.calendar-left{display:flex;align-items:center;gap:20px;}
-.month{opacity:.7;}
-.date-scroll{display:flex;gap:15px;}
+/* TITLE */
+.title-box{
+    text-align:center;
+    margin-bottom:50px;
+}
 
-.date-item{
-    padding:8px 16px;
-    border-radius:20px;
-    opacity:.6;
+.title-box h1{
+    font-family:'Bebas Neue', cursive;
+    font-size:50px;
+    letter-spacing:3px;
+}
+
+/* CART */
+.cart{
+    position:absolute;
+    top:40px;
+    right:40px;
+    width:90px;
+    height:90px;
+    border:2px solid #444;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    /* font-weight:bold; */
+    cursor:pointer;
+    transition:.3s;
+    font-size:28px;
+}
+
+.cart:hover{
+    background:#d9ff00;
+    color:#000;
+    transform:scale(1.1);
+}
+
+/* FILTER SECTION */
+.filter-section{
+    margin-bottom:50px;
+}
+
+.filter-row{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    margin-bottom:20px;
+}
+
+.filter-row span{
+    font-weight:bold;
+    width:100px;
+    opacity:.7;
+}
+
+.filter-btn{
+    padding:10px 20px;
+    border:1px solid #333;
+    border-radius:8px;
+    background:#111;
+    color:#fff;
     cursor:pointer;
     transition:.3s;
 }
 
-.date-item.active{
-    background:#fff;
+.filter-btn:hover{
+    background:#d9ff00;
     color:#000;
-    opacity:1;
 }
 
-.service{opacity:.8;cursor:pointer;}
-
-/* DAY SECTION */
-.day-wrapper{
-    display:flex;
-    padding:60px 80px;
-    border-bottom:1px solid #111;
+/* TABLE BOX */
+.custom-table{
+    width:100%;
+    border-collapse:collapse;
 }
 
-.day-sticky{
-    width:180px;
-    font-size:14px;
-    color:#aaa;
-    position:sticky;
-    top:120px;
-    height:fit-content;
-}
-
-.sessions{flex:1;}
-
-/* SESSION ROW */
-.class-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:30px 0;
+.custom-table th,
+.custom-table td{
+    padding:18px;
+    text-align:left;
     border-bottom:1px solid #222;
 }
 
-.class-info h2{
-    font-family:'Bebas Neue',cursive;
-    font-size:34px;
+.custom-table th{
+    opacity:.8;
+    border-bottom:1px solid #333;
 }
 
-.class-info p{font-size:14px;opacity:.7;}
-.spots{opacity:.7;font-size:14px;}
+.subject-cell{
+    vertical-align:top;
+    line-height:28px;
+    opacity:.8;
+    padding-top:18px;  
+}
 
-.book-btn{
-    background:#d9ff00;
+.table-box{
+    border:1px solid #222;
+    border-radius:30px;
+    padding:30px;
+    background:#0a0a0a;
+}
+
+/* TABLE HEADER */
+.table-header,
+.table-row{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 220px;
+    align-items:center;
+    padding:18px 0;
+}
+
+.table-header{
+    font-weight:bold;
+    border-bottom:1px solid #333;
+    opacity:.8;
+}
+.table-header,
+.table-row{
+    display:grid;
+    grid-template-columns: 1.2fr 0.6fr 1fr 1fr 1fr 220px;
+    align-items:center;
+    padding:18px 0;
+}
+
+.subject-merged{
+    grid-row: span 3;
+    line-height:30px;
+    font-size:16px;
+    opacity:.8;
+}
+
+.no-subject{
+    margin-left:0;
+}
+
+/* ROW */
+.table-row{
+    border-bottom:1px solid #222;
+}
+
+.table-row:hover{
+    background:#111;
+}
+
+/* ACTION BUTTONS */
+.action-box{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.add-btn{
+    padding:10px;
     border:none;
-    padding:12px 28px;
+    border-radius:6px;
+    background:#d9ff00;
     font-weight:bold;
     cursor:pointer;
+    transition:.3s;
 }
 
-/* LOAD MORE */
-.load-container{
-    text-align:center;
-    padding:50px 0 0;
+.add-btn:hover{
+    opacity:.8;
 }
 
-.load-btn{
-    background:#d9ff00;
-    padding:14px 40px;
-    border:none;
+.cost-btn{
+    padding:10px;
+    border:1px solid #444;
+    border-radius:6px;
+    background:#000;
+    color:#fff;
     font-weight:bold;
-    cursor:pointer;
 }
 
-/* HIDE ALL SESSIONS BY DEFAULT */
-.session-item{
-    display:none;
+/* SUBJECT LIST */
+.subject-list{
+    margin-top:40px;
+    opacity:.7;
+    line-height:28px;
 }
 
-/* RESPONSIVE */
 @media(max-width:900px){
-    .header h1{font-size:70px}
-    .header,.top-bar,.day-wrapper{padding:30px}
-    .day-wrapper{flex-direction:column}
-    .day-sticky{position:relative;top:0;margin-bottom:20px}
+    .table-header,
+    .table-row{
+        grid-template-columns: 1fr 1fr;
+        gap:10px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <h1>BOOK A CLASS</h1>
-</div>
+<div class="main-box">
 
-<div class="top-bar">
-    <div class="calendar-left">
-        <div class="month">July 2035</div>
-        <div class="date-scroll">
-            <div class="date-item active" data-day="day1">Thu 12</div>
-            <div class="date-item" data-day="day2">Fri 13</div>
-            <div class="date-item" data-day="day3">Sat 14</div>
-        </div>
+    <div class="title-box">
+        <h1>Registration for 2026-27 Session</h1>
     </div>
-    <div class="service">Service ▼</div>
-</div>
 
-<!-- DAY 1 -->
-<div class="day-wrapper" id="day1">
-    <div class="day-sticky">July 12<br>Thursday</div>
-    <div class="sessions">
+    <div class="cart"><i class="fa-solid fa-cart-shopping"></i></div>
 
-        <!-- EXISTING DATA -->
-        <div class="class-row session-item">
-            <div class="class-info"><h2>Urban Strike</h2><p>6:00 am (45 min)</p></div>
-            <div class="spots">40 spots left</div>
-            <button class="book-btn">Book</button>
+    <!-- FILTERS -->
+    <div class="filter-section">
+
+        <div class="filter-row">
+            <span>Cohort</span>
+            <button class="filter-btn">Class 10</button>
+            <button class="filter-btn">Class 11</button>
+            <button class="filter-btn">Class 12</button>
         </div>
 
-        <div class="class-row session-item">
-            <div class="class-info"><h2>Cardio Conditioning</h2><p>7:00 am (45 min)</p></div>
-            <div class="spots">35 spots left</div>
-            <button class="book-btn">Book</button>
+        <div class="filter-row">
+            <span>Centre</span>
+            <button class="filter-btn">North</button>
+            <button class="filter-btn">South</button>
+            <button class="filter-btn">East</button>
+            <button class="filter-btn">West</button>
         </div>
 
-        <div class="class-row session-item">
-            <div class="class-info"><h2>Strength Training</h2><p>8:00 am (1 hr)</p></div>
-            <div class="spots">30 spots left</div>
-            <button class="book-btn">Book</button>
-        </div>
+    </div>
 
-        <div class="class-row session-item">
-            <div class="class-info"><h2>Urban GRIT</h2><p>5:00 pm (1 hr)</p></div>
-            <div class="spots">25 spots left</div>
-            <button class="book-btn">Book</button>
-        </div>
+    <!-- TABLE -->
+    <div class="table-box">
 
+        <table class="custom-table">
         
-
-    </div>
-</div>
-<!-- day 2 -->
-<div class="day-wrapper" id="day2">
-<div class="day-sticky">July 13<br>Friday</div>
-<div class="sessions">
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Urban GRIT</h2><p>6:00 am (1 hr)</p></div>
-<div class="spots">32 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Boxing Core</h2><p>7:30 am (45 min)</p></div>
-<div class="spots">28 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Strength Lab</h2><p>9:00 am (1 hr)</p></div>
-<div class="spots">25 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Cardio Burn</h2><p>5:00 pm (45 min)</p></div>
-<div class="spots">20 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Evening HIIT</h2><p>6:30 pm (45 min)</p></div>
-<div class="spots">18 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-
-
-</div>
-</div>
-<!-- day3 -->
-<div class="day-wrapper" id="day3">
-<div class="day-sticky">July 14<br>Saturday</div>
-<div class="sessions">
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Weekend Warrior</h2><p>7:00 am (1 hr)</p></div>
-<div class="spots">35 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Boxing Burn</h2><p>8:30 am (1 hr)</p></div>
-<div class="spots">30 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Core Attack</h2><p>10:00 am (45 min)</p></div>
-<div class="spots">22 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Urban Flow</h2><p>12:00 pm (1 hr)</p></div>
-<div class="spots">19 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-<div class="class-row session-item">
-<div class="class-info"><h2>Power Lift</h2><p>5:00 pm (1 hr)</p></div>
-<div class="spots">16 spots left</div>
-<button class="book-btn">Book</button>
-</div>
-
-
+            <thead>
+                <tr>
+                    <th>Subjects</th>
+                    <th>Class</th>
+                    <th>Centre</th>
+                    <th>Chapter</th>
+                    <th>Month</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+        
+            <tbody>
+                <tr>
+                    <td rowspan="3" class="subject-cell">
+                        Science<br>
+                        Mathematics<br>
+                        English
+                    </td>
+                    <td>10</td>
+                    <td>South</td>
+                    <td>Matter</td>
+                    <td>Apr 26</td>
+                    <td>
+                        <button class="add-btn">Add to Cart</button><br><br>
+                        <button class="cost-btn">₹ 1200</button>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>10</td>
+                    <td>South</td>
+                    <td>Algebra</td>
+                    <td>May 26</td>
+                    <td>
+                        <button class="add-btn">Add to Cart</button><br><br>
+                        <button class="cost-btn">₹ 1500</button>
+                    </td>
+                </tr>
+        
+                <tr>
+                    <td>10</td>
+                    <td>South</td>
+                    <td>Grammar</td>
+                    <td>Jun 26</td>
+                    <td>
+                        <button class="add-btn">Add to Cart</button><br><br>
+                        <button class="cost-btn">₹ 1000</button>
+                    </td>
+                </tr>
+        
+            </tbody>
+        
+        </table>
+        
+        </div>
+        
+    
 
 </div>
-</div>
-<div class="load-container">
-    <button class="load-btn" id="globalLoadBtn">
-        Load more sessions
-    </button>
-</div>
-
-<script>
-// SCROLL ACTIVE DATE
-const sections = document.querySelectorAll(".day-wrapper");
-const dates = document.querySelectorAll(".date-item");
-
-window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach(sec => {
-        if (pageYOffset >= sec.offsetTop - 200) {
-            current = sec.id;
-        }
-    });
-    dates.forEach(d => {
-        d.classList.toggle("active", d.dataset.day === current);
-    });
-});
-
-
-// GLOBAL LOAD MORE (REVEAL REAL DATA ONLY)
-
-const allSessions = document.querySelectorAll(".session-item");
-const loadBtn = document.getElementById("globalLoadBtn");
-
-let visibleCount = 4;   // show first 4 sessions overall
-const step = 3;         // reveal 3 more each click
-
-function updateSessions() {
-
-    allSessions.forEach((session, index) => {
-        session.style.display = index < visibleCount ? "flex" : "none";
-    });
-
-    if (visibleCount >= allSessions.length) {
-        loadBtn.style.display = "none";
-    }
-}
-
-updateSessions();
-
-loadBtn.addEventListener("click", () => {
-    visibleCount += step;
-    updateSessions();
-});
-</script>
-
-
 
 </body>
 </html>
