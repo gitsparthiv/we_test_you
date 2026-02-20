@@ -90,7 +90,31 @@ const Payment = () => {
         <button
           className="pay-btn"
           disabled={!isFormValid}
-          onClick={() => alert("Payment Successful")}
+          onClick={async () => {
+            const payload = {
+              studentName: form.studentName,
+              studentEmail: form.studentEmail,
+              studentPhone: form.studentPhone,
+              parentName: form.parentName,
+              parentPhone: form.parentPhone,
+              subjects: selectedSubjects.map(s => s.name).join(", "),
+              subtotal,
+              discount,
+              finalTotal
+            };
+          
+            try {
+              await fetch("https://script.google.com/macros/s/AKfycbxsOpLFCj2thj9VwVd4OluwZQWsCNL76Fqvo_6Uj21mY_Zu2eK3agROk8KcmNy9rcSY/exec", {
+                method: "POST",
+                body: JSON.stringify(payload)
+              });
+          
+              alert("Payment Successful & Data Saved!");
+            } catch (error) {
+              alert("Error saving data");
+            }
+          }}
+          
         >
           Pay ₹ {finalTotal}
         </button>
