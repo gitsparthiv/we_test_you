@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import ribbon from "../assets/ribbon.png"; // adjust path if needed
+import ribbon from "../assets/ribbon.png";
 import { useNavigate } from "react-router-dom";
 import "./FrontPage.css";
 
 const FrontPage = () => {
   const navigate = useNavigate();
+
   const words = [
     "Exam-Ready.",
     "Board-Prepared.",
@@ -23,13 +24,11 @@ const FrontPage = () => {
     const timer = setTimeout(() => {
       if (!isDeleting) {
         setDisplayText(currentWord.substring(0, displayText.length + 1));
-
         if (displayText === currentWord) {
           setTimeout(() => setIsDeleting(true), 1200);
         }
       } else {
         setDisplayText(currentWord.substring(0, displayText.length - 1));
-
         if (displayText === "") {
           setIsDeleting(false);
           setCurrentWordIndex((prev) => (prev + 1) % words.length);
@@ -43,26 +42,13 @@ const FrontPage = () => {
   return (
     <div className="main-container">
 
-      {/* NAVBAR */}
-      <div className="navbar">
-        <div className="logo">WeTestU</div>
-        <div className="nav-right">
-        <button
-  className="book-btn"
-  onClick={() => navigate("/book-seat")}
->
-  Book Your Seat <span className="arrow">→</span>
-</button>
-        </div>
-      </div>
-
       {/* TOP SECTION */}
       <div className="top-section">
-
         <div className="left">
           <div className="hero-content">
             <h2>
-              Tuition Teaches You.<br/>              Offline Mock Tests Make You<br />
+              Tuition Teaches You.<br/>
+              Offline Mock Tests Make You<br />
               <span className="typing">{displayText}</span>
             </h2>
 
@@ -70,77 +56,32 @@ const FrontPage = () => {
               Structured offline mock examinations for CBSE Classes 10, 11 & 12
               in a real board-style environment.
             </p>
-
-            {/* <button className="hero-btn">
-              Register for Upcoming Mock Test
-            </button> */}
           </div>
         </div>
-
-        {/* <div className="right"> */}
-  {/* <div className="form-card">
-    <h2>Register</h2>
-
-    <form>
-      <div className="input-group">
-        <label>Student Name</label>
-        <input type="text" placeholder="Enter your name" required />
       </div>
 
-      <div className="input-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="Enter your email" required />
-      </div>
-
-      <div className="input-group">
-        <label>Mobile Number</label>
-        <input type="tel" placeholder="Enter your mobile number" required />
-      </div>
-
-      <button type="submit" className="submit-btn">
-        Register Now
-      </button>
-    </form>
-  </div> */}
-{/* </div> */}
-
-      </div>
-      
       <div className="floating-box">
-  <p>
-    Step into structured offline mock exams  
-    designed to boost your board confidence.
-  </p>
+        <p>
+          Step into structured offline mock exams  
+          designed to boost your board confidence.
+        </p>
 
-  <button
-  className="floating-btn"
-  onClick={() => navigate("/book-seat")}
->
-  <span>Book Your Seat</span>
-  <span className="arrow">→</span>
-</button>
+        <button
+          className="floating-btn"
+          onClick={() => navigate("/book-seat")}
+        >
+          <span>Book Your Seat</span>
+          <span className="arrow">→</span>
+        </button>
+      </div>
 
-</div>
-{/* Bottom Left Ribbon Image */}
-
-<div className="ribbon-wrapper">
-    <img
-      src={ribbon}
-      alt="features ribbon"
-      className="bottom-left-ribbon"
-    />
-</div>
-
-
-
-      {/* BOTTOM SECTION */}
-      {/* <div className="bottom-section">
-        <div className="box"><p>Proctored Exam</p></div>
-        <div className="box"><p>Online / Offline Exam</p></div>
-        <div className="box"><p>Near Your Location</p></div>
-        <div className="box"><p>You Can Choose Subject</p></div>
-        <div className="box"><p>Discount on Individual Subject</p></div>
-      </div> */}
+      <div className="ribbon-wrapper">
+        <img
+          src={ribbon}
+          alt="features ribbon"
+          className="bottom-left-ribbon"
+        />
+      </div>
 
     </div>
   );
