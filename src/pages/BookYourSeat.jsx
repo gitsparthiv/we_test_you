@@ -96,7 +96,7 @@ const BookYourSeat = () => {
   };
 
   const [currentClass, setCurrentClass] = useState("10");
-  const [currentVenue, setCurrentVenue] = useState("South");
+  const [currentVenue, setCurrentVenue] = useState("");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
   const [loadedCount, setLoadedCount] = useState(getInitialLoadCount("10"));
 
@@ -144,19 +144,24 @@ const BookYourSeat = () => {
     setLoadedCount(getInitialLoadCount(cls));
   };
 
-  const addSubject = (name, price) => {
-    const key = name + "-Class" + currentClass;
+ const addSubject = (name, price) => {
+  if (!currentVenue) {
+    alert("Please select a venue first.");
+    return;
+  }
 
-    if (selectedSubjects.some(item => item.key === key)) {
-      alert("Subject already added.");
-      return;
-    }
+  const key = name + "-Class" + currentClass;
 
-    setSelectedSubjects([
-      ...selectedSubjects,
-      { key, name, price, class: currentClass, venue: currentVenue }
-    ]);
-  };
+  if (selectedSubjects.some(item => item.key === key)) {
+    alert("Subject already added.");
+    return;
+  }
+
+  setSelectedSubjects([
+    ...selectedSubjects,
+    { key, name, price, class: currentClass, venue: currentVenue }
+  ]);
+};
 
   const removeItem = (key) => {
     setSelectedSubjects(
@@ -170,6 +175,9 @@ const BookYourSeat = () => {
       [index]: prev[index] + 3
     }));
   };
+
+  const canCheckout =
+  selectedSubjects.length > 0 && currentVenue !== "";
 
   return (
     <div className="registration-wrapper">
@@ -313,8 +321,9 @@ const BookYourSeat = () => {
           </div>
         </div>
 
-        <button
+<button
   className="checkout"
+  disabled={!canCheckout}
   onClick={() =>
     navigate("/payment", {
       state: {
