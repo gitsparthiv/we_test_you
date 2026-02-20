@@ -1,16 +1,24 @@
 .footer-container {
     background: black;
     font-family: 'Bebas Neue', cursive;
+    position: relative;
 }
 
 /* Top Info Bar */
 .top-bar {
+    position: absolute;
+    top: 18px;        /* 👈 move it down properly */
+    left: 60px;
+    right: 60px;       /* 👈 ADD THIS (important) */
+    
     display: flex;
     justify-content: space-between;
-    padding: 20px 60px;
+    align-items: center;
+
     color: white;
     font-size: 14px;
     letter-spacing: 1px;
+    z-index: 99;
 }
 
 /* Main Gradient Section */

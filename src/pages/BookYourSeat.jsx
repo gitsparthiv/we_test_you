@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./BookYourSeat.css";
 import { FaShoppingCart } from "react-icons/fa";
 
 const BookYourSeat = () => {
+  const navigate = useNavigate();
 
   const data = {
     "10": [
@@ -312,11 +314,20 @@ const BookYourSeat = () => {
         </div>
 
         <button
-          className="checkout"
-          onClick={() => alert("Final Amount: ₹" + finalTotal)}
-        >
-          Proceed to Checkout
-        </button>
+  className="checkout"
+  onClick={() =>
+    navigate("/payment", {
+      state: {
+        selectedSubjects,
+        subtotal,
+        discount,
+        finalTotal
+      }
+    })
+  }
+>
+  Proceed to Checkout
+</button>
       </div>
     </div>
   );
