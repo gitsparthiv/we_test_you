@@ -8,6 +8,7 @@ import img3 from "../assets/class_12.png";
 
 const Cohort = () => {
   const navigate = useNavigate();
+
   return (
     <div className="cohort-container">
 
@@ -21,20 +22,28 @@ const Cohort = () => {
         <div className="card">
           <img src={img1} alt="Class 10" />
           <div className="overlay">
-            <h2>Class 10</h2>
-            <h3>Foundation Board Mastery</h3>
+            <h2>CLASS 10</h2>
 
-            <ul>
-              <li>✔ Science, Maths, English</li>
-              <li>✔ 15+ Chapter-wise Tests</li>
-              <li>✔ 5 Full Syllabus Mock Exams</li>
-              <li>✔ Detailed Written Feedback</li>
-              <li>✔ Parent Progress Updates</li>
-            </ul>
+            <div className="division-title">Choose Your Division</div>
 
-            <button onClick={() => navigate("/book-seat")}>
-  Register Now
-</button>
+            <div className="division-box">
+              <h3>Fastrack Division</h3>
+              <p>Science, Maths, English</p>
+              <div className="price">₹1800</div>
+              <button onClick={() => navigate("/book-seat")}>
+                Register Now
+              </button>
+            </div>
+
+            <div className="division-box">
+              <h3>Concrete Division</h3>
+              <p>Any 1 Subject</p>
+              <div className="price">₹1200</div>
+              <button onClick={() => navigate("/book-seat")}>
+                Register Now
+              </button>
+            </div>
+
           </div>
         </div>
 
@@ -42,20 +51,28 @@ const Cohort = () => {
         <div className="card">
           <img src={img2} alt="Class 11" />
           <div className="overlay">
-            <h2>Class 11</h2>
-            <h3>Concept Reinforcement</h3>
+            <h2>CLASS 11</h2>
 
-            <ul>
-              <li>✔ Physics, Chemistry, Maths</li>
-              <li>✔ 20+ Chapter-wise Tests</li>
-              <li>✔ Monthly Combined Mock</li>
-              <li>✔ Performance Analytics Sheet</li>
-              <li>✔ Exam Writing Strategy Session</li>
-            </ul>
+            <div className="division-title">Choose Your Division</div>
 
-            <button onClick={() => navigate("/book-seat")}>
-  Register Now
-</button>
+            <div className="division-box">
+              <h3>FAstrack Division</h3>
+              <p>Physics, Chemistry, Maths</p>
+              <div className="price">₹2000</div>
+              <button onClick={() => navigate("/book-seat")}>
+                Register Now
+              </button>
+            </div>
+
+            <div className="division-box">
+              <h3>Concrete Division</h3>
+              <p>Physics + Chemistry</p>
+              <div className="price">₹1500</div>
+              <button onClick={() => navigate("/book-seat")}>
+                Register Now
+              </button>
+            </div>
+
           </div>
         </div>
 
@@ -63,20 +80,28 @@ const Cohort = () => {
         <div className="card">
           <img src={img3} alt="Class 12" />
           <div className="overlay">
-            <h2>Class 12</h2>
-            <h3>Board + Competitive Focus</h3>
+            <h2>CLASS 12</h2>
 
-            <ul>
-              <li>✔ Physics, Chemistry, Maths</li>
-              <li>✔ 25+ Chapter-wise Tests</li>
-              <li>✔ 8 Full Board Pattern Exams</li>
-              <li>✔ Rank Prediction & Analysis</li>
-              <li>✔ Personal Review Meeting</li>
-            </ul>
+            <div className="division-title">Choose Your Division</div>
 
-            <button onClick={() => navigate("/book-seat")}>
-  Register Now
-</button>
+            <div className="division-box">
+              <h3>Fastrack Division</h3>
+              <p>Physics, Chemistry, Maths</p>
+              <div className="price">₹2200</div>
+              <button onClick={() => navigate("/book-seat")}>
+                Register Now
+              </button>
+            </div>
+
+            <div className="division-box">
+              <h3>Concrete Division</h3>
+              <p>Physics + Chemistry</p>
+              <div className="price">₹1500</div>
+              <button onClick={() => navigate("/book-seat")}>
+                Register Now
+              </button>
+            </div>
+
           </div>
         </div>
 
