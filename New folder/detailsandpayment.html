@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Seat</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    font-family:Arial, sans-serif;
+    padding:50px;
+}
+
+/* MAIN CONTAINER */
+.booking-container{
+    border:2px solid #333;
+    border-radius:35px;
+    padding:50px;
+    background:#0d0d0d;
+    display:grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap:60px;
+}
+
+/* SECTION TITLE */
+.section-title{
+    font-family:'Bebas Neue', cursive;
+    font-size:26px;
+    letter-spacing:2px;
+    margin-bottom:30px;
+    border:1px solid #444;
+    display:inline-block;
+    padding:8px 25px;
+    border-radius:20px;
+}
+
+/* FORM */
+.form-group{
+    margin-bottom:22px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:6px;
+    font-size:14px;
+    opacity:.6;
+}
+
+.form-group input{
+    width:100%;
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#111;
+    color:#fff;
+}
+
+/* SUMMARY BOX */
+.summary-box{
+    border-left:2px solid #333;
+    padding-left:50px;
+}
+
+/* TABLE STRUCTURE */
+.summary-table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
+}
+
+.summary-table th{
+    text-align:left;
+    padding-bottom:15px;
+    font-size:14px;
+    opacity:.6;
+    border-bottom:1px solid #333;
+}
+
+.summary-table td{
+    padding:12px 0;
+    border-bottom:1px solid #222;
+}
+
+.summary-table .right{
+    text-align:right;
+}
+
+/* SECTION DIVIDER */
+.divider{
+    border-top:2px solid #333;
+}
+
+/* TOTAL ROWS */
+.total-row{
+    font-weight:bold;
+    font-size:15px;
+}
+
+.grand-total{
+    font-size:18px;
+    font-weight:bold;
+    border-top:2px solid #555;
+}
+
+/* PAY BUTTON */
+.pay-btn {
+    margin-top:30px;
+    padding:14px 30px;
+    background:#d9ff00;
+    border:none;
+    font-weight:bold;
+    font-size:16px;
+    cursor:pointer;
+    border-radius:10px;
+    float:right;
+    transition:.3s;
+}
+.pay-btn:disabled {
+    background:#444;
+    cursor:not-allowed;
+    opacity:0.6;
+}
+
+.pay-btn:hover{
+    transform:scale(1.05);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .booking-container{
+        grid-template-columns:1fr;
+    }
+    .summary-box{
+        border-left:none;
+        padding-left:0;
+        border-top:2px solid #333;
+        padding-top:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="booking-container">
+
+    <!-- LEFT SIDE : PERSONAL DETAILS -->
+    <div>
+        <div class="section-title">Personal Details</div>
+    
+        <form id="bookingForm">
+    
+            <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" id="studentName" placeholder="Enter student name" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="studentEmail">Student Email ID</label>
+                <input type="email" id="studentEmail" placeholder="Enter student email" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="studentPhone">Student Phone Number</label>
+                <input type="tel" id="studentPhone" placeholder="Enter student phone number" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="parentName">Parent Name</label>
+                <input type="text" id="parentName" placeholder="Enter parent name" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="parentPhone">Parent Phone Number</label>
+                <input type="tel" id="parentPhone" placeholder="Enter parent phone number" required>
+            </div>
+    
+        </form>
+    </div>
+    
+
+    <!-- RIGHT SIDE : COHORT SUMMARY -->
+    <div class="summary-box">
+        <div class="section-title">Selected Cohort Details</div>
+
+        <table class="summary-table">
+
+            <thead>
+                <tr>
+                    <th>Cohort</th>
+                    <th>Subject</th>
+                    <th class="right">Cost</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <!-- Cohort 1 -->
+                <tr>
+                    <td rowspan="2">Class 10</td>
+                    <td>Science</td>
+                    <td class="right">₹ 1200</td>
+                </tr>
+
+                <tr>
+                    <td>Mathematics</td>
+                    <td class="right">₹ 1500</td>
+                </tr>
+
+                <tr class="total-row">
+                    <td colspan="2">Total</td>
+                    <td class="right">₹ 2700</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">Discount</td>
+                    <td class="right">₹ 1000</td>
+                </tr>
+
+                <tr class="total-row divider">
+                    <td colspan="2">Cohort Total</td>
+                    <td class="right">₹ 1700</td>
+                </tr>
+
+                <!-- Cohort 2 -->
+                <tr>
+                    <td>Class 11</td>
+                    <td>Physics</td>
+                    <td class="right">₹ 2000</td>
+                </tr>
+
+                <tr class="grand-total">
+                    <td colspan="2">Grand Total</td>
+                    <td class="right">₹ 3700</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+        <button class="pay-btn" id="payBtn" disabled>Pay</button>
+    </div>
+
+</div>
+<script>
+    const inputs = document.querySelectorAll(
+      "#studentName, #studentEmail, #studentPhone, #parentName, #parentPhone"
+    );
+    
+    const payBtn = document.getElementById("payBtn");
+    
+    function checkInputs() {
+      let allFilled = true;
+    
+      inputs.forEach(input => {
+        if (input.value.trim() === "") {
+          allFilled = false;
+        }
+      });
+    
+      payBtn.disabled = !allFilled;
+    }
+    
+    inputs.forEach(input => {
+      input.addEventListener("input", checkInputs);
+    });
+    </script>
+    
+</body>
+</html>

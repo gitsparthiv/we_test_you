@@ -6,312 +6,514 @@
 <title>Registration 2026-27</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-    background:#000;
-    color:#fff;
-    font-family:Arial, sans-serif;
-    padding:50px;
+background:#000;
+color:#fff;
+font-family:Arial, sans-serif;
+padding:40px;
+display:flex;
+gap:40px;
 }
 
-/* MAIN CONTAINER */
-.main-box{
-    position:relative;
-    background:#000;
-}
+.main-content{flex:3;}
 
-/* TITLE */
-.title-box{
-    text-align:center;
-    margin-bottom:50px;
-}
-
+.title-box{text-align:center;margin-bottom:40px;}
 .title-box h1{
-    font-family:'Bebas Neue', cursive;
-    font-size:50px;
-    letter-spacing:3px;
+font-family:'Bebas Neue', cursive;
+font-size:50px;
+letter-spacing:3px;
 }
 
-/* CART */
-.cart{
-    position:absolute;
-    top:40px;
-    right:40px;
-    width:90px;
-    height:90px;
-    border:2px solid #444;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    /* font-weight:bold; */
-    cursor:pointer;
-    transition:.3s;
-    font-size:28px;
-}
-
-.cart:hover{
-    background:#d9ff00;
-    color:#000;
-    transform:scale(1.1);
-}
-
-/* FILTER SECTION */
-.filter-section{
-    margin-bottom:50px;
-}
+.filter-section{margin-bottom:30px;}
 
 .filter-row{
-    display:flex;
-    align-items:center;
-    gap:20px;
-    margin-bottom:20px;
+display:flex;
+align-items:center;
+gap:15px;
+margin-bottom:15px;
 }
 
 .filter-row span{
-    font-weight:bold;
-    width:100px;
-    opacity:.7;
+width:100px;
+opacity:.7;
+font-weight:bold;
 }
 
 .filter-btn{
-    padding:10px 20px;
-    border:1px solid #333;
-    border-radius:8px;
-    background:#111;
-    color:#fff;
-    cursor:pointer;
-    transition:.3s;
+padding:8px 18px;
+background:#111;
+border:1px solid #333;
+border-radius:8px;
+color:#fff;
+cursor:pointer;
+transition:.3s;
 }
 
-.filter-btn:hover{
-    background:#d9ff00;
-    color:#000;
+.filter-btn:hover{background:#333;}
+
+.filter-btn.active{
+background:#d9ff00;
+color:#000;
+font-weight:bold;
 }
 
-/* TABLE BOX */
+.table-box{
+border:1px solid #222;
+border-radius:25px;
+padding:25px;
+background:#0a0a0a;
+}
+
 .custom-table{
-    width:100%;
-    border-collapse:collapse;
+width:100%;
+border-collapse:collapse;
 }
 
 .custom-table th,
 .custom-table td{
-    padding:18px;
-    text-align:left;
-    border-bottom:1px solid #222;
+padding:14px;
+border-bottom:1px solid #222;
+text-align:left;
 }
 
 .custom-table th{
-    opacity:.8;
-    border-bottom:1px solid #333;
+border-bottom:1px solid #333;
+opacity:.8;
 }
 
-.subject-cell{
-    vertical-align:top;
-    line-height:28px;
-    opacity:.8;
-    padding-top:18px;  
+.subject-row{
+background:#111;
+font-weight:bold;
+cursor:pointer;
 }
 
-.table-box{
-    border:1px solid #222;
-    border-radius:30px;
-    padding:30px;
-    background:#0a0a0a;
+.subject-row:hover{background:#1a1a1a;}
+
+.chapter-row{
+display:none;
+background:#0f0f0f;
 }
 
-/* TABLE HEADER */
-.table-header,
-.table-row{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 220px;
-    align-items:center;
-    padding:18px 0;
+.add-subject-btn{
+padding:6px 14px;
+border:none;
+border-radius:6px;
+background:#d9ff00;
+font-weight:bold;
+cursor:pointer;
 }
 
-.table-header{
-    font-weight:bold;
-    border-bottom:1px solid #333;
-    opacity:.8;
-}
-.table-header,
-.table-row{
-    display:grid;
-    grid-template-columns: 1.2fr 0.6fr 1fr 1fr 1fr 220px;
-    align-items:center;
-    padding:18px 0;
-}
-
-.subject-merged{
-    grid-row: span 3;
-    line-height:30px;
-    font-size:16px;
-    opacity:.8;
+.cart-panel{
+flex:1;
+position:sticky;
+top:20px;
+height:520px;
+padding:25px;
+border-radius:20px;
+backdrop-filter: blur(20px);
+background: rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.1);
 }
 
-.no-subject{
-    margin-left:0;
+.cart-panel h2{text-align:center;margin-bottom:20px;}
+
+.cart-items{
+max-height:320px;
+overflow-y:auto;
 }
 
-/* ROW */
-.table-row{
-    border-bottom:1px solid #222;
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+font-size:14px;
 }
 
-.table-row:hover{
-    background:#111;
+.remove{color:red;cursor:pointer;}
+
+.total{
+margin-top:20px;
+font-size:18px;
+font-weight:bold;
+text-align:center;
 }
 
-/* ACTION BUTTONS */
-.action-box{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.add-btn{
-    padding:10px;
-    border:none;
-    border-radius:6px;
-    background:#d9ff00;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.add-btn:hover{
-    opacity:.8;
-}
-
-.cost-btn{
-    padding:10px;
-    border:1px solid #444;
-    border-radius:6px;
-    background:#000;
-    color:#fff;
-    font-weight:bold;
-}
-
-/* SUBJECT LIST */
-.subject-list{
-    margin-top:40px;
-    opacity:.7;
-    line-height:28px;
-}
-
-@media(max-width:900px){
-    .table-header,
-    .table-row{
-        grid-template-columns: 1fr 1fr;
-        gap:10px;
-    }
+.checkout{
+margin-top:20px;
+width:100%;
+padding:10px;
+background:#d9ff00;
+border:none;
+font-weight:bold;
+cursor:pointer;
+border-radius:8px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="main-box">
+<div class="main-content">
 
-    <div class="title-box">
-        <h1>Registration for 2026-27 Session</h1>
-    </div>
+<div class="title-box">
+<h1>Registration for 2026-27 Session</h1>
+</div>
 
-    <div class="cart"><i class="fa-solid fa-cart-shopping"></i></div>
+<div class="filter-section">
 
-    <!-- FILTERS -->
-    <div class="filter-section">
+<div class="filter-row">
+<span>Cohort</span>
+<button class="filter-btn active" onclick="changeClass(this,'10')">Class 10</button>
+<button class="filter-btn" onclick="changeClass(this,'11')">Class 11</button>
+<button class="filter-btn" onclick="changeClass(this,'12')">Class 12</button>
+</div>
 
-        <div class="filter-row">
-            <span>Cohort</span>
-            <button class="filter-btn">Class 10</button>
-            <button class="filter-btn">Class 11</button>
-            <button class="filter-btn">Class 12</button>
-        </div>
-
-        <div class="filter-row">
-            <span>Centre</span>
-            <button class="filter-btn">North</button>
-            <button class="filter-btn">South</button>
-            <button class="filter-btn">East</button>
-            <button class="filter-btn">West</button>
-        </div>
-
-    </div>
-
-    <!-- TABLE -->
-    <div class="table-box">
-
-        <table class="custom-table">
-        
-            <thead>
-                <tr>
-                    <th>Subjects</th>
-                    <th>Class</th>
-                    <th>Centre</th>
-                    <th>Chapter</th>
-                    <th>Month</th>
-                    <th>Cost</th>
-                </tr>
-            </thead>
-        
-            <tbody>
-                <tr>
-                    <td rowspan="3" class="subject-cell">
-                        Science<br>
-                        Mathematics<br>
-                        English
-                    </td>
-                    <td>10</td>
-                    <td>South</td>
-                    <td>Matter</td>
-                    <td>Apr 26</td>
-                    <td>
-                        <button class="add-btn">Add to Cart</button><br><br>
-                        <button class="cost-btn">₹ 1200</button>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>10</td>
-                    <td>South</td>
-                    <td>Algebra</td>
-                    <td>May 26</td>
-                    <td>
-                        <button class="add-btn">Add to Cart</button><br><br>
-                        <button class="cost-btn">₹ 1500</button>
-                    </td>
-                </tr>
-        
-                <tr>
-                    <td>10</td>
-                    <td>South</td>
-                    <td>Grammar</td>
-                    <td>Jun 26</td>
-                    <td>
-                        <button class="add-btn">Add to Cart</button><br><br>
-                        <button class="cost-btn">₹ 1000</button>
-                    </td>
-                </tr>
-        
-            </tbody>
-        
-        </table>
-        
-        </div>
-        
-    
+<div class="filter-row">
+<span>Venue</span>
+<button class="filter-btn active" onclick="changeVenue(this,'South')">South</button>
+<button class="filter-btn" onclick="changeVenue(this,'North')">North</button>
+<button class="filter-btn" onclick="changeVenue(this,'East')">East</button>
+<button class="filter-btn" onclick="changeVenue(this,'West')">West</button>
+</div>
 
 </div>
+
+<div class="table-box">
+<table class="custom-table">
+
+<thead>
+<tr>
+<th>Subject</th>
+<th>Class</th>
+<th>Venue</th>
+<th>Chapter</th>
+<th>Schedule</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody id="tableBody">
+</tbody>
+
+</table>
+</div>
+</div>
+
+<div class="cart-panel">
+<h2>Your Cart</h2>
+<div class="cart-items" id="cartItems"></div>
+
+<div class="total">
+Subtotal: ₹ <span id="subtotal">0</span>
+</div>
+
+<div class="total" id="discountRow" style="display:none; color:#d9ff00;">
+Discount (20%): - ₹ <span id="discountAmount">0</span>
+</div>
+
+<div class="total" style="font-size:20px;">
+Final Total: ₹ <span id="total">0</span>
+</div>
+
+
+<button class="checkout" onclick="checkout()">Proceed to Checkout</button>
+</div>
+
+<script>
+
+let currentClass = "10";
+let currentVenue = "South";
+let selectedSubjects = [];
+
+/* DATA */
+const data = {
+
+"10": [
+{ name:"Science", price:3000, sessions:[
+{chapter:"Matter", date:"10 Jan 2026"},
+{chapter:"Light", date:"15 Jan 2026"},
+{chapter:"Electricity", date:"20 Jan 2026"},
+{chapter:"Magnetism", date:"25 Jan 2026"},
+{chapter:"Sources of Energy", date:"30 Jan 2026"},
+{chapter:"Environment", date:"5 Feb 2026"}
+]},
+{ name:"Mathematics", price:3200, sessions:[
+{chapter:"Algebra", date:"12 Jan 2026"},
+{chapter:"Trigonometry", date:"18 Jan 2026"},
+{chapter:"Statistics", date:"22 Jan 2026"},
+{chapter:"Probability", date:"28 Jan 2026"},
+{chapter:"Geometry", date:"2 Feb 2026"},
+{chapter:"Mensuration", date:"7 Feb 2026"}
+]},
+{ name:"English", price:2500, sessions:[
+{chapter:"Grammar", date:"8 Jan 2026"},
+{chapter:"Essay Writing", date:"14 Jan 2026"},
+{chapter:"Letter Writing", date:"19 Jan 2026"},
+{chapter:"Poetry", date:"24 Jan 2026"},
+{chapter:"Drama", date:"29 Jan 2026"},
+{chapter:"Comprehension", date:"4 Feb 2026"}
+]}
+],
+
+"11": [
+{ name:"Physics", price:4000, sessions:[
+{chapter:"Kinematics", date:"5 Mar 2026"},
+{chapter:"Laws of Motion", date:"10 Mar 2026"},
+{chapter:"Work & Energy", date:"15 Mar 2026"},
+{chapter:"Rotational Motion", date:"20 Mar 2026"},
+{chapter:"Thermodynamics", date:"25 Mar 2026"},
+{chapter:"Waves", date:"30 Mar 2026"}
+]},
+{ name:"Chemistry", price:3800, sessions:[
+{chapter:"Atomic Structure", date:"6 Mar 2026"},
+{chapter:"Chemical Bonding", date:"11 Mar 2026"},
+{chapter:"Thermochemistry", date:"16 Mar 2026"},
+{chapter:"Equilibrium", date:"21 Mar 2026"},
+{chapter:"Redox Reactions", date:"26 Mar 2026"},
+{chapter:"Hydrocarbons", date:"31 Mar 2026"}
+]},
+{ name:"Mathematics", price:4200, sessions:[
+{chapter:"Limits", date:"7 Mar 2026"},
+{chapter:"Derivatives", date:"12 Mar 2026"},
+{chapter:"Trigonometric Functions", date:"17 Mar 2026"},
+{chapter:"Sequences", date:"22 Mar 2026"},
+{chapter:"Straight Lines", date:"27 Mar 2026"},
+{chapter:"Probability", date:"1 Apr 2026"}
+]}
+],
+
+"12": [
+{ name:"Physics", price:4500, sessions:[
+{chapter:"Electrostatics", date:"10 Apr 2026"},
+{chapter:"Current Electricity", date:"15 Apr 2026"},
+{chapter:"Magnetism", date:"20 Apr 2026"},
+{chapter:"Electromagnetic Waves", date:"25 Apr 2026"},
+{chapter:"Modern Physics", date:"30 Apr 2026"},
+{chapter:"Semiconductors", date:"5 May 2026"}
+]},
+{ name:"Chemistry", price:4200, sessions:[
+{chapter:"Solutions", date:"11 Apr 2026"},
+{chapter:"Electrochemistry", date:"16 Apr 2026"},
+{chapter:"Organic Chemistry", date:"21 Apr 2026"},
+{chapter:"Biomolecules", date:"26 Apr 2026"},
+{chapter:"Coordination Compounds", date:"1 May 2026"},
+{chapter:"Polymers", date:"6 May 2026"}
+]},
+{ name:"Biology", price:4000, sessions:[
+{chapter:"Genetics", date:"12 Apr 2026"},
+{chapter:"Biotechnology", date:"17 Apr 2026"},
+{chapter:"Evolution", date:"22 Apr 2026"},
+{chapter:"Human Health", date:"27 Apr 2026"},
+{chapter:"Ecology", date:"2 May 2026"},
+{chapter:"Biodiversity", date:"7 May 2026"}
+]}
+]
+
+};
+
+let loadedCount = {};
+
+/* TABLE RENDER */
+function renderTable(){
+const tbody = document.getElementById("tableBody");
+tbody.innerHTML = "";
+loadedCount = {};
+
+data[currentClass].forEach((subject,index)=>{
+
+loadedCount[index] = 3;
+
+tbody.innerHTML += `
+<tr class="subject-row">
+<td><strong>${subject.name}</strong></td>
+<td>${currentClass}</td>
+<td>${currentVenue}</td>
+<td>—</td>
+<td>—</td>
+<td>
+<button class="add-subject-btn"
+onclick="addSubject(event,'${subject.name}',${subject.price})">
+Add (₹${subject.price})
+</button>
+</td>
+</tr>
+`;
+
+subject.sessions.slice(0,3).forEach(session=>{
+tbody.innerHTML += `
+<tr>
+<td></td>
+<td>${currentClass}</td>
+<td>${currentVenue}</td>
+<td>${session.chapter}</td>
+<td>${session.date}</td>
+<td></td>
+</tr>
+`;
+});
+
+if(subject.sessions.length > 3){
+tbody.innerHTML += `
+<tr id="loadRow${index}">
+<td colspan="6" style="text-align:center;">
+<button class="filter-btn" onclick="loadMore(${index})">
+Load More Sessions
+</button>
+</td>
+</tr>
+`;
+}
+
+});
+}
+
+function loadMore(index){
+const subject = data[currentClass][index];
+let start = loadedCount[index];
+let end = start + 3;
+
+subject.sessions.slice(start,end).forEach(session=>{
+const newRow = document.createElement("tr");
+newRow.innerHTML = `
+<td></td>
+<td>${currentClass}</td>
+<td>${currentVenue}</td>
+<td>${session.chapter}</td>
+<td>${session.date}</td>
+<td></td>
+`;
+document.getElementById(`loadRow${index}`).before(newRow);
+});
+
+loadedCount[index] += 3;
+
+if(loadedCount[index] >= subject.sessions.length){
+document.getElementById(`loadRow${index}`).remove();
+}
+}
+
+/* CLASS & VENUE */
+function changeClass(btn,cls){
+document.querySelectorAll(".filter-row")[0]
+.querySelectorAll(".filter-btn")
+.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+currentClass = cls;
+renderTable();
+}
+
+function changeVenue(btn,venue){
+document.querySelectorAll(".filter-row")[1]
+.querySelectorAll(".filter-btn")
+.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+currentVenue = venue;
+renderTable();
+}
+
+/* CART */
+function addSubject(event,name,price){
+event.stopPropagation();
+
+let uniqueKey = name + "-Class" + currentClass;
+
+if(selectedSubjects.some(item=>item.key===uniqueKey)){
+alert("This subject is already added for this class.");
+return;
+}
+
+selectedSubjects.push({
+key: uniqueKey,
+name,
+price,
+class: currentClass,
+venue: currentVenue
+});
+
+renderCart();
+}
+
+function removeItem(key){
+selectedSubjects = selectedSubjects.filter(item=>item.key!==key);
+renderCart();
+}
+
+function renderCart(){
+
+const cart = document.getElementById("cartItems");
+cart.innerHTML = "";
+
+let subtotal = 0;
+let discount = 0;
+
+/* Render items */
+selectedSubjects.forEach(item=>{
+subtotal += item.price;
+
+const div = document.createElement("div");
+div.classList.add("cart-item");
+
+div.innerHTML = `
+<span>${item.name} (Class ${item.class} - ${item.venue})</span>
+<span>₹${item.price}
+<span class="remove" onclick="removeItem('${item.key}')">✕</span>
+</span>
+`;
+
+cart.appendChild(div);
+});
+
+/* Discount logic */
+let classGroups = {};
+
+selectedSubjects.forEach(item=>{
+if(!classGroups[item.class]){
+classGroups[item.class] = [];
+}
+classGroups[item.class].push(item);
+});
+
+Object.keys(classGroups).forEach(cls=>{
+if(classGroups[cls].length === data[cls].length){
+let classTotal = classGroups[cls]
+.reduce((sum,item)=>sum+item.price,0);
+discount += classTotal * 0.20;
+}
+});
+
+let finalTotal = subtotal - discount;
+
+/* Update UI */
+document.getElementById("subtotal").innerText = subtotal;
+
+if(discount > 0){
+document.getElementById("discountRow").style.display = "block";
+document.getElementById("discountAmount").innerText = discount.toFixed(0);
+}else{
+document.getElementById("discountRow").style.display = "none";
+}
+
+document.getElementById("total").innerText = finalTotal.toFixed(0);
+}
+
+function checkout(){
+if(selectedSubjects.length===0){
+alert("No subjects selected!");
+return;
+}
+
+alert("Final Amount: ₹" + document.getElementById("total").innerText);
+}
+
+renderTable();
+
+</script>
+
+
 
 </body>
 </html>
