@@ -1,0 +1,133 @@
+/* ===== PAYMENT PAGE ===== */
+
+.booking-container {
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding: 50px;
+    border: 2px solid #333;
+    border-radius: 35px;
+    background: #0d0d0d;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    margin: 80px auto;
+    max-width: 1200px;
+}
+
+/* SECTION TITLE */
+.section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 26px;
+    background-color: #d9ff00;
+    color: #000;
+    letter-spacing: 2px;
+    margin: 0 auto 30px auto;   /* centers horizontally */
+    border: 1px solid #444;
+    display: block;             /* change from inline-block to block */
+    padding: 8px 25px;
+    border-radius: 20px;
+    text-align: center;         /* center text inside */
+    width: fit-content;         /* keeps size based on content */
+}
+
+/* FORM */
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    opacity: .6;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #111;
+    color: #fff;
+}
+
+/* SUMMARY BOX */
+.summary-box {
+    border-left: 2px solid #333;
+    padding-left: 50px;
+}
+
+/* TABLE */
+.summary-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.summary-table th {
+    text-align: left;
+    padding-bottom: 15px;
+    font-size: 14px;
+    opacity: .6;
+    border-bottom: 1px solid #333;
+}
+
+.summary-table td {
+    padding: 12px 0;
+    border-bottom: 1px solid #222;
+}
+
+.summary-table .right {
+    text-align: right;
+}
+
+/* TOTAL ROWS */
+.total-row {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.grand-total {
+    font-size: 18px;
+    font-weight: bold;
+    border-top: 2px solid #555;
+}
+
+/* PAY BUTTON */
+.pay-btn {
+    margin-top: 30px;
+    padding: 14px 30px;
+    background: #d9ff00;
+    border: none;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    float: right;
+    transition: .3s;
+}
+
+.pay-btn:disabled {
+    background: #444;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.pay-btn:hover:not(:disabled) {
+    transform: scale(1.05);
+}
+
+/* RESPONSIVE */
+@media(max-width: 900px) {
+    .booking-container {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-box {
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid #333;
+        padding-top: 30px;
+    }
+}
