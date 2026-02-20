@@ -3,16 +3,17 @@ import ribbon from "../assets/ribbon.png";
 import { useNavigate } from "react-router-dom";
 import "./FrontPage.css";
 
-const FrontPage = () => {
-  const navigate = useNavigate();
-
-  const words = [
+ const words = [
     "Exam-Ready.",
     "Board-Prepared.",
     "Mentally Strong.",
     "Performance Confident."
   ];
 
+const FrontPage = () => {
+  const navigate = useNavigate();
+
+ 
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
