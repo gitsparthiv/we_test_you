@@ -6,7 +6,7 @@ import Payment from "../components/Payment";
 import FrontPage from "../components/FrontPage";
 import OurSpace from "../components/OurSpace";
 import FreeClass from "../components/FreeClass";
-import Registration from "../components/Registration";
+
 
 function LandingPage() {
 
@@ -40,7 +40,6 @@ function LandingPage() {
           <Cohort />
           <OurSpace/>
           <FreeClass />
-          <Registration/>
           <Footer />
         </>
       )}
