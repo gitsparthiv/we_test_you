@@ -6,16 +6,19 @@
 
 html, body {
   font-family: 'Oswald', sans-serif;
-  overflow-x: hidden; /* IMPORTANT: single screen */
+  overflow-x: hidden;
 }
 
+/* ================= MAIN ================= */
+
 .main-container {
-  min-height: 100vh;
+  min-height: 100vh;   /* allow growth if needed */
   background: url("../assets/3gin9vh8_cbse-_625x300_19_December_24.webp") center/cover no-repeat;
   position: relative;
   color: white;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .main-container::before {
@@ -26,37 +29,37 @@ html, body {
   z-index: 0;
 }
 
+/* ================= HERO ================= */
+
 .top-section {
-  padding: 50px 80px 9px 80px;
+  padding: 100px 80px 0px 80px;   /* prevents navbar overlap */
   position: relative;
   z-index: 2;
 }
 
 .top-text {
-  font-size: 54px;
+  font-size: 50px;
   color: #d7ff45;
-  line-height: 1.2;
-  margin-top: 20px;
-  
-}.hero
+  line-height: 1.15;
+}
+
+.typing-line {
+  min-height: 58px;
+  font-size: 50px;
+}
 
 .typing {
   color: #fff;
   border-right: 3px solid #d7ff45;
-  padding-right: 5px;
-}
-.typing-line {
-  min-height: 65px;
-  font-size: 54px;   /* fixed line height */
 }
 
 .hero-content p {
-  margin-top: 15px;
-  font-size: 21px;
+  margin-top: 12px;
+  font-size: 19px;
   color: #ddd;
 }
 
-/* PROGRAM GRID */
+/* ================= PROGRAM GRID ================= */
 
 .program-grid {
   position: relative;
@@ -65,111 +68,107 @@ html, body {
   grid-template-columns: repeat(6, 1fr);
   gap: 18px;
   padding: 0 80px;
-  margin-bottom: 30px;
-  align-items: start;
+  margin: 20px 0;
 }
 
 .program-card {
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 16px 14px;
+  height: 150px; /* restored fixed size */
   border-radius: 16px;
-  text-align: center;
-  position: relative;
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(8px);
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .program-card:hover {
-  border-color: #d7ff45;
-  box-shadow: 0 0 25px rgba(215,255,69,0.25);
   transform: translateY(-6px);
 }
 
-.highlight-card {
-  border: 1px solid #d7ff45;
-  box-shadow: 0 0 20px rgba(215,255,69,0.3);
+/* YELLOW THEME */
+
+.program-card.yellow {
+  background: #d7ff45;
+  color: #000;
 }
+
+/* BLACK THEME */
+
+.program-card.black {
+  background: #000;
+  border: 1px solid #d7ff45;
+  color: #fff;
+}
+
+/* CONTENT */
+
+.program-content {
+  padding: 20px;
+}
+
 .program-icon {
   font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.program-card.yellow .program-icon {
+  color: #000;
+}
+
+.program-card.black .program-icon {
   color: #d7ff45;
-  margin-bottom: 8px;
-  transition: 0.3s ease;
 }
 
 .program-card h3 {
-  font-size: 13px;
-  color: #fff;
-}
-.program-card:hover .program-icon {
-  transform: scale(1.2);
-}
-.program-card p {
-  font-size: 12px;
-  color: #aaa;
-  margin-bottom: 8px;
+  font-size: 16px;
 }
 
-/* CTA */
-.cta-text {
-  font-size: 11px;
-  color: #d7ff45;
-  opacity: 0;
+.program-card p {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* ================= FEATURES ================= */
+
+.features-section {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  padding: 10px 80px 30px 80px;
+}
+
+.features-section img {
+  width: 100%;
+  height: 200px;   /* restored original look */
+  object-fit: contain;
   transition: 0.3s ease;
 }
 
-.program-card:hover .cta-text {
-  opacity: 1;
+.features-section img:hover {
+  transform: translateY(-4px);
 }
 
-/* RESPONSIVE */
-@media(max-width:1200px) {
+/* ================= WIDTH RESPONSIVE ================= */
+
+@media(max-width:1200px){
   .program-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .features-section {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media(max-width:768px) {
+@media(max-width:768px){
   .program-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-}
-/* FULL WIDTH PNG */
 
-.ribbon-wrapper {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.ribbon-wrapper img {
-  width: 1078px;
-    height: 300px !important;
-  object-fit: contain;
-  padding:0 80px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width: 900px) {
-  .program-grid {
-    grid-template-columns: 1fr;
+  .features-section {
+    grid-template-columns: repeat(2, 1fr);
   }
-}
-
-
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
-}
-
-.program-content {
-  position: relative;
-  z-index: 2;
-  padding: 20px;
-  text-align: center;
 }
