@@ -1,149 +1,166 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
 .cohort-container {
-    min-height: 100vh;
+    height: 100vh;
     background: #000;
-    padding: 35px 60px;
+    padding: 18px 40px;
     font-family: 'Bebas Neue', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 
+/* ================= TITLE ================= */
 .title h1 {
-    font-size: 120px;
+    font-size: 78px;   /* 🔥 stronger visual presence */
     color: #e6e6e6;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    letter-spacing: -2px;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+    text-align: center;
 }
 
+/* ================= GRID ================= */
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
+    gap: 22px;   /* 🔥 tighter */
+    flex: 1;
+    align-items: stretch;
 }
 
-/* ===== CARD ===== */
+/* ================= CARD ================= */
 .card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 18px;
     overflow: hidden;
-    height: 450px;
-    transition: transform 0.4s ease;
-        height: auto;
-        min-height: 550px;
+    height: 100%;
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-4px);
 }
 
 .card img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: cover;
+    object-position: center;
     filter: brightness(45%);
 }
 
-/* ===== OVERLAY CONTENT ===== */
+/* ================= OVERLAY ================= */
 .overlay {
-    position: absolute;
-    inset: 0;
-    padding: 40px;
-    color: #fff;
-    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    padding: 24px 22px;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: flex-start;   /* 🔥 key change */
+    color: #fff;
 }
 
+/* CLASS TITLE */
 .overlay h2 {
-    font-size: 50px;
+    font-size: 44px;   /* 🔥 stronger */
     color: #d8ff2f;
-    margin-bottom: 10px;
-}
-.overlay h3 {
-    font-size: 32px;
-    margin-bottom: 25px;
-    color: #ffffff;
+    margin-bottom: 12px;
 }
 
-.overlay ul {
-    list-style: none;
-    font-size:20px ;
-    padding: 0;
-    margin-bottom: 30px;
-}
-
-.overlay ul li {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.overlay button {
-    background: #d7ff45;
-    color: #000000;
-    border: none;
-    outline: none;
-    font-family: 'Oswald', sans-serif; 
-    padding: 14px 20px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
-    width: 100%;
-
+/* ================= DIVISION ROW ================= */
+.division-row {
     display: flex;
-    justify-content: center;   /* ✅ CENTER TEXT */
-    align-items: center;
+    gap: 16px;
+    margin-top: 20px;   /* clean natural spacing */
+}
 
+/* ================= INTERNAL BOX ================= */
+.division-half {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 24px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;   /* 🔥 ensures vertical stretch */
     transition: 0.3s ease;
 }
 
-
-
-.overlay button:hover {
-    background: #b6e600;
+.division-half:hover {
+    background: rgba(0, 0, 0, 0.85);
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width: 1100px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .card {
-        height: auto;
-        min-height: 500px;
-    }
-}
-/* ===== DIVISION SECTION ===== */
-
-.division-title {
-    font-size: 18px;
-    margin-bottom: 15px;
-    opacity: 0.8;
-}
-
-.division-box {
-    background: rgba(0,0,0,0.5);
-    border: 1px solid rgba(255,255,255,0.2);
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-}
-
-.division-box h3 {
-    font-size: 22px;
+/* ================= HEADINGS ================= */
+.division-half h3 {
+    font-size: 21px;
     color: #d8ff2f;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-.division-box p {
-    font-size: 14px;
-    margin-bottom: 8px;
-    opacity: 0.9;
+/* ================= FEATURE LIST ================= */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 14px 0;
 }
 
+.feature-list li {
+    font-size: 20px;   /* 🔥 improved readability */
+    margin-bottom: 7px;
+    line-height: 1.45;
+    opacity: 0.95;
+}
+
+/* ================= PRICE ================= */
 .price {
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin: 12px 0;
+    color: #d8ff2f;
+}
+
+/* ================= BUTTON ================= */
+.division-half button {
+    background: #d7ff45;
+    color: #000;
+    border: none;
+    padding: 11px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.2s ease;
+    width: 100%;
+}
+
+.division-half button:hover {
+    background: #b6e600;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width: 1100px) {
+
+    .cohort-container {
+        height: auto;
+        padding: 30px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card {
+        min-height: 480px;
+    }
+
+    .division-row {
+        transform: none;
+        /* margin-top: 20px; */
+        flex-direction: column;
+    }
 }
