@@ -469,6 +469,7 @@ if (selectedSubjects.length === classSubjects.length && classSubjects.length > 0
                 subtotal,
                 discount,
                 finalTotal,
+                cohortBatch,
               },
             })
           }
