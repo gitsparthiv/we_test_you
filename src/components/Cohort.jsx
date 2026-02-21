@@ -18,6 +18,16 @@ const Cohort = () => {
     });
   };
 
+  const Price = ({ actual }) => {
+    const oldPrice = actual + 200;
+    return (
+      <div className="price">
+        <span className="old-price">₹{oldPrice}</span>
+        <span className="new-price">₹{actual}</span>
+      </div>
+    );
+  };
+
   return (
     <div className="cohort-container">
 
@@ -30,10 +40,8 @@ const Cohort = () => {
         {/* ================= CLASS 10 ================= */}
         <div className="card">
           <img src={img1} alt="Class 10" />
-
           <div className="overlay">
             <h2>CLASS 10</h2>
-
             <div className="division-row">
 
               <div className="division-half">
@@ -44,7 +52,7 @@ const Cohort = () => {
                   <li>✔ Performance Analytics</li>
                   <li>✔ Exam Strategy Guidance</li>
                 </ul>
-                <div className="price">₹1800</div>
+                <Price actual={1800} />
                 <button onClick={() => handleRegister("10", "Fastrack")}>
                   Register Now
                 </button>
@@ -58,7 +66,7 @@ const Cohort = () => {
                   <li>✔ Time Management Focus</li>
                   <li>✔ Detailed Report Card</li>
                 </ul>
-                <div className="price">₹1200</div>
+                <Price actual={1200} />
                 <button onClick={() => handleRegister("10", "Concrete")}>
                   Register Now
                 </button>
@@ -71,10 +79,8 @@ const Cohort = () => {
         {/* ================= CLASS 11 ================= */}
         <div className="card">
           <img src={img2} alt="Class 11" />
-
           <div className="overlay">
             <h2>CLASS 11</h2>
-
             <div className="division-row">
 
               <div className="division-half">
@@ -85,7 +91,7 @@ const Cohort = () => {
                   <li>✔ Concept Reinforcement Focus</li>
                   <li>✔ Performance Tracking Dashboard</li>
                 </ul>
-                <div className="price">₹2000</div>
+                <Price actual={2000} />
                 <button onClick={() => handleRegister("11", "Fastrack")}>
                   Register Now
                 </button>
@@ -99,7 +105,7 @@ const Cohort = () => {
                   <li>✔ Time-bound Simulation Tests</li>
                   <li>✔ Detailed Evaluation Report</li>
                 </ul>
-                <div className="price">₹1500</div>
+                <Price actual={1500} />
                 <button onClick={() => handleRegister("11", "Concrete")}>
                   Register Now
                 </button>
@@ -112,10 +118,8 @@ const Cohort = () => {
         {/* ================= CLASS 12 ================= */}
         <div className="card">
           <img src={img3} alt="Class 12" />
-
           <div className="overlay">
             <h2>CLASS 12</h2>
-
             <div className="division-row">
 
               <div className="division-half">
@@ -126,7 +130,7 @@ const Cohort = () => {
                   <li>✔ Rank Prediction Analysis</li>
                   <li>✔ Strategic Exam Mentorship</li>
                 </ul>
-                <div className="price">₹2200</div>
+                <Price actual={2200} />
                 <button onClick={() => handleRegister("12", "Fastrack")}>
                   Register Now
                 </button>
@@ -140,7 +144,7 @@ const Cohort = () => {
                   <li>✔ Time Optimization Strategy</li>
                   <li>✔ Comprehensive Performance Report</li>
                 </ul>
-                <div className="price">₹1500</div>
+                <Price actual={1500} />
                 <button onClick={() => handleRegister("12", "Concrete")}>
                   Register Now
                 </button>

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRocket, FaLayerGroup } from "react-icons/fa";
-import ribbon from "../assets/ribbon.png";
 import "./FrontPage.css";
-import class10bg from "../assets/class10.png";
-import class11bg from "../assets/class11.png";
-import class12bg from "../assets/class12.png";
+
+/* 🔥 FEATURE IMAGES */
+import feature1 from "../assets/1_ribbon.png";
+import feature2 from "../assets/2_ribbon.png";
+import feature3 from "../assets/3_ribbon.png";
+import feature4 from "../assets/4_ribbon.png";
+import feature5 from "../assets/5_ribbon.png";
 
 const words = [
   "Exam-Ready.",
@@ -15,12 +18,14 @@ const words = [
 ];
 
 const programs = [
-  { className: "Class 10", division: "Fasttrack Division", icon: <FaRocket />, bg: class10bg},
-  { className: "Class 11", division: "Fasttrack Division", icon: <FaRocket />, bg: class11bg },
-  { className: "Class 12", division: "Fasttrack Division", icon: <FaRocket />, bg: class12bg },
-  { className: "Class 10", division: "Concrete Division", icon: <FaLayerGroup />, bg: class10bg },
-  { className: "Class 11", division: "Concrete Division", icon: <FaLayerGroup />, bg: class11bg },
-  { className: "Class 12", division: "Concrete Division", icon: <FaLayerGroup />, bg: class12bg }
+  { className: "Class 10", division: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
+  { className: "Class 10", division: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
+
+  { className: "Class 11", division: "Fasttrack Division", theme: "black", icon: <FaRocket /> },
+  { className: "Class 11", division: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
+
+  { className: "Class 12", division: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
+  { className: "Class 12", division: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> }
 ];
 
 const FrontPage = () => {
@@ -55,10 +60,9 @@ const FrontPage = () => {
   return (
     <div className="main-container">
 
-      {/* HERO SECTION */}
+      {/* HERO */}
       <div className="top-section">
         <div className="hero-content">
-
           <h1 className="top-text">
             Tuition Teaches You.<br />
             Offline Mock Tests Make You
@@ -72,39 +76,33 @@ const FrontPage = () => {
             Structured offline mock examinations for CBSE Classes 10, 11 & 12
             in a real board-style environment.
           </p>
-
         </div>
       </div>
 
       {/* PROGRAM GRID */}
-      {/* PROGRAM GRID */}
-<div className="program-grid">
-  {programs.map((item, index) => (
-    <div
-      key={index}
-      className={`program-card ${item.highlight ? "highlight-card" : ""}`}
-      style={{
-        backgroundImage: `url(${item.bg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center"
-      }}
-      onClick={() => navigate("/book-seat")}
-    >
-      <div className="card-overlay"></div>
-
-      <div className="program-content">
-        <div className="program-icon">{item.icon}</div>
-        <h3>{item.className}</h3>
-        <p>{item.division}</p>
-        <span className="cta-text">Explore →</span>
+      <div className="program-grid">
+        {programs.map((item, index) => (
+          <div
+            key={index}
+            className={`program-card ${item.theme}`}
+            onClick={() => navigate("/book-seat")}
+          >
+            <div className="program-content">
+              <div className="program-icon">{item.icon}</div>
+              <h3>{item.className}</h3>
+              <p>{item.division}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </div>
-  ))}
-</div>
 
-      {/* FULL WIDTH RIBBON */}
-      <div className="ribbon-wrapper">
-        <img src={ribbon} alt="features" />
+      {/* FEATURES */}
+      <div className="features-section">
+        <img src={feature1} alt="" />
+        <img src={feature2} alt="" />
+        <img src={feature3} alt="" />
+        <img src={feature4} alt="" />
+        <img src={feature5} alt="" />
       </div>
 
     </div>
