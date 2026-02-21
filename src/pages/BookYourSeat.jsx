@@ -1,10 +1,19 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { FaShoppingCart } from "react-icons/fa";
 
 const BookYourSeat = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // ✅ Get class & batch from Cohort.jsx
+  const cohortClass = location.state?.selectedClass;
+  const cohortBatch = location.state?.selectedBatch;
+
+  /* =========================
+     DATA
+  ========================= */
 
   const data = {
     "10": [
@@ -52,10 +61,7 @@ const BookYourSeat = () => {
         sessions: [
           { chapter: "Kinematics", date: "5 Mar 2026" },
           { chapter: "Laws of Motion", date: "10 Mar 2026" },
-          { chapter: "Work & Energy", date: "15 Mar 2026" },
-          { chapter: "Magnetism", date: "25 Jan 2026" },
-          { chapter: "Sources of Energy", date: "30 Jan 2026" },
-          { chapter: "Environment", date: "5 Feb 2026" }
+          { chapter: "Work & Energy", date: "15 Mar 2026" }
         ]
       },
       {
@@ -87,6 +93,14 @@ const BookYourSeat = () => {
     ]
   };
 
+  /* =========================
+     CLASS COMES FROM COHORT
+  ========================= */
+
+  const [currentClass] = useState(cohortClass || "10");
+  const [currentVenue, setCurrentVenue] = useState("");
+  const [selectedSubjects, setSelectedSubjects] = useState([]);
+
   const getInitialLoadCount = (cls) => {
     const init = {};
     data[cls]?.forEach((_, index) => {
@@ -95,13 +109,19 @@ const BookYourSeat = () => {
     return init;
   };
 
-  const [currentClass, setCurrentClass] = useState("10");
-  const [currentVenue, setCurrentVenue] = useState("");
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
-  const [loadedCount, setLoadedCount] = useState(getInitialLoadCount("10"));
+  const [loadedCount, setLoadedCount] = useState(
+    getInitialLoadCount(cohortClass || "10")
+  );
+
+  // ✅ Safety redirect if opened directly
+  useEffect(() => {
+    if (!cohortClass) {
+      navigate("/cohort");
+    }
+  }, [cohortClass, navigate]);
 
   /* =========================
-     UPDATED CART CALCULATION
+     CART CALCULATION
   ========================= */
 
   const subtotal = selectedSubjects.reduce(
@@ -111,57 +131,38 @@ const BookYourSeat = () => {
 
   let discount = 0;
 
-  const classGroups = {};
-
-  selectedSubjects.forEach(item => {
-    if (!classGroups[item.class]) {
-      classGroups[item.class] = [];
-    }
-    classGroups[item.class].push(item);
-  });
-
-  Object.keys(classGroups).forEach(cls => {
-    const totalSubjectsInClass = data[cls]?.length || 0;
-    const selectedInClass = classGroups[cls].length;
-
-    if (
-      selectedInClass === totalSubjectsInClass &&
-      totalSubjectsInClass > 0
-    ) {
-      const lowestPrice = Math.min(
-        ...classGroups[cls].map(item => item.price)
-      );
-      discount += lowestPrice;
-    }
-  });
+  if (
+    selectedSubjects.length === data[currentClass]?.length &&
+    selectedSubjects.length > 0
+  ) {
+    const lowestPrice = Math.min(
+      ...selectedSubjects.map(item => item.price)
+    );
+    discount = lowestPrice;
+  }
 
   const finalTotal = subtotal - discount;
 
   /* ========================= */
 
-  const changeClassHandler = (cls) => {
-    setCurrentClass(cls);
-    setLoadedCount(getInitialLoadCount(cls));
+  const addSubject = (name, price) => {
+    if (!currentVenue) {
+      alert("Please select a venue first.");
+      return;
+    }
+
+    const key = name + "-Class" + currentClass;
+
+    if (selectedSubjects.some(item => item.key === key)) {
+      alert("Subject already added.");
+      return;
+    }
+
+    setSelectedSubjects([
+      ...selectedSubjects,
+      { key, name, price, class: currentClass, venue: currentVenue }
+    ]);
   };
-
- const addSubject = (name, price) => {
-  if (!currentVenue) {
-    alert("Please select a venue first.");
-    return;
-  }
-
-  const key = name + "-Class" + currentClass;
-
-  if (selectedSubjects.some(item => item.key === key)) {
-    alert("Subject already added.");
-    return;
-  }
-
-  setSelectedSubjects([
-    ...selectedSubjects,
-    { key, name, price, class: currentClass, venue: currentVenue }
-  ]);
-};
 
   const removeItem = (key) => {
     setSelectedSubjects(
@@ -177,36 +178,29 @@ const BookYourSeat = () => {
   };
 
   const canCheckout =
-  selectedSubjects.length > 0 && currentVenue !== "";
+    selectedSubjects.length > 0 && currentVenue !== "";
 
   return (
     <div className="registration-wrapper">
       <div className="cart-icon-top">
-      <FaShoppingCart size={24} />
-      {selectedSubjects.length > 0 && (
-        <span className="cart-badge">
-          {selectedSubjects.length}
-        </span>
-      )}
-    </div>
+        <FaShoppingCart size={24} />
+        {selectedSubjects.length > 0 && (
+          <span className="cart-badge">
+            {selectedSubjects.length}
+          </span>
+        )}
+      </div>
+
       <div className="main-content">
         <div className="title-box">
           <h1>Registration for 2026-27 Session</h1>
+          {/* Optional: show selected cohort */}
+          <p>Class {currentClass} {cohortBatch && `- ${cohortBatch}`}</p>
         </div>
 
         <div className="filter-section">
-          <div className="filter-row">
-            <span>Cohort</span>
-            {['10', '11', '12'].map(cls => (
-              <button
-                key={cls}
-                className={`filter-btn ${currentClass === cls ? "active" : ""}`}
-                onClick={() => changeClassHandler(cls)}
-              >
-                Class {cls}
-              </button>
-            ))}
-          </div>
+
+          {/* ❌ Class filter removed */}
 
           <div className="filter-row">
             <span>Venue</span>
@@ -321,22 +315,22 @@ const BookYourSeat = () => {
           </div>
         </div>
 
-<button
-  className="checkout"
-  disabled={!canCheckout}
-  onClick={() =>
-    navigate("/payment", {
-      state: {
-        selectedSubjects,
-        subtotal,
-        discount,
-        finalTotal
-      }
-    })
-  }
->
-  Proceed to Checkout
-</button>
+        <button
+          className="checkout"
+          disabled={!canCheckout}
+          onClick={() =>
+            navigate("/payment", {
+              state: {
+                selectedSubjects,
+                subtotal,
+                discount,
+                finalTotal
+              }
+            })
+          }
+        >
+          Proceed to Checkout
+        </button>
       </div>
     </div>
   );

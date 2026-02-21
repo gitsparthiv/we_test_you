@@ -9,6 +9,16 @@ import img3 from "../assets/class_12.png";
 const Cohort = () => {
   const navigate = useNavigate();
 
+  // ✅ Reusable navigation function
+  const handleRegister = (selectedClass, selectedBatch) => {
+    navigate("/book-seat", {
+      state: {
+        selectedClass,
+        selectedBatch
+      }
+    });
+  };
+
   return (
     <div className="cohort-container">
 
@@ -30,7 +40,7 @@ const Cohort = () => {
               <h3>Fastrack Division</h3>
               <p>Science, Maths, English</p>
               <div className="price">₹1800</div>
-              <button onClick={() => navigate("/book-seat")}>
+              <button onClick={() => handleRegister("10", "Fastrack")}>
                 Register Now
               </button>
             </div>
@@ -39,7 +49,7 @@ const Cohort = () => {
               <h3>Concrete Division</h3>
               <p>Any 1 Subject</p>
               <div className="price">₹1200</div>
-              <button onClick={() => navigate("/book-seat")}>
+              <button onClick={() => handleRegister("10", "Concrete")}>
                 Register Now
               </button>
             </div>
@@ -56,10 +66,10 @@ const Cohort = () => {
             <div className="division-title">Choose Your Division</div>
 
             <div className="division-box">
-              <h3>FAstrack Division</h3>
+              <h3>Fastrack Division</h3>
               <p>Physics, Chemistry, Maths</p>
               <div className="price">₹2000</div>
-              <button onClick={() => navigate("/book-seat")}>
+              <button onClick={() => handleRegister("11", "Fastrack")}>
                 Register Now
               </button>
             </div>
@@ -68,7 +78,7 @@ const Cohort = () => {
               <h3>Concrete Division</h3>
               <p>Physics + Chemistry</p>
               <div className="price">₹1500</div>
-              <button onClick={() => navigate("/book-seat")}>
+              <button onClick={() => handleRegister("11", "Concrete")}>
                 Register Now
               </button>
             </div>
@@ -88,7 +98,7 @@ const Cohort = () => {
               <h3>Fastrack Division</h3>
               <p>Physics, Chemistry, Maths</p>
               <div className="price">₹2200</div>
-              <button onClick={() => navigate("/book-seat")}>
+              <button onClick={() => handleRegister("12", "Fastrack")}>
                 Register Now
               </button>
             </div>
@@ -97,7 +107,7 @@ const Cohort = () => {
               <h3>Concrete Division</h3>
               <p>Physics + Chemistry</p>
               <div className="price">₹1500</div>
-              <button onClick={() => navigate("/book-seat")}>
+              <button onClick={() => handleRegister("12", "Concrete")}>
                 Register Now
               </button>
             </div>
