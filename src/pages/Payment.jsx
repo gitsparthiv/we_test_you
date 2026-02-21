@@ -4,46 +4,89 @@ import "./Payment.css";
 
 const Payment = () => {
   const { state } = useLocation();
-
+const [errors, setErrors] = useState({});
   const {
     selectedSubjects = [],
     subtotal = 0,
     discount = 0,
-    finalTotal = 0
+    finalTotal = 0,
   } = state || {};
 
   const [form, setForm] = useState({
-    studentName: "",
-    studentEmail: "",
-    studentPhone: "",
-    parentName: "",
-    parentPhone: ""
+    StudentName: "",
+    StudentEmail: "",
+    StudentPhone: "",
+    ParentName: "",
+    ParentPhone: "",
+    ParentEmail: "",
   });
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
 
-  const isFormValid =
-    Object.values(form).every(value => value.trim() !== "");
 
+
+ const validators = {
+  StudentName: (v) =>
+    v.trim().length >= 3 && /^[A-Za-z ]+$/.test(v),
+
+  ParentName: (v) =>
+    v.trim().length >= 3 && /^[A-Za-z ]+$/.test(v),
+
+  StudentEmail: (v) =>
+    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/.test(v),
+
+  ParentEmail: (v) =>
+    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/.test(v),
+
+  StudentPhone: (v) =>
+    /^[6-9]\d{9}$/.test(v),   // Indian mobile rule
+
+  ParentPhone: (v) =>
+    /^[6-9]\d{9}$/.test(v),
+};
+
+const isFormValid =
+  Object.keys(form).every(
+    (key) =>
+      form[key].trim() !== "" &&
+      validators[key](form[key])
+  );
   return (
     <div className="booking-container">
-
       {/* LEFT SIDE */}
       <div>
         <div className="section-title">Personal Details</div>
 
-        {Object.keys(form).map(key => (
+        {Object.keys(form).map((key) => (
           <div className="form-group" key={key}>
             <label>{key.replace(/([A-Z])/g, " $1")}</label>
-            <input
-              type="text"
-              name={key}
-              value={form[key]}
-              onChange={handleChange}
-              placeholder={`Enter ${key}`}
-            />
+<input
+  className={errors[key] ? "input-error" : ""}
+  type={
+    key.includes("Email")
+      ? "email"
+      : key.includes("Phone")
+      ? "tel"
+      : "text"
+  }
+  name={key}
+  value={form[key]}
+  placeholder={`Enter ${key.replace(/([A-Z])/g, " $1")}`}
+  onChange={(e) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+
+    // Optional: live validation
+    if (validators[name] && !validators[name](value)) {
+      setErrors({ ...errors, [name]: `Invalid ${name}` });
+    } else {
+      setErrors({ ...errors, [name]: "" });
+    }
+  }}
+/>
+
+{errors[key] && (
+  <div className="error-text">{errors[key]}</div>
+)}
           </div>
         ))}
       </div>
@@ -52,69 +95,88 @@ const Payment = () => {
       <div className="summary-box">
         <div className="section-title">Selected Cohort Details</div>
 
-        <table className="summary-table">
-          <thead>
-            <tr>
-              <th>Class</th>
-              <th>Subject</th>
-              <th className="right">Cost</th>
-            </tr>
-          </thead>
+        <div className="summary-excel">
+          {selectedSubjects.length > 0 && (
+            <>
+              <div className="excel-row">
+                CLASS : {selectedSubjects[0].className}
+              </div>
 
-          <tbody>
-            {selectedSubjects.map((item, index) => (
-              <tr key={index}>
-                <td>Class {item.class}</td>
-                <td>{item.name}</td>
-                <td className="right">₹ {item.price}</td>
-              </tr>
-            ))}
+              <div className="excel-row">
+                PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
+              </div>
 
-            <tr className="total-row">
-              <td colSpan="2">Subtotal</td>
-              <td className="right">₹ {subtotal}</td>
-            </tr>
+              <div className="excel-space"></div>
 
-            <tr>
-              <td colSpan="2">Discount</td>
-              <td className="right">₹ {discount}</td>
-            </tr>
+              <div className="excel-row excel-header">
+                <span>SUBJECT</span>
+                <span className="cost">COST</span>
+              </div>
 
-            <tr className="grand-total">
-              <td colSpan="2">Grand Total</td>
-              <td className="right">₹ {finalTotal}</td>
-            </tr>
-          </tbody>
-        </table>
+              {selectedSubjects.map((item, index) => (
+                <div className="excel-row" key={index}>
+                  <span>
+                    {item.name
+                      .replace(" Full Package", "")
+                      .replace(" Mock Package", "")}
+                  </span>
+
+                  <span className="cost">₹ {item.price}</span>
+                </div>
+              ))}
+
+              <div className="excel-space"></div>
+
+              <div className="excel-row total-row">
+                <span>SUBTOTAL</span>
+                <span className="cost">₹ {subtotal}</span>
+              </div>
+
+              <div className="excel-row">
+                <span>DISCOUNT</span>
+                <span className="cost">₹ {discount}</span>
+              </div>
+
+              <div className="excel-row grand-total">
+                <span>GRAND TOTAL</span>
+                <span className="cost">₹ {finalTotal}</span>
+              </div>
+            </>
+          )}
+        </div>
 
         <button
           className="pay-btn"
           disabled={!isFormValid}
           onClick={async () => {
             const payload = {
-              studentName: form.studentName,
-              studentEmail: form.studentEmail,
-              studentPhone: form.studentPhone,
-              parentName: form.parentName,
-              parentPhone: form.parentPhone,
-              subjects: selectedSubjects.map(s => s.name).join(", "),
+              studentName: form.StudentName,
+              studentEmail: form.StudentEmail,
+              studentPhone: form.StudentPhone,
+              parentName: form.ParentName,
+              parentPhone: form.ParentPhone,
+              parentEmail: form.ParentEmail,
+              subjects: selectedSubjects.map((s) => s.name).join(", "),
               subtotal,
               discount,
-              finalTotal
+              finalTotal,
             };
-          
+
             try {
-              await fetch("https://script.google.com/macros/s/AKfycbxsOpLFCj2thj9VwVd4OluwZQWsCNL76Fqvo_6Uj21mY_Zu2eK3agROk8KcmNy9rcSY/exec", {
-                method: "POST",
-                body: JSON.stringify(payload)
-              });
-          
+              await fetch(
+                "https://script.google.com/macros/s/AKfycbxsOpLFCj2thj9VwVd4OluwZQWsCNL76Fqvo_6Uj21mY_Zu2eK3agROk8KcmNy9rcSY/exec",
+                {
+                  method: "POST",
+                  body: JSON.stringify(payload),
+                },
+              );
+
               alert("Payment Successful & Data Saved!");
             } catch (error) {
+              console.error(error);
               alert("Error saving data");
             }
           }}
-          
         >
           Pay ₹ {finalTotal}
         </button>

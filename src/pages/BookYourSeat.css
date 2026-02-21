@@ -265,3 +265,59 @@ body {
   background: linear-gradient(180deg, #d9ff00, #aaff00);
   border-radius: 20px;
 }
+/* ===== New Cart Structured Layout ===== */
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  color: #d9ff00;
+}
+
+.cart-subheader {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.cart-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 14px;
+}
+/* ===== Simple Excel Style (No Grid) ===== */
+
+.cart-excel {
+  width: 100%;
+  font-size: 14px;
+}
+
+.excel-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  text-transform: uppercase;
+}
+
+.excel-header {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.excel-space {
+  height: 12px;
+}
+
+.cost,
+.cost-head {
+  min-width: 80px;
+  text-align: left;
+}

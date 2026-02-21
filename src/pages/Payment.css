@@ -131,3 +131,14 @@
         padding-top: 30px;
     }
 }
+/* ===== Validation Styling ===== */
+
+.input-error {
+  border: 1px solid #ff4d4d !important;
+}
+
+.error-text {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 4px;
+}

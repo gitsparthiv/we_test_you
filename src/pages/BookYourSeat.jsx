@@ -229,13 +229,10 @@ const BookYourSeat = () => {
 
   let discount = 0;
 
-  if (
-    selectedSubjects.length === selectedSubjects.length &&
-    selectedSubjects.length > 1
-  ) {
-    const lowest = Math.min(...selectedSubjects.map((s) => s.price));
-    discount = lowest;
-  }
+if (selectedSubjects.length === classSubjects.length && classSubjects.length > 0) {
+  const lowest = Math.min(...selectedSubjects.map((s) => s.price));
+  discount = lowest;
+}
 
   const finalTotal = subtotal - discount;
 
@@ -254,9 +251,20 @@ const BookYourSeat = () => {
       alert("Already added.");
       return;
     }
+    const packageType =
+    cohortBatch === "Concrete" ? "Concrete Package" : "Fastrack Package";
 
-    setSelectedSubjects([...selectedSubjects, { key, name, price }]);
-  };
+    setSelectedSubjects([
+    ...selectedSubjects,
+    {
+      key,
+      name,
+      price,
+      className: currentClass,
+      packageType,
+    },
+  ]);
+};
 
   const removeItem = (key) => {
     setSelectedSubjects((prev) => prev.filter((item) => item.key !== key));
@@ -394,19 +402,48 @@ const BookYourSeat = () => {
       <div className="cart-panel">
         <h2>Your Cart</h2>
 
-        <div className="cart-items">
-          {selectedSubjects.map((item) => (
-            <div className="cart-item" key={item.key}>
-              <span>{item.name}</span>
-              <span>
-                ₹{item.price}
-                <span className="remove" onClick={() => removeItem(item.key)}>
-                  ✕
-                </span>
-              </span>
-            </div>
-          ))}
+<div className="cart-items">
+  {selectedSubjects.length > 0 && (
+    <div className="cart-excel">
+
+      <div className="excel-row">
+        CLASS : {selectedSubjects[0].className}
+      </div>
+
+      <div className="excel-row">
+        PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
+      </div>
+
+      <div className="excel-space"></div>
+
+      <div className="excel-row excel-header">
+        <span>SUBJECT</span>
+        <span className="cost-head">COST</span>
+      </div>
+
+      {selectedSubjects.map((item) => (
+        <div className="excel-row" key={item.key}>
+          <span>
+            {item.name
+              .replace(" Full Package", "")
+              .replace(" Mock Package", "")}
+          </span>
+
+          <span className="cost">
+            {item.price}
+            <span
+              className="remove"
+              onClick={() => removeItem(item.key)}
+            >
+              ✕
+            </span>
+          </span>
         </div>
+      ))}
+
+    </div>
+  )}
+</div>
 
         <div className="total">
           <div>Subtotal: ₹ {subtotal}</div>
