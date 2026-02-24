@@ -29,7 +29,7 @@ const Cohort = () => {
   };
 
   return (
-    <div className="cohort-container">
+    <div className="cohort-container" id ="cohorts">
 
       <div className="title">
         <h1>OUR AVAILABLE COHORTS</h1>

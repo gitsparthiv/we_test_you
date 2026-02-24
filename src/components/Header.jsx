@@ -12,7 +12,16 @@ const Header = () => {
       <div className="nav-right">
         <button
           className="book-btn"
-          onClick={() => navigate("/book-seat")}
+          onClick={() => {
+            if (window.location.pathname !== "/") {
+              navigate("/");
+              setTimeout(() => {
+                document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" });
+              }, 100);
+            } else {
+              document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" });
+            }
+          }}
         >
           Book Your Seat <span className="arrow">→</span>
         </button>
