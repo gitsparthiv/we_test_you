@@ -4,12 +4,13 @@ import "./Payment.css";
 
 const Payment = () => {
   const { state } = useLocation();
-const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({});
   const {
     selectedSubjects = [],
     subtotal = 0,
     discount = 0,
     finalTotal = 0,
+    cohortBatch = "",
   } = state || {};
 
   const [form, setForm] = useState({
@@ -21,34 +22,24 @@ const [errors, setErrors] = useState({});
     ParentEmail: "",
   });
 
+  const validators = {
+    StudentName: (v) => v.trim().length >= 3 && /^[A-Za-z ]+$/.test(v),
 
+    ParentName: (v) => v.trim().length >= 3 && /^[A-Za-z ]+$/.test(v),
 
+    StudentEmail: (v) =>
+      /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/.test(v),
 
- const validators = {
-  StudentName: (v) =>
-    v.trim().length >= 3 && /^[A-Za-z ]+$/.test(v),
+    ParentEmail: (v) =>
+      /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/.test(v),
 
-  ParentName: (v) =>
-    v.trim().length >= 3 && /^[A-Za-z ]+$/.test(v),
+    StudentPhone: (v) => /^[6-9]\d{9}$/.test(v), // Indian mobile rule
 
-  StudentEmail: (v) =>
-    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/.test(v),
+    ParentPhone: (v) => /^[6-9]\d{9}$/.test(v),
+  };
 
-  ParentEmail: (v) =>
-    /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$/.test(v),
-
-  StudentPhone: (v) =>
-    /^[6-9]\d{9}$/.test(v),   // Indian mobile rule
-
-  ParentPhone: (v) =>
-    /^[6-9]\d{9}$/.test(v),
-};
-
-const isFormValid =
-  Object.keys(form).every(
-    (key) =>
-      form[key].trim() !== "" &&
-      validators[key](form[key])
+  const isFormValid = Object.keys(form).every(
+    (key) => form[key].trim() !== "" && validators[key](form[key]),
   );
   return (
     <div className="booking-container">
@@ -59,34 +50,32 @@ const isFormValid =
         {Object.keys(form).map((key) => (
           <div className="form-group" key={key}>
             <label>{key.replace(/([A-Z])/g, " $1")}</label>
-<input
-  className={errors[key] ? "input-error" : ""}
-  type={
-    key.includes("Email")
-      ? "email"
-      : key.includes("Phone")
-      ? "tel"
-      : "text"
-  }
-  name={key}
-  value={form[key]}
-  placeholder={`Enter ${key.replace(/([A-Z])/g, " $1")}`}
-  onChange={(e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+            <input
+              className={errors[key] ? "input-error" : ""}
+              type={
+                key.includes("Email")
+                  ? "email"
+                  : key.includes("Phone")
+                    ? "tel"
+                    : "text"
+              }
+              name={key}
+              value={form[key]}
+              placeholder={`Enter ${key.replace(/([A-Z])/g, " $1")}`}
+              onChange={(e) => {
+                const { name, value } = e.target;
+                setForm({ ...form, [name]: value });
 
-    // Optional: live validation
-    if (validators[name] && !validators[name](value)) {
-      setErrors({ ...errors, [name]: `Invalid ${name}` });
-    } else {
-      setErrors({ ...errors, [name]: "" });
-    }
-  }}
-/>
+                // Optional: live validation
+                if (validators[name] && !validators[name](value)) {
+                  setErrors({ ...errors, [name]: `Invalid ${name}` });
+                } else {
+                  setErrors({ ...errors, [name]: "" });
+                }
+              }}
+            />
 
-{errors[key] && (
-  <div className="error-text">{errors[key]}</div>
-)}
+            {errors[key] && <div className="error-text">{errors[key]}</div>}
           </div>
         ))}
       </div>
@@ -149,32 +138,43 @@ const isFormValid =
           className="pay-btn"
           disabled={!isFormValid}
           onClick={async () => {
-            const payload = {
-              studentName: form.StudentName,
-              studentEmail: form.StudentEmail,
-              studentPhone: form.StudentPhone,
-              parentName: form.ParentName,
-              parentPhone: form.ParentPhone,
-              parentEmail: form.ParentEmail,
-              subjects: selectedSubjects.map((s) => s.name).join(", "),
-              subtotal,
-              discount,
-              finalTotal,
-            };
+            const formData = new URLSearchParams();
+
+            formData.append("studentName", form.StudentName);
+            formData.append("studentEmail", form.StudentEmail);
+            formData.append("studentPhone", form.StudentPhone);
+            formData.append("parentName", form.ParentName);
+            formData.append("parentPhone", form.ParentPhone);
+            formData.append("parentEmail", form.ParentEmail);
+            formData.append(
+              "subjects",
+              selectedSubjects.map((s) => s.name).join(", "),
+            );
+            formData.append("packageName", cohortBatch);
+            formData.append("subtotal", subtotal);
+            formData.append("discount", discount);
+            formData.append("finalTotal", finalTotal);
 
             try {
-              await fetch(
-                "https://script.google.com/macros/s/AKfycbxsOpLFCj2thj9VwVd4OluwZQWsCNL76Fqvo_6Uj21mY_Zu2eK3agROk8KcmNy9rcSY/exec",
+              const response = await fetch(
+                "https://script.google.com/macros/s/AKfycbyBoYWN83RJFPZbOpj354_npqrsFJn2Hnip_A-m8o4JovaFz8OsrgsR3ZAff0jxmI3r/exec",
                 {
                   method: "POST",
-                  body: JSON.stringify(payload),
+                  body: formData,
                 },
               );
 
-              alert("Payment Successful & Data Saved!");
+              const result = await response.json();
+console.log(result);
+
+if (result.result === "success") {
+  alert("Payment Successful & Data Saved!");
+} else {
+  alert("Server Error: " + result.message);
+}
             } catch (error) {
               console.error(error);
-              alert("Error saving data");
+              alert("Network or Script Error. Check console.");
             }
           }}
         >

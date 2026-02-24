@@ -7,6 +7,7 @@ import BookYourSeat from "./pages/BookYourSeat"; // 👈 change path if differen
 import Header from "./components/Header"
 import Footer from "./components/Footer" // 👈 change path if different
 import Payment from "./pages/Payment"; // 👈 change path if different
+
 function App() {
   return (
     <Router>
