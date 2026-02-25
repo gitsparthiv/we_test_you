@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { FaShoppingCart } from "react-icons/fa";
-import Papa from "papaparse";   // ✅ Import at top
+// import Papa from "papaparse";   // ✅ Import at top
 
 const BookYourSeat = () => {
   const navigate = useNavigate();
