@@ -257,7 +257,7 @@ const BookYourSeat = () => {
   }}
 >
   <div className="price-box">
-    <span className="old-price">
+    <span className="old-price-bys">
       ₹{
         (cohortBatch === "Concrete"
           ? subject.mockPrice
@@ -265,7 +265,7 @@ const BookYourSeat = () => {
       }
     </span>
 
-    <span className="new-price">
+    <span className="new-price-bys">
       ₹
       {cohortBatch === "Concrete"
         ? subject.mockPrice

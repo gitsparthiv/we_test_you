@@ -186,14 +186,14 @@ body {
   align-items: center;
   line-height: 1.1;
 }
-.old-price {
+.old-price-bys {
   font-size: 11px;
   color: #444;
   text-decoration: line-through;
   font-weight: 500;
 }
 
-.new-price {
+.new-price-bys {
   font-size: 14px;
   font-weight: 700;
   color: #000;
