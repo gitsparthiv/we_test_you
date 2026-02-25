@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
-import { FaShoppingCart } from "react-icons/fa";
-import Papa from "papaparse";   // ✅ Import at top
+import {
+  FaShoppingCart,
+  FaShieldAlt,
+  FaBolt,
+  FaUserGraduate,
+  FaLock,
+} from "react-icons/fa";
+import Papa from "papaparse"; // ✅ Import at top
 
 const BookYourSeat = () => {
   const navigate = useNavigate();
@@ -32,79 +38,76 @@ const BookYourSeat = () => {
   /* =========================
      FETCH CSV DATA
   ========================= */
-useEffect(() => {
-  fetch(
-    "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv"
-  )
-    .then((response) => response.text())
-    .then((csvText) => {
-      Papa.parse(csvText, {
-        header: true,
-        skipEmptyLines: true,
-        complete: (result) => {
-          const parsedData = {};
+  useEffect(() => {
+    fetch(
+      "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv",
+    )
+      .then((response) => response.text())
+      .then((csvText) => {
+        Papa.parse(csvText, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (result) => {
+            const parsedData = {};
 
-          result.data.forEach((row) => {
-            const {
-              class: className,
-              subject,
-              price,
-              mockPrice,
-              type,
-              title,
-              date,
-            } = row;
-
-            if (!parsedData[className]) {
-              parsedData[className] = [];
-            }
-
-            let subjectObj = parsedData[className].find(
-              (s) => s.name === subject
-            );
-
-            if (!subjectObj) {
-              subjectObj = {
-                name: subject,
-                price: Number(price),
-                mockPrice: Number(mockPrice),
-                sessions: [],
-                mockTests: [],
-              };
-              parsedData[className].push(subjectObj);
-            }
-
-            if (type === "session") {
-              subjectObj.sessions.push({
-                chapter: title,
+            result.data.forEach((row) => {
+              const {
+                class: className,
+                subject,
+                price,
+                mockPrice,
+                type,
+                title,
                 date,
-              });
-            } else if (type === "mock") {
-              subjectObj.mockTests.push({
-                name: title,
-                date,
-              });
-            }
-          });
+              } = row;
 
-          setData(parsedData);
-        },
+              if (!parsedData[className]) {
+                parsedData[className] = [];
+              }
+
+              let subjectObj = parsedData[className].find(
+                (s) => s.name === subject,
+              );
+
+              if (!subjectObj) {
+                subjectObj = {
+                  name: subject,
+                  price: Number(price),
+                  mockPrice: Number(mockPrice),
+                  sessions: [],
+                  mockTests: [],
+                };
+                parsedData[className].push(subjectObj);
+              }
+
+              if (type === "session") {
+                subjectObj.sessions.push({
+                  chapter: title,
+                  date,
+                });
+              } else if (type === "mock") {
+                subjectObj.mockTests.push({
+                  name: title,
+                  date,
+                });
+              }
+            });
+
+            setData(parsedData);
+          },
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching Google Sheet:", error);
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching Google Sheet:", error);
-    });
-}, []);
+  }, []);
 
   const classSubjects = data[currentClass] || [];
 
   /* =========================
      CART CALCULATION
   ========================= */
-  const subtotal = selectedSubjects.reduce(
-    (sum, item) => sum + item.price,
-    0
-  );
+  const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
 
   let discount = 0;
 
@@ -135,9 +138,7 @@ useEffect(() => {
     }
 
     const packageType =
-      cohortBatch === "Concrete"
-        ? "Concrete Package"
-        : "Fastrack Package";
+      cohortBatch === "Concrete" ? "Concrete Package" : "Fastrack Package";
 
     setSelectedSubjects([
       ...selectedSubjects,
@@ -152,52 +153,62 @@ useEffect(() => {
   };
 
   const removeItem = (key) => {
-    setSelectedSubjects((prev) =>
-      prev.filter((item) => item.key !== key)
-    );
+    setSelectedSubjects((prev) => prev.filter((item) => item.key !== key));
   };
 
-  const canCheckout =
-    selectedSubjects.length > 0 && currentVenue !== "";
+  const canCheckout = selectedSubjects.length > 0 && currentVenue !== "";
 
   /* =========================
      UI (UNCHANGED)
   ========================= */
   return (
     <div className="registration-wrapper">
-      <div className="cart-icon-top">
-        <FaShoppingCart size={24} />
-        {selectedSubjects.length > 0 && (
-          <span className="cart-badge">
-            {selectedSubjects.length}
-          </span>
-        )}
-      </div>
 
       <div className="main-content">
         <div className="title-box">
-          <h1>Registration for 2026-27 Session</h1>
-          <p>
-            Class {currentClass} - {cohortBatch}
+          <h1>REGISTRATION 2026–27</h1>
+
+          <p className="class-line">
+            CLASS {currentClass} • {cohortBatch?.toUpperCase()}
           </p>
+
+          <div className="header-props">
+            <div className="prop-item">
+              <FaUserGraduate />
+              <span>ACADEMIC PROGRAM</span>
+            </div>
+
+            <div className="prop-item">
+              <FaBolt />
+              <span>FAST ENROLLMENT</span>
+            </div>
+
+            <div className="prop-item">
+              <FaShieldAlt />
+              <span>SECURE REGISTRATION</span>
+            </div>
+
+            <div className="prop-item">
+              <FaLock />
+              <span>LIMITED SEATS</span>
+            </div>
+          </div>
         </div>
 
         <div className="filter-section">
           <div className="filter-row">
             <span>Venue</span>
-            {["South", "North", "East", "West"].map(
-              (venue) => (
-                <button
-                  key={venue}
-                  className={`filter-btn ${
-                    currentVenue === venue ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentVenue(venue)}
-                >
-                  {venue}
-                </button>
-              )
-            )}
+            {["South", "North", "East", "West"].map((venue) => (
+              <button
+                key={venue}
+                className={`filter-btn ${
+                  currentVenue === venue ? "active" : ""
+                }`}
+                onClick={() => setCurrentVenue(venue)}
+              >
+                {venue}
+              </button>
+            ))}
           </div>
         </div>
 
@@ -216,8 +227,7 @@ useEffect(() => {
 
             <tbody>
               {classSubjects.map((subject, index) => {
-                const totalFastrackPrice =
-                  subject.price + subject.mockPrice;
+                const totalFastrackPrice = subject.price + subject.mockPrice;
 
                 return (
                   <React.Fragment key={index}>
@@ -231,74 +241,65 @@ useEffect(() => {
                       <td>—</td>
                       <td>
                         <button
-                          className="add-subject-btn"
-                          onClick={() => {
-                            if (
-                              cohortBatch === "Concrete"
-                            ) {
-                              addItem(
-                                subject.name +
-                                  " Mock Package",
-                                subject.mockPrice
-                              );
-                            } else {
-                              addItem(
-                                subject.name +
-                                  " Full Package",
-                                totalFastrackPrice
-                              );
-                            }
-                          }}
-                        >
-                          Add (₹
-                          {cohortBatch === "Concrete"
-                            ? subject.mockPrice
-                            : totalFastrackPrice}
-                          )
-                        </button>
+  className="add-subject-btn"
+  onClick={() => {
+    if (cohortBatch === "Concrete") {
+      addItem(
+        subject.name + " Mock Package",
+        subject.mockPrice
+      );
+    } else {
+      addItem(
+        subject.name + " Full Package",
+        totalFastrackPrice
+      );
+    }
+  }}
+>
+  <div className="price-box">
+    <span className="old-price">
+      ₹{
+        (cohortBatch === "Concrete"
+          ? subject.mockPrice
+          : totalFastrackPrice) + 1000
+      }
+    </span>
+
+    <span className="new-price">
+      ₹
+      {cohortBatch === "Concrete"
+        ? subject.mockPrice
+        : totalFastrackPrice}
+    </span>
+  </div>
+</button>
                       </td>
                     </tr>
 
                     <tr>
-                      <td
-                        colSpan="6"
-                        style={{ padding: 0 }}
-                      >
+                      <td colSpan="6" style={{ padding: 0 }}>
                         <div className="chapter-scroll-container">
                           <table
                             style={{
                               width: "100%",
-                              borderCollapse:
-                                "collapse",
+                              borderCollapse: "collapse",
                             }}
                           >
                             <tbody>
-                              {(cohortBatch !==
-                              "Concrete"
-                                ? (subject.sessions ||
-                                    []).concat(
-                                    subject.mockTests ||
-                                      []
+                              {(cohortBatch !== "Concrete"
+                                ? (subject.sessions || []).concat(
+                                    subject.mockTests || [],
                                   )
-                                : subject.mockTests ||
-                                  []
+                                : subject.mockTests || []
                               ).map((item, i) => (
                                 <tr key={i}>
                                   <td></td>
+                                  <td>{currentClass}</td>
+                                  <td>{currentVenue}</td>
                                   <td>
-                                    {currentClass}
+                                    {item.chapter ? item.chapter : item.name}
                                   </td>
-                                  <td>
-                                    {currentVenue}
-                                  </td>
-                                  <td>
-                                    {item.chapter
-                                      ? item.chapter
-                                      : item.name}
-                                  </td>
-                                  <td>
-                                    {item.date}
-                                  </td>
+                                  <td>{item.date}</td>
                                   <td></td>
                                 </tr>
                               ))}
@@ -328,43 +329,29 @@ useEffect(() => {
               </div>
 
               <div className="excel-row">
-                PACKAGE :{" "}
-                {selectedSubjects[0].packageType.toUpperCase()}
+                PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
               </div>
 
               <div className="excel-space"></div>
 
               <div className="excel-row excel-header">
                 <span>SUBJECT</span>
-                <span className="cost-head">
-                  COST
-                </span>
+                <span className="cost-head">COST</span>
               </div>
 
               {selectedSubjects.map((item) => (
-                <div
-                  className="excel-row"
-                  key={item.key}
-                >
+                <div className="excel-row" key={item.key}>
                   <span>
                     {item.name
-                      .replace(
-                        " Full Package",
-                        ""
-                      )
-                      .replace(
-                        " Mock Package",
-                        ""
-                      )}
+                      .replace(" Full Package", "")
+                      .replace(" Mock Package", "")}
                   </span>
 
                   <span className="cost">
                     {item.price}
                     <span
                       className="remove"
-                      onClick={() =>
-                        removeItem(item.key)
-                      }
+                      onClick={() => removeItem(item.key)}
                     >
                       ✕
                     </span>
