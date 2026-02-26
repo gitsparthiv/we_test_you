@@ -85,11 +85,12 @@ const Cohort = () => {
                   minConcrete = sub.concrete;
               });
 
-              // Store OLD totals (before discount)
-              // number of subjects in this class
-// Store OLD totals (before discount)
-const oldFastrack = totalFastrack;
-const oldConcrete = totalConcrete;
+ // number of subjects in this class
+const subjectCount = subjects.length;
+
+// Store OLD totals (before discount + ₹1000 per subject inflation)
+const oldFastrack = totalFastrack + (subjectCount * 1000);
+const oldConcrete = totalConcrete + (subjectCount * 1000);
 
               // Apply discount (1 subject free)
               totalFastrack -= minFastrack;
