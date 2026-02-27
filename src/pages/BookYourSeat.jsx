@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
+import { useLayoutEffect } from "react";
 import {
   FaShoppingCart,
   FaShieldAlt,
@@ -108,7 +109,7 @@ const BookYourSeat = () => {
      CART CALCULATION
   ========================= */
   const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
-
+// OLD total (without discount, business logic)
   let discount = 0;
 
   if (
@@ -158,6 +159,10 @@ const BookYourSeat = () => {
 
   const canCheckout = selectedSubjects.length > 0 && currentVenue !== "";
 
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   /* =========================
      UI (UNCHANGED)
   ========================= */
