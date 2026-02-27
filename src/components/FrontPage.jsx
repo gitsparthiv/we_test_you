@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRocket, FaLayerGroup } from "react-icons/fa";
 import "./FrontPage.css";
 
-/* 🔥 FEATURE IMAGES */
+/* FEATURE IMAGES */
 import feature1 from "../assets/1_ribbon.png";
 import feature2 from "../assets/2_ribbon.png";
 import feature3 from "../assets/3_ribbon.png";
@@ -35,6 +35,18 @@ const FrontPage = () => {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const [showHero, setShowHero] = useState(false);
+  const [showPrograms, setShowPrograms] = useState(false);
+  const [showFeatures, setShowFeatures] = useState(false);
+
+  /* Premium Sequential Loading */
+  useEffect(() => {
+    setTimeout(() => setShowHero(true), 300);
+    setTimeout(() => setShowPrograms(true), 1200);
+    setTimeout(() => setShowFeatures(true), 2200);
+  }, []);
+
+  /* Typing Effect */
   useEffect(() => {
     const currentWord = words[currentWordIndex];
     const typingSpeed = isDeleting ? 40 : 70;
@@ -61,7 +73,7 @@ const FrontPage = () => {
     <div className="main-container">
 
       {/* HERO */}
-      <div className="top-section">
+      <div className={`top-section fade-section ${showHero ? "visible" : ""}`}>
         <div className="hero-content">
           <h1 className="top-text">
             Tuition Teaches You.<br />
@@ -80,7 +92,7 @@ const FrontPage = () => {
       </div>
 
       {/* PROGRAM GRID */}
-      <div className="program-grid">
+      <div className={`program-grid fade-section ${showPrograms ? "visible" : ""}`}>
         {programs.map((item, index) => (
           <div
             key={index}
@@ -97,7 +109,7 @@ const FrontPage = () => {
       </div>
 
       {/* FEATURES */}
-      <div className="features-section">
+      <div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
         <img src={feature1} alt="" />
         <img src={feature2} alt="" />
         <img src={feature3} alt="" />

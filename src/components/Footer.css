@@ -1,4 +1,7 @@
 .footer-container {
+
+        overflow-x: hidden;
+
     background: black;
     /* font-family: 'Bebas Neue', cursive; */
     position: relative;
@@ -34,12 +37,14 @@
 
 /* Big Text */
 .big-text {
-    font-size: 400px;
+    font-size: clamp(120px, 18vw, 400px);
     font-weight: 900;
     color: #e6e6e6;
     letter-spacing: 5px;
+    text-align: center;
+    white-space: nowrap;
+        font-family: 'Bebas Neue', sans-serif;
 }
-
 /* Bottom Section */
 .bottom-bar {
     background: #c94b00;

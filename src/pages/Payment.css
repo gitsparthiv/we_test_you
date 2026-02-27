@@ -3,7 +3,7 @@
 .booking-container {
     background: #000;
     color: #fff;
-    font-family: Arial, sans-serif;
+    /* font-family: Arial, sans-serif; */
     padding: 50px;
     border: 2px solid #333;
     border-radius: 35px;
@@ -17,7 +17,7 @@
 
 /* SECTION TITLE */
 .section-title {
-    font-family: 'Bebas Neue', cursive;
+    /* font-family: 'Bebas Neue', cursive; */
     font-size: 26px;
     background-color: #d9ff00;
     color: #000;

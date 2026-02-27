@@ -2,14 +2,12 @@ import React from "react";
 import "./Cohort.css";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import img1 from "../assets/class10new.png";
 import img2 from "../assets/11.png";
 import img3 from "../assets/class_12.png";
 
-/* =========================
-   PRICE COMPONENT (FIXED)
-========================= */
+/* ================= PRICE COMPONENT ================= */
 const Price = ({ actual, old }) => {
   return (
     <div className="price">
@@ -22,16 +20,34 @@ const Price = ({ actual, old }) => {
 const Cohort = () => {
   const navigate = useNavigate();
   const [prices, setPrices] = useState({});
+  const [visible, setVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   const handleRegister = (selectedClass, selectedBatch) => {
     navigate("/book-seat", {
-      state: {
-        selectedClass,
-        selectedBatch,
-      },
+      state: { selectedClass, selectedBatch },
     });
   };
 
+  /* ================= SCROLL ANIMATION ================= */
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  /* ================= FETCH PRICES ================= */
   useEffect(() => {
     fetch(
       "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv"
@@ -50,15 +66,12 @@ const Cohort = () => {
               const price = Number(row.price);
               const mockPrice = Number(row.mockPrice);
 
-              if (!classMap[className]) {
-                classMap[className] = {};
-              }
+              if (!classMap[className]) classMap[className] = {};
 
-              // Store only once per subject
               if (!classMap[className][subject]) {
                 classMap[className][subject] = {
                   fastrack: price + mockPrice,
-                  concrete: mockPrice
+                  concrete: mockPrice,
                 };
               }
             });
@@ -70,29 +83,21 @@ const Cohort = () => {
 
               let totalFastrack = 0;
               let totalConcrete = 0;
-
               let minFastrack = Infinity;
               let minConcrete = Infinity;
 
               subjects.forEach((sub) => {
                 totalFastrack += sub.fastrack;
                 totalConcrete += sub.concrete;
-
-                if (sub.fastrack < minFastrack)
-                  minFastrack = sub.fastrack;
-
-                if (sub.concrete < minConcrete)
-                  minConcrete = sub.concrete;
+                if (sub.fastrack < minFastrack) minFastrack = sub.fastrack;
+                if (sub.concrete < minConcrete) minConcrete = sub.concrete;
               });
 
- // number of subjects in this class
-const subjectCount = subjects.length;
+              const subjectCount = subjects.length;
 
-// Store OLD totals (before discount + ₹1000 per subject inflation)
-const oldFastrack = totalFastrack + (subjectCount * 1000);
-const oldConcrete = totalConcrete + (subjectCount * 1000);
+              const oldFastrack = totalFastrack + subjectCount * 1000;
+              const oldConcrete = totalConcrete + subjectCount * 1000;
 
-              // Apply discount (1 subject free)
               totalFastrack -= minFastrack;
               totalConcrete -= minConcrete;
 
@@ -100,31 +105,33 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                 fastrack: totalFastrack,
                 concrete: totalConcrete,
                 oldFastrack,
-                oldConcrete
+                oldConcrete,
               };
             });
 
             setPrices(finalPrices);
-          }
+          },
         });
       });
   }, []);
 
   return (
-    <div className="cohort-container" id="cohorts">
+    <div
+      className={`cohort-container ${visible ? "cohort-visible" : ""}`}
+      id="cohorts"
+      ref={sectionRef}
+    >
       <div className="title">
         <h1>OUR AVAILABLE COHORTS</h1>
       </div>
 
       <div className="grid">
-
         {/* CLASS 10 */}
         <div className="card">
           <img src={img1} alt="Class 10" />
           <div className="overlay">
             <h2>CLASS 10</h2>
             <div className="division-row">
-
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
@@ -133,10 +140,7 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                   <li>✔ Performance Analytics</li>
                   <li>✔ Exam Strategy Guidance</li>
                 </ul>
-                <Price
-                  actual={prices["10"]?.fastrack || 0}
-                  old={prices["10"]?.oldFastrack || 0}
-                />
+                <Price actual={prices["10"]?.fastrack || 0} old={prices["10"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("10", "Fastrack")}>
                   Register Now
                 </button>
@@ -150,15 +154,11 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                   <li>✔ Time Management Focus</li>
                   <li>✔ Detailed Report Card</li>
                 </ul>
-                <Price
-                  actual={prices["10"]?.concrete || 0}
-                  old={prices["10"]?.oldConcrete || 0}
-                />
+                <Price actual={prices["10"]?.concrete || 0} old={prices["10"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("10", "Concrete")}>
                   Register Now
                 </button>
               </div>
-
             </div>
           </div>
         </div>
@@ -169,7 +169,6 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
           <div className="overlay">
             <h2>CLASS 11</h2>
             <div className="division-row">
-
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
@@ -178,10 +177,7 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                   <li>✔ Concept Reinforcement Focus</li>
                   <li>✔ Performance Tracking Dashboard</li>
                 </ul>
-                <Price
-                  actual={prices["11"]?.fastrack || 0}
-                  old={prices["11"]?.oldFastrack || 0}
-                />
+                <Price actual={prices["11"]?.fastrack || 0} old={prices["11"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("11", "Fastrack")}>
                   Register Now
                 </button>
@@ -195,15 +191,11 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                   <li>✔ Time-bound Simulation Tests</li>
                   <li>✔ Detailed Evaluation Report</li>
                 </ul>
-                <Price
-                  actual={prices["11"]?.concrete || 0}
-                  old={prices["11"]?.oldConcrete || 0}
-                />
+                <Price actual={prices["11"]?.concrete || 0} old={prices["11"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("11", "Concrete")}>
                   Register Now
                 </button>
               </div>
-
             </div>
           </div>
         </div>
@@ -214,7 +206,6 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
           <div className="overlay">
             <h2>CLASS 12</h2>
             <div className="division-row">
-
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
@@ -223,10 +214,7 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                   <li>✔ Rank Prediction Analysis</li>
                   <li>✔ Strategic Exam Mentorship</li>
                 </ul>
-                <Price
-                  actual={prices["12"]?.fastrack || 0}
-                  old={prices["12"]?.oldFastrack || 0}
-                />
+                <Price actual={prices["12"]?.fastrack || 0} old={prices["12"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("12", "Fastrack")}>
                   Register Now
                 </button>
@@ -240,19 +228,14 @@ const oldConcrete = totalConcrete + (subjectCount * 1000);
                   <li>✔ Time Optimization Strategy</li>
                   <li>✔ Comprehensive Performance Report</li>
                 </ul>
-                <Price
-                  actual={prices["12"]?.concrete || 0}
-                  old={prices["12"]?.oldConcrete || 0}
-                />
+                <Price actual={prices["12"]?.concrete || 0} old={prices["12"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("12", "Concrete")}>
                   Register Now
                 </button>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -228,3 +228,15 @@
         flex-direction: column;
     }
 }
+/* ================= SCROLL GROW ANIMATION ================= */
+
+.cohort-container {
+    opacity: 0;
+    transform: translateY(100px) scale(0.95);
+    transition: all 1s ease;
+}
+
+.cohort-container.cohort-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
