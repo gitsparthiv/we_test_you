@@ -1,120 +1,101 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaRocket, FaLayerGroup } from "react-icons/fa";
+import React from "react";
 import "./FrontPage.css";
-
-/* FEATURE IMAGES */
-import feature1 from "../assets/1_ribbon.png";
-import feature2 from "../assets/2_ribbon.png";
-import feature3 from "../assets/3_ribbon.png";
-import feature4 from "../assets/4_ribbon.png";
-import feature5 from "../assets/5_ribbon.png";
-
-const words = [
-  "Exam-Ready.",
-  "Board-Prepared.",
-  "Mentally Strong.",
-  "Performance Confident."
-];
-
-const programs = [
-  { className: "Class 10", division: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
-  { className: "Class 10", division: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
-
-  { className: "Class 11", division: "Fasttrack Division", theme: "black", icon: <FaRocket /> },
-  { className: "Class 11", division: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
-
-  { className: "Class 12", division: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
-  { className: "Class 12", division: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> }
-];
+import { useNavigate } from "react-router-dom";
 
 const FrontPage = () => {
   const navigate = useNavigate();
 
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  const [showHero, setShowHero] = useState(false);
-  const [showPrograms, setShowPrograms] = useState(false);
-  const [showFeatures, setShowFeatures] = useState(false);
-
-  /* Premium Sequential Loading */
-  useEffect(() => {
-    setTimeout(() => setShowHero(true), 300);
-    setTimeout(() => setShowPrograms(true), 1200);
-    setTimeout(() => setShowFeatures(true), 2200);
-  }, []);
-
-  /* Typing Effect */
-  useEffect(() => {
-    const currentWord = words[currentWordIndex];
-    const typingSpeed = isDeleting ? 40 : 70;
-
-    const timer = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentWord.substring(0, displayText.length + 1));
-        if (displayText === currentWord) {
-          setTimeout(() => setIsDeleting(true), 1000);
-        }
-      } else {
-        setDisplayText(currentWord.substring(0, displayText.length - 1));
-        if (displayText === "") {
-          setIsDeleting(false);
-          setCurrentWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }
-    }, typingSpeed);
-
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, currentWordIndex]);
+  const handleRegister = (selectedClass, selectedBatch) => {
+    navigate("/book-seat", {
+      state: { selectedClass, selectedBatch },
+    });
+  };
 
   return (
     <div className="main-container">
 
-      {/* HERO */}
-      <div className={`top-section fade-section ${showHero ? "visible" : ""}`}>
+      {/* ================= HERO SECTION ================= */}
+      <div className="top-section">
         <div className="hero-content">
           <h1 className="top-text">
-            Tuition Teaches You.<br />
-            Offline Mock Tests Make You
+            Master Your Boards with <br /> Smart Testing
           </h1>
-
-          <div className="typing-line">
-            <span className="typing">{displayText}</span>
-          </div>
-
           <p>
-            Structured offline mock examinations for CBSE Classes 10, 11 & 12
-            in a real board-style environment.
+            Structured mock tests, performance tracking, and exam strategy
+            guidance for Classes 10, 11 & 12.
           </p>
         </div>
       </div>
 
-      {/* PROGRAM GRID */}
-      <div className={`program-grid fade-section ${showPrograms ? "visible" : ""}`}>
-        {programs.map((item, index) => (
-          <div
-            key={index}
-            className={`program-card ${item.theme}`}
-            onClick={() => navigate("/book-seat")}
-          >
-            <div className="program-content">
-              <div className="program-icon">{item.icon}</div>
-              <h3>{item.className}</h3>
-              <p>{item.division}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* ================= PROGRAM GRID ================= */}
+      <div className="program-grid">
 
-      {/* FEATURES */}
-      <div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
-        <img src={feature1} alt="" />
-        <img src={feature2} alt="" />
-        <img src={feature3} alt="" />
-        <img src={feature4} alt="" />
-        <img src={feature5} alt="" />
+        {/* CLASS 10 Fastrack */}
+        <div
+          className="program-card yellow"
+          onClick={() => handleRegister("10", "Fastrack")}
+        >
+          <div className="program-content">
+            <h3>Class 10 Fastrack</h3>
+            <p>Chapter-wise Tests + Full Mocks</p>
+          </div>
+        </div>
+
+        {/* CLASS 10 Concrete */}
+        <div
+          className="program-card black"
+          onClick={() => handleRegister("10", "Concrete")}
+        >
+          <div className="program-content">
+            <h3>Class 10 Concrete</h3>
+            <p>Full Mock Practice Only</p>
+          </div>
+        </div>
+
+        {/* CLASS 11 Fastrack */}
+        <div
+          className="program-card yellow"
+          onClick={() => handleRegister("11", "Fastrack")}
+        >
+          <div className="program-content">
+            <h3>Class 11 Fastrack</h3>
+            <p>Subject Deep Testing + Analytics</p>
+          </div>
+        </div>
+
+        {/* CLASS 11 Concrete */}
+        <div
+          className="program-card black"
+          onClick={() => handleRegister("11", "Concrete")}
+        >
+          <div className="program-content">
+            <h3>Class 11 Concrete</h3>
+            <p>Board Pattern Simulations</p>
+          </div>
+        </div>
+
+        {/* CLASS 12 Fastrack */}
+        <div
+          className="program-card yellow"
+          onClick={() => handleRegister("12", "Fastrack")}
+        >
+          <div className="program-content">
+            <h3>Class 12 Fastrack</h3>
+            <p>Advanced + Competitive Focus</p>
+          </div>
+        </div>
+
+        {/* CLASS 12 Concrete */}
+        <div
+          className="program-card black"
+          onClick={() => handleRegister("12", "Concrete")}
+        >
+          <div className="program-content">
+            <h3>Class 12 Concrete</h3>
+            <p>Strict Exam Hall Simulation</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
