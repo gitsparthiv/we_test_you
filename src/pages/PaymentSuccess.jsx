@@ -1,9 +1,10 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./PaymentStatus.css";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   return (
     <div className="status-container">
@@ -15,9 +16,13 @@ const PaymentSuccess = () => {
           A confirmation email will be sent shortly.
         </p>
 
-        <button onClick={() => navigate("/")}>
-          Go To Home
-        </button>
+        {state?.finalTotal != null && (
+          <p style={{ marginTop: 10 }}>
+            Amount Paid: <b>₹ {state.finalTotal}</b>
+          </p>
+        )}
+
+        <button onClick={() => navigate("/")}>Go To Home</button>
       </div>
     </div>
   );

@@ -35,23 +35,18 @@ const Cohort = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-        } else {
-          setVisible(false);   // 🔥 Reset when leaving viewport
         }
       },
       { threshold: 0.2 }
     );
-  
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-  
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+
+    return () => observer.disconnect();
   }, []);
+
   /* ================= FETCH PRICES ================= */
   useEffect(() => {
     fetch(

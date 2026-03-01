@@ -6,24 +6,22 @@ const FreeClass = () => {
 
   useEffect(() => {
     const box = boxRef.current;
-  
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             box.classList.add("active");
-          } else {
-            box.classList.remove("active");   // 🔥 REMOVE WHEN OUT
           }
         });
       },
-      { threshold: 0.4 }
+      { threshold: 0.5 }
     );
-  
+
     if (box) {
       observer.observe(box);
     }
-  
+
     return () => {
       if (box) observer.unobserve(box);
     };
