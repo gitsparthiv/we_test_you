@@ -62,7 +62,7 @@ const FrontPage = () => {
   useEffect(() => {
     setTimeout(() => setShowHero(true), 300);
     setTimeout(() => setShowPrograms(true), 1200);
-    setTimeout(() => setShowFeatures(true), 2200);
+    setTimeout(() => setShowFeatures(true), 1500);
   }, []);
 
   /* Typing Effect */
