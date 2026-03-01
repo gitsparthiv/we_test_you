@@ -1,17 +1,28 @@
 /* ===== PAYMENT PAGE ===== */
 .booking-container {
-    background: #000;
+    background: rgba(255, 255, 255, 0.08);
+    
+    /* Glass blur */
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    /* White glass border */
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+
     color: #fff;
-    /* font-family: Arial, sans-serif; */
     padding: 50px;
-    border: 2px solid #333;
     border-radius: 35px;
-    background: #0d0d0d;
+
     display: grid;
     grid-template-columns: 1fr 1.2fr;
     gap: 60px;
     margin: 80px auto;
     max-width: 1200px;
+
+    /* Pure glass glow */
+    box-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.2),
+        inset 0 0 20px rgba(255, 255, 255, 0.08);
 }
 .subject , .grandtotal,.subtotal {
     font-family: 'Bebas Neue', cursive;
