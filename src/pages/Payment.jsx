@@ -11,6 +11,7 @@ const Payment = () => {
     discount = 0,
     finalTotal = 0,
     cohortBatch = "",
+    venue = "", 
   } = state || {};
 
   const [form, setForm] = useState({
@@ -94,7 +95,9 @@ const Payment = () => {
               <div className="excel-row">
                 PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
               </div>
-
+              <div className="excel-row">
+  VENUE : {venue}
+</div>
               <div className="excel-space"></div>
 
               <div className="excel-row excel-header">

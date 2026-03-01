@@ -336,7 +336,9 @@ const BookYourSeat = () => {
               <div className="excel-row">
                 PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
               </div>
-
+              <div className="excel-row">
+  VENUE : {currentVenue || "NOT SELECTED"}
+</div>
               <div className="excel-space"></div>
 
               <div className="excel-row excel-header">
@@ -402,6 +404,7 @@ const BookYourSeat = () => {
                 discount,
                 finalTotal,
                 cohortBatch,
+                venue: currentVenue
               },
             })
           }
