@@ -9,6 +9,7 @@ import feature2 from "../assets/2_ribbon.png";
 import feature3 from "../assets/3_ribbon.png";
 import feature4 from "../assets/4_ribbon.png";
 import feature5 from "../assets/5_ribbon.png";
+import feature6 from "../assets/6_ribbon.png"; // ✅ NEW IMAGE
 
 const words = [
   "Exam-Ready.",
@@ -17,6 +18,7 @@ const words = [
   "Performance Confident."
 ];
 
+/* PROGRAM DATA */
 const programs = [
   { classValue: "10", division: "Fastrack", label: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "10", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
@@ -26,6 +28,16 @@ const programs = [
 
   { classValue: "12", division: "Fastrack", label: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> }
+];
+
+/* FEATURE DATA (NOW 6 IMAGES) */
+const features = [
+  feature1,
+  feature2,
+  feature3,
+  feature4,
+  feature5,
+  feature6 // ✅ Added
 ];
 
 const FrontPage = () => {
@@ -39,7 +51,7 @@ const FrontPage = () => {
   const [showPrograms, setShowPrograms] = useState(false);
   const [showFeatures, setShowFeatures] = useState(false);
 
-  /* Navigate with state */
+  /* Navigation */
   const handleRegister = (selectedClass, selectedBatch) => {
     navigate("/book-seat", {
       state: { selectedClass, selectedBatch }
@@ -115,13 +127,13 @@ const FrontPage = () => {
         ))}
       </div>
 
-      {/* FEATURES */}
+      {/* FEATURES SECTION (NOW 6 EQUAL CARDS) */}
       <div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
-        <img src={feature1} alt="" />
-        <img src={feature2} alt="" />
-        <img src={feature3} alt="" />
-        <img src={feature4} alt="" />
-        <img src={feature5} alt="" />
+        {features.map((img, index) => (
+          <div key={index} className="feature-card">
+            <img src={img} alt={`feature-${index}`} />
+          </div>
+        ))}
       </div>
 
     </div>
