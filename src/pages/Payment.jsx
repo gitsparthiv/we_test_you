@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Payment.css";
 
 const Payment = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [errors, setErrors] = useState({});
   const [isPaying, setIsPaying] = useState(false);
@@ -139,26 +140,25 @@ const Payment = () => {
         </div>
 
         <button
-  className="pay-btn"
-  disabled={!isFormValid || isPaying}
-  onClick={async () => {
-    if (isPaying) return; // extra safety (double-click guard)
+          className="pay-btn"
+          disabled={!isFormValid}
+          onClick={async () => {
+            const formData = new URLSearchParams();
 
-    setIsPaying(true);
-
-    const formData = new URLSearchParams();
-    formData.append("studentName", form.StudentName);
-    formData.append("studentEmail", form.StudentEmail);
-    formData.append("studentPhone", form.StudentPhone);
-    formData.append("parentName", form.ParentName);
-    formData.append("parentPhone", form.ParentPhone);
-    formData.append("parentEmail", form.ParentEmail);
-    formData.append("subjects", selectedSubjects.map((s) => s.name).join(", "));
-    formData.append("packageName", cohortBatch);
-    formData.append("subtotal", subtotal);
-    formData.append("discount", discount);
-    formData.append("finalTotal", finalTotal);
-    formData.append("venue", venue); // optional but useful
+            formData.append("studentName", form.StudentName);
+            formData.append("studentEmail", form.StudentEmail);
+            formData.append("studentPhone", form.StudentPhone);
+            formData.append("parentName", form.ParentName);
+            formData.append("parentPhone", form.ParentPhone);
+            formData.append("parentEmail", form.ParentEmail);
+            formData.append(
+              "subjects",
+              selectedSubjects.map((s) => s.name).join(", "),
+            );
+            formData.append("packageName", cohortBatch);
+            formData.append("subtotal", subtotal);
+            formData.append("discount", discount);
+            formData.append("finalTotal", finalTotal);
 
     try {
       const response = await fetch(
@@ -169,21 +169,19 @@ const Payment = () => {
       const result = await response.json();
       console.log(result);
 
-      if (result.result === "success") {
-        alert("Payment Successful & Data Saved!");
-      } else {
-        alert("Server Error: " + (result.message || "Unknown error"));
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Network or Script Error. Check console.");
-    } finally {
-      setIsPaying(false);
-    }
-  }}
->
-  {isPaying ? "Processing..." : `Pay ₹ ${finalTotal}`}
-</button>
+if (result.result === "success") {
+  alert("Payment Successful & Data Saved!");
+} else {
+  alert("Server Error: " + result.message);
+}
+            } catch (error) {
+              console.error(error);
+              alert("Network or Script Error. Check console.");
+            }
+          }}
+        >
+          Pay ₹ {finalTotal}
+        </button>
       </div>
     </div>
   );
