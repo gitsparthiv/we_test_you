@@ -157,6 +157,7 @@ const Payment = () => {
             formData.append("subtotal", subtotal);
             formData.append("discount", discount);
             formData.append("finalTotal", finalTotal);
+            formData.append("venue", venue);
 
             try {
               const response = await fetch(
