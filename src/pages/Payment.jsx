@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Payment.css";
 
 const Payment = () => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const [errors, setErrors] = useState({});
   const {
@@ -172,9 +173,9 @@ const Payment = () => {
 console.log(result);
 
 if (result.result === "success") {
-  alert("Payment Successful & Data Saved!");
+  navigate("/payment-success");
 } else {
-  alert("Server Error: " + result.message);
+  navigate("/payment-failed");
 }
             } catch (error) {
               console.error(error);

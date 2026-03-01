@@ -1,0 +1,67 @@
+.status-container {
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .status-box {
+    width: 450px;
+    background: #0d0d0d;
+    border: 1px solid #333;
+    border-radius: 25px;
+    padding: 50px;
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(217,255,0,0.2);
+  }
+  
+  .status-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+  }
+  
+  .status-box.success .status-icon {
+    color: #d9ff00;
+  }
+  
+  .status-box.failed .status-icon {
+    color: #ff4d4d;
+  }
+  
+  .status-box h1 {
+    margin-bottom: 15px;
+  }
+  
+  .status-box p {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 30px;
+  }
+  
+  .status-box button {
+    padding: 12px 25px;
+    background: #d9ff00;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 5px;
+    transition: 0.3s;
+  }
+  
+  .status-box.failed button {
+    background: #ff4d4d;
+    color: #fff;
+  }
+  
+  .status-box button:hover {
+    transform: scale(1.05);
+  }
+  
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
