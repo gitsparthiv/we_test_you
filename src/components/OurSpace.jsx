@@ -6,10 +6,7 @@ const OurSpace = () => {
   return (
     <section className="hero-section">
 
-      <div
-        className="hero-bg"
-        style={{ backgroundImage: `url(${bgImage})` }}
-      >
+<div className="hero-bg">
         <div className="content-box">
           <h1>
             PROCTORED<br />EXAMINATION CENTRE
@@ -21,19 +18,23 @@ const OurSpace = () => {
         <div className="ticker-track">
           
           <div className="ticker-content">
-            <span>/ Proctored Exam </span>
-            <span>/ Online / Offline Exam </span>
-            <span>/ Near Your Location </span>
-            <span>/ You Can Choose Subject </span>
-            <span>/ Discount on Individual Subject </span>
+            <span> Proctored Exam </span>
+            <span> Online / Offline Exam </span>
+            <span> Near Your Location </span>
+            <span> You Can Choose Subject </span>
+            <span> Discount on Individual Subject </span>
+            <span> University backed faculty expertise </span>
+            
           </div>
 
           <div className="ticker-content">
-            <span>/ Proctored Exam </span>
-            <span>/ Online / Offline Exam </span>
-            <span>/ Near Your Location </span>
-            <span>/ You Can Choose Subject </span>
-            <span>/ Discount on Individual Subject </span>
+            <span> Proctored Exam </span>
+            <span> Online / Offline Exam </span>
+            <span> Near Your Location </span>
+            <span> You Can Choose Subject </span>
+            <span> Discount on Individual Subject </span>
+            <span> University backed faculty expertise </span>
+            
           </div>
 
         </div>
