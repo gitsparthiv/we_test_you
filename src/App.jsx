@@ -8,8 +8,8 @@ import Header from "./components/Header"
 import Footer from "./components/Footer" // 👈 change path if different
 import Payment from "./pages/Payment"; // 👈 change path if different
 import ScrollToTop from "./pages/ScrollToTop"; // 👈 change path if different
-import PaymentSuccess from "./pages/PaymentSuccess";
-import PaymentFailed from "./pages/PaymentFailed";
+import PaymentSuccess from "./pages/PaymentSuccess.jsx";
+import PaymentFailed from "./pages/PaymentFailed.jsx";
 
 
 
