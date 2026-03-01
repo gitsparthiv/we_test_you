@@ -41,7 +41,7 @@ const FreeClass = () => {
     <div className="freeclass-section">
       <div className="middle-box" ref={boxRef}>
         <h1>
-          TOTAL PACKAGE CONTAINS ONE FREE SUBJECT EXAMw
+          TOTAL PACKAGE CONTAINS ONE FREE SUBJECT EXAM
         </h1>
         <p>
           Register today to claim your free exam. No commitment!
