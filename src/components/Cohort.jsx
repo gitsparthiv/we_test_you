@@ -70,8 +70,8 @@ const Cohort = () => {
 
               if (!classMap[className][subject]) {
                 classMap[className][subject] = {
-                  fastrack: price + mockPrice,
-                  concrete: mockPrice,
+                  fastrack: mockPrice,
+                  concrete: price+mockPrice,
                 };
               }
             });
@@ -135,10 +135,10 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Chapter-wise Testing</li>
-                  <li>✔ Full-Length Mock Exams</li>
-                  <li>✔ Performance Analytics</li>
-                  <li>✔ Exam Strategy Guidance</li>
+                  <li>✔ Only Full Mock Practice</li>
+      <li>✔ Board Pattern Simulation</li>
+      <li>✔ Time Management Focus</li>
+      <li>✔ Detailed Report Card</li>
                 </ul>
                 <Price actual={prices["10"]?.fastrack || 0} old={prices["10"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("10", "Fastrack")}>
@@ -149,10 +149,10 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Concrete Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Full Mock Practice</li>
-                  <li>✔ Board Pattern Simulation</li>
-                  <li>✔ Time Management Focus</li>
-                  <li>✔ Detailed Report Card</li>
+                  <li>✔ Chapter-wise Testing</li>
+      <li>✔ Full-Length Mock Exams</li>
+      <li>✔ Performance Analytics</li>
+      <li>✔ Exam Strategy Guidance</li>
                 </ul>
                 <Price actual={prices["10"]?.concrete || 0} old={prices["10"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("10", "Concrete")}>
@@ -172,10 +172,10 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Subject-wise Deep Testing</li>
-                  <li>✔ Monthly Full Mock Exams</li>
-                  <li>✔ Concept Reinforcement Focus</li>
-                  <li>✔ Performance Tracking Dashboard</li>
+                   <li>✔ Only Full Mock Practice</li>
+      <li>✔ Board-Level Question Patterns</li>
+      <li>✔ Time-bound Simulation Tests</li>
+      <li>✔ Detailed Evaluation Report</li>
                 </ul>
                 <Price actual={prices["11"]?.fastrack || 0} old={prices["11"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("11", "Fastrack")}>
@@ -186,10 +186,10 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Concrete Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Only Full Mock Practice</li>
-                  <li>✔ Board-Level Question Patterns</li>
-                  <li>✔ Time-bound Simulation Tests</li>
-                  <li>✔ Detailed Evaluation Report</li>
+                  <li>✔ Subject-wise Deep Testing</li>
+      <li>✔ Monthly Full Mock Exams</li>
+      <li>✔ Concept Reinforcement Focus</li>
+      <li>✔ Performance Tracking Dashboard</li>
                 </ul>
                 <Price actual={prices["11"]?.concrete || 0} old={prices["11"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("11", "Concrete")}>
@@ -209,10 +209,10 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Advanced Chapter-wise Tests</li>
-                  <li>✔ Competitive + Board Pattern</li>
-                  <li>✔ Rank Prediction Analysis</li>
-                  <li>✔ Strategic Exam Mentorship</li>
+                  <li>✔ Full-Length Board Mocks</li>
+      <li>✔ Strict Exam Hall Simulation</li>
+      <li>✔ Time Optimization Strategy</li>
+      <li>✔ Comprehensive Performance Report</li>
                 </ul>
                 <Price actual={prices["12"]?.fastrack || 0} old={prices["12"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("12", "Fastrack")}>
@@ -223,10 +223,10 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Concrete Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Full-Length Board Mocks</li>
-                  <li>✔ Strict Exam Hall Simulation</li>
-                  <li>✔ Time Optimization Strategy</li>
-                  <li>✔ Comprehensive Performance Report</li>
+                  <li>✔ Advanced Chapter-wise Tests</li>
+      <li>✔ Competitive + Board Pattern</li>
+      <li>✔ Rank Prediction Analysis</li>
+      <li>✔ Strategic Exam Mentorship</li>
                 </ul>
                 <Price actual={prices["12"]?.concrete || 0} old={prices["12"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("12", "Concrete")}>

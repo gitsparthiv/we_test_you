@@ -5,6 +5,7 @@ import "./Payment.css";
 const Payment = () => {
   const { state } = useLocation();
   const [errors, setErrors] = useState({});
+  const [isPaying, setIsPaying] = useState(false);
   const {
     selectedSubjects = [],
     subtotal = 0,
@@ -101,13 +102,13 @@ const Payment = () => {
               <div className="excel-space"></div>
 
               <div className="excel-row excel-header">
-                <span>SUBJECT</span>
+                <span className="subject">SUBJECT</span>
                 <span className="cost">COST</span>
               </div>
 
               {selectedSubjects.map((item, index) => (
                 <div className="excel-row" key={index}>
-                  <span>
+                  <span className="subject-name">
                     {item.name
                       .replace(" Full Package", "")
                       .replace(" Mock Package", "")}
@@ -120,17 +121,17 @@ const Payment = () => {
               <div className="excel-space"></div>
 
               <div className="excel-row total-row">
-                <span>SUBTOTAL</span>
+                <span className="subtotal">SUBTOTAL</span>
                 <span className="cost">₹ {subtotal}</span>
               </div>
 
               <div className="excel-row">
-                <span>DISCOUNT</span>
+                <span className="discount">DISCOUNT</span>
                 <span className="cost">₹ {discount}</span>
               </div>
 
               <div className="excel-row grand-total">
-                <span>GRAND TOTAL</span>
+                <span className="grandtotal">GRAND TOTAL</span>
                 <span className="cost">₹ {finalTotal}</span>
               </div>
             </>
@@ -138,51 +139,51 @@ const Payment = () => {
         </div>
 
         <button
-          className="pay-btn"
-          disabled={!isFormValid}
-          onClick={async () => {
-            const formData = new URLSearchParams();
+  className="pay-btn"
+  disabled={!isFormValid || isPaying}
+  onClick={async () => {
+    if (isPaying) return; // extra safety (double-click guard)
 
-            formData.append("studentName", form.StudentName);
-            formData.append("studentEmail", form.StudentEmail);
-            formData.append("studentPhone", form.StudentPhone);
-            formData.append("parentName", form.ParentName);
-            formData.append("parentPhone", form.ParentPhone);
-            formData.append("parentEmail", form.ParentEmail);
-            formData.append(
-              "subjects",
-              selectedSubjects.map((s) => s.name).join(", "),
-            );
-            formData.append("packageName", cohortBatch);
-            formData.append("subtotal", subtotal);
-            formData.append("discount", discount);
-            formData.append("finalTotal", finalTotal);
+    setIsPaying(true);
 
-            try {
-              const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbyBoYWN83RJFPZbOpj354_npqrsFJn2Hnip_A-m8o4JovaFz8OsrgsR3ZAff0jxmI3r/exec",
-                {
-                  method: "POST",
-                  body: formData,
-                },
-              );
+    const formData = new URLSearchParams();
+    formData.append("studentName", form.StudentName);
+    formData.append("studentEmail", form.StudentEmail);
+    formData.append("studentPhone", form.StudentPhone);
+    formData.append("parentName", form.ParentName);
+    formData.append("parentPhone", form.ParentPhone);
+    formData.append("parentEmail", form.ParentEmail);
+    formData.append("subjects", selectedSubjects.map((s) => s.name).join(", "));
+    formData.append("packageName", cohortBatch);
+    formData.append("subtotal", subtotal);
+    formData.append("discount", discount);
+    formData.append("finalTotal", finalTotal);
+    formData.append("venue", venue); // optional but useful
 
-              const result = await response.json();
-console.log(result);
+    try {
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbyBoYWN83RJFPZbOpj354_npqrsFJn2Hnip_A-m8o4JovaFz8OsrgsR3ZAff0jxmI3r/exec",
+        { method: "POST", body: formData }
+      );
 
-if (result.result === "success") {
-  alert("Payment Successful & Data Saved!");
-} else {
-  alert("Server Error: " + result.message);
-}
-            } catch (error) {
-              console.error(error);
-              alert("Network or Script Error. Check console.");
-            }
-          }}
-        >
-          Pay ₹ {finalTotal}
-        </button>
+      const result = await response.json();
+      console.log(result);
+
+      if (result.result === "success") {
+        alert("Payment Successful & Data Saved!");
+      } else {
+        alert("Server Error: " + (result.message || "Unknown error"));
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Network or Script Error. Check console.");
+    } finally {
+      setIsPaying(false);
+    }
+  }}
+>
+  {isPaying ? "Processing..." : `Pay ₹ ${finalTotal}`}
+</button>
       </div>
     </div>
   );

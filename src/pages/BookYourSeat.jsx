@@ -2,13 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { useLayoutEffect } from "react";
-import {
-  FaShoppingCart,
-  FaShieldAlt,
-  FaBolt,
-  FaUserGraduate,
-  FaLock,
-} from "react-icons/fa";
 import Papa from "papaparse"; // ✅ Import at top
 
 const BookYourSeat = () => {
@@ -109,7 +102,7 @@ const BookYourSeat = () => {
      CART CALCULATION
   ========================= */
   const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
-// OLD total (without discount, business logic)
+  // OLD total (without discount, business logic)
   let discount = 0;
 
   if (
@@ -139,7 +132,7 @@ const BookYourSeat = () => {
     }
 
     const packageType =
-      cohortBatch === "Concrete" ? "Concrete Package" : "Fastrack Package";
+      cohortBatch === "Fastrack" ? "Fastrack Package" : "Concrete Package";
 
     setSelectedSubjects([
       ...selectedSubjects,
@@ -159,7 +152,6 @@ const BookYourSeat = () => {
 
   const canCheckout = selectedSubjects.length > 0 && currentVenue !== "";
 
-
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -168,7 +160,6 @@ const BookYourSeat = () => {
   ========================= */
   return (
     <div className="registration-wrapper">
-
       <div className="main-content">
         <div className="title-box">
           <h1>REGISTRATION 2026–27</h1>
@@ -176,28 +167,6 @@ const BookYourSeat = () => {
           <p className="class-line">
             CLASS {currentClass} • {cohortBatch?.toUpperCase()}
           </p>
-
-          <div className="header-props">
-            <div className="prop-item">
-              <FaUserGraduate />
-              <span>ACADEMIC PROGRAM</span>
-            </div>
-
-            <div className="prop-item">
-              <FaBolt />
-              <span>FAST ENROLLMENT</span>
-            </div>
-
-            <div className="prop-item">
-              <FaShieldAlt />
-              <span>SECURE REGISTRATION</span>
-            </div>
-
-            <div className="prop-item">
-              <FaLock />
-              <span>LIMITED SEATS</span>
-            </div>
-          </div>
         </div>
 
         <div className="filter-section">
@@ -206,10 +175,30 @@ const BookYourSeat = () => {
             {["South", "North", "East", "West"].map((venue) => (
               <button
                 key={venue}
-                className={`filter-btn ${
-                  currentVenue === venue ? "active" : ""
-                }`}
-                onClick={() => setCurrentVenue(venue)}
+                className={`filter-btn ${currentVenue === venue ? "active" : ""} ${venue !== "East" ? "disabled" : ""}`}
+                onClick={() => {
+                  // If user already added something, don't allow changing venue
+                  if (
+                    selectedSubjects.length > 0 &&
+                    currentVenue &&
+                    venue !== currentVenue
+                  ) {
+                    alert(
+                      `You have already selected ${currentVenue} venue. Remove all items from cart to change venue.`,
+                    );
+                    return;
+                  }
+
+                  // Only EAST is available
+                  if (venue !== "East") {
+                    alert(
+                      `${venue} venue is coming soon. Currently only East is available.`,
+                    );
+                    return;
+                  }
+
+                  setCurrentVenue(venue);
+                }}
               >
                 {venue}
               </button>
@@ -219,6 +208,14 @@ const BookYourSeat = () => {
 
         <div className="table-box">
           <table className="custom-table">
+            <colgroup>
+              <col style={{ width: "18%" }} /> {/* Subject */}
+              <col style={{ width: "10%" }} /> {/* Class */}
+              <col style={{ width: "12%" }} /> {/* Venue */}
+              <col style={{ width: "34%" }} /> {/* Chapter */}
+              <col style={{ width: "16%" }} /> {/* Schedule */}
+              <col style={{ width: "10%" }} /> {/* Action */}
+            </colgroup>
             <thead>
               <tr>
                 <th>Subject</th>
@@ -246,38 +243,37 @@ const BookYourSeat = () => {
                       <td>—</td>
                       <td>
                         <button
-  className="add-subject-btn"
-  onClick={() => {
-    if (cohortBatch === "Concrete") {
-      addItem(
-        subject.name + " Mock Package",
-        subject.mockPrice
-      );
-    } else {
-      addItem(
-        subject.name + " Full Package",
-        totalFastrackPrice
-      );
-    }
-  }}
->
-  <div className="price-box">
-    <span className="old-price-bys">
-      ₹{
-        (cohortBatch === "Concrete"
-          ? subject.mockPrice
-          : totalFastrackPrice) + 1000
-      }
-    </span>
+                          className="add-subject-btn"
+                          onClick={() => {
+                            if (cohortBatch === "Fastrack") {
+                              addItem(
+                                subject.name + " Mock Package",
+                                subject.mockPrice,
+                              );
+                            } else {
+                              addItem(
+                                subject.name + " Full Package",
+                                totalFastrackPrice,
+                              );
+                            }
+                          }}
+                        >
+                          <div className="price-box">
+                            <span className="old-price-bys">
+                              ₹
+                              {(cohortBatch === "Fastrack"
+                                ? subject.mockPrice
+                                : totalFastrackPrice) + 1000}
+                            </span>
 
-    <span className="new-price-bys">
-      ₹
-      {cohortBatch === "Concrete"
-        ? subject.mockPrice
-        : totalFastrackPrice}
-    </span>
-  </div>
-</button>
+                            <span className="new-price-bys">
+                              ₹
+                              {cohortBatch === "Fastrack"
+                                ? subject.mockPrice
+                                : totalFastrackPrice}
+                            </span>
+                          </div>
+                        </button>
                       </td>
                     </tr>
 
@@ -290,22 +286,30 @@ const BookYourSeat = () => {
                               borderCollapse: "collapse",
                             }}
                           >
+                            <colgroup>
+                              <col style={{ width: "18%" }} /> {/* Subject */}
+                              <col style={{ width: "10%" }} /> {/* Class */}
+                              <col style={{ width: "12%" }} /> {/* Venue */}
+                              <col style={{ width: "34%" }} /> {/* Chapter */}
+                              <col style={{ width: "16%" }} /> {/* Schedule */}
+                              <col style={{ width: "10%" }} /> {/* Action */}
+                            </colgroup>
                             <tbody>
-                              {(cohortBatch !== "Concrete"
+                              {(cohortBatch !== "Fastrack"
                                 ? (subject.sessions || []).concat(
                                     subject.mockTests || [],
                                   )
                                 : subject.mockTests || []
                               ).map((item, i) => (
-                                <tr key={i}>
-                                  <td></td>
+                                <tr key={i} className="chapter-row">
+                                  <td className="ghost-cell">—</td>
                                   <td>{currentClass}</td>
                                   <td>{currentVenue}</td>
-                                  <td>
+                                  <td className="chapter-cell">
                                     {item.chapter ? item.chapter : item.name}
                                   </td>
                                   <td>{item.date}</td>
-                                  <td></td>
+                                  <td className="ghost-cell">—</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -337,18 +341,18 @@ const BookYourSeat = () => {
                 PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
               </div>
               <div className="excel-row">
-  VENUE : {currentVenue || "NOT SELECTED"}
-</div>
+                VENUE : {currentVenue || "NOT SELECTED"}
+              </div>
               <div className="excel-space"></div>
 
               <div className="excel-row excel-header">
-                <span>SUBJECT</span>
+                <span className="subject-head">SUBJECT</span>
                 <span className="cost-head">COST</span>
               </div>
 
               {selectedSubjects.map((item) => (
                 <div className="excel-row" key={item.key}>
-                  <span>
+                  <span className="subject-name">
                     {item.name
                       .replace(" Full Package", "")
                       .replace(" Mock Package", "")}
@@ -404,7 +408,7 @@ const BookYourSeat = () => {
                 discount,
                 finalTotal,
                 cohortBatch,
-                venue: currentVenue
+                venue: currentVenue,
               },
             })
           }

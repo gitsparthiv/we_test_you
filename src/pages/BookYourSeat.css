@@ -1,15 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Bebas Neue", sans-serif;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
-  background: #000;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: url("../assets/background.jpg") no-repeat center center fixed;
+  background-size: cover;
 }
 
 #root {
@@ -17,72 +23,58 @@ html, body {
 }
 
 body {
-  /* font-family: Arial, sans-serif; */
   color: #fff;
 }
 
-/* Layout */
+/* =========================
+   LAYOUT
+========================= */
 .registration-wrapper {
-  padding-top: 60px;
+  padding-top: 45px;
   display: flex;
-  gap: 40px;
-  background: #000;
+  gap: 20px;
+  background: transparent;
   min-height: 100vh;
+  position: relative;
+  align-items: flex-start;
 }
 
 .main-content {
   flex: 3;
 }
 
-/* Title */
-/* ===== Professional Header Upgrade ===== */
-
-/* ===== Premium Bold Business Header ===== */
-/* ===== Centered Premium Bold Header ===== */
-
+/* =========================
+   HEADER
+========================= */
 .title-box {
   position: relative;
-  margin-bottom: 45px;
-  padding-bottom: 25px;
-  text-align: center;   /* 👈 Center everything */
-}
-
-/* Center Glow Accent Line */
-.title-box::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);  /* 👈 Center line */
-  bottom: 0;
-  width: 140px;
-  height: 4px;
-  background: #d9ff00;
-  box-shadow: 0 0 14px #d9ff00;
-  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 15px;
 }
 
 .title-box h1 {
-  /* font-family: 'Bebas Neue', cursive; */
-  font-size: 60px;
+  font-size: 70px;
   letter-spacing: 4px;
   color: #d9ff00;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(217,255,0,0.7);
+  text-shadow: 0 0 10px rgba(217, 255, 0, 0.7);
 }
 
 .title-box p {
-  font-size: 18px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
   font-weight: 600;
   color: #ffffff;
-  letter-spacing: 2px;
+  letter-spacing: 5px;
   text-transform: uppercase;
 }
 
-/* Filters */
+/* =========================
+   FILTERS
+========================= */
 .filter-section {
-  margin-bottom: 40px;
-  margin-left: 0;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -94,9 +86,8 @@ body {
   flex-wrap: wrap;
 }
 
-/* Venue Label */
 .filter-row span {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -104,27 +95,25 @@ body {
   margin-right: 15px;
 }
 
-/* Buttons */
 .filter-btn {
-  padding: 10px 22px;
-  font-size: 14px;
-  letter-spacing: 1px;
+  font-family: "Bebas Neue", sans-serif;
+  padding: 5px 22px;
+  font-size: 20px;
+  letter-spacing: 2px;
   text-transform: uppercase;
 
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 30px;
 
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-
   backdrop-filter: blur(8px);
 }
 
-/* Hover */
 .filter-btn:hover {
-  background: rgba(217,255,0,0.08);
+  background: rgba(217, 255, 0, 0.08);
   transform: translateY(-2px);
   border-color: #d9ff00;
 }
@@ -133,93 +122,185 @@ body {
   background: #d9ff00;
   color: #000;
   font-weight: bold;
-  box-shadow: 0 0 15px rgba(217,255,0,0.6);
+  box-shadow: 0 0 15px rgba(217, 255, 0, 0.6);
 }
-/* Table */
+.filter-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+/* =========================
+   TABLE GLASS BOX
+========================= */
 .table-box {
-  border: 1px solid #222;
+  margin-left: 15px;
+  margin-bottom: 25px;
   border-radius: 25px;
-  padding: 25px;
-  background: #0a0a0a;
+  padding: 30px;
+  font-size: 19px;
+  letter-spacing: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 0 0.5px rgba(255, 255, 255, 0.2);
 }
 
+/* =========================
+   TABLE (FINAL ALIGN VERSION)
+========================= */
 .custom-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.custom-table thead {
+  background: rgba(217, 255, 0, 0.08);
+  color: #d9ff00;
+  backdrop-filter: blur(10px);
 }
 
 .custom-table th,
 .custom-table td {
-  padding: 14px;
-  border-bottom: 1px solid #222;
-  text-align: left;
-}
-.custom-table thead{
-    color: #d9ff00;
-}
+  padding: 10px 12px;
+  box-sizing: border-box;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-.custom-table th {
-  border-bottom: 1px solid #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .subject-row {
-  background: #111;
+  background: rgba(255, 255, 255, 0.05);
   font-weight: bold;
+  transition: 0.3s ease;
 }
 
 .subject-row:hover {
-  background: #1a1a1a;
+  background: rgba(217, 255, 0, 0.08);
 }
 
+/* =========================
+   ADD BUTTON (SHARP RECT)
+========================= */
 .add-subject-btn {
+  height: 45px;
+  padding: 0 22px;
   background: #d9ff00;
   border: none;
-  border-radius: 14px;
-  padding: 8px 16px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 130px;
+  transition: 0.3s ease;
+  font-weight: bold;
 }
+
 .add-subject-btn:hover {
+  background: #c6e800;
   transform: translateY(-2px);
-  box-shadow: 0 0 18px rgba(217,255,0,0.7);
+  box-shadow: 0 0 12px rgba(217, 255, 0, 0.6);
 }
+
 .price-box {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   line-height: 1.1;
+  text-align: center;
 }
-.old-price-bys {
-  font-size: 11px;
+
+.old-price-bys {font-family: "Bebas Neue", sans-serif;
+  font-size: 15px;
   color: #444;
   text-decoration: line-through;
   font-weight: 500;
 }
 
-.new-price-bys {
-  font-size: 14px;
+.new-price-bys {font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
   font-weight: 700;
-  color: #000;
+  color: #b90505;
 }
-/* Cart Panel */
+
+/* =========================
+   CHAPTER SCROLL (INNER TABLE)
+========================= */
+.chapter-scroll-container {
+  max-height: 260px; /* ✅ about 5 rows visible, then scroll */
+  overflow-y: auto;
+  padding-right: 6px;
+  scrollbar-width: auto;
+  scrollbar-color: #d9ff00 #111;
+}
+
+.chapter-scroll-container::-webkit-scrollbar {
+  width: 12px;
+}
+.chapter-scroll-container::-webkit-scrollbar-track {
+  background: #111;
+}
+.chapter-scroll-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d9ff00, #aaff00);
+  border-radius: 20px;
+}
+
+.chapter-scroll-container table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.chapter-row td {
+  padding: 12px 12px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* allow wrap only in chapter column */
+.chapter-scroll-container td:nth-child(4) {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.ghost-cell {
+  opacity: 0;
+  user-select: none;
+}
+
+/* =========================
+   CART PANEL (STICKY)
+========================= */
 .cart-panel {
   flex: 1;
   position: sticky;
-  top: 180px;
-  height: 500px;
-  padding: 30px;
+  top: 120px;
+  height: fit-content;
+  margin-right: 15px;
+  padding: 35px;
   border-radius: 20px;
   backdrop-filter: blur(20px);
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .cart-panel h2 {
+  font-family: "Bebas Neue", sans-serif;
   text-align: center;
   margin-bottom: 20px;
   color: #d9ff00;
-  font-size: 30px;
+  font-size: 45px;
 }
 
 .cart-items {
@@ -227,132 +308,23 @@ body {
   overflow-y: auto;
 }
 
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  font-size: 14px;
+/* SUBJECT/COST header + rows */
+.cart-excel,
+.excel-row,
+.excel-header,
+.cost,
+.subject-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 20px;
+  letter-spacing: 2px;
 }
-
-.remove {
-  color: red;
-  cursor: pointer;
-  margin-left: 8px;
-}
-
-.total {
-  margin-top: 20px;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.checkout {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background: #d9ff00;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 8px;
-  font-size: 16px;
-}
-.registration-wrapper {
-  position: relative; /* important */
-}
-
-/* Top right cart icon */
-
-
-/* Badge */
-.cart-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #d9ff00;
-  color: black;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 4px 7px;
-  border-radius: 50%;
-}
-.checkout:disabled {
-  background: #444;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-.chapter-scroll-box {
-  max-height: 150px;      /* shows approx 3 rows */
-  overflow-y: auto;
-  padding: 10px 20px;
-  background: transparent;
-}
-
-.chapter-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-/* =========================
-   LIMIT CHAPTER ROWS PER SUBJECT
-   (Show approx 3 rows height)
-========================= */
-
-.chapter-scroll-container {
-  max-height: 160px;
-  overflow-y: auto;
-  padding-right: 6px;
-
-  /* Firefox */
-  scrollbar-width: auto;
-  scrollbar-color: #d9ff00 #111;
-}
-
-/* Chrome / Edge */
-.chapter-scroll-container::-webkit-scrollbar {
-  width: 12px;
-}
-
-.chapter-scroll-container::-webkit-scrollbar-track {
-  background: #111;
-}
-
-.chapter-scroll-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #d9ff00, #aaff00);
-  border-radius: 20px;
-}
-/* ===== New Cart Structured Layout ===== */
-
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 10px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+.cost-head,
+.subject-head {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
   color: #d9ff00;
 }
-
-.cart-subheader {
-  display: flex;
-  justify-content: space-between;
-  font-weight: bold;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
-
-.cart-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  font-size: 14px;
-}
-/* ===== Simple Excel Style (No Grid) ===== */
-
 .cart-excel {
   width: 100%;
   font-size: 14px;
@@ -379,68 +351,48 @@ body {
   min-width: 80px;
   text-align: left;
 }
-/* ===== Professional Business Header Additions ===== */
 
-.class-line {
+.remove {
+  color: red;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.total {
+  margin-top: 20px;
   font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 15px;
-}
-
-.header-meta {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #aaa;
+  font-weight: bold;
   letter-spacing: 1px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  text-transform: uppercase;
+  text-align: center;
 }
 
-.header-description {
-  margin-top: 18px;
-  max-width: 650px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 15px;
-  color: #ccc;
-  line-height: 1.6;
-}
-/* ===== Business Props Row ===== */
-
-.header-props {
-  margin-top: 25px;
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  flex-wrap: wrap;
+.checkout {
+  font-family: "Bebas Neue", sans-serif;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background: #d9ff00;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 20px;
 }
 
-.prop-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: #ccc;
-  background: rgba(255,255,255,0.05);
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: 0.3s ease;
+.checkout:disabled {
+  background: #444;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
-.prop-item svg {
-  color: #d9ff00;
-  font-size: 14px;
-}
-
-.prop-item:hover {
-  background: rgba(217,255,0,0.08);
-  transform: translateY(-2px);
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #d9ff00;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 7px;
+  border-radius: 50%;
 }

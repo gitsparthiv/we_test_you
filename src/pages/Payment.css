@@ -1,5 +1,4 @@
 /* ===== PAYMENT PAGE ===== */
-
 .booking-container {
     background: #000;
     color: #fff;
@@ -14,7 +13,17 @@
     margin: 80px auto;
     max-width: 1200px;
 }
-
+.subject , .grandtotal,.subtotal {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #d9ff00;
+}
+.subject-name,.discount{
+    font-family: 'Bebas Neue', cursive;
+    font-size: 18px;
+    letter-spacing: 2px
+}
 /* SECTION TITLE */
 .section-title {
     font-family: 'Bebas Neue', cursive;
