@@ -22,9 +22,9 @@ function LandingPage() {
           <FrontPage
             onRegister={handleRegistration}
           />
-          <Cohort />
-          <OurSpace/>
           <FreeClass />
+          <OurSpace/>
+          <Cohort />
         </>
       )}
 
