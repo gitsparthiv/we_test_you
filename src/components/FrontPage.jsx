@@ -18,14 +18,14 @@ const words = [
 ];
 
 const programs = [
-  { className: "Class 10", division: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
-  { className: "Class 10", division: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
+  { classValue: "10", division: "Fastrack", label: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
+  { classValue: "10", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
 
-  { className: "Class 11", division: "Fasttrack Division", theme: "black", icon: <FaRocket /> },
-  { className: "Class 11", division: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
+  { classValue: "11", division: "Fastrack", label: "Fasttrack Division", theme: "black", icon: <FaRocket /> },
+  { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
 
-  { className: "Class 12", division: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
-  { className: "Class 12", division: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> }
+  { classValue: "12", division: "Fastrack", label: "Fasttrack Division", theme: "yellow", icon: <FaRocket /> },
+  { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> }
 ];
 
 const FrontPage = () => {
@@ -39,7 +39,14 @@ const FrontPage = () => {
   const [showPrograms, setShowPrograms] = useState(false);
   const [showFeatures, setShowFeatures] = useState(false);
 
-  /* Premium Sequential Loading */
+  /* Navigate with state */
+  const handleRegister = (selectedClass, selectedBatch) => {
+    navigate("/book-seat", {
+      state: { selectedClass, selectedBatch }
+    });
+  };
+
+  /* Sequential Loading */
   useEffect(() => {
     setTimeout(() => setShowHero(true), 300);
     setTimeout(() => setShowPrograms(true), 1200);
@@ -97,12 +104,12 @@ const FrontPage = () => {
           <div
             key={index}
             className={`program-card ${item.theme}`}
-            onClick={() => navigate("/book-seat")}
+            onClick={() => handleRegister(item.classValue, item.division)}
           >
             <div className="program-content">
               <div className="program-icon">{item.icon}</div>
-              <h3>{item.className}</h3>
-              <p>{item.division}</p>
+              <h3>Class {item.classValue}</h3>
+              <p>{item.label}</p>
             </div>
           </div>
         ))}

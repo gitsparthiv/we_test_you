@@ -139,6 +139,7 @@ const Cohort = () => {
                   <li>✔ Full-Length Mock Exams</li>
                   <li>✔ Performance Analytics</li>
                   <li>✔ Exam Strategy Guidance</li>
+                  <li>✔ Exam Strategy Guidance</li>
                 </ul>
                 <Price actual={prices["10"]?.fastrack || 0} old={prices["10"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("10", "Fastrack")}>

@@ -27,17 +27,28 @@ const FreeClass = () => {
     };
   }, []);
 
+  /* 🔥 Scroll to Cohorts */
+  const scrollToCohorts = () => {
+    const section = document.getElementById("cohorts");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div className="freeclass-section">
       <div className="middle-box" ref={boxRef}>
         <h1>
-        TOTAL PACKAGE CONTAINS ONE FREE SUBJECT EXAM
+          TOTAL PACKAGE CONTAINS ONE FREE SUBJECT EXAM
         </h1>
         <p>
-        Register today to claim your free exam. No commitment!
+          Register today to claim your free exam. No commitment!
         </p>
 
-        <button className="claim-btn">
+        <button 
+          className="claim-btn"
+          onClick={scrollToCohorts}
+        >
           Claim Your Free Exam <span>→</span>
         </button>
       </div>
