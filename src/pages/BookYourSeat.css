@@ -22,9 +22,6 @@ body {
   min-height: 100vh;
 }
 
-body {
-  color: #fff;
-}
 
 /* =========================
    LAYOUT
@@ -141,6 +138,7 @@ box-shadow:
   border-radius: 25px;
   padding: 30px;
   font-size: 19px;
+  color: #fff;
   letter-spacing: 2px;
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px);
@@ -293,6 +291,7 @@ box-shadow:
   height: fit-content;
   margin-right: 15px;
   padding: 35px;
+  color: #fff;
   border-radius: 20px;
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.05);
