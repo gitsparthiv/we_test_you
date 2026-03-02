@@ -1,0 +1,312 @@
+.small-footer {
+  background: #111;
+  color: #bbb;
+  padding: 20px 100px;
+  font-family: Arial, sans-serif;
+}
+
+/* Top Section */
+.sf-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* BIG CENTER BRAND */
+.sf-big-brand {
+  font-size: 100px;
+  font-weight: 900;
+  letter-spacing: 30px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Social */
+.sf-social a {
+  margin-left: 18px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.sf-social span:hover {
+  color: #fff;
+}
+
+/* Divider */
+.sf-divider {
+  margin: 35px 0;
+  height: 1px;
+  background: #222;
+}
+
+/* Bottom Section */
+.sf-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Links */
+.sf-links a {
+  margin-right: 25px;
+  text-decoration: none;
+  color: #999;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.sf-links a:hover {
+  color: #fff;
+}
+
+/* Copyright */
+.sf-copy {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sf-top,
+  .sf-bottom {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .sf-social span {
+    margin: 0 10px;
+  }
+}
+/* Fix hover selector */
+.sf-social a:hover {
+  color: #fff;
+}
+
+
+/* Button links (for Terms / Privacy / Refund) */
+.sf-link-btn {
+  background: transparent;
+  border: none;
+  margin-right: 25px;
+  color: #999;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 0;
+  transition: 0.2s ease;
+}
+
+.sf-link-btn:hover {
+  color: #fff;
+}
+
+
+/* CIN line */
+.sf-cif {
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+  max-width: 500px;
+}
+
+
+/* Address */
+.sf-addr {
+  font-size: 12px;
+  color: #777;
+  text-align: right;
+  max-width: 300px;
+}
+
+
+/* ================= MODAL ================= */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background: #1a1a1a;
+  width: 650px;
+  max-width: 90%;
+  padding: 35px;
+  border-radius: 6px;
+  color: #ddd;
+}
+
+.modal-box h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.modal-content {
+  max-height: 350px;
+  overflow-y: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.close-btn {
+  margin-top: 20px;
+  padding: 8px 16px;
+  background: #222;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.close-btn:hover {
+  background: #333;
+}
+
+
+/* Legal text styling (minimal) */
+
+.terms-wrapper,
+.refund-wrapper {
+  color: #ccc;
+}
+
+.terms-section h4,
+.refund-section h4 {
+  margin-top: 15px;
+  font-size: 15px;
+  color: #fff;
+}
+
+.terms-section p,
+.refund-section p,
+.terms-section li,
+.refund-section li {
+  font-size: 13px;
+  color: #bbb;
+}
+
+.terms-section ul,
+.refund-section ul {
+  padding-left: 18px;
+}
+/* Replace newsletter with contact info */
+
+.sf-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.sf-contact-item {
+  letter-spacing: 0.5px;
+}
+/* ================= RESPONSIVE (NO STYLE CHANGE) ================= */
+
+/* Large tablets / small laptops */
+@media (max-width: 1200px) {
+  .small-footer {
+    padding: 20px 50px;
+  }
+
+  .sf-big-brand {
+    font-size: 80px;
+    letter-spacing: 18px;
+  }
+
+  .sf-cif {
+    max-width: 420px;
+  }
+
+  .sf-addr {
+    max-width: 260px;
+  }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+  .small-footer {
+    padding: 22px 30px;
+  }
+
+  /* Keep your stacking behavior but prevent overflow */
+  .sf-top,
+  .sf-bottom {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+
+  .sf-big-brand {
+    font-size: 64px;
+    letter-spacing: 12px;
+  }
+
+  .sf-contact {
+    align-items: center;
+  }
+
+  .sf-social a {
+    margin: 0 10px;
+  }
+
+  .sf-cif,
+  .sf-addr {
+    text-align: center;
+    max-width: 100%;
+  }
+}
+
+/* Phones */
+@media (max-width: 520px) {
+  .small-footer {
+    padding: 18px 16px;
+  }
+
+  .sf-big-brand {
+    font-size: 42px;
+    letter-spacing: 8px;
+  }
+
+  .sf-divider {
+    margin: 20px 0;
+  }
+
+  .sf-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .sf-link-btn {
+    margin-right: 0;
+  }
+
+  .modal-box {
+    padding: 22px;
+  }
+
+  .modal-content {
+    max-height: 55vh;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .sf-big-brand {
+    font-size: 34px;
+    letter-spacing: 6px;
+  }
+}
