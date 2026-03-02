@@ -14,14 +14,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  
-  
 }
 
 #root {
   min-height: 100vh;
 }
-
 
 /* =========================
    LAYOUT
@@ -35,6 +32,9 @@ body {
   min-height: 100vh;
   position: relative;
   align-items: flex-start;
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .main-content {
@@ -60,7 +60,6 @@ body {
 }
 
 .title-box p {
-  font-family: "Bebas Neue", sans-serif;
   font-size: 25px;
   font-weight: 600;
   color: #ffffff;
@@ -94,19 +93,18 @@ body {
 }
 
 .filter-btn {
-  font-family: "Bebas Neue", sans-serif;
   padding: 5px 22px;
   font-size: 20px;
   letter-spacing: 2px;
   text-transform: uppercase;
 
   background: rgba(255, 255, 255, 0.08);
- border: 1.5px solid rgba(255, 255, 255, 0.4);
- 
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+
   border-radius: 30px;
-box-shadow: 
-        0 0 25px rgba(255, 255, 255, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.08);
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -125,10 +123,12 @@ box-shadow:
   font-weight: bold;
   box-shadow: 0 0 15px rgba(217, 255, 0, 0.6);
 }
+
 .filter-btn.disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
 /* =========================
    TABLE GLASS BOX
 ========================= */
@@ -148,6 +148,11 @@ box-shadow:
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 0 0.5px rgba(255, 255, 255, 0.2);
+
+  position: relative;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* =========================
@@ -157,12 +162,14 @@ box-shadow:
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
+  min-width: 900px;
 }
 
 .custom-table thead {
   background: rgba(217, 255, 0, 0.08);
   color: #d9ff00;
   backdrop-filter: blur(10px);
+  font-size: 25px;
 }
 
 .custom-table th,
@@ -172,9 +179,17 @@ box-shadow:
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-  overflow: hidden;
+  overflow: hidden;            /* ✅ FIX: back to clean table clipping */
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ✅ Action column: allow button and shadow nicely + add right gap */
+.custom-table th:last-child,
+.custom-table td:last-child {
+  overflow: visible;           /* ✅ only action col visible */
+  padding-left: 8px;
+  padding-right: 18px;         /* ✅ right gap so button doesn't touch edge */
 }
 
 .subject-row {
@@ -188,46 +203,55 @@ box-shadow:
 }
 
 /* =========================
-   ADD BUTTON (SHARP RECT)
+   ADD BUTTON (CLEAN INSIDE TABLE)
 ========================= */
 .add-subject-btn {
-  height: 45px;
-  padding: 0 22px;
+  width: 100%;                 /* ✅ fits inside cell */
+  max-width: 120px;            /* ✅ doesn't look stretched */
+  height: 46px;
+  padding: 0 10px;
+
   background: #d9ff00;
   border: none;
-  border-radius: 0;
+  border-radius: 14px;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.25s ease;
   font-weight: bold;
+
+  margin-left: auto;           /* ✅ aligns right with gap */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
 .add-subject-btn:hover {
   background: #c6e800;
-  transform: translateY(-2px);
-  box-shadow: 0 0 12px rgba(217, 255, 0, 0.6);
+  transform: translateY(-1px);
+  box-shadow: 0 0 12px rgba(217, 255, 0, 0.55);
 }
 
 .price-box {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;       /* ✅ looks neat in action column */
   justify-content: center;
-  line-height: 1.1;
-  text-align: center;
+  line-height: 1.05;
+  text-align: right;
 }
 
-.old-price-bys {font-family: "Bebas Neue", sans-serif;
-  font-size: 15px;
+.old-price-bys {
+  font-size: 14px;
   color: #444;
   text-decoration: line-through;
   font-weight: 500;
 }
 
-.new-price-bys {font-family: "Bebas Neue", sans-serif;
-  font-size: 20px;
+.new-price-bys {
+  font-size: 19px;
   font-weight: 700;
   color: #b90505;
 }
@@ -236,7 +260,7 @@ box-shadow:
    CHAPTER SCROLL (INNER TABLE)
 ========================= */
 .chapter-scroll-container {
-  max-height: 260px; /* ✅ about 5 rows visible, then scroll */
+  max-height: 260px;
   overflow-y: auto;
   padding-right: 6px;
   scrollbar-width: auto;
@@ -270,7 +294,6 @@ box-shadow:
   white-space: nowrap;
 }
 
-/* allow wrap only in chapter column */
 .chapter-scroll-container td:nth-child(4) {
   white-space: normal;
   word-break: break-word;
@@ -282,7 +305,7 @@ box-shadow:
 }
 
 /* =========================
-   CART PANEL (STICKY)
+   CART PANEL
 ========================= */
 .cart-panel {
   flex: 1;
@@ -296,10 +319,10 @@ box-shadow:
   backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 100%;
 }
 
 .cart-panel h2 {
-  font-family: "Bebas Neue", sans-serif;
   text-align: center;
   margin-bottom: 20px;
   color: #d9ff00;
@@ -311,7 +334,6 @@ box-shadow:
   overflow-y: auto;
 }
 
-/* SUBJECT/COST header + rows */
 .cart-excel,
 .excel-row,
 .excel-header,
@@ -321,13 +343,15 @@ box-shadow:
   font-size: 20px;
   letter-spacing: 2px;
 }
+
 .cost-head,
 .subject-head {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 25px;
+  font-size: 30px;
   letter-spacing: 2px;
   color: #d9ff00;
 }
+
 .cart-excel {
   width: 100%;
   font-size: 14px;
@@ -370,16 +394,17 @@ box-shadow:
 }
 
 .checkout {
-  font-family: "Bebas Neue", sans-serif;
   margin-top: 20px;
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   background: #d9ff00;
   border: none;
   font-weight: bold;
   cursor: pointer;
   border-radius: 8px;
+  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
+  letter-spacing: 1px;
 }
 
 .checkout:disabled {
@@ -388,39 +413,6 @@ box-shadow:
   opacity: 0.6;
 }
 
-.cart-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-  background: #d9ff00;
-  color: black;
-  font-size: 12px;
-  font-weight: bold;
-  padding: 4px 7px;
-  border-radius: 50%;
-}
-/* ===== RESPONSIVE BASE FIXES ===== */
-.registration-wrapper {
-  width: 100%;
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-.table-box,
-.cart-panel {
-  max-width: 100%;
-}
-
-/* IMPORTANT: tables need scroll on small screens */
-.table-box {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Make table not shrink columns too much */
-.custom-table {
-  min-width: 900px; /* you can keep 850/900 depending on your taste */
-}
 /* ===== LARGE TABLETS / SMALL LAPTOPS ===== */
 @media (max-width: 1100px) {
   .registration-wrapper {
@@ -462,7 +454,6 @@ box-shadow:
     width: 100%;
   }
 
-  /* cart becomes normal block under content */
   .cart-panel {
     width: 100%;
     position: relative;
@@ -473,14 +464,32 @@ box-shadow:
   .table-box {
     margin-left: 0;
   }
+
+  .registration-wrapper {
+    background-attachment: scroll;
+  }
+
+  /* ✅ button responsive */
+  .add-subject-btn {
+    max-width: 112px;
+    height: 44px;
+    border-radius: 12px;
+  }
+  .new-price-bys {
+    font-size: 18px;
+  }
 }
 
 /* ===== PHONES ===== */
 @media (max-width: 600px) {
   .registration-wrapper {
-    padding-top: 24px;
+    padding-top: 90px;
     padding-left: 12px;
     padding-right: 12px;
+  }
+
+  .title-box {
+    margin-top: 8px;
   }
 
   .title-box h1 {
@@ -521,31 +530,277 @@ box-shadow:
     font-size: 18px;
     padding: 12px;
   }
-}
-@media (max-width: 900px) {
-  .registration-wrapper {
-    background-attachment: scroll; /* prevents jitter/white flashes */
-  }
-}
-@media (max-width: 600px) {
-   .registration-wrapper {
-    padding-top: 90px; /* increase/decrease (70-110) based on your navbar height */
-  }
 
-  /* optional: a little extra breathing space for the title */
-  .title-box {
-    margin-top: 8px;
-  }
+  /* ✅ button responsive */
   .add-subject-btn {
-    height: 42px;
-    padding: 0 14px;
+    max-width: 104px;
+    height: 40px;
+    border-radius: 11px;
   }
 
   .old-price-bys {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .new-price-bys {
-    font-size: 18px;
+    font-size: 17px;
+  }
+}
+
+/* =========================================================
+   NEW ADDITIONS
+========================================================= */
+
+/* Loading overlay */
+.bys-loading-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.bys-spinner {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #d9ff00;
+  animation: bysSpin 0.9s linear infinite;
+}
+
+@keyframes bysSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bys-loading-text {
+  margin-top: 10px;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Skeleton rows */
+.bys-skeleton-row td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px;
+}
+
+.bys-skeleton-line {
+  height: 14px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+  background-size: 200% 100%;
+  animation: bysShimmer 1.1s ease-in-out infinite;
+}
+
+@keyframes bysShimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Error */
+.bys-error {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.bys-retry {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Toast */
+.bys-toast {
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(217, 255, 0, 0.35);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  letter-spacing: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+@media (max-width: 600px) {
+  .bys-toast {
+    top: 120px;
+  }
+}
+
+/* Cart pulse */
+.cart-pulse {
+  box-shadow:
+    0 0 0 2px rgba(217, 255, 0, 0.35),
+    0 0 22px rgba(217, 255, 0, 0.25);
+  transition: box-shadow 0.2s ease;
+}
+
+/* Cart title glow */
+.cart-title-glow {
+  text-shadow:
+    0 0 10px rgba(217, 255, 0, 0.7),
+    0 0 18px rgba(217, 255, 0, 0.35);
+}
+
+/* Floating cart icon with badge */
+.bys-float-cart {
+  position: fixed;
+  right: 18px;
+  top: 230px;
+  z-index: 999999;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bys-float-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+
+  background: #d9ff00;
+  color: #000;
+  font-size: 14px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.bys-float-pulse {
+  animation: bysPulse 0.6s ease-out;
+}
+
+@keyframes bysPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(217, 255, 0, 0);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(217, 255, 0, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(217, 255, 0, 0);
+  }
+}
+
+/* hide floating icon on desktop */
+/* ✅ FIX: 900px to 1300px — give cart more breathing space */
+@media (min-width: 901px) and (max-width: 1300px) {
+  .registration-wrapper {
+    gap: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  /* main/table slightly smaller, cart slightly bigger */
+  .main-content {
+    flex: 2.35; /* was 3 */
+    min-width: 0; /* prevents flex overflow */
+  }
+
+  .cart-panel {
+    flex: 1.15; /* give cart more width */
+    padding: 26px; /* slightly smaller padding so content fits */
+    top: 100px;
+    min-width: 320px; /* ensure cart doesn't become tiny */
+  }
+
+  /* table doesn't push layout too hard */
+  .table-box {
+    margin-left: 0; /* removes extra left squeeze */
+    padding: 24px;
+  }
+
+  /* reduce minimum so horizontal scroll starts earlier */
+  .custom-table {
+    min-width: 820px; /* was 900 */
+  }
+   .custom-table th:last-child,
+  .custom-table td:last-child {
+    padding-right: 14px; /* keep small right gap */
+  }
+
+  .add-subject-btn {
+    max-width: 110px;  /* slightly smaller */
+    height: 42px;      /* slightly shorter */
+    padding: 0 8px;
+    border-radius: 12px;
+  }
+
+  .price-box {
+    align-items: center;  /* safer than flex-end in tight widths */
+    text-align: center;
+    line-height: 1.05;
+  }
+
+  .old-price-bys {
+    font-size: 12px;   /* shrink old price */
+  }
+
+  .new-price-bys {
+    font-size: 16px;   /* shrink new price */
+  }
+}
+/* ✅ Hide floating cart icon on desktop (greater than 900px) */
+@media (min-width: 901px) {
+  .bys-float-cart {
+    display: none;
   }
 }
