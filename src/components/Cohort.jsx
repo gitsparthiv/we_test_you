@@ -71,8 +71,8 @@ const Cohort = () => {
 
               if (!classMap[className][subject]) {
                 classMap[className][subject] = {
-                  fastrack: price + mockPrice,
-                  concrete: mockPrice,
+                  fastrack: mockPrice,
+                  concrete: price+mockPrice,
                 };
               }
             });
