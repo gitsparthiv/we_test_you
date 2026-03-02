@@ -528,6 +528,14 @@ box-shadow:
   }
 }
 @media (max-width: 600px) {
+   .registration-wrapper {
+    padding-top: 90px; /* increase/decrease (70-110) based on your navbar height */
+  }
+
+  /* optional: a little extra breathing space for the title */
+  .title-box {
+    margin-top: 8px;
+  }
   .add-subject-btn {
     height: 42px;
     padding: 0 14px;
