@@ -1,23 +1,21 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();   // ✅ use router location
 
   const handleLogoClick = () => {
-    if (window.location.pathname !== "/") {
+    if (location.pathname !== "/") {
       navigate("/");
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 100);
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   const handleBookSeat = () => {
-    if (window.location.pathname !== "/") {
+    if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
         document
