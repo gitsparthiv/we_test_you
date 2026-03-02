@@ -7,14 +7,12 @@ import img2 from "../assets/11.png";
 import img3 from "../assets/class_12.png";
 
 /* ================= PRICE COMPONENT ================= */
-const Price = ({ actual, old }) => {
-  return (
-    <div className="price">
-      <span className="old-price">₹{old}</span>
-      <span className="new-price">₹{actual}</span>
-    </div>
-  );
-};
+const Price = ({ actual, old }) => (
+  <div className="price">
+    <span className="old-price">₹{old}</span>
+    <span className="new-price">₹{actual}</span>
+  </div>
+);
 
 const Cohort = () => {
   const navigate = useNavigate();
@@ -23,9 +21,7 @@ const Cohort = () => {
   const sectionRef = useRef(null);
 
   const handleRegister = (selectedClass, selectedBatch) => {
-    navigate("/book-seat", {
-      state: { selectedClass, selectedBatch },
-    });
+    navigate("/book-seat", { state: { selectedClass, selectedBatch } });
   };
 
   /* ================= LOCAL BG FIX (prevents white flash) ================= */
@@ -42,20 +38,22 @@ const Cohort = () => {
     };
   }, []);
 
-  /* ================= SCROLL ANIMATION ================= */
+  /* ================= SCROLL ANIMATION (ONE TIME ONLY) ================= */
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el); // ✅ stop after first trigger (less lag)
+        }
       },
       { threshold: 0.2 }
     );
 
     observer.observe(el);
-
     return () => observer.disconnect();
   }, []);
 
@@ -149,9 +147,10 @@ const Cohort = () => {
       <div className="grid">
         {/* CLASS 10 */}
         <div className="card">
-          <img src={img1} alt="Class 10" />
+          <img src={img1} alt="Class 10" loading="lazy" decoding="async" />
           <div className="overlay">
             <h2>CLASS 10</h2>
+
             <div className="division-row">
               <div className="division-half">
                 <h3>Fastrack Division</h3>
@@ -161,13 +160,9 @@ const Cohort = () => {
                   <li>✔ Time Management Focus</li>
                   <li>✔ Detailed Report Card</li>
                 </ul>
-                <Price
-                  actual={prices["10"]?.fastrack || 0}
-                  old={prices["10"]?.oldFastrack || 0}
-                />
-                <button onClick={() => handleRegister("10", "Fastrack")}>
-                  Register Now
-                </button>
+
+                <Price actual={prices["10"]?.fastrack || 0} old={prices["10"]?.oldFastrack || 0} />
+                <button onClick={() => handleRegister("10", "Fastrack")}>Register Now</button>
               </div>
 
               <div className="division-half">
@@ -178,13 +173,9 @@ const Cohort = () => {
                   <li>✔ Performance Analytics</li>
                   <li>✔ Exam Strategy Guidance</li>
                 </ul>
-                <Price
-                  actual={prices["10"]?.concrete || 0}
-                  old={prices["10"]?.oldConcrete || 0}
-                />
-                <button onClick={() => handleRegister("10", "Concrete")}>
-                  Register Now
-                </button>
+
+                <Price actual={prices["10"]?.concrete || 0} old={prices["10"]?.oldConcrete || 0} />
+                <button onClick={() => handleRegister("10", "Concrete")}>Register Now</button>
               </div>
             </div>
           </div>
@@ -192,9 +183,10 @@ const Cohort = () => {
 
         {/* CLASS 11 */}
         <div className="card">
-          <img src={img2} alt="Class 11" />
+          <img src={img2} alt="Class 11" loading="lazy" decoding="async" />
           <div className="overlay">
             <h2>CLASS 11</h2>
+
             <div className="division-row">
               <div className="division-half">
                 <h3>Fastrack Division</h3>
@@ -204,13 +196,9 @@ const Cohort = () => {
                   <li>✔ Time-bound Simulation Tests</li>
                   <li>✔ Detailed Evaluation Report</li>
                 </ul>
-                <Price
-                  actual={prices["11"]?.fastrack || 0}
-                  old={prices["11"]?.oldFastrack || 0}
-                />
-                <button onClick={() => handleRegister("11", "Fastrack")}>
-                  Register Now
-                </button>
+
+                <Price actual={prices["11"]?.fastrack || 0} old={prices["11"]?.oldFastrack || 0} />
+                <button onClick={() => handleRegister("11", "Fastrack")}>Register Now</button>
               </div>
 
               <div className="division-half">
@@ -221,13 +209,9 @@ const Cohort = () => {
                   <li>✔ Concept Reinforcement Focus</li>
                   <li>✔ Performance Tracking Dashboard</li>
                 </ul>
-                <Price
-                  actual={prices["11"]?.concrete || 0}
-                  old={prices["11"]?.oldConcrete || 0}
-                />
-                <button onClick={() => handleRegister("11", "Concrete")}>
-                  Register Now
-                </button>
+
+                <Price actual={prices["11"]?.concrete || 0} old={prices["11"]?.oldConcrete || 0} />
+                <button onClick={() => handleRegister("11", "Concrete")}>Register Now</button>
               </div>
             </div>
           </div>
@@ -235,9 +219,10 @@ const Cohort = () => {
 
         {/* CLASS 12 */}
         <div className="card">
-          <img src={img3} alt="Class 12" />
+          <img src={img3} alt="Class 12" loading="lazy" decoding="async" />
           <div className="overlay">
             <h2>CLASS 12</h2>
+
             <div className="division-row">
               <div className="division-half">
                 <h3>Fastrack Division</h3>
@@ -247,13 +232,9 @@ const Cohort = () => {
                   <li>✔ Time Optimization Strategy</li>
                   <li>✔ Comprehensive Performance Report</li>
                 </ul>
-                <Price
-                  actual={prices["12"]?.fastrack || 0}
-                  old={prices["12"]?.oldFastrack || 0}
-                />
-                <button onClick={() => handleRegister("12", "Fastrack")}>
-                  Register Now
-                </button>
+
+                <Price actual={prices["12"]?.fastrack || 0} old={prices["12"]?.oldFastrack || 0} />
+                <button onClick={() => handleRegister("12", "Fastrack")}>Register Now</button>
               </div>
 
               <div className="division-half">
@@ -264,13 +245,9 @@ const Cohort = () => {
                   <li>✔ Rank Prediction Analysis</li>
                   <li>✔ Strategic Exam Mentorship</li>
                 </ul>
-                <Price
-                  actual={prices["12"]?.concrete || 0}
-                  old={prices["12"]?.oldConcrete || 0}
-                />
-                <button onClick={() => handleRegister("12", "Concrete")}>
-                  Register Now
-                </button>
+
+                <Price actual={prices["12"]?.concrete || 0} old={prices["12"]?.oldConcrete || 0} />
+                <button onClick={() => handleRegister("12", "Concrete")}>Register Now</button>
               </div>
             </div>
           </div>
