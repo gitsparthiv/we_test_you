@@ -5,43 +5,54 @@
   top: 0;
   left: 0;
   width: 100%;
+
   padding: 10px 60px;
   margin-top: 5px;
+
   display: flex;
   align-items: center;
+  justify-content: space-between; /* ✅ important */
+  gap: 16px;
+
   z-index: 9999;
+
 }
 
 .logo {
   color: #d8ff2f;
   font-size: 28px;
-  margin-bottom: 10px;
+  margin-bottom: 0; /* ✅ remove bottom gap */
   letter-spacing: 2px;
   font-weight: 750;
+  white-space: nowrap;
 }
 
 .nav-right {
-  margin-left: 58%;
+  margin-left: 0; /* ✅ remove 58% */
   display: flex;
   align-items: center;
   gap: 30px;
-  font-size: 18px;
 }
 
+/* Button */
 .book-btn {
-  display: flex;
+  display: inline-flex;
   justify-content: space-between;
   align-items: center;
+
   background: #d7ff45;
   color: #000;
-  padding: 6px 30px;
+
+  padding: 6px 22px;
   min-width: 280px;
+
   font-size: 20px;
   font-weight: 700;
+
   border: none;
   outline: none;
   cursor: pointer;
-  text-decoration: none;
+
   border-radius: 0;
   transition: background 0.3s ease;
 }
@@ -53,4 +64,58 @@
 
 .book-btn:hover .arrow {
   transform: translateX(6px);
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 10px 22px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .book-btn {
+    min-width: 220px;
+    font-size: 18px;
+    padding: 8px 18px;
+  }
+
+  .book-btn .arrow {
+    font-size: 22px;
+  }
+}
+
+/* ===== PHONE ===== */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 10px 14px;
+    margin-top: 0;
+  }
+
+  .logo {
+    font-size: 20px;
+    letter-spacing: 1px;
+  }
+
+  .book-btn {
+    min-width: unset;     /* ✅ allow shrink */
+    width: auto;
+    font-size: 16px;
+    padding: 8px 14px;
+    gap: 10px;
+  }
+
+  .book-btn .arrow {
+    font-size: 20px;
+  }
+}
+
+/* ===== VERY SMALL PHONES ===== */
+@media (max-width: 380px) {
+  .book-btn {
+    font-size: 14px;
+    padding: 7px 12px;
+  }
 }
