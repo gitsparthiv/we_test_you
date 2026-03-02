@@ -49,7 +49,8 @@ useEffect(() => {
   );
 
   return (
-    <div className="booking-container">
+    <div className="payment-page">
+  <div className="booking-container">
       {/* LEFT SIDE */}
       <div>
         <div className="section-title">Personal Details</div>
@@ -206,6 +207,7 @@ useEffect(() => {
           {isPaying ? "Processing..." : `Pay ₹ ${finalTotal}`}
         </button>
       </div>
+    </div>
     </div>
   );
 };

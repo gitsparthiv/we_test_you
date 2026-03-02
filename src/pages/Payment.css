@@ -163,3 +163,104 @@
   font-size: 12px;
   margin-top: 4px;
 }
+/* ===== PAYMENT PAGE WRAPPER (BLACK BG + SAFE PADDING) ===== */
+.payment-page {
+  min-height: 100vh;
+  background: #000;
+  padding: 90px 16px 30px; /* pushes content down below navbar on phone */
+}
+
+/* Keep your glass box perfect on desktop */
+.booking-container {
+  width: 100%;
+}
+
+/* ===== TABLET ===== */
+@media (max-width: 900px) {
+  .payment-page {
+    padding: 90px 14px 24px;
+  }
+
+  .booking-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 0 auto;
+    padding: 22px;
+  }
+
+  .summary-box {
+    border-left: none;
+    padding-left: 0;
+    border-top: 2px solid #333;
+    padding-top: 22px;
+  }
+
+  .pay-btn {
+    float: none;
+    width: 100%;
+  }
+}
+
+/* ===== PHONE ===== */
+@media (max-width: 600px) {
+  .payment-page {
+    padding: 95px 12px 20px; /* increase if navbar still collides */
+  }
+
+  .booking-container {
+    padding: 18px;
+    border-radius: 22px;
+    gap: 22px;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 18px;
+    padding: 7px 18px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .excel-row,
+  .subject-name,
+  .discount,
+  .cost {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .subject,
+  .grandtotal,
+  .subtotal {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+
+  .pay-btn {
+    font-size: 18px;
+    padding: 12px 16px;
+    border-radius: 10px;
+  }
+}
+
+/* ===== VERY SMALL PHONES ===== */
+@media (max-width: 380px) {
+  .payment-page {
+    padding-top: 105px;
+  }
+
+  .booking-container {
+    padding: 16px;
+  }
+
+  .section-title {
+    font-size: 18px;
+  }
+}

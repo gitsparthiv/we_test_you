@@ -208,14 +208,14 @@ const BookYourSeat = () => {
 
         <div className="table-box">
           <table className="custom-table">
-            <colgroup>
-              <col style={{ width: "18%" }} /> {/* Subject */}
-              <col style={{ width: "10%" }} /> {/* Class */}
-              <col style={{ width: "12%" }} /> {/* Venue */}
-              <col style={{ width: "34%" }} /> {/* Chapter */}
-              <col style={{ width: "16%" }} /> {/* Schedule */}
-              <col style={{ width: "10%" }} /> {/* Action */}
-            </colgroup>
+          <colgroup>
+  <col style={{ width: "18%" }} />
+  <col style={{ width: "10%" }} />
+  <col style={{ width: "12%" }} />
+  <col style={{ width: "34%" }} />
+  <col style={{ width: "16%" }} />
+  <col style={{ width: "10%" }} />
+</colgroup>
             <thead>
               <tr>
                 <th>Subject</th>
@@ -287,13 +287,13 @@ const BookYourSeat = () => {
                             }}
                           >
                             <colgroup>
-                              <col style={{ width: "18%" }} /> {/* Subject */}
-                              <col style={{ width: "10%" }} /> {/* Class */}
-                              <col style={{ width: "12%" }} /> {/* Venue */}
-                              <col style={{ width: "34%" }} /> {/* Chapter */}
-                              <col style={{ width: "16%" }} /> {/* Schedule */}
-                              <col style={{ width: "10%" }} /> {/* Action */}
-                            </colgroup>
+  <col style={{ width: "18%" }} />
+  <col style={{ width: "10%" }} />
+  <col style={{ width: "12%" }} />
+  <col style={{ width: "34%" }} />
+  <col style={{ width: "16%" }} />
+  <col style={{ width: "10%" }} />
+</colgroup>
                             <tbody>
                               {(cohortBatch !== "Fastrack"
                                 ? (subject.sessions || []).concat(
