@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import "./Payment.css";
 
 const Payment = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-
+useEffect(() => {
+  document.body.style.background = "#000";
+  return () => {
+    document.body.style.background = "";
+  };
+}, []);
   const [errors, setErrors] = useState({});
   const [isPaying, setIsPaying] = useState(false);
 
