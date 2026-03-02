@@ -89,7 +89,14 @@ const BookYourSeat = () => {
      Redirect Safety
   ========================= */
   useEffect(() => {
-    if (!cohortClass) navigate("/cohort");
+    if (!cohortClass) {
+      navigate("/");
+      setTimeout(() => {
+        document
+          .getElementById("cohorts")
+          ?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    }
   }, [cohortClass, navigate]);
 
   /* =========================
