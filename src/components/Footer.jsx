@@ -40,9 +40,20 @@ const Footer = () => {
         </div>
 
         <div className="social-icons">
-          <span><WhatsAppIcon /></span>
-          <span><GmailIcon /></span>
-        </div>
+  <a 
+    href="https://wa.me/919874795959" 
+    target="_blank" 
+    rel="noopener noreferrer"
+  >
+    <WhatsAppIcon />
+  </a>
+
+  <a 
+    href="mailto:foranything@algo2trade.com"
+  >
+    <GmailIcon />
+  </a>
+</div>
 
         <div className="copyright">
          WETESTU is a division of Hubristic Purveyors Pvt. Ltd, bearing CIN: U74999WB2018PTC228083 
