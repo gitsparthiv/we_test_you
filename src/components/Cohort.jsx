@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import "./Cohort.css";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
+import { useEffect, useState, useRef } from "react";
 import img1 from "../assets/class10new.png";
 import img2 from "../assets/11.png";
 import img3 from "../assets/class_12.png";
@@ -28,41 +29,31 @@ const Cohort = () => {
     });
   };
 
-  /* ================= LOCAL BG FIX (prevents white flash) ================= */
-  useEffect(() => {
-    const prevBodyBg = document.body.style.background;
-    const prevHtmlBg = document.documentElement.style.background;
-
-    document.body.style.background = "#000";
-    document.documentElement.style.background = "#000";
-
-    return () => {
-      document.body.style.background = prevBodyBg;
-      document.documentElement.style.background = prevHtmlBg;
-    };
-  }, []);
-
   /* ================= SCROLL ANIMATION ================= */
   useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        if (entry.isIntersecting) {
+          setVisible(true);
+        } else {
+          setVisible(false);   // 🔥 Reset when leaving viewport
+        }
       },
       { threshold: 0.2 }
     );
-
-    observer.observe(el);
-
-    return () => observer.disconnect();
+  
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+  
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
   }, []);
-
   /* ================= FETCH PRICES ================= */
   useEffect(() => {
-    let isMounted = true;
-
     fetch(
       "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv"
     )
@@ -72,8 +63,6 @@ const Cohort = () => {
           header: true,
           skipEmptyLines: true,
           complete: (result) => {
-            if (!isMounted) return;
-
             const classMap = {};
 
             result.data.forEach((row) => {
@@ -86,8 +75,8 @@ const Cohort = () => {
 
               if (!classMap[className][subject]) {
                 classMap[className][subject] = {
-                  fastrack: mockPrice,
-                  concrete: price + mockPrice,
+                  fastrack: price + mockPrice,
+                  concrete: mockPrice,
                 };
               }
             });
@@ -128,12 +117,7 @@ const Cohort = () => {
             setPrices(finalPrices);
           },
         });
-      })
-      .catch((err) => console.error("Price fetch error:", err));
-
-    return () => {
-      isMounted = false;
-    };
+      });
   }, []);
 
   return (
@@ -156,15 +140,12 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Only Full Mock Practice</li>
-                  <li>✔ Board Pattern Simulation</li>
-                  <li>✔ Time Management Focus</li>
-                  <li>✔ Detailed Report Card</li>
+                  <li>✔ Chapter-wise Testing</li>
+                  <li>✔ Full-Length Mock Exams</li>
+                  <li>✔ Performance Analytics</li>
+                  <li>✔ Exam Strategy Guidance</li>
                 </ul>
-                <Price
-                  actual={prices["10"]?.fastrack || 0}
-                  old={prices["10"]?.oldFastrack || 0}
-                />
+                <Price actual={prices["10"]?.fastrack || 0} old={prices["10"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("10", "Fastrack")}>
                   Register Now
                 </button>
@@ -173,15 +154,12 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Concrete Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Chapter-wise Testing</li>
-                  <li>✔ Full-Length Mock Exams</li>
-                  <li>✔ Performance Analytics</li>
-                  <li>✔ Exam Strategy Guidance</li>
+                  <li>✔ Full Mock Practice</li>
+                  <li>✔ Board Pattern Simulation</li>
+                  <li>✔ Time Management Focus</li>
+                  <li>✔ Detailed Report Card</li>
                 </ul>
-                <Price
-                  actual={prices["10"]?.concrete || 0}
-                  old={prices["10"]?.oldConcrete || 0}
-                />
+                <Price actual={prices["10"]?.concrete || 0} old={prices["10"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("10", "Concrete")}>
                   Register Now
                 </button>
@@ -199,15 +177,12 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Only Full Mock Practice</li>
-                  <li>✔ Board-Level Question Patterns</li>
-                  <li>✔ Time-bound Simulation Tests</li>
-                  <li>✔ Detailed Evaluation Report</li>
+                  <li>✔ Subject-wise Deep Testing</li>
+                  <li>✔ Monthly Full Mock Exams</li>
+                  <li>✔ Concept Reinforcement Focus</li>
+                  <li>✔ Performance Tracking Dashboard</li>
                 </ul>
-                <Price
-                  actual={prices["11"]?.fastrack || 0}
-                  old={prices["11"]?.oldFastrack || 0}
-                />
+                <Price actual={prices["11"]?.fastrack || 0} old={prices["11"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("11", "Fastrack")}>
                   Register Now
                 </button>
@@ -216,15 +191,12 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Concrete Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Subject-wise Deep Testing</li>
-                  <li>✔ Monthly Full Mock Exams</li>
-                  <li>✔ Concept Reinforcement Focus</li>
-                  <li>✔ Performance Tracking Dashboard</li>
+                  <li>✔ Only Full Mock Practice</li>
+                  <li>✔ Board-Level Question Patterns</li>
+                  <li>✔ Time-bound Simulation Tests</li>
+                  <li>✔ Detailed Evaluation Report</li>
                 </ul>
-                <Price
-                  actual={prices["11"]?.concrete || 0}
-                  old={prices["11"]?.oldConcrete || 0}
-                />
+                <Price actual={prices["11"]?.concrete || 0} old={prices["11"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("11", "Concrete")}>
                   Register Now
                 </button>
@@ -242,15 +214,12 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Fastrack Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Full-Length Board Mocks</li>
-                  <li>✔ Strict Exam Hall Simulation</li>
-                  <li>✔ Time Optimization Strategy</li>
-                  <li>✔ Comprehensive Performance Report</li>
+                  <li>✔ Advanced Chapter-wise Tests</li>
+                  <li>✔ Competitive + Board Pattern</li>
+                  <li>✔ Rank Prediction Analysis</li>
+                  <li>✔ Strategic Exam Mentorship</li>
                 </ul>
-                <Price
-                  actual={prices["12"]?.fastrack || 0}
-                  old={prices["12"]?.oldFastrack || 0}
-                />
+                <Price actual={prices["12"]?.fastrack || 0} old={prices["12"]?.oldFastrack || 0} />
                 <button onClick={() => handleRegister("12", "Fastrack")}>
                   Register Now
                 </button>
@@ -259,15 +228,12 @@ const Cohort = () => {
               <div className="division-half">
                 <h3>Concrete Division</h3>
                 <ul className="feature-list">
-                  <li>✔ Advanced Chapter-wise Tests</li>
-                  <li>✔ Competitive + Board Pattern</li>
-                  <li>✔ Rank Prediction Analysis</li>
-                  <li>✔ Strategic Exam Mentorship</li>
+                  <li>✔ Full-Length Board Mocks</li>
+                  <li>✔ Strict Exam Hall Simulation</li>
+                  <li>✔ Time Optimization Strategy</li>
+                  <li>✔ Comprehensive Performance Report</li>
                 </ul>
-                <Price
-                  actual={prices["12"]?.concrete || 0}
-                  old={prices["12"]?.oldConcrete || 0}
-                />
+                <Price actual={prices["12"]?.concrete || 0} old={prices["12"]?.oldConcrete || 0} />
                 <button onClick={() => handleRegister("12", "Concrete")}>
                   Register Now
                 </button>
