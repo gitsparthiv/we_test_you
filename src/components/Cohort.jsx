@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Cohort.css";
 import { useNavigate } from "react-router-dom";
 import Papa from "papaparse";
-import { useEffect, useState, useRef } from "react";
 import img1 from "../assets/class10new.png";
 import img2 from "../assets/11.png";
 import img3 from "../assets/class_12.png";
@@ -29,29 +28,26 @@ const Cohort = () => {
     });
   };
 
-  /* ================= SCROLL ANIMATION ================= */
+  /* ================= SAFE SCROLL ANIMATION ================= */
   useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-        } else {
-          setVisible(false);   // 🔥 Reset when leaving viewport
+          observer.unobserve(el); // animate once only
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
-  
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-  
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+
+    observer.observe(el);
+
+    return () => observer.disconnect();
   }, []);
+
   /* ================= FETCH PRICES ================= */
   useEffect(() => {
     fetch(
@@ -121,19 +117,15 @@ const Cohort = () => {
   }, []);
 
   return (
-    <div
-      className={`cohort-container ${visible ? "cohort-visible" : ""}`}
-      id="cohorts"
-      ref={sectionRef}
-    >
-      <div className="title">
+    <div className="cohort-container" id="cohorts" ref={sectionRef}>
+      <div className={`title fade-up ${visible ? "visible" : ""}`}>
         <h1>OUR AVAILABLE COHORTS</h1>
       </div>
 
-      <div className="grid">
+      <div className={`grid fade-up ${visible ? "visible" : ""}`}>
         {/* CLASS 10 */}
         <div className="card">
-          <img src={img1} alt="Class 10" />
+          <img src={img1} alt="Class 10" loading="lazy" />
           <div className="overlay">
             <h2>CLASS 10</h2>
             <div className="division-row">
@@ -170,7 +162,7 @@ const Cohort = () => {
 
         {/* CLASS 11 */}
         <div className="card">
-          <img src={img2} alt="Class 11" />
+          <img src={img2} alt="Class 11" loading="lazy" />
           <div className="overlay">
             <h2>CLASS 11</h2>
             <div className="division-row">
@@ -207,7 +199,7 @@ const Cohort = () => {
 
         {/* CLASS 12 */}
         <div className="card">
-          <img src={img3} alt="Class 12" />
+          <img src={img3} alt="Class 12" loading="lazy" />
           <div className="overlay">
             <h2>CLASS 12</h2>
             <div className="division-row">

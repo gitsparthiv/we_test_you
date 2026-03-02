@@ -230,7 +230,7 @@
 }
 /* ================= SCROLL GROW ANIMATION ================= */
 
-.cohort-container {
+/* .cohort-container {
     opacity: 0;
     transform: translateY(100px) scale(0.95);
     transition: all 1s ease;
@@ -239,4 +239,17 @@
 .cohort-container.cohort-visible {
     opacity: 1;
     transform: translateY(0) scale(1);
+} */
+/* ================= SAFE FADE-UP ANIMATION ================= */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
