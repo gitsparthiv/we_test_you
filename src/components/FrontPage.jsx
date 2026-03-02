@@ -122,25 +122,18 @@ const FrontPage = () => {
 
     {/* RIGHT SIDE - BLINKING BANNERS */}
     <div className="hero-banners">
-      <div
-        className={`banner ${activeBanner === 0 ? "show" : ""}`}
-        onClick={() =>
-          document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" })
-        }
-      >
-        🚀 Inauguration Offer<br />
-        <span>Starting @ ₹2990</span>
-      </div>
+    <div className={`banner ${activeBanner === 0 ? "show" : ""}`}>
+  <div className="banner-title">🚀 INAUGURATION OFFER</div>
+  <div className="banner-highlight">Starting @ ₹2990</div>
+</div>
 
-      <div
-        className={`banner ${activeBanner === 1 ? "show" : ""}`}
-        onClick={() =>
-          document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" })
-        }
-      >
-        🎓 Focused on <span className="cbse-blink">CBSE</span><br />
-        Classes 10 • 11 • 12
-      </div>
+<div className={`banner ${activeBanner === 1 ? "show" : ""}`}>
+  <div className="banner-title">
+    Focused on CBSE Classes
+  </div>
+  <div className="banner-highlight">10 • 11 • 12</div>
+</div>
+
     </div>
 
   </div>

@@ -4,7 +4,7 @@ import Cohort from "../components/Cohort";
 import FrontPage from "../components/FrontPage";
 import OurSpace from "../components/OurSpace";
 import FreeClass from "../components/FreeClass";
-
+import FacultySection from "../components/FacultySection";
 
 function LandingPage() {
 
@@ -22,6 +22,7 @@ function LandingPage() {
           <FrontPage
             onRegister={handleRegistration}
           />
+          <FacultySection />
           <FreeClass />
           <OurSpace/>
           <Cohort />

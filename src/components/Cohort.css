@@ -122,8 +122,45 @@
     align-items: center;
     gap: 12px;
 }
+/* ================= BIG STARTING PRICE ================= */
+
+.starting-price {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+}
+
+.starting-price span {
+    font-size: 30px;
+    color: #d8ff2f;
+    font-weight: 800;
+}
+
+/* ================= BUNDLE PRICE (Smaller Now) ================= */
+
+.price {
+    margin: 6px 0 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
 .old-price {
+    font-size: 14px;  /* reduced */
+    color: #ff4d4d;
+    text-decoration: line-through;
+    font-weight: 500;
+}
+
+.new-price {
+    font-size: 18px;  /* reduced */
+    font-weight: 600;
+    color: #d8ff2f;
+}
+/* .old-price {
     font-size: 18px;
     color: #ff4d4d;
     text-decoration: line-through;
@@ -134,7 +171,7 @@
     font-size: 22px;
     font-weight: bold;
     color: #d8ff2f;
-}
+} */
 
 /* ================= BUTTON ================= */
 .division-half button {
@@ -252,4 +289,86 @@
 .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
+}
+.starting-price {
+    font-size: 17px;
+    font-weight: 700;
+    color: #d8ff2f;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+/* ================= CLASS LEVEL STARTING PRICE ================= */
+
+.class-starting-price {
+    margin-top: -6px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.3px;
+}
+
+.class-starting-price span {
+    font-size: 26px;
+    font-weight: 800;
+    color: #d8ff2f;
+}
+/* ================= NEW CONCRETE PRICE STRUCTURE ================= */
+
+/* ================= PRICE GROUP ================= */
+
+.price-group {
+    margin-top: 10px;
+}
+
+/* Label */
+
+.price-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d8ff2f;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+}
+
+/* Default Row */
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ================= PRIMARY PRICE (Single Subject) ================= */
+
+.primary-price .old-price {
+    font-size: 15px;
+    color: #ff4d4d;
+    text-decoration: line-through;
+}
+
+.primary-price .new-price {
+    font-size: 22px;   /* BIG */
+    font-weight: 800;
+    color: #ffffff;
+}
+
+/* ================= BUNDLE PRICE (All Subjects) ================= */
+
+.bundle-group {
+    margin-top: 6px;
+    opacity: 0.75;   /* Slightly faded */
+}
+
+.bundle-price .old-price {
+    font-size: 12px;  /* Smaller */
+    color: #ff6b6b;
+    text-decoration: line-through;
+}
+
+.bundle-price .new-price {
+    font-size: 16px;  /* Smaller than primary */
+    font-weight: 600;
+    color: #cccccc;   /* Slightly muted */
 }

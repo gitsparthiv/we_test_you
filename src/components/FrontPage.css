@@ -204,18 +204,19 @@ html, body {
 
 /* ================= RIGHT BANNERS ================= */
 
-.hero-banners {
+/* .hero-banners {
   width: 320px;
   height: 140px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
+
 
 /* Base Banner Style */
 
-.banner {
+/* .banner {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -239,27 +240,83 @@ html, body {
   transition: 0.4s ease;
 
   box-shadow: 0 0 20px rgba(215, 255, 69, 0.2);
+} */
+/* ================= RIGHT BANNERS (UPGRADED) ================= */
+
+/* ================= RIGHT BANNERS (BALANCED VERSION) ================= */
+
+.hero-banners {
+  width: 380px;   /* slightly tighter */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.banner span {
-  color: #d7ff45;
-  font-size: 20px;
-  font-weight: bold;
+/* Banner */
+
+.banner {
+  position: absolute;
+  width: 100%;
+  padding: 35px 40px;
+
+  background: linear-gradient(135deg, #000 0%, #111 100%);
+  border: 2px solid #d7ff45;
+  border-radius: 22px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;   /* center content */
+  text-align: center;    /* center text */
+
+  cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(10px) scale(0.97);
+  transition: 0.5s ease;
+
+  box-shadow:
+    0 0 30px rgba(215, 255, 69, 0.18),
+    inset 0 0 50px rgba(215, 255, 69, 0.05);
 }
 
-/* Active Banner */
+/* Active */
 
 .banner.show {
   opacity: 1;
-  transform: scale(1);
+  transform: translateY(0) scale(1);
 }
 
-/* Hover effect */
+/* Main Heading */
 
-.banner:hover {
-  transform: scale(1.05);
+.banner .banner-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
 }
 
+/* Highlight Line */
+
+.banner .banner-highlight {
+  font-size: 42px;   /* BIG */
+  font-weight: 800;
+  color: #d7ff45;
+  letter-spacing: 1px;
+}
+
+/* Soft Glow */
+
+.banner.show .banner-highlight {
+  animation: glowPulse 2s infinite ease-in-out;
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 8px rgba(215,255,69,0.4); }
+  50% { text-shadow: 0 0 25px rgba(215,255,69,0.9); }
+  100% { text-shadow: 0 0 8px rgba(215,255,69,0.4); }
+}
 /* CBSE blinking text */
 
 .cbse-blink {
