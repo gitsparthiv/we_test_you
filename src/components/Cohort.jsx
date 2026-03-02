@@ -128,6 +128,8 @@ const Cohort = () => {
           <img src={img1} alt="Class 10" loading="lazy" />
           <div className="overlay">
             <h2>CLASS 10</h2>
+            <div className="free-badge">
+</div>
             <div className="division-row">
               <div className="division-half">
                 <h3>Fastrack Division</h3>
@@ -166,6 +168,7 @@ const Cohort = () => {
           <img src={img2} alt="Class 11" loading="lazy" />
           <div className="overlay">
             <h2>CLASS 11</h2>
+            
             <div className="division-row">
               <div className="division-half">
                 <h3>Fastrack Division</h3>

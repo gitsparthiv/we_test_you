@@ -194,3 +194,93 @@ html, body {
   opacity: 1;
   transform: translateY(0);
 }
+/* ================= HERO WRAPPER ================= */
+
+.hero-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ================= RIGHT BANNERS ================= */
+
+.hero-banners {
+  width: 320px;
+  height: 140px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base Banner Style */
+
+.banner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(145deg, #111, #000);
+  border: 2px solid #d7ff45;
+  border-radius: 18px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+
+  opacity: 0;
+  transform: scale(0.95);
+  transition: 0.4s ease;
+
+  box-shadow: 0 0 20px rgba(215, 255, 69, 0.2);
+}
+
+.banner span {
+  color: #d7ff45;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Active Banner */
+
+.banner.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Hover effect */
+
+.banner:hover {
+  transform: scale(1.05);
+}
+
+/* CBSE blinking text */
+
+.cbse-blink {
+  animation: blinkText 1s infinite;
+  color: #d7ff45;
+  font-weight: bold;
+}
+
+@keyframes blinkText {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+@media(max-width:1000px) {
+  .hero-wrapper {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .hero-banners {
+    width: 100%;
+    max-width: 320px;
+  }
+}

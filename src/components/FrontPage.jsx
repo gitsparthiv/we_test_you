@@ -64,7 +64,15 @@ const FrontPage = () => {
     setTimeout(() => setShowPrograms(true), 1200);
     setTimeout(() => setShowFeatures(true), 1500);
   }, []);
+  const [activeBanner, setActiveBanner] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveBanner(prev => (prev === 0 ? 1 : 0));
+    }, 3000); // change every 3 seconds
+  
+    return () => clearInterval(interval);
+  }, []);
   /* Typing Effect */
   useEffect(() => {
     const currentWord = words[currentWordIndex];
@@ -93,22 +101,50 @@ const FrontPage = () => {
 
       {/* HERO */}
       <div className={`top-section fade-section ${showHero ? "visible" : ""}`}>
-        <div className="hero-content">
-          <h1 className="top-text">
-            Tuition Teaches You.<br />
-            Offline Mock Tests Make You
-          </h1>
+  <div className="hero-wrapper">
+    
+    {/* LEFT SIDE - TEXT */}
+    <div className="hero-content">
+      <h1 className="top-text">
+        Tuition Teaches You.<br />
+        Offline Mock Tests Make You
+      </h1>
 
-          <div className="typing-line">
-            <span className="typing">{displayText}</span>
-          </div>
-
-          <p>
-            Structured offline mock examinations for CBSE Classes 10, 11 & 12
-            in a real board-style environment.
-          </p>
-        </div>
+      <div className="typing-line">
+        <span className="typing">{displayText}</span>
       </div>
+
+      <p>
+        Structured offline mock examinations for CBSE Classes 10, 11 & 12
+        in a real board-style environment.
+      </p>
+    </div>
+
+    {/* RIGHT SIDE - BLINKING BANNERS */}
+    <div className="hero-banners">
+      <div
+        className={`banner ${activeBanner === 0 ? "show" : ""}`}
+        onClick={() =>
+          document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        🚀 Inauguration Offer<br />
+        <span>Starting @ ₹2990</span>
+      </div>
+
+      <div
+        className={`banner ${activeBanner === 1 ? "show" : ""}`}
+        onClick={() =>
+          document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" })
+        }
+      >
+        🎓 Focused on <span className="cbse-blink">CBSE</span><br />
+        Classes 10 • 11 • 12
+      </div>
+    </div>
+
+  </div>
+</div>
 
       {/* PROGRAM GRID */}
       <div className={`program-grid fade-section ${showPrograms ? "visible" : ""}`}>
