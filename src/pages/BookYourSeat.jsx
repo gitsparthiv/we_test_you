@@ -247,9 +247,7 @@ const BookYourSeat = () => {
 
         <div className="filter-section">
           <div className="filter-row">
-            <span style={{ fontFamily: "Bebas Neue", fontSize: "25px" }}>
-              Venue
-            </span>
+            <span>Venue</span>
 
             {["South", "North", "East", "West"].map((venue) => (
               <button
