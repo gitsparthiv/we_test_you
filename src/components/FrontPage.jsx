@@ -129,7 +129,7 @@ const FrontPage = () => {
 
 <div className={`banner ${activeBanner === 1 ? "show" : ""}`}>
   <div className="banner-title">
-    Focused on CBSE Classes
+    Focused on <span className="cbse-blink">CBSE</span> Classes
   </div>
   <div className="banner-highlight">10 • 11 • 12</div>
 </div>
