@@ -107,7 +107,8 @@ body {
   border: 1.5px solid rgba(255, 255, 255, 0.4);
 
   border-radius: 30px;
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2),
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.2),
     inset 0 0 20px rgba(255, 255, 255, 0.08);
   color: #fff;
   cursor: pointer;
@@ -131,7 +132,7 @@ body {
 /* ✅ red strike for inactive venues (all widths) */
 /* ✅ disabled venue: straight red cross line */
 .filter-btn.disabled {
-  opacity: .8;
+  opacity: 0.8;
   cursor: not-allowed;
   position: relative;
 }
@@ -144,13 +145,12 @@ body {
   right: 12px;
   top: 50%;
   height: 2.5px;
-  background:#ff0000;
+  background: #ff0000;
   transform: translateY(-50%);
   border-radius: 999px;
   box-shadow: 0 0 10px rgba(217, 255, 0, 0.45);
   pointer-events: none;
 }
-
 
 /* optional: remove browser line-through so it doesn't look double */
 .filter-btn.disabled {
@@ -171,9 +171,10 @@ body {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
- overflow-x: hidden;
+  overflow-x: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 0 0.5px rgba(255, 255, 255, 0.2);
 
   position: relative;
@@ -205,7 +206,7 @@ body {
   box-sizing: border-box;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-min-width: 0;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -286,7 +287,7 @@ min-width: 0;
 }
 
 .price-box {
-  width:150px;
+  width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -298,7 +299,7 @@ min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-font-family: "Bebas Neue", sans-serif;
+  font-family: "Bebas Neue", sans-serif;
   height: 20px;
   padding: 0 10px;
   border-radius: 999px;
@@ -306,7 +307,7 @@ font-family: "Bebas Neue", sans-serif;
   font-size: 25px;
   letter-spacing: 1px;
   font-weight: 600;
-  color:  #b90505;
+  color: #b90505;
   margin-bottom: 2px;
 }
 
@@ -594,13 +595,15 @@ font-family: "Bebas Neue", sans-serif;
 }
 
 .cart-pulse {
-  box-shadow: 0 0 0 2px rgba(217, 255, 0, 0.35),
+  box-shadow:
+    0 0 0 2px rgba(217, 255, 0, 0.35),
     0 0 22px rgba(217, 255, 0, 0.25);
   transition: box-shadow 0.2s ease;
 }
 
 .cart-title-glow {
-  text-shadow: 0 0 10px rgba(217, 255, 0, 0.7),
+  text-shadow:
+    0 0 10px rgba(217, 255, 0, 0.7),
     0 0 18px rgba(217, 255, 0, 0.35);
 }
 
@@ -629,7 +632,9 @@ font-family: "Bebas Neue", sans-serif;
   font-size: 22px;
   cursor: pointer;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .bys-float-badge {
@@ -859,9 +864,9 @@ font-family: "Bebas Neue", sans-serif;
 
   .filter-row span {
     font-size: 22px;
-padding-left: 8px;
-padding-right:8px ;
-padding-bottom: 2px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 2px;
     border-radius: 8px;
     margin-right: 8px;
   }
@@ -870,14 +875,14 @@ padding-bottom: 2px;
     font-size: 16px;
     padding: 6px 16px;
   }
-.subject-title {
+  .subject-title {
     font-size: 20px;
     text-align: left;
   }
-  .subject-head-row{
+  .subject-head-row {
     display: inline-flex;
-  align-items: center;
-  gap: 1px;
+    align-items: center;
+    gap: 1px;
   }
   .table-box {
     padding: 16px;

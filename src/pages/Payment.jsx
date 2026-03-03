@@ -15,14 +15,12 @@ useEffect(() => {
   const [errors, setErrors] = useState({});
   const [isPaying, setIsPaying] = useState(false);
 
-  const {
-    selectedSubjects = [],
-    subtotal = 0,
-    discount = 0,
-    finalTotal = 0,
-    cohortBatch = "",
-    venue = "",
-  } = state || {};
+const {
+  selectedSubjects = [],
+  total = 0,
+  cohortBatch = "",
+  venue = "",
+} = state || {};
 
   const [form, setForm] = useState({
     StudentName: "",
@@ -121,20 +119,10 @@ useEffect(() => {
 
               <div className="excel-space"></div>
 
-              <div className="excel-row total-row">
-                <span className="subtotal">SUBTOTAL</span>
-                <span className="cost">₹ {subtotal}</span>
-              </div>
-
-              <div className="excel-row">
-                <span className="discount">DISCOUNT</span>
-                <span className="cost">₹ {discount}</span>
-              </div>
-
               <div className="excel-row grand-total">
-                <span className="grandtotal">GRAND TOTAL</span>
-                <span className="cost">₹ {finalTotal}</span>
-              </div>
+  <span className="grandtotal">TOTAL</span>
+  <span className="cost">₹ {total}</span>
+</div>
             </>
           )}
         </div>
@@ -156,14 +144,12 @@ useEffect(() => {
             formData.append("parentEmail", form.ParentEmail);
             formData.append("subjects", selectedSubjects.map((s) => s.name).join(", "));
             formData.append("packageName", cohortBatch);
-            formData.append("subtotal", String(subtotal));
-            formData.append("discount", String(discount));
-            formData.append("finalTotal", String(finalTotal));
+            formData.append("total", String(total));
             formData.append("venue", venue);
 
             try {
               const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbyBoYWN83RJFPZbOpj354_npqrsFJn2Hnip_A-m8o4JovaFz8OsrgsR3ZAff0jxmI3r/exec",
+                "https://script.google.com/macros/s/AKfycbwzsa8XRMkJngYtAB4AFTFEh_B-0YFG-w4K1joi9c4tM2nn6ND8jCqIkjMJuK9u8Pnh/exec",
                 { method: "POST", body: formData }
               );
 
@@ -178,9 +164,7 @@ useEffect(() => {
                     studentEmail: form.StudentEmail,
                     studentPhone: form.StudentPhone,
                     selectedSubjects,
-                    subtotal,
-                    discount,
-                    finalTotal,
+                    total,
                     cohortBatch,
                     venue,
                   },
@@ -204,7 +188,7 @@ useEffect(() => {
             }
           }}
         >
-          {isPaying ? "Processing..." : `Pay ₹ ${finalTotal}`}
+          {isPaying ? "Processing..." : `Pay ₹ ${total}`}
         </button>
       </div>
     </div>

@@ -118,8 +118,13 @@ const BookYourSeat = () => {
               const {
                 class: className,
                 subject,
-                price,
-                mockPrice,
+
+                // ✅ NEW: package prices directly from sheet
+                actual_fastrack,
+                old_fastrack,
+                actual_concrete,
+                old_concrete,
+
                 type,
                 title,
                 date,
@@ -134,8 +139,13 @@ const BookYourSeat = () => {
               if (!subjectObj) {
                 subjectObj = {
                   name: subject,
-                  price: Number(price),
-                  mockPrice: Number(mockPrice),
+
+                  // ✅ save both package prices
+                  fastrackActual: Number(actual_fastrack ?? 0),
+                  fastrackOld: Number(old_fastrack ?? 0),
+                  concreteActual: Number(actual_concrete ?? 0),
+                  concreteOld: Number(old_concrete ?? 0),
+
                   sessions: [],
                   mockTests: [],
                 };
@@ -173,19 +183,7 @@ const BookYourSeat = () => {
   /* =========================
      CART CALCULATION
   ========================= */
-  const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
-
-  let discount = 0;
-  if (
-    hasItems &&
-    selectedSubjects.length === classSubjects.length &&
-    classSubjects.length > 0
-  ) {
-    const lowest = Math.min(...selectedSubjects.map((s) => s.price));
-    discount = lowest;
-  }
-
-  const finalTotal = subtotal - discount;
+const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
 
   /* =========================
      FUNCTIONS
@@ -332,17 +330,15 @@ const BookYourSeat = () => {
               {!loading &&
                 !loadError &&
                 classSubjects.map((subject, index) => {
-                  const totalFastrackPrice = subject.price + subject.mockPrice;
-
                   const displayOldPrice =
-                    (cohortBatch === "Fastrack"
-                      ? subject.mockPrice
-                      : totalFastrackPrice) + 1000;
+                    cohortBatch === "Fastrack"
+                      ? subject.fastrackOld
+                      : subject.concreteOld;
 
                   const displayNewPrice =
                     cohortBatch === "Fastrack"
-                      ? subject.mockPrice
-                      : totalFastrackPrice;
+                      ? subject.fastrackActual
+                      : subject.concreteActual;
 
                   const addName =
                     cohortBatch === "Fastrack"
@@ -351,8 +347,8 @@ const BookYourSeat = () => {
 
                   const addPrice =
                     cohortBatch === "Fastrack"
-                      ? subject.mockPrice
-                      : totalFastrackPrice;
+                      ? subject.fastrackActual
+                      : subject.concreteActual;
 
                   const key = addName + "-" + currentClass;
                   const isAdded = selectedSubjects.some((it) => it.key === key);
@@ -494,19 +490,9 @@ const BookYourSeat = () => {
           )}
         </div>
 
-        <div className="total">
-          <div>Subtotal: ₹ {subtotal}</div>
-
-          {discount > 0 && (
-            <div style={{ color: "#d9ff00", marginTop: "5px" }}>
-              Bundle Discount: - ₹ {discount}
-            </div>
-          )}
-
-          <div style={{ marginTop: "8px", fontWeight: "bold" }}>
-            Final Total: ₹ {finalTotal}
-          </div>
-        </div>
+       <div className="total">
+  <div style={{ fontWeight: "bold" }}>Total: ₹ {total}</div>
+</div>
 
         <button
           className="checkout"
@@ -515,9 +501,7 @@ const BookYourSeat = () => {
             navigate("/payment", {
               state: {
                 selectedSubjects,
-                subtotal,
-                discount,
-                finalTotal,
+                total,
                 cohortBatch,
                 venue: currentVenue,
               },
