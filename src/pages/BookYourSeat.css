@@ -421,6 +421,7 @@ body {
 .excel-header,
 .cost,
 .subject-name {
+  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   letter-spacing: 2px;
 }
