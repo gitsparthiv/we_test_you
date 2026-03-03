@@ -23,7 +23,7 @@ function LandingPage() {
             onRegister={handleRegistration}
           />
           <FacultySection />
-          <FreeClass />
+          {/* <FreeClass /> */}
           <OurSpace/>
           <Cohort />
         </>
