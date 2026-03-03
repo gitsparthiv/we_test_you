@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { useLayoutEffect } from "react";
@@ -104,7 +104,7 @@ const BookYourSeat = () => {
   ========================= */
   useEffect(() => {
     fetch(
-      "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv"
+      "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv",
     )
       .then((response) => response.text())
       .then((csvText) => {
@@ -128,7 +128,7 @@ const BookYourSeat = () => {
               if (!parsedData[className]) parsedData[className] = [];
 
               let subjectObj = parsedData[className].find(
-                (s) => s.name === subject
+                (s) => s.name === subject,
               );
 
               if (!subjectObj) {
@@ -199,7 +199,10 @@ const BookYourSeat = () => {
     const key = name + "-" + currentClass;
 
     if (selectedSubjects.some((item) => item.key === key)) {
-      alert("Already added.");
+      // no alert, feels smoother with your new "ADDED ✓" UX
+
+      showToast("Already in cart");
+      pulseCart();
       return;
     }
 
@@ -237,16 +240,18 @@ const BookYourSeat = () => {
       <div className="main-content">
         <div className="title-box">
           <h1>REGISTRATION 2026–27</h1>
-          <p className="class-line">
+          <h2 className="class-line">
             CLASS {currentClass} • {cohortBatch?.toUpperCase()}
-          </p>
+          </h2>
         </div>
 
         <div className="filter-section">
           <div className="filter-row">
-            <span style={{fontFamily:"Bebas Neue" , fontSize:"25px"}}>Venue</span>
+            <span>Venue</span>
+
             {["South", "North", "East", "West"].map((venue) => (
-              <button style={{fontFamily:"Bebas Neue"}}
+              <button
+                style={{ fontFamily: "Bebas Neue" }}
                 key={venue}
                 className={`filter-btn ${
                   currentVenue === venue ? "active" : ""
@@ -258,14 +263,14 @@ const BookYourSeat = () => {
                     venue !== currentVenue
                   ) {
                     alert(
-                      `You have already selected ${currentVenue} venue. Remove all items from cart to change venue.`
+                      `You have already selected ${currentVenue} venue. Remove all items from cart to change venue.`,
                     );
                     return;
                   }
 
                   if (venue !== "East") {
                     alert(
-                      `${venue} venue is coming soon. Currently only East is available.`
+                      `${venue} venue is coming soon. Currently only East is available.`,
                     );
                     return;
                   }
@@ -301,22 +306,16 @@ const BookYourSeat = () => {
 
           <table className="custom-table">
             <colgroup>
-              <col style={{ width: "18%" }} />
-              <col style={{ width: "10%" }} />
-              <col style={{ width: "12%" }} />
-              <col style={{ width: "34%" }} />
-              <col style={{ width: "16%" }} />
-              <col style={{ width: "10%" }} />
+              <col style={{ width: "22%" }} />
+              <col style={{ width: "56%" }} />
+              <col style={{ width: "22%" }} />
             </colgroup>
 
             <thead>
               <tr>
                 <th>Subject</th>
-                <th>Class</th>
-                <th>Venue</th>
                 <th>Chapter</th>
                 <th>Schedule</th>
-                <th>Action</th>
               </tr>
             </thead>
 
@@ -324,7 +323,7 @@ const BookYourSeat = () => {
               {loading &&
                 Array.from({ length: 6 }).map((_, i) => (
                   <tr key={`sk-${i}`} className="bys-skeleton-row">
-                    <td colSpan="6">
+                    <td colSpan="3">
                       <div className="bys-skeleton-line" />
                     </td>
                   </tr>
@@ -335,90 +334,105 @@ const BookYourSeat = () => {
                 classSubjects.map((subject, index) => {
                   const totalFastrackPrice = subject.price + subject.mockPrice;
 
+                  const displayOldPrice =
+                    (cohortBatch === "Fastrack"
+                      ? subject.mockPrice
+                      : totalFastrackPrice) + 1000;
+
+                  const displayNewPrice =
+                    cohortBatch === "Fastrack"
+                      ? subject.mockPrice
+                      : totalFastrackPrice;
+
+                  const addName =
+                    cohortBatch === "Fastrack"
+                      ? subject.name + " Mock Package"
+                      : subject.name + " Full Package";
+
+                  const addPrice =
+                    cohortBatch === "Fastrack"
+                      ? subject.mockPrice
+                      : totalFastrackPrice;
+
+                  const key = addName + "-" + currentClass;
+                  const isAdded = selectedSubjects.some((it) => it.key === key);
+
                   return (
                     <React.Fragment key={index}>
                       <tr className="subject-row">
                         <td>
-                          <strong>{subject.name}</strong>
-                        </td>
-                        <td>{currentClass}</td>
-                        <td>{currentVenue}</td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>
-                          <button
-                            className="add-subject-btn"
-                            onClick={() => {
-                              if (cohortBatch === "Fastrack") {
-                                addItem(
-                                  subject.name + " Mock Package",
-                                  subject.mockPrice
-                                );
-                              } else {
-                                addItem(
-                                  subject.name + " Full Package",
-                                  totalFastrackPrice
-                                );
-                              }
-                            }}
-                          >
-                            <div className="price-box">
-                              <span className="old-price-bys">
-                                ₹
-                                {(cohortBatch === "Fastrack"
-                                  ? subject.mockPrice
-                                  : totalFastrackPrice) + 1000}
-                              </span>
+                          {/* ✅ Subject left + button right (for mobile/ipad via CSS) */}
+                          <div className="subject-head-row">
+                            <h3 className="subject-title">{subject.name}</h3>
 
-                              <span className="new-price-bys">
-                                ₹
-                                {cohortBatch === "Fastrack"
-                                  ? subject.mockPrice
-                                  : totalFastrackPrice}
-                              </span>
-                            </div>
-                          </button>
+                            <button
+                              className={`add-subject-btn ${isAdded ? "is-added" : ""}`}
+                              onClick={() => addItem(addName, addPrice)}
+                              type="button"
+                              aria-label={`${isAdded ? "Added" : "Add"} ${subject.name} to cart`}
+                              disabled={isAdded}
+                            >
+                              <div className="price-box">
+                                <span className="add-chip">
+                                  {isAdded ? "ADDED ✓" : "ADD +"}
+                                </span>
+                                <span className="old-price-bys">
+                                  ₹{displayOldPrice}
+                                </span>
+                                <span className="new-price-bys">
+                                  ₹{displayNewPrice}
+                                </span>
+                              </div>
+                            </button>
+                          </div>
                         </td>
+
+                        <td>—</td>
+                        <td>—</td>
                       </tr>
 
                       <tr>
-                        <td colSpan="6" style={{ padding: 0 }}>
-                          <div className="chapter-scroll-container">
-                            <table
-                              style={{
-                                width: "100%",
-                                borderCollapse: "collapse",
-                              }}
-                            >
-                              <colgroup>
-                                <col style={{ width: "18%" }} />
-                                <col style={{ width: "10%" }} />
-                                <col style={{ width: "12%" }} />
-                                <col style={{ width: "34%" }} />
-                                <col style={{ width: "16%" }} />
-                                <col style={{ width: "10%" }} />
-                              </colgroup>
+                        <td colSpan="3" style={{ padding: 0 }}>
+                          {/* ✅ fixed header + scroll only content (needs CSS) */}
+                          <div className="chapter-wrap">
+                            <div className="mobile-chapter-head">
+                              <span>Chapter</span>
+                              <span>Schedule</span>
+                            </div>
 
-                              <tbody>
-                                {(cohortBatch !== "Fastrack"
-                                  ? (subject.sessions || []).concat(
-                                      subject.mockTests || []
-                                    )
-                                  : subject.mockTests || []
-                                ).map((item, i) => (
-                                  <tr key={i} className="chapter-row">
-                                    <td className="ghost-cell">—</td>
-                                    <td>{currentClass}</td>
-                                    <td>{currentVenue}</td>
-                                    <td className="chapter-cell">
-                                      {item.chapter ? item.chapter : item.name}
-                                    </td>
-                                    <td>{item.date}</td>
-                                    <td className="ghost-cell">—</td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
+                            <div className="chapter-scroll-container">
+                              <table
+                                style={{
+                                  width: "100%",
+                                  borderCollapse: "collapse",
+                                }}
+                              >
+                                <colgroup>
+                                  <col style={{ width: "22%" }} />
+                                  <col style={{ width: "56%" }} />
+                                  <col style={{ width: "22%" }} />
+                                </colgroup>
+
+                                <tbody>
+                                  {(cohortBatch !== "Fastrack"
+                                    ? (subject.sessions || []).concat(
+                                        subject.mockTests || [],
+                                      )
+                                    : subject.mockTests || []
+                                  ).map((item, i) => (
+                                    <tr key={i} className="chapter-row">
+                                      <td className="ghost-cell">—</td>
+                                      <td className="chapter-cell">
+                                        {item.chapter
+                                          ? item.chapter
+                                          : item.name}
+                                      </td>
+                                      <td className="date-cell">{item.date}</td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
                           </div>
                         </td>
                       </tr>
@@ -443,11 +457,9 @@ const BookYourSeat = () => {
               <div className="excel-row">
                 CLASS : {selectedSubjects[0].className}
               </div>
-
               <div className="excel-row">
                 PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
               </div>
-
               <div className="excel-row">
                 VENUE : {currentVenue || "NOT SELECTED"}
               </div>
@@ -469,7 +481,10 @@ const BookYourSeat = () => {
 
                   <span className="cost">
                     {item.price}
-                    <span className="remove" onClick={() => removeItem(item.key)}>
+                    <span
+                      className="remove"
+                      onClick={() => removeItem(item.key)}
+                    >
                       ✕
                     </span>
                   </span>
@@ -513,7 +528,7 @@ const BookYourSeat = () => {
         </button>
       </div>
 
-      {/* ✅ Floating cart icon (PORTAL) - shows immediately after first add */}
+      {/* Floating cart icon */}
       {hasItems &&
         createPortal(
           <button
@@ -525,7 +540,7 @@ const BookYourSeat = () => {
             🛒
             <span className="bys-float-badge">{selectedSubjects.length}</span>
           </button>,
-          document.body
+          document.body,
         )}
     </div>
   );

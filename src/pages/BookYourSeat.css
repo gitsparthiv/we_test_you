@@ -39,6 +39,7 @@ body {
 
 .main-content {
   flex: 3;
+  min-width: 0; /* ✅ prevents flex overflow causing horizontal scroll */
 }
 
 /* =========================
@@ -54,12 +55,12 @@ body {
   font-size: 70px;
   letter-spacing: 4px;
   color: #d9ff00;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(217, 255, 0, 0.7);
 }
 
-.title-box p {
+.title-box h2 {
   font-size: 25px;
   font-weight: 600;
   color: #ffffff;
@@ -84,12 +85,16 @@ body {
 }
 
 .filter-row span {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  background-color: #d9ff00;
   text-transform: uppercase;
-  color: #d9ff00;
+  color: #000000;
   margin-right: 15px;
+  padding: 1px 10px;
+  border-radius: 10px;
 }
 
 .filter-btn {
@@ -102,8 +107,7 @@ body {
   border: 1.5px solid rgba(255, 255, 255, 0.4);
 
   border-radius: 30px;
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.2),
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2),
     inset 0 0 20px rgba(255, 255, 255, 0.08);
   color: #fff;
   cursor: pointer;
@@ -124,9 +128,33 @@ body {
   box-shadow: 0 0 15px rgba(217, 255, 0, 0.6);
 }
 
+/* ✅ red strike for inactive venues (all widths) */
+/* ✅ disabled venue: straight red cross line */
 .filter-btn.disabled {
-  opacity: 0.5;
+  opacity: .8;
   cursor: not-allowed;
+  position: relative;
+}
+
+/* straight red line through center */
+.filter-btn.disabled::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 2.5px;
+  background:#ff0000;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(217, 255, 0, 0.45);
+  pointer-events: none;
+}
+
+
+/* optional: remove browser line-through so it doesn't look double */
+.filter-btn.disabled {
+  text-decoration: none;
 }
 
 /* =========================
@@ -143,26 +171,25 @@ body {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-
+ overflow-x: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 0 0.5px rgba(255, 255, 255, 0.2);
 
   position: relative;
   max-width: 100%;
-  overflow-x: auto;
+
   -webkit-overflow-scrolling: touch;
 }
 
 /* =========================
-   TABLE (FINAL ALIGN VERSION)
+   TABLE (DESKTOP)
 ========================= */
 .custom-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  min-width: 900px;
+  min-width: 0;
 }
 
 .custom-table thead {
@@ -174,22 +201,14 @@ body {
 
 .custom-table th,
 .custom-table td {
-  padding: 10px 12px;
+  padding: 8px 12px;
   box-sizing: border-box;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-  overflow: hidden;            /* ✅ FIX: back to clean table clipping */
+min-width: 0;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-/* ✅ Action column: allow button and shadow nicely + add right gap */
-.custom-table th:last-child,
-.custom-table td:last-child {
-  overflow: visible;           /* ✅ only action col visible */
-  padding-left: 8px;
-  padding-right: 18px;         /* ✅ right gap so button doesn't touch edge */
 }
 
 .subject-row {
@@ -202,28 +221,49 @@ body {
   background: rgba(217, 255, 0, 0.08);
 }
 
+.subject-row td:first-child {
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+}
+
 /* =========================
-   ADD BUTTON (CLEAN INSIDE TABLE)
+   SUBJECT + BUTTON ROW
+========================= */
+.subject-head-row {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px; /* ✅ minimal gap between name and button (desktop) */
+}
+
+.subject-title {
+  margin: 0;
+  font-size: 26px; /* h3 feel */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.1;
+}
+
+/* =========================
+   ADD BUTTON
 ========================= */
 .add-subject-btn {
-  width: 100%;                 /* ✅ fits inside cell */
-  max-width: 120px;            /* ✅ doesn't look stretched */
-  height: 46px;
-  padding: 0 10px;
-
+  width: 100%;
+  max-width: 150px;
+  padding: 8px 12px; /* ✅ premium inner spacing */
   background: #d9ff00;
   border: none;
   border-radius: 14px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
   cursor: pointer;
   transition: all 0.25s ease;
   font-weight: bold;
-
-  margin-left: auto;           /* ✅ aligns right with gap */
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
@@ -233,14 +273,41 @@ body {
   box-shadow: 0 0 12px rgba(217, 255, 0, 0.55);
 }
 
+.add-subject-btn.is-added {
+  background: rgba(217, 255, 0, 0.25);
+  border: 1px solid rgba(217, 255, 0, 0.55);
+  cursor: default;
+  box-shadow: none;
+}
+
+.add-subject-btn:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
 .price-box {
-  width: 100%;
+  width:150px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;       /* ✅ looks neat in action column */
+  align-items: center;
   justify-content: center;
-  line-height: 1.05;
-  text-align: right;
+  line-height: 1.1;
+}
+
+.add-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+font-family: "Bebas Neue", sans-serif;
+  height: 20px;
+  padding: 0 10px;
+  border-radius: 999px;
+
+  font-size: 25px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color:  #b90505;
+  margin-bottom: 2px;
 }
 
 .old-price-bys {
@@ -252,13 +319,25 @@ body {
 
 .new-price-bys {
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 800;
   color: #b90505;
 }
 
 /* =========================
-   CHAPTER SCROLL (INNER TABLE)
+   CHAPTER HEADER + SCROLL AREA (FIXED HEADER)
 ========================= */
+.chapter-wrap {
+  padding: 10px 0 0;
+}
+
+.mobile-chapter-head {
+  display: none; /* default hidden (desktop uses table head) */
+}
+.mobile-chapter-head span {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
 .chapter-scroll-container {
   max-height: 260px;
   overflow-y: auto;
@@ -270,9 +349,11 @@ body {
 .chapter-scroll-container::-webkit-scrollbar {
   width: 12px;
 }
+
 .chapter-scroll-container::-webkit-scrollbar-track {
   background: #111;
 }
+
 .chapter-scroll-container::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #d9ff00, #aaff00);
   border-radius: 20px;
@@ -294,7 +375,7 @@ body {
   white-space: nowrap;
 }
 
-.chapter-scroll-container td:nth-child(4) {
+.chapter-scroll-container td:nth-child(2) {
   white-space: normal;
   word-break: break-word;
 }
@@ -339,7 +420,6 @@ body {
 .excel-header,
 .cost,
 .subject-name {
-  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   letter-spacing: 2px;
 }
@@ -347,7 +427,7 @@ body {
 .cost-head,
 .subject-head {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 30px;
+  font-size: 40px;
   letter-spacing: 2px;
   color: #d9ff00;
 }
@@ -402,7 +482,6 @@ body {
   font-weight: bold;
   cursor: pointer;
   border-radius: 8px;
-  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   letter-spacing: 1px;
 }
@@ -413,145 +492,9 @@ body {
   opacity: 0.6;
 }
 
-/* ===== LARGE TABLETS / SMALL LAPTOPS ===== */
-@media (max-width: 1100px) {
-  .registration-wrapper {
-    gap: 16px;
-  }
-
-  .title-box h1 {
-    font-size: 56px;
-  }
-
-  .title-box p {
-    font-size: 20px;
-    letter-spacing: 3px;
-  }
-
-  .table-box {
-    padding: 22px;
-    font-size: 17px;
-  }
-
-  .cart-panel {
-    padding: 24px;
-    top: 90px;
-  }
-
-  .cart-panel h2 {
-    font-size: 38px;
-  }
-}
-
-/* ===== TABLETS ===== */
-@media (max-width: 900px) {
-  .registration-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .main-content {
-    width: 100%;
-  }
-
-  .cart-panel {
-    width: 100%;
-    position: relative;
-    top: auto;
-    margin: 0;
-  }
-
-  .table-box {
-    margin-left: 0;
-  }
-
-  .registration-wrapper {
-    background-attachment: scroll;
-  }
-
-  /* ✅ button responsive */
-  .add-subject-btn {
-    max-width: 112px;
-    height: 44px;
-    border-radius: 12px;
-  }
-  .new-price-bys {
-    font-size: 18px;
-  }
-}
-
-/* ===== PHONES ===== */
-@media (max-width: 600px) {
-  .registration-wrapper {
-    padding-top: 90px;
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-
-  .title-box {
-    margin-top: 8px;
-  }
-
-  .title-box h1 {
-    font-size: 40px;
-    letter-spacing: 2px;
-  }
-
-  .title-box p {
-    font-size: 16px;
-    letter-spacing: 2px;
-  }
-
-  .filter-row span {
-    font-size: 16px;
-    margin-right: 8px;
-  }
-
-  .filter-btn {
-    font-size: 16px;
-    padding: 6px 16px;
-  }
-
-  .table-box {
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .cart-panel {
-    padding: 18px;
-    border-radius: 18px;
-  }
-
-  .cart-panel h2 {
-    font-size: 32px;
-  }
-
-  .checkout {
-    font-size: 18px;
-    padding: 12px;
-  }
-
-  /* ✅ button responsive */
-  .add-subject-btn {
-    max-width: 104px;
-    height: 40px;
-    border-radius: 11px;
-  }
-
-  .old-price-bys {
-    font-size: 12px;
-  }
-
-  .new-price-bys {
-    font-size: 17px;
-  }
-}
-
 /* =========================================================
-   NEW ADDITIONS
+   LOADING / SKELETON / ERROR / TOAST / PULSE
 ========================================================= */
-
-/* Loading overlay */
 .bys-loading-overlay {
   position: absolute;
   inset: 0;
@@ -587,7 +530,6 @@ body {
   font-size: 18px;
 }
 
-/* Skeleton rows */
 .bys-skeleton-row td {
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 12px;
@@ -615,7 +557,6 @@ body {
   }
 }
 
-/* Error */
 .bys-error {
   padding: 18px;
   border-radius: 18px;
@@ -635,7 +576,6 @@ body {
   cursor: pointer;
 }
 
-/* Toast */
 .bys-toast {
   position: fixed;
   top: 110px;
@@ -653,28 +593,20 @@ body {
   pointer-events: none;
 }
 
-@media (max-width: 600px) {
-  .bys-toast {
-    top: 120px;
-  }
-}
-
-/* Cart pulse */
 .cart-pulse {
-  box-shadow:
-    0 0 0 2px rgba(217, 255, 0, 0.35),
+  box-shadow: 0 0 0 2px rgba(217, 255, 0, 0.35),
     0 0 22px rgba(217, 255, 0, 0.25);
   transition: box-shadow 0.2s ease;
 }
 
-/* Cart title glow */
 .cart-title-glow {
-  text-shadow:
-    0 0 10px rgba(217, 255, 0, 0.7),
+  text-shadow: 0 0 10px rgba(217, 255, 0, 0.7),
     0 0 18px rgba(217, 255, 0, 0.35);
 }
 
-/* Floating cart icon with badge */
+/* =========================
+   FLOATING CART (MOBILE ONLY)
+========================= */
 .bys-float-cart {
   position: fixed;
   right: 18px;
@@ -720,7 +652,6 @@ body {
   justify-content: center;
 }
 
-
 .bys-float-pulse {
   animation: bysPulse 0.6s ease-out;
 }
@@ -740,8 +671,258 @@ body {
   }
 }
 
-/* hide floating icon on desktop */
-/* ✅ FIX: 900px to 1300px — give cart more breathing space */
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+/* LARGE TABLETS / SMALL LAPTOPS */
+@media (max-width: 1100px) {
+  .registration-wrapper {
+    gap: 16px;
+  }
+
+  .title-box h1 {
+    font-size: 56px;
+  }
+
+  .title-box p {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+
+  .table-box {
+    padding: 22px;
+    font-size: 17px;
+  }
+
+  .cart-panel {
+    padding: 24px;
+    top: 90px;
+  }
+
+  .cart-panel h2 {
+    font-size: 38px;
+  }
+}
+
+/* TABLETS + MOBILES: ✅ NO SIDE SCROLL + MOBILE LAYOUT */
+@media (max-width: 900px) {
+  .registration-wrapper {
+    padding-top: 70px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .main-content {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cart-panel {
+    width: 100%;
+    position: relative;
+    top: auto;
+    margin: 0;
+  }
+
+  .table-box {
+    margin-left: 0;
+    overflow-x: hidden; /* ✅ no sideways scroll */
+  }
+
+  .custom-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: auto;
+  }
+
+  .custom-table thead {
+    display: none;
+  }
+
+  .custom-table,
+  .custom-table tbody,
+  .custom-table tr,
+  .custom-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* subject card */
+  .custom-table tr.subject-row {
+    border-radius: 16px;
+    padding: 14px 12px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .custom-table tr.subject-row td {
+    border: none;
+    padding: 0;
+  }
+
+  /* remove 2 dash columns */
+  .custom-table tr.subject-row td:nth-child(2),
+  .custom-table tr.subject-row td:nth-child(3) {
+    display: none;
+  }
+
+  /* subject left + button right */
+  .subject-head-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .subject-title {
+    font-size: 24px;
+    text-align: left;
+  }
+
+  .add-subject-btn {
+    max-width: 150px;
+    padding: 10px 12px; /* ✅ more premium spacing on tablet */
+  }
+
+  /* chapter header fixed, list scrolls */
+  .chapter-wrap {
+    padding: 10px 0 0;
+  }
+
+  .mobile-chapter-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin: 10px 0 6px;
+    border-radius: 12px;
+    background: rgba(217, 255, 0, 0.08);
+    color: #d9ff00;
+    letter-spacing: 2px;
+    font-size: 18px;
+  }
+
+  .chapter-scroll-container {
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 0;
+  }
+
+  .chapter-scroll-container colgroup {
+    display: none;
+  }
+
+  .chapter-row td {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .chapter-row td.ghost-cell {
+    display: none;
+  }
+
+  .chapter-row td:last-child {
+    text-align: right;
+    opacity: 0.9;
+    padding-top: 0;
+  }
+}
+
+/* PHONES */
+@media (max-width: 600px) {
+  .registration-wrapper {
+    padding-top: 90px; /* ✅ keeps away from navbar */
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .title-box {
+    margin-top: 8px;
+  }
+
+  .title-box h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+
+  .title-box p {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  .filter-row span {
+    font-size: 22px;
+padding-left: 8px;
+padding-right:8px ;
+padding-bottom: 2px;
+    border-radius: 8px;
+    margin-right: 8px;
+  }
+
+  .filter-btn {
+    font-size: 16px;
+    padding: 6px 16px;
+  }
+.subject-title {
+    font-size: 20px;
+    text-align: left;
+  }
+  .subject-head-row{
+    display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  }
+  .table-box {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .cart-panel {
+    padding: 18px;
+    border-radius: 18px;
+  }
+
+  .cart-panel h2 {
+    font-size: 32px;
+  }
+
+  .checkout {
+    font-size: 18px;
+    padding: 12px;
+  }
+  /* ✅ fix add button spacing on <=600px */
+  .add-subject-btn {
+    max-width: 100px;
+    padding: 2px;
+    border-radius: 12px;
+  }
+
+  .add-chip {
+    font-size: 18px;
+    height: 20px;
+  }
+
+  .old-price-bys {
+    font-size: 12px;
+  }
+
+  .new-price-bys {
+    font-size: 16px;
+  }
+
+  .bys-toast {
+    top: 120px;
+  }
+}
+
+/* 901px–1300px breathing space */
 @media (min-width: 901px) and (max-width: 1300px) {
   .registration-wrapper {
     gap: 14px;
@@ -749,58 +930,47 @@ body {
     padding-right: 12px;
   }
 
-  /* main/table slightly smaller, cart slightly bigger */
   .main-content {
-    flex: 2.35; /* was 3 */
-    min-width: 0; /* prevents flex overflow */
+    flex: 2.35;
+    min-width: 0;
   }
 
   .cart-panel {
-    flex: 1.15; /* give cart more width */
-    padding: 26px; /* slightly smaller padding so content fits */
+    flex: 1.15;
+    padding: 26px;
     top: 100px;
-    min-width: 320px; /* ensure cart doesn't become tiny */
+    min-width: 320px;
   }
 
-  /* table doesn't push layout too hard */
   .table-box {
-    margin-left: 0; /* removes extra left squeeze */
+    margin-left: 0;
     padding: 24px;
   }
 
-  /* reduce minimum so horizontal scroll starts earlier */
-  .custom-table {
-    min-width: 820px; /* was 900 */
-  }
-   .custom-table th:last-child,
-  .custom-table td:last-child {
-    padding-right: 14px; /* keep small right gap */
-  }
-
   .add-subject-btn {
-    max-width: 110px;  /* slightly smaller */
-    height: 42px;      /* slightly shorter */
-    padding: 0 8px;
+    max-width: 110px;
+    padding: 8px 10px;
     border-radius: 12px;
   }
 
-  .price-box {
-    align-items: center;  /* safer than flex-end in tight widths */
-    text-align: center;
-    line-height: 1.05;
-  }
-
   .old-price-bys {
-    font-size: 12px;   /* shrink old price */
+    font-size: 12px;
   }
 
   .new-price-bys {
-    font-size: 16px;   /* shrink new price */
+    font-size: 16px;
   }
 }
-/* ✅ Hide floating cart icon on desktop (greater than 900px) */
+
+/* ✅ Hide floating cart icon on desktop */
 @media (min-width: 901px) {
   .bys-float-cart {
     display: none;
   }
+}
+
+/* ✅ final safety */
+.table-box,
+.main-content {
+  min-width: 0;
 }
