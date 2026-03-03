@@ -39,6 +39,7 @@ body {
 
 .main-content {
   flex: 3;
+  min-width: 0; /* ✅ prevents flex overflow causing horizontal scroll */
 }
 
 /* =========================
@@ -54,12 +55,12 @@ body {
   font-size: 70px;
   letter-spacing: 4px;
   color: #d9ff00;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
   text-transform: uppercase;
   text-shadow: 0 0 10px rgba(217, 255, 0, 0.7);
 }
 
-.title-box p {
+.title-box h2 {
   font-size: 25px;
   font-weight: 600;
   color: #ffffff;
@@ -102,8 +103,7 @@ body {
   border: 1.5px solid rgba(255, 255, 255, 0.4);
 
   border-radius: 30px;
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.2),
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2),
     inset 0 0 20px rgba(255, 255, 255, 0.08);
   color: #fff;
   cursor: pointer;
@@ -124,9 +124,33 @@ body {
   box-shadow: 0 0 15px rgba(217, 255, 0, 0.6);
 }
 
+/* ✅ red strike for inactive venues (all widths) */
+/* ✅ disabled venue: straight red cross line */
 .filter-btn.disabled {
-  opacity: 0.5;
+  opacity: .8;
   cursor: not-allowed;
+  position: relative;
+}
+
+/* straight red line through center */
+.filter-btn.disabled::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 2.5px;
+  background:#ff0000;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(217, 255, 0, 0.45);
+  pointer-events: none;
+}
+
+
+/* optional: remove browser line-through so it doesn't look double */
+.filter-btn.disabled {
+  text-decoration: none;
 }
 
 /* =========================
@@ -143,26 +167,25 @@ body {
   background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-
+ overflow-x: hidden;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.4),
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
     inset 0 0 0.5px rgba(255, 255, 255, 0.2);
 
   position: relative;
   max-width: 100%;
-  overflow-x: auto;
+
   -webkit-overflow-scrolling: touch;
 }
 
 /* =========================
-   TABLE (FINAL ALIGN VERSION)
+   TABLE (DESKTOP)
 ========================= */
 .custom-table {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
-  min-width: 900px;
+  min-width: 0;
 }
 
 .custom-table thead {
@@ -174,22 +197,14 @@ body {
 
 .custom-table th,
 .custom-table td {
-  padding: 10px 12px;
+  padding: 8px 12px;
   box-sizing: border-box;
   text-align: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-
-  overflow: hidden;            /* ✅ FIX: back to clean table clipping */
+min-width: 0;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-/* ✅ Action column: allow button and shadow nicely + add right gap */
-.custom-table th:last-child,
-.custom-table td:last-child {
-  overflow: visible;           /* ✅ only action col visible */
-  padding-left: 8px;
-  padding-right: 18px;         /* ✅ right gap so button doesn't touch edge */
 }
 
 .subject-row {
@@ -202,28 +217,49 @@ body {
   background: rgba(217, 255, 0, 0.08);
 }
 
+.subject-row td:first-child {
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+}
+
 /* =========================
-   ADD BUTTON (CLEAN INSIDE TABLE)
+   SUBJECT + BUTTON ROW
+========================= */
+.subject-head-row {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px; /* ✅ minimal gap between name and button (desktop) */
+}
+
+.subject-title {
+  margin: 0;
+  font-size: 26px; /* h3 feel */
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  line-height: 1.1;
+}
+
+/* =========================
+   ADD BUTTON
 ========================= */
 .add-subject-btn {
-  width: 100%;                 /* ✅ fits inside cell */
-  max-width: 120px;            /* ✅ doesn't look stretched */
-  height: 46px;
-  padding: 0 10px;
-
+  width: 100%;
+  max-width: 150px;
+  padding: 8px 12px; /* ✅ premium inner spacing */
   background: #d9ff00;
   border: none;
   border-radius: 14px;
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 
   cursor: pointer;
   transition: all 0.25s ease;
   font-weight: bold;
-
-  margin-left: auto;           /* ✅ aligns right with gap */
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
 }
 
@@ -233,14 +269,41 @@ body {
   box-shadow: 0 0 12px rgba(217, 255, 0, 0.55);
 }
 
+.add-subject-btn.is-added {
+  background: rgba(217, 255, 0, 0.25);
+  border: 1px solid rgba(217, 255, 0, 0.55);
+  cursor: default;
+  box-shadow: none;
+}
+
+.add-subject-btn:disabled {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
 .price-box {
-  width: 100%;
+  width:150px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;       /* ✅ looks neat in action column */
+  align-items: center;
   justify-content: center;
-  line-height: 1.05;
-  text-align: right;
+  line-height: 1.1;
+}
+
+.add-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 20px;
+  padding: 0 10px;
+  border-radius: 999px;
+
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 2px;
 }
 
 .old-price-bys {
@@ -252,13 +315,25 @@ body {
 
 .new-price-bys {
   font-size: 17px;
-  font-weight: 700;
+  font-weight: 800;
   color: #b90505;
 }
 
 /* =========================
-   CHAPTER SCROLL (INNER TABLE)
+   CHAPTER HEADER + SCROLL AREA (FIXED HEADER)
 ========================= */
+.chapter-wrap {
+  padding: 10px 0 0;
+}
+
+.mobile-chapter-head {
+  display: none; /* default hidden (desktop uses table head) */
+}
+.mobile-chapter-head span {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 25px;
+  letter-spacing: 2px;
+}
 .chapter-scroll-container {
   max-height: 260px;
   overflow-y: auto;
@@ -270,9 +345,11 @@ body {
 .chapter-scroll-container::-webkit-scrollbar {
   width: 12px;
 }
+
 .chapter-scroll-container::-webkit-scrollbar-track {
   background: #111;
 }
+
 .chapter-scroll-container::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #d9ff00, #aaff00);
   border-radius: 20px;
@@ -294,7 +371,7 @@ body {
   white-space: nowrap;
 }
 
-.chapter-scroll-container td:nth-child(4) {
+.chapter-scroll-container td:nth-child(2) {
   white-space: normal;
   word-break: break-word;
 }
@@ -339,7 +416,6 @@ body {
 .excel-header,
 .cost,
 .subject-name {
-  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   letter-spacing: 2px;
 }
@@ -347,7 +423,7 @@ body {
 .cost-head,
 .subject-head {
   font-family: "Bebas Neue", sans-serif;
-  font-size: 30px;
+  font-size: 40px;
   letter-spacing: 2px;
   color: #d9ff00;
 }
@@ -402,7 +478,6 @@ body {
   font-weight: bold;
   cursor: pointer;
   border-radius: 8px;
-  font-family: "Bebas Neue", sans-serif;
   font-size: 20px;
   letter-spacing: 1px;
 }
@@ -413,7 +488,190 @@ body {
   opacity: 0.6;
 }
 
-/* ===== LARGE TABLETS / SMALL LAPTOPS ===== */
+/* =========================================================
+   LOADING / SKELETON / ERROR / TOAST / PULSE
+========================================================= */
+.bys-loading-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.bys-spinner {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #d9ff00;
+  animation: bysSpin 0.9s linear infinite;
+}
+
+@keyframes bysSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bys-loading-text {
+  margin-top: 10px;
+  letter-spacing: 2px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.bys-skeleton-row td {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px;
+}
+
+.bys-skeleton-line {
+  height: 14px;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.18),
+    rgba(255, 255, 255, 0.08)
+  );
+  background-size: 200% 100%;
+  animation: bysShimmer 1.1s ease-in-out infinite;
+}
+
+@keyframes bysShimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+.bys-error {
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  margin-bottom: 14px;
+  text-align: center;
+}
+
+.bys-retry {
+  margin-top: 10px;
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+}
+
+.bys-toast {
+  position: fixed;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(217, 255, 0, 0.35);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  letter-spacing: 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+}
+
+.cart-pulse {
+  box-shadow: 0 0 0 2px rgba(217, 255, 0, 0.35),
+    0 0 22px rgba(217, 255, 0, 0.25);
+  transition: box-shadow 0.2s ease;
+}
+
+.cart-title-glow {
+  text-shadow: 0 0 10px rgba(217, 255, 0, 0.7),
+    0 0 18px rgba(217, 255, 0, 0.35);
+}
+
+/* =========================
+   FLOATING CART (MOBILE ONLY)
+========================= */
+.bys-float-cart {
+  position: fixed;
+  right: 18px;
+  top: 230px;
+  z-index: 999999;
+
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(10px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.bys-float-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+
+  background: #d9ff00;
+  color: #000;
+  font-size: 14px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bys-float-pulse {
+  animation: bysPulse 0.6s ease-out;
+}
+
+@keyframes bysPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(217, 255, 0, 0);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(217, 255, 0, 0.35);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(217, 255, 0, 0);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+/* LARGE TABLETS / SMALL LAPTOPS */
 @media (max-width: 1100px) {
   .registration-wrapper {
     gap: 16px;
@@ -443,15 +701,17 @@ body {
   }
 }
 
-/* ===== TABLETS ===== */
+/* TABLETS + MOBILES: ✅ NO SIDE SCROLL + MOBILE LAYOUT */
 @media (max-width: 900px) {
   .registration-wrapper {
+    padding-top: 70px;
     flex-direction: column;
     align-items: stretch;
   }
 
   .main-content {
     width: 100%;
+    min-width: 0;
   }
 
   .cart-panel {
@@ -463,27 +723,118 @@ body {
 
   .table-box {
     margin-left: 0;
+    overflow-x: hidden; /* ✅ no sideways scroll */
   }
 
-  .registration-wrapper {
-    background-attachment: scroll;
+  .custom-table {
+    min-width: 0;
+    width: 100%;
+    table-layout: auto;
   }
 
-  /* ✅ button responsive */
+  .custom-table thead {
+    display: none;
+  }
+
+  .custom-table,
+  .custom-table tbody,
+  .custom-table tr,
+  .custom-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* subject card */
+  .custom-table tr.subject-row {
+    border-radius: 16px;
+    padding: 14px 12px;
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .custom-table tr.subject-row td {
+    border: none;
+    padding: 0;
+  }
+
+  /* remove 2 dash columns */
+  .custom-table tr.subject-row td:nth-child(2),
+  .custom-table tr.subject-row td:nth-child(3) {
+    display: none;
+  }
+
+  /* subject left + button right */
+  .subject-head-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .subject-title {
+    font-size: 24px;
+    text-align: left;
+  }
+
   .add-subject-btn {
-    max-width: 112px;
-    height: 44px;
-    border-radius: 12px;
+    max-width: 150px;
+    padding: 10px 12px; /* ✅ more premium spacing on tablet */
   }
-  .new-price-bys {
+
+  /* chapter header fixed, list scrolls */
+  .chapter-wrap {
+    padding: 10px 0 0;
+  }
+
+  .mobile-chapter-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 12px;
+    margin: 10px 0 6px;
+    border-radius: 12px;
+    background: rgba(217, 255, 0, 0.08);
+    color: #d9ff00;
+    letter-spacing: 2px;
     font-size: 18px;
+  }
+
+  .chapter-scroll-container {
+    max-height: 240px;
+    overflow-y: auto;
+    padding-right: 0;
+  }
+
+  .chapter-scroll-container colgroup {
+    display: none;
+  }
+
+  .chapter-row td {
+    display: block;
+    width: 100%;
+    white-space: normal;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .chapter-row td.ghost-cell {
+    display: none;
+  }
+
+  .chapter-row td:last-child {
+    text-align: right;
+    opacity: 0.9;
+    padding-top: 0;
   }
 }
 
-/* ===== PHONES ===== */
+/* PHONES */
 @media (max-width: 600px) {
   .registration-wrapper {
-    padding-top: 90px;
+    padding-top: 90px; /* ✅ keeps away from navbar */
     padding-left: 12px;
     padding-right: 12px;
   }
@@ -531,11 +882,17 @@ body {
     padding: 12px;
   }
 
-  /* ✅ button responsive */
+  /* ✅ fix add button spacing on <=600px */
   .add-subject-btn {
-    max-width: 104px;
-    height: 40px;
-    border-radius: 11px;
+    max-width: 118px;
+    padding: 10px 10px;
+    border-radius: 12px;
+  }
+
+  .add-chip {
+    font-size: 12px;
+    padding: 0 9px;
+    height: 20px;
   }
 
   .old-price-bys {
@@ -543,205 +900,15 @@ body {
   }
 
   .new-price-bys {
-    font-size: 17px;
+    font-size: 16px;
   }
-}
 
-/* =========================================================
-   NEW ADDITIONS
-========================================================= */
-
-/* Loading overlay */
-.bys-loading-overlay {
-  position: absolute;
-  inset: 0;
-  border-radius: 25px;
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-}
-
-.bys-spinner {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 4px solid rgba(255, 255, 255, 0.25);
-  border-top-color: #d9ff00;
-  animation: bysSpin 0.9s linear infinite;
-}
-
-@keyframes bysSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.bys-loading-text {
-  margin-top: 10px;
-  letter-spacing: 2px;
-  color: #fff;
-  font-size: 18px;
-}
-
-/* Skeleton rows */
-.bys-skeleton-row td {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 12px;
-}
-
-.bys-skeleton-line {
-  height: 14px;
-  border-radius: 10px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.08),
-    rgba(255, 255, 255, 0.18),
-    rgba(255, 255, 255, 0.08)
-  );
-  background-size: 200% 100%;
-  animation: bysShimmer 1.1s ease-in-out infinite;
-}
-
-@keyframes bysShimmer {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 200% 0%;
-  }
-}
-
-/* Error */
-.bys-error {
-  padding: 18px;
-  border-radius: 18px;
-  background: rgba(255, 0, 0, 0.08);
-  border: 1px solid rgba(255, 0, 0, 0.2);
-  margin-bottom: 14px;
-  text-align: center;
-}
-
-.bys-retry {
-  margin-top: 10px;
-  padding: 8px 18px;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  cursor: pointer;
-}
-
-/* Toast */
-.bys-toast {
-  position: fixed;
-  top: 110px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 999;
-
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid rgba(217, 255, 0, 0.35);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 999px;
-  letter-spacing: 2px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-  pointer-events: none;
-}
-
-@media (max-width: 600px) {
   .bys-toast {
     top: 120px;
   }
 }
 
-/* Cart pulse */
-.cart-pulse {
-  box-shadow:
-    0 0 0 2px rgba(217, 255, 0, 0.35),
-    0 0 22px rgba(217, 255, 0, 0.25);
-  transition: box-shadow 0.2s ease;
-}
-
-/* Cart title glow */
-.cart-title-glow {
-  text-shadow:
-    0 0 10px rgba(217, 255, 0, 0.7),
-    0 0 18px rgba(217, 255, 0, 0.35);
-}
-
-/* Floating cart icon with badge */
-.bys-float-cart {
-  position: fixed;
-  right: 18px;
-  top: 230px;
-  z-index: 999999;
-
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(10px);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: #fff;
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.bys-float-badge {
-  position: absolute;
-  top: -6px;
-  right: -6px;
-
-  min-width: 22px;
-  height: 22px;
-  padding: 0 6px;
-  border-radius: 999px;
-
-  background: #d9ff00;
-  color: #000;
-  font-size: 14px;
-  font-weight: 800;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.bys-float-pulse {
-  animation: bysPulse 0.6s ease-out;
-}
-
-@keyframes bysPulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(217, 255, 0, 0);
-  }
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(217, 255, 0, 0.35);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 rgba(217, 255, 0, 0);
-  }
-}
-
-/* hide floating icon on desktop */
-/* ✅ FIX: 900px to 1300px — give cart more breathing space */
+/* 901px–1300px breathing space */
 @media (min-width: 901px) and (max-width: 1300px) {
   .registration-wrapper {
     gap: 14px;
@@ -749,58 +916,47 @@ body {
     padding-right: 12px;
   }
 
-  /* main/table slightly smaller, cart slightly bigger */
   .main-content {
-    flex: 2.35; /* was 3 */
-    min-width: 0; /* prevents flex overflow */
+    flex: 2.35;
+    min-width: 0;
   }
 
   .cart-panel {
-    flex: 1.15; /* give cart more width */
-    padding: 26px; /* slightly smaller padding so content fits */
+    flex: 1.15;
+    padding: 26px;
     top: 100px;
-    min-width: 320px; /* ensure cart doesn't become tiny */
+    min-width: 320px;
   }
 
-  /* table doesn't push layout too hard */
   .table-box {
-    margin-left: 0; /* removes extra left squeeze */
+    margin-left: 0;
     padding: 24px;
   }
 
-  /* reduce minimum so horizontal scroll starts earlier */
-  .custom-table {
-    min-width: 820px; /* was 900 */
-  }
-   .custom-table th:last-child,
-  .custom-table td:last-child {
-    padding-right: 14px; /* keep small right gap */
-  }
-
   .add-subject-btn {
-    max-width: 110px;  /* slightly smaller */
-    height: 42px;      /* slightly shorter */
-    padding: 0 8px;
+    max-width: 110px;
+    padding: 8px 10px;
     border-radius: 12px;
   }
 
-  .price-box {
-    align-items: center;  /* safer than flex-end in tight widths */
-    text-align: center;
-    line-height: 1.05;
-  }
-
   .old-price-bys {
-    font-size: 12px;   /* shrink old price */
+    font-size: 12px;
   }
 
   .new-price-bys {
-    font-size: 16px;   /* shrink new price */
+    font-size: 16px;
   }
 }
-/* ✅ Hide floating cart icon on desktop (greater than 900px) */
+
+/* ✅ Hide floating cart icon on desktop */
 @media (min-width: 901px) {
   .bys-float-cart {
     display: none;
   }
+}
+
+/* ✅ final safety */
+.table-box,
+.main-content {
+  min-width: 0;
 }
