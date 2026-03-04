@@ -15,7 +15,7 @@ const words = [
   "Exam-Ready.",
   "Board-Prepared.",
   "Mentally Strong.",
-  "Performance Confident."
+  "Confident."
 ];
 
 /* PROGRAM DATA */
