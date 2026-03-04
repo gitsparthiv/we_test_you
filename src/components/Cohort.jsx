@@ -114,8 +114,9 @@ const Cohort = () => {
           <div className="overlay">
             <h2>CLASS 10</h2>
             <div className="class-starting-price">
-              Starts as low as <span>₹{prices["10"]?.singleActual || 0}</span>
-            </div>
+  <span className="starting-text">Starts as low as</span> 
+  <span className="starting-price">₹{prices["10"]?.singleActual || 0}</span>
+</div>
 
             <div className="division-row">
               <div className="division-half">
@@ -176,8 +177,9 @@ const Cohort = () => {
           <div className="overlay">
             <h2>CLASS 11</h2>
             <div className="class-starting-price">
-              Starts as low as <span>₹{prices["11"]?.singleActual || 0}</span>
-            </div>
+  <span className="starting-text">Starts as low as</span> 
+  <span className="starting-price">₹{prices["11"]?.singleActual || 0}</span>
+</div>
 
             <div className="division-row">
               <div className="division-half">
@@ -238,8 +240,9 @@ const Cohort = () => {
           <div className="overlay">
             <h2>CLASS 12</h2>
             <div className="class-starting-price">
-              Starts as low as <span>₹{prices["12"]?.singleActual || 0}</span>
-            </div>
+  <span className="starting-text">Starts as low as</span> 
+  <span className="starting-price">₹{prices["12"]?.singleActual || 0}</span>
+</div>
 
             <div className="division-row">
               <div className="division-half">

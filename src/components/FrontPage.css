@@ -80,6 +80,8 @@ html, body {
   align-items: center;
   justify-content: center;
   text-align: center;
+    touch-action: manipulation;
+  
 }
 
 .program-card:hover {
@@ -245,14 +247,15 @@ html, body {
 
 /* ================= RIGHT BANNERS (BALANCED VERSION) ================= */
 
-.hero-banners {
-  width: 380px;   /* slightly tighter */
+.hero-banners{
+  width: 100%;
+  max-width: 420px;
+  height: 150px;   /* important */
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 /* Banner */
 
 .banner {
@@ -340,4 +343,110 @@ html, body {
     width: 100%;
     max-width: 320px;
   }
+}
+/* ================= PHONE RESPONSIVE ================= */
+
+@media(max-width:480px){
+
+  .top-section{
+    padding: 90px 20px 0px 20px;
+  }
+
+  .hero-wrapper{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .hero-banners{
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .banner{
+    padding: 22px 20px;
+  }
+
+  .banner .banner-title{
+    font-size: 18px;
+  }
+
+  .banner .banner-highlight{
+    font-size: 28px;
+  }
+
+  .program-grid{
+    padding: 0 20px;
+    grid-template-columns: repeat(2,1fr);
+    gap: 14px;
+    margin-top: 40px;
+  }
+
+  .program-card{
+    height: 120px;
+  }
+
+  .features-section{
+    padding: 20px;
+    grid-template-columns: repeat(2,1fr);
+  }
+/* ================= TABLET FIX (IPAD MINI ETC) ================= */
+
+@media (max-width: 900px){
+
+  .hero-wrapper{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-content{
+    max-width: 600px;
+  }
+
+  .hero-banners{
+    width: 100%;
+    max-width: 420px;
+    min-height: 150px;
+  }
+
+  /* IMPORTANT: remove absolute behaviour */
+  .banner{
+    width: 100%;
+  }
+
+  .program-grid{
+    grid-template-columns: repeat(2,1fr);
+    padding: 0 40px;
+    margin-top: 40px;
+  }
+
+  .features-section{
+    grid-template-columns: repeat(3,1fr);
+    padding: 20px 40px;
+  }
+
+}
+}
+/* ================= FIX BANNER OVERLAP ================= */
+
+@media (max-width: 1000px){
+
+  .hero-banners{
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    min-height: 160px;
+    margin-top: 20px;
+  }
+
+  .banner{  /* important */
+    width: 100%;
+  }
+
+  .program-grid{
+    margin-top: 60px;
+  }
+
 }
