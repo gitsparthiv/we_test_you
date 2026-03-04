@@ -390,5 +390,43 @@ html, body {
     padding: 20px;
     grid-template-columns: repeat(2,1fr);
   }
+/* ================= TABLET FIX (IPAD MINI ETC) ================= */
 
+@media (max-width: 900px){
+
+  .hero-wrapper{
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-content{
+    max-width: 600px;
+  }
+
+  .hero-banners{
+    width: 100%;
+    max-width: 420px;
+    min-height: 150px;
+  }
+
+  /* IMPORTANT: remove absolute behaviour */
+  .banner{
+    position: relative;
+    width: 100%;
+  }
+
+  .program-grid{
+    grid-template-columns: repeat(2,1fr);
+    padding: 0 40px;
+    margin-top: 40px;
+  }
+
+  .features-section{
+    grid-template-columns: repeat(3,1fr);
+    padding: 20px 40px;
+  }
+
+}
 }
