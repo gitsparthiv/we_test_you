@@ -28,7 +28,7 @@ const BookYourSeat = () => {
     }
   });
 
-  const [currentVenue, setCurrentVenue] = useState("East");
+  const [currentVenue, setCurrentVenue] = useState("Newtown");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
 
   const [loading, setLoading] = useState(() => {
@@ -247,13 +247,13 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
           <div className="filter-row">
             <span>Venue</span>
 
-            {["South", "North", "East", "West"].map((venue) => (
+            {["Garia", "Dumdum", "Newtown", "Howrah"].map((venue) => (
               <button
                 style={{ fontFamily: "Bebas Neue" }}
                 key={venue}
                 className={`filter-btn ${
                   currentVenue === venue ? "active" : ""
-                } ${venue !== "East" ? "disabled" : ""}`}
+                } ${venue !== "Newtown" ? "disabled" : ""}`}
                 onClick={() => {
                   if (
                     selectedSubjects.length > 0 &&
@@ -266,9 +266,9 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
                     return;
                   }
 
-                  if (venue !== "East") {
+                  if (venue !== "Newtown") {
                     alert(
-                      `${venue} venue is coming soon. Currently only East is available.`,
+                      `${venue} venue is coming soon. Currently only Newtown is available.`,
                     );
                     return;
                   }
