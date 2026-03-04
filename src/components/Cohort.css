@@ -35,10 +35,8 @@
     overflow: visible;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    transition: transform 0.3s ease;
+    min-height: 100%;
 }
-
 .card:hover {
     transform: translateY(-4px);
 }
@@ -374,3 +372,35 @@
     font-size: 1.4rem;
     font-weight: 700;
 }
+@media (max-width:480px){
+
+    .card{
+        height: auto;
+      overflow: visible;
+    }
+  
+    .overlay{
+      padding-bottom: 20px;
+    }
+  
+    .division-half{
+        height: auto;
+      justify-content: flex-start;
+    }
+  
+    .division-half button{
+      margin-top: 14px;
+    }
+  
+  }
+  /* ===== FINAL MOBILE BUTTON FIX ===== */
+
+@media (max-width:600px){
+
+    .division-half button{
+      margin-top:14px !important;
+    }
+    .card{
+        min-height: auto;
+      }
+  }
