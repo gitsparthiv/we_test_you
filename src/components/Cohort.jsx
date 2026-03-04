@@ -47,47 +47,43 @@ const Cohort = () => {
     return () => observer.disconnect();
   }, []);
 
-  /* ================= FETCH PRICES (SAME MODEL AS BOOKYOURSEAT) ================= */
+  /* ================= FETCH PRICES FROM NEW SHEET ================= */
   useEffect(() => {
-    fetch(
-      "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv"
-    )
+
+    /* 🔵 PASTE YOUR NEW SPREADSHEET CSV LINK HERE */
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/15SpbmC9rnJUTLFUFZk9VhUqfBUvH9B1bgAdYhUdCirs/export?format=csv";
+
+    fetch(SHEET_URL)
       .then((res) => res.text())
       .then((csvText) => {
         Papa.parse(csvText, {
           header: true,
           skipEmptyLines: true,
           complete: (result) => {
+
             const parsed = {};
 
             result.data.forEach((row) => {
-              const className = row.class; // EXACTLY same as BookYourSeat
+
+              const className = row.Class;
               const subject = row.subject;
 
-              const fastrackActual = Number(row.actual_fastrack ?? 0);
-              const fastrackOld = Number(row.old_fastrack ?? 0);
+              const fastrackActual = Number(row.actualFastrackPrice || 0);
+              const fastrackOld = Number(row.oldfastrackPrice || 0);
 
-              const concreteActual = Number(row.actual_concrete ?? 0);
-              const concreteOld = Number(row.old_concrete ?? 0);
+              const concreteActual = Number(row.actualConcrete || 0);
+              const concreteOld = Number(row.oldConcretePrice || 0);
 
               if (!parsed[className]) {
                 parsed[className] = {
-                  fastrackActual: 0,
-                  fastrackOld: 0,
-                  singleActual: 0,
-                  singleOld: 0,
+                  fastrackActual: fastrackActual,
+                  fastrackOld: fastrackOld,
+                  singleActual: concreteActual,
+                  singleOld: concreteOld,
                   allActual: 0,
                   allOld: 0,
                   subjectCount: 0,
                 };
-              }
-
-              parsed[className].fastrackActual = fastrackActual;
-              parsed[className].fastrackOld = fastrackOld;
-
-              if (parsed[className].subjectCount === 0) {
-                parsed[className].singleActual = concreteActual;
-                parsed[className].singleOld = concreteOld;
               }
 
               parsed[className].allActual += concreteActual;
@@ -101,6 +97,7 @@ const Cohort = () => {
         });
       })
       .catch((err) => console.error("Sheet fetch error:", err));
+
   }, []);
 
   return (
