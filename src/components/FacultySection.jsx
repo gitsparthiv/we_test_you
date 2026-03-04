@@ -7,31 +7,31 @@ const facultyData = [
     name: "Dr. Arvind Sharma",
     subject: "Physics Faculty",
     experience: "12+ Years Experience",
-    image: "https://source.unsplash.com/300x400/?man,teacher"
+    image: "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
   },
   {
     name: "Ms. Riya Verma",
     subject: "Mathematics Faculty",
     experience: "9+ Years Experience",
-    image: "https://source.unsplash.com/300x400/?woman,teacher"
+    image: "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
   },
   {
     name: "Mr. Sandeep Roy",
     subject: "Chemistry Faculty",
     experience: "10+ Years Experience",
-    image: "https://source.unsplash.com/300x400/?professor,man"
+    image: "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
   },
   {
     name: "Ms. Priya Iyer",
     subject: "Biology Faculty",
     experience: "8+ Years Experience",
-    image: "https://source.unsplash.com/300x400/?woman,professor"
+    image: "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
   },
   {
     name: "Mr. Kunal Singh",
     subject: "Accountancy Faculty",
     experience: "11+ Years Experience",
-    image: "https://source.unsplash.com/300x400/?indian,teacher"
+    image: "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
   }
 ];
 

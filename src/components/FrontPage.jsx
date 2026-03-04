@@ -123,7 +123,7 @@ const FrontPage = () => {
     {/* RIGHT SIDE - BLINKING BANNERS */}
     <div className="hero-banners">
     <div className={`banner ${activeBanner === 0 ? "show" : ""}`}>
-  <div className="banner-title">🚀 INAUGURATION OFFER</div>
+  <div className="banner-title">INAUGURATION OFFER</div>
   <div className="banner-highlight">Starting @ ₹2990</div>
 </div>
 
