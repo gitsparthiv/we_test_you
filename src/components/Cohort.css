@@ -372,3 +372,29 @@
     font-weight: 600;
     color: #cccccc;   /* Slightly muted */
 }
+.price-group:not(.bundle-group) .new-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+  
+  .price-group:not(.bundle-group) .old-price {
+    font-size: 1.1rem;
+  }
+  .price-group:not(.bundle-group) .price-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .class-starting-price{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  
+  .starting-text{
+    font-size: 0.95rem;
+  }
+  
+  .starting-price{
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
