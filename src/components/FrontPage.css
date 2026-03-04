@@ -249,8 +249,8 @@ html, body {
 
 .hero-banners{
   width: 100%;
-  max-width: 320px;
-  min-height: 120px;
+  max-width: 420px;
+  height: 150px;   /* important */
   position: relative;
   display: flex;
   align-items: center;
@@ -413,7 +413,6 @@ html, body {
 
   /* IMPORTANT: remove absolute behaviour */
   .banner{
-    position: relative;
     width: 100%;
   }
 
@@ -442,8 +441,7 @@ html, body {
     margin-top: 20px;
   }
 
-  .banner{
-    position: relative;   /* important */
+  .banner{  /* important */
     width: 100%;
   }
 
