@@ -143,13 +143,14 @@ const {
             formData.append("parentPhone", form.ParentPhone);
             formData.append("parentEmail", form.ParentEmail);
             formData.append("subjects", selectedSubjects.map((s) => s.name).join(", "));
+            formData.append("className", selectedSubjects[0]?.className || "");
             formData.append("packageName", cohortBatch);
             formData.append("total", String(total));
             formData.append("venue", venue);
 
             try {
               const response = await fetch(
-                "https://script.google.com/macros/s/AKfycbwzsa8XRMkJngYtAB4AFTFEh_B-0YFG-w4K1joi9c4tM2nn6ND8jCqIkjMJuK9u8Pnh/exec",
+                "https://script.google.com/macros/s/AKfycbz31cEuHappzjPsxfJrjntM9Ul8wHUsBJ1IT4NhcM4vyXGt38q7JJnmN3qfstms9yWy/exec",
                 { method: "POST", body: formData }
               );
 
