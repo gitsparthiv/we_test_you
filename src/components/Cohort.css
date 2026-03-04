@@ -85,14 +85,13 @@
 
 /* ================= INTERNAL BOX ================= */
 
-.division-half {
+.division-half{
     flex: 1;
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,.18);
     padding: 24px;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 }
 
 .division-half:hover {
@@ -173,8 +172,9 @@
 /* ================= BUTTON ================= */
 
 .division-half button {
+        margin-top:auto;
     background: #d7ff45;
-    margin-top: 12px;
+    /* margin-top: 12px; */
     color: #000;
     border: none;
     padding: 11px;
