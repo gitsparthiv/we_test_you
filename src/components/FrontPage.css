@@ -430,3 +430,25 @@ html, body {
 
 }
 }
+/* ================= FIX BANNER OVERLAP ================= */
+
+@media (max-width: 1000px){
+
+  .hero-banners{
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    min-height: 160px;
+    margin-top: 20px;
+  }
+
+  .banner{
+    position: relative;   /* important */
+    width: 100%;
+  }
+
+  .program-grid{
+    margin-top: 60px;
+  }
+
+}
