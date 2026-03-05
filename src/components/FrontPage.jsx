@@ -9,36 +9,27 @@ import feature2 from "../assets/2_ribbon.png";
 import feature3 from "../assets/3_ribbon.png";
 import feature4 from "../assets/4_ribbon.png";
 import feature5 from "../assets/5_ribbon.png";
-import feature6 from "../assets/6_ribbon.png"; // ✅ NEW IMAGE
+import feature6 from "../assets/6_ribbon.png";
 
 const words = [
   "Exam-Ready.",
   "Board-Prepared.",
   "Mentally Strong.",
-  "Confident."
+  "Confident.",
 ];
 
 /* PROGRAM DATA */
 const programs = [
   { classValue: "10", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "10", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
-
   { classValue: "11", division: "Fastrack", label: "Fastrack Division", theme: "black", icon: <FaRocket /> },
   { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
-
   { classValue: "12", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
-  { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> }
+  { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
 ];
 
-/* FEATURE DATA (NOW 6 IMAGES) */
-const features = [
-  feature1,
-  feature2,
-  feature3,
-  feature4,
-  feature5,
-  feature6 // ✅ Added
-];
+/* FEATURE DATA */
+const features = [feature1, feature2, feature3, feature4, feature5, feature6];
 
 const FrontPage = () => {
   const navigate = useNavigate();
@@ -50,12 +41,21 @@ const FrontPage = () => {
   const [showHero, setShowHero] = useState(false);
   const [showPrograms, setShowPrograms] = useState(false);
   const [showFeatures, setShowFeatures] = useState(false);
+  const [activeBanner, setActiveBanner] = useState(0);
 
   /* Navigation */
   const handleRegister = (selectedClass, selectedBatch) => {
     navigate("/book-seat", {
-      state: { selectedClass, selectedBatch }
+      state: { selectedClass, selectedBatch },
     });
+  };
+
+  /* ✅ Scroll to Cohorts */
+  const scrollToCohorts = () => {
+    const section = document.getElementById("cohorts");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   /* Sequential Loading */
@@ -64,15 +64,15 @@ const FrontPage = () => {
     setTimeout(() => setShowPrograms(true), 1200);
     setTimeout(() => setShowFeatures(true), 1500);
   }, []);
-  const [activeBanner, setActiveBanner] = useState(0);
 
+  /* Banner Toggle */
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveBanner(prev => (prev === 0 ? 1 : 0));
-    }, 3000); // change every 3 seconds
-  
+      setActiveBanner((prev) => (prev === 0 ? 1 : 0));
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
+
   /* Typing Effect */
   useEffect(() => {
     const currentWord = words[currentWordIndex];
@@ -99,47 +99,52 @@ const FrontPage = () => {
   return (
     <div className="main-container">
 
-      {/* HERO */}
+      {/* ================= HERO ================= */}
       <div className={`top-section fade-section ${showHero ? "visible" : ""}`}>
-  <div className="hero-wrapper">
-    
-    {/* LEFT SIDE - TEXT */}
-    <div className="hero-content">
-      <h1 className="top-text">
-        Tuition Teaches You.<br />
-        Offline Mock Tests Make You
-      </h1>
+        <div className="hero-wrapper">
 
-      <div className="typing-line">
-        <span className="typing">{displayText}</span>
+          {/* LEFT — TEXT */}
+          <div className="hero-content">
+            <h1 className="top-text">
+              Tuition Teaches You.<br />
+              Offline Mock Tests Make You
+            </h1>
+            <div className="typing-line">
+              <span className="typing">{displayText}</span>
+            </div>
+            <p>
+              Structured offline mock examinations for CBSE Classes 10, 11 & 12
+              in a real board-style environment.
+            </p>
+          </div>
+
+          {/* RIGHT — BANNERS */}
+          <div className="hero-banners">
+            <div
+              className={`banner clickable ${activeBanner === 0 ? "show" : ""}`}
+              onClick={scrollToCohorts}
+            >
+              <div className="banner-title">INAUGURATION OFFER</div>
+              <div className="banner-highlight">Starting @ ₹2990</div>
+              <div className="banner-cta">View Cohorts ↓</div>
+            </div>
+
+            <div
+              className={`banner clickable ${activeBanner === 1 ? "show" : ""}`}
+              onClick={scrollToCohorts}
+            >
+              <div className="banner-title">
+                Focused on <span className="cbse-blink">CBSE</span> Classes
+              </div>
+              <div className="banner-highlight">10 • 11 • 12</div>
+              <div className="banner-cta">View Cohorts ↓</div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
-      <p>
-        Structured offline mock examinations for CBSE Classes 10, 11 & 12
-        in a real board-style environment.
-      </p>
-    </div>
-
-    {/* RIGHT SIDE - BLINKING BANNERS */}
-    <div className="hero-banners">
-    <div className={`banner ${activeBanner === 0 ? "show" : ""}`}>
-  <div className="banner-title">INAUGURATION OFFER</div>
-  <div className="banner-highlight">Starting @ ₹2990</div>
-</div>
-
-<div className={`banner ${activeBanner === 1 ? "show" : ""}`}>
-  <div className="banner-title">
-    Focused on <span className="cbse-blink">CBSE</span> Classes
-  </div>
-  <div className="banner-highlight">10 • 11 • 12</div>
-</div>
-
-    </div>
-
-  </div>
-</div>
-
-      {/* PROGRAM GRID */}
+      {/* ================= PROGRAM GRID ================= */}
       <div className={`program-grid fade-section ${showPrograms ? "visible" : ""}`}>
         {programs.map((item, index) => (
           <div
@@ -156,7 +161,7 @@ const FrontPage = () => {
         ))}
       </div>
 
-      {/* FEATURES SECTION (NOW 6 EQUAL CARDS) */}
+      {/* ================= FEATURES ================= */}
       <div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
         {features.map((img, index) => (
           <div key={index} className="feature-card">
