@@ -1,6 +1,5 @@
 import React from "react";
 import "./OurSpace.css";
-import bgImage from "../assets/our_class2-modified.jpg";
 
 const OurSpace = () => {
   return (
