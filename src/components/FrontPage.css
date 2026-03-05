@@ -356,6 +356,10 @@ html, body {
     height: 130px;
   }
 
+    .hero-banners {
+        margin: 0 auto;               /* ← ADD THIS too */
+    }
+
   .features-section {
     grid-template-columns: repeat(2, 1fr);
     padding: 20px 30px;
@@ -378,84 +382,27 @@ html, body {
 
 /* ================= < 480px (MOBILE) ================= */
 
+/* ================= < 480px (MOBILE) ================= */
+
 @media (max-width: 480px) {
-  .top-section {
-    padding: 90px 20px 0;
-  }
 
   .hero-wrapper {
-    align-items: flex-start;
-    text-align: left;
-    gap: 30px;
+      align-items: center;          /* ← CHANGED from flex-start */
+      text-align: center;           /* ← CHANGED from left */
+      gap: 30px;
   }
 
-  .top-text {
-    font-size: 28px;
+  /* Keep hero text left if you want */
+  .hero-content {
+      text-align: left;
+      width: 100%;
   }
 
-  .typing-line {
-    font-size: 28px;
-    min-height: 36px;
-  }
-
-  .hero-content p {
-    font-size: 14px;
-  }
-
+  /* ✅ CENTER THE BANNERS */
   .hero-banners {
-    max-width: 300px;
-    min-height: 140px;
-  }
-
-  .banner {
-    padding: 22px 20px;
-  }
-
-  .banner-title {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-
-  .banner-highlight {
-    font-size: 28px;
-  }
-
-  .banner-cta {
-    font-size: 11px;
-    margin-top: 8px;
-  }
-
-  .program-grid {
-    padding: 0 20px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-top: 40px;
-  }
-
-  .program-card {
-    height: 120px;
-  }
-
-  .program-card h3 {
-    font-size: 14px;
-  }
-
-  .program-card p {
-    font-size: 11px;
-  }
-
-  .program-icon {
-    font-size: 22px;
-  }
-
-  .features-section {
-    padding: 15px 20px 25px;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  .feature-card img {
-    height: 140px;
+      max-width: 300px;
+      min-height: 140px;
+      margin: 0 auto;              /* ← ADD THIS */
   }
 }
 
