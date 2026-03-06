@@ -11,7 +11,7 @@ const Header = () => {
 
 useEffect(() => {
   const HIDE_THRESHOLD = 140; // scroll down more before hiding
-  const SHOW_THRESHOLD = 60;  // show quickly when scrolling up
+  const SHOW_THRESHOLD = 40;  // show quickly when scrolling up
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
