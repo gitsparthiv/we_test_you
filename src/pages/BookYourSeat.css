@@ -968,10 +968,23 @@ body {
   }
 }
 
-/* ✅ Hide floating cart icon on desktop */
+
 @media (min-width: 901px) {
   .bys-float-cart {
     display: none;
+  }
+    .registration-wrapper.no-cart {
+    justify-content: center;
+  }
+
+  .registration-wrapper.no-cart .main-content {
+    flex: none;
+     width: 80vw;     
+    max-width: 1400px;
+  }
+
+  .registration-wrapper.no-cart .table-box {
+    margin-left: 0;
   }
 }
 

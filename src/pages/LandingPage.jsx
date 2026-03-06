@@ -24,8 +24,9 @@ function LandingPage() {
           />
           <FacultySection />
           {/* <FreeClass /> */}
-          <OurSpace/>
+          
           <Cohort />
+          <OurSpace/>
         </>
       )}
 
