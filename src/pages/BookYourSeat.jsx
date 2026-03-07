@@ -146,14 +146,14 @@ const BookYourSeat = () => {
   /* =========================
      FUNCTIONS
   ========================= */
-  const addItem = (name, price) => {
+  const addItem = (name, price, type) => {
     const key = name + "-" + currentClass;
     if (selectedSubjects.some((item) => item.key === key)) {
       showToast("ALREADY IN CART");
       return;
     }
 
-    const packageType = cohortBatch === "Fastrack" ? "Fastrack Package" : "Concrete Package";
+    const packageType = type || (cohortBatch === "Fastrack" ? "Fastrack Package" : "Concrete Package");
     setSelectedSubjects((prev) => [
       ...prev,
       { key, name, price, className: currentClass, packageType },
@@ -227,16 +227,13 @@ const BookYourSeat = () => {
               {!loading &&
                 !loadError &&
                 classSubjects.map((subject, index) => {
-                  const displayOldPrice =
-                    cohortBatch === "Fastrack" ? subject.fastrackOld : subject.concreteOld;
-                  const displayNewPrice =
-                    cohortBatch === "Fastrack" ? subject.fastrackActual : subject.concreteActual;
-                  const addName =
-                    cohortBatch === "Fastrack"
-                      ? subject.name + " Mock Package"
-                      : subject.name + " Full Package";
-                  const key = addName + "-" + currentClass;
-                  const isAdded = selectedSubjects.some((it) => it.key === key);
+                  const chapterAddName = subject.name + " Chapters";
+                  const chapterKey = chapterAddName + "-" + currentClass;
+                  const chapterIsAdded = selectedSubjects.some((it) => it.key === chapterKey);
+
+                  const mockAddName = subject.name + " Mocks";
+                  const mockKey = mockAddName + "-" + currentClass;
+                  const mockIsAdded = selectedSubjects.some((it) => it.key === mockKey);
 
                   return (
                     <React.Fragment key={index}>
@@ -246,17 +243,44 @@ const BookYourSeat = () => {
                             <div className="subject-info">
                               <h3>{subject.name}</h3>
                             </div>
-                            <div className="subject-price-info">
-                              <span className="old-price-bys">₹{displayOldPrice}</span>
-                              <span className="new-price-bys">₹{displayNewPrice}</span>
+                            
+                            <div className="subject-actions">
+                              {/* CHAPTERS ACTION */}
+                              <div className="action-item">
+                                <div className="action-price-info">
+                                  <span className="action-label">ALL CHAPTERS</span>
+                                  <div className="prices">
+                                    <span className="old-price-bys">₹{subject.concreteOld}</span>
+                                    <span className="new-price-bys">₹{subject.concreteActual}</span>
+                                  </div>
+                                </div>
+                                <button
+                                  className={`add-subject-btn ${chapterIsAdded ? "is-added" : ""}`}
+                                  onClick={() => addItem(chapterAddName, subject.concreteActual, "Concrete Package")}
+                                  disabled={chapterIsAdded}
+                                >
+                                  {chapterIsAdded ? "ADDED ✓" : "ADD TO CART"}
+                                </button>
+                              </div>
+
+                              {/* MOCK TESTS ACTION */}
+                              <div className="action-item">
+                                <div className="action-price-info">
+                                  <span className="action-label">MOCK TESTS</span>
+                                  <div className="prices">
+                                    <span className="old-price-bys">₹{subject.fastrackOld}</span>
+                                    <span className="new-price-bys">₹{subject.fastrackActual}</span>
+                                  </div>
+                                </div>
+                                <button
+                                  className={`add-subject-btn ${mockIsAdded ? "is-added" : ""}`}
+                                  onClick={() => addItem(mockAddName, subject.fastrackActual, "Fastrack Package")}
+                                  disabled={mockIsAdded}
+                                >
+                                  {mockIsAdded ? "ADDED ✓" : "ADD TO CART"}
+                                </button>
+                              </div>
                             </div>
-                            <button
-                              className={`add-subject-btn ${isAdded ? "is-added" : ""}`}
-                              onClick={() => addItem(addName, displayNewPrice)}
-                              disabled={isAdded}
-                            >
-                              {isAdded ? "ADDED ✓" : "ADD TO CART"}
-                            </button>
                           </div>
                         </td>
                       </tr>
@@ -265,10 +289,7 @@ const BookYourSeat = () => {
                           <div className="chapter-wrap">
                             <div className="chapter-scroll-container">
                               <div className="chapter-list">
-                                {(cohortBatch !== "Fastrack"
-                                  ? (subject.sessions || []).concat(subject.mockTests || [])
-                                  : subject.mockTests || []
-                                ).map((item, i) => (
+                                {(subject.sessions || []).concat(subject.mockTests || []).map((item, i) => (
                                   <div key={i} className="chapter-item">
                                     <span className="chapter-name">
                                       {item.chapter ? item.chapter : item.name}

@@ -24,6 +24,7 @@ body {
   color: var(--text);
   font-family: var(--font-inter);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 /* =========================
@@ -39,6 +40,7 @@ body {
   position: relative;
   max-width: 1600px;
   margin: 0 auto;
+  overflow-x: hidden;
 }
 
 .registration-wrapper.cart-empty {
@@ -189,7 +191,7 @@ body {
 
 .subject-item-container {
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   padding: 30px;
   border-bottom: 1px solid var(--border);
@@ -209,30 +211,64 @@ body {
   margin-bottom: 5px;
 }
 
-.subject-price-info {
+.subject-actions {
   display: flex;
-  flex-direction: row;
+  gap: 30px;
+  align-items: center;
+}
+
+.action-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 25px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.action-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--primary);
+}
+
+.action-price-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.action-label {
+  font-family: var(--font-bebas);
+  font-size: 14px;
+  color: var(--text-dim);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.prices {
+  display: flex;
   align-items: baseline;
-  gap: 15px;
+  gap: 12px;
 }
 
 .old-price-bys {
   font-family: var(--font-bebas);
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-dim);
   text-decoration: line-through;
 }
 
 .new-price-bys {
   font-family: var(--font-bebas);
-  font-size: 32px;
+  font-size: 24px;
   color: var(--primary);
 }
 
 .add-subject-btn {
   font-family: var(--font-bebas);
-  font-size: 20px;
-  padding: 12px 30px;
+  font-size: 18px;
+  padding: 10px 24px;
   background: var(--primary);
   color: var(--bg);
   border: none;
@@ -450,39 +486,107 @@ body {
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .registration-wrapper {
-    display: flex;
-    flex-direction: column;
-    padding-top: 120px; /* Increased to prevent navbar overlap */
+    grid-template-columns: 1fr;
   }
   
   .cart-panel {
-    width: 100%;
-    height: auto;
-    max-height: none;
     position: static;
+    max-height: none;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .registration-wrapper {
+    padding: 100px 20px 40px;
+  }
+  
+  .subject-item-container {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .subject-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .action-item {
+    justify-content: space-between;
   }
 
   .title-box h1 {
-    font-size: 50px;
+    font-size: 60px;
   }
 }
 
 @media (max-width: 768px) {
-  .subject-item-container {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .subject-price-info {
-    flex-direction: row;
-    align-items: baseline;
-    gap: 15px;
+  .title-box h1 {
+    font-size: 48px;
   }
 
   .title-box::before {
     font-size: 80px;
     top: -20px;
+  }
+
+  .class-line {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .subject-info h3 {
+    font-size: 32px;
+  }
+
+  .filter-row {
+    gap: 10px;
+  }
+
+  .filter-row span {
+    font-size: 20px;
+    padding: 4px 15px;
+  }
+
+  .filter-btn {
+    font-size: 16px;
+    padding: 6px 15px;
+  }
+
+  .action-item {
+    padding: 15px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .action-price-info {
+    flex: 1;
+  }
+
+  .add-subject-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-box h1 {
+    font-size: 40px;
+  }
+
+  .subject-info h3 {
+    font-size: 28px;
+  }
+
+  .new-price-bys {
+    font-size: 20px;
+  }
+
+  .chapter-item {
+    flex-direction: column;
+    gap: 5px;
   }
 }

@@ -172,7 +172,7 @@ const Payment = () => {
                 {selectedSubjects.map((item, index) => (
                   <div className="excel-row" key={index}>
                     <span className="subject-name">
-                      {item.name.replace(" Full Package", "").replace(" Mock Package", "")}
+                      {item.name.toUpperCase()}
                     </span>
                     <span>₹{item.price}</span>
                   </div>
