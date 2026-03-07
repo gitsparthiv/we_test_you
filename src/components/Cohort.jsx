@@ -119,24 +119,29 @@ const Cohort = () => {
 </div>
 
             <div className="division-row">
-              <div className="division-half">
-                <h3>Fastrack Division</h3>
-                <ul className="feature-list">
-                  <li>✔ Full Mock Practice</li>
-                  <li>✔ Board Pattern Simulation</li>
-                  <li>✔ Time Management Focus</li>
-                  <li>✔ Detailed Report Card</li>
-                </ul>
+              {/* ================= CLASS 10 — FASTRACK ================= */}
+<div className="division-half">
+    <h3>Fastrack Division</h3>
+    <ul className="feature-list">
+        <li>✔ Full Mock Practice</li>
+        <li>✔ Board Pattern Simulation</li>
+        <li>✔ Time Management Focus</li>
+        <li>✔ Detailed Report Card</li>
+    </ul>
 
-                <Price
-                  actual={prices["10"]?.fastrackActual || 0}
-                  old={prices["10"]?.fastrackOld || 0}
-                />
+    {/* ✅ WRAPPED IN price-group — now matches Single Subject */}
+    <div className="price-group">
+        <div className="price-label">All Subjects</div>
+        <Price
+            actual={prices["10"]?.fastrackActual || 0}
+            old={prices["10"]?.fastrackOld || 0}
+        />
+    </div>
 
-                <button onClick={() => handleRegister("10", "Fastrack")}>
-                  Register Now
-                </button>
-              </div>
+    <button onClick={() => handleRegister("10", "Fastrack")}>
+        Register Now
+    </button>
+</div>
 
               <div className="division-half">
                 <h3>Concrete Division</h3>
@@ -182,24 +187,28 @@ const Cohort = () => {
 </div>
 
             <div className="division-row">
-              <div className="division-half">
-                <h3>Fastrack Division</h3>
-                <ul className="feature-list">
-                  <li>✔ Only Full Mock Practice</li>
-                  <li>✔ Board-Level Question Patterns</li>
-                  <li>✔ Time-bound Simulation Tests</li>
-                  <li>✔ Detailed Evaluation Report</li>
-                </ul>
+              {/* ================= CLASS 11 — FASTRACK ================= */}
+<div className="division-half">
+    <h3>Fastrack Division</h3>
+    <ul className="feature-list">
+        <li>✔ Only Full Mock Practice</li>
+        <li>✔ Board-Level Question Patterns</li>
+        <li>✔ Time-bound Simulation Tests</li>
+        <li>✔ Detailed Evaluation Report</li>
+    </ul>
 
-                <Price
-                  actual={prices["11"]?.fastrackActual || 0}
-                  old={prices["11"]?.fastrackOld || 0}
-                />
+    <div className="price-group">
+        <div className="price-label">All Subjects</div>
+        <Price
+            actual={prices["11"]?.fastrackActual || 0}
+            old={prices["11"]?.fastrackOld || 0}
+        />
+    </div>
 
-                <button onClick={() => handleRegister("11", "Fastrack")}>
-                  Register Now
-                </button>
-              </div>
+    <button onClick={() => handleRegister("11", "Fastrack")}>
+        Register Now
+    </button>
+</div>
 
               <div className="division-half">
                 <h3>Concrete Division</h3>
@@ -245,24 +254,28 @@ const Cohort = () => {
 </div>
 
             <div className="division-row">
-              <div className="division-half">
-                <h3>Fastrack Division</h3>
-                <ul className="feature-list">
-                  <li>✔ Full-Length Board Mocks</li>
-                  <li>✔ Strict Exam Hall Simulation</li>
-                  <li>✔ Time Optimization Strategy</li>
-                  <li>✔ Comprehensive Performance Report</li>
-                </ul>
+             {/* ================= CLASS 12 — FASTRACK ================= */}
+<div className="division-half">
+    <h3>Fastrack Division</h3>
+    <ul className="feature-list">
+        <li>✔ Full-Length Board Mocks</li>
+        <li>✔ Strict Exam Hall Simulation</li>
+        <li>✔ Time Optimization Strategy</li>
+        <li>✔ Comprehensive Performance Report</li>
+    </ul>
 
-                <Price
-                  actual={prices["12"]?.fastrackActual || 0}
-                  old={prices["12"]?.fastrackOld || 0}
-                />
+    <div className="price-group">
+        <div className="price-label">All Subjects</div>
+        <Price
+            actual={prices["12"]?.fastrackActual || 0}
+            old={prices["12"]?.fastrackOld || 0}
+        />
+    </div>
 
-                <button onClick={() => handleRegister("12", "Fastrack")}>
-                  Register Now
-                </button>
-              </div>
+    <button onClick={() => handleRegister("12", "Fastrack")}>
+        Register Now
+    </button>
+</div>
 
               <div className="division-half">
                 <h3>Concrete Division</h3>
