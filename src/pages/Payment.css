@@ -199,7 +199,7 @@
   box-shadow:
     0 0 12px rgba(217, 255, 0, 0.4),
     inset 0 0 6px rgba(217, 255, 0, 0.2);
-  transform: translateX(-6px) scale(1.03);
+  transform: translateY(-6px) scale(1.03);
 }
 
 /* =========================
