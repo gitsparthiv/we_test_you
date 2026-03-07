@@ -22,8 +22,8 @@ const words = [
 const programs = [
   { classValue: "10", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "10", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
-  { classValue: "11", division: "Fastrack", label: "Fastrack Division", theme: "black", icon: <FaRocket /> },
-  { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
+  { classValue: "11", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
+  { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
   { classValue: "12", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
 ];

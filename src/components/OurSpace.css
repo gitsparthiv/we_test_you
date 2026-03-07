@@ -65,6 +65,15 @@
     font-family: 'Oswald', sans-serif;
 }
 
+.disclaimer-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 /* ================= TICKER ================= */
 
 .ticker {
