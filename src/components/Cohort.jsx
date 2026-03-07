@@ -129,12 +129,12 @@ const Cohort = () => {
             <div className="unified-content">
               <div className="points-grid">
                 <ul className="feature-list">
-                  <li>✔ Chapter-wise Fortnightly Concept Sprint Tests</li>
-                  <li>✔ 16 Full Syllabus "Test Drive" Mock Tests (Dec 2026)</li>
-                  <li>✔ 3 Hour Board Pattern Proctored Evaluation</li>
-                  <li>✔ Quick Evaluation with Live Explanation & Answer Keys</li>
-                  <li>✔ Easy repeat schedule for Defaulters</li>
-                  <li>✔ Tips and Traps Counselling & Performance Analysis</li>
+                  <li>✔ <strong>Chapter-wise Fortnightly</strong> Concept Sprint Tests</li>
+                  <li>✔ <strong>16 Full Syllabus</strong> "Test Drive" Mock Tests (Dec 2026)</li>
+                  <li>✔ <strong>3 Hour Board Pattern</strong> Proctored Evaluation</li>
+                  <li>✔ <strong>Quick Evaluation</strong> with <strong>Live Explanation</strong> & <strong>Answer Keys</strong></li>
+                  <li>✔ <strong>Easy repeat schedule</strong> for Defaulters</li>
+                  <li>✔ <strong>Tips and Traps Counselling</strong> & <strong>Performance Analysis</strong></li>
                 </ul>
               </div>
 
@@ -185,12 +185,12 @@ const Cohort = () => {
             <div className="unified-content">
               <div className="points-grid">
                 <ul className="feature-list">
-                  <li>✔ Comprehensive Chapter-wise Fortnightly Tests</li>
-                  <li>✔ 24 Full Syllabus "Test Drive" Mock Tests (Dec 2026)</li>
-                  <li>✔ 3 Hour Board Pattern Proctored Evaluation</li>
-                  <li>✔ Quick Evaluation with Live Explanation & Answer Keys</li>
-                  <li>✔ Easy repeat schedule for Defaulters</li>
-                  <li>✔ Multiple Dates for Same Chapter & Performance Tracking</li>
+                  <li>✔ Comprehensive <strong>Chapter-wise Fortnightly</strong> Tests</li>
+                  <li>✔ <strong>24 Full Syllabus</strong> "Test Drive" Mock Tests (Dec 2026)</li>
+                  <li>✔ <strong>3 Hour Board Pattern</strong> Proctored Evaluation</li>
+                  <li>✔ <strong>Quick Evaluation</strong> with <strong>Live Explanation</strong> & <strong>Answer Keys</strong></li>
+                  <li>✔ <strong>Easy repeat schedule</strong> for Defaulters</li>
+                  <li>✔ <strong>Multiple Dates</strong> for Same Chapter & <strong>Performance Tracking</strong></li>
                 </ul>
               </div>
 
@@ -241,12 +241,12 @@ const Cohort = () => {
             <div className="unified-content">
               <div className="points-grid">
                 <ul className="feature-list">
-                  <li>✔ Advanced Chapter-wise Competitive + Board Tests</li>
-                  <li>✔ 24 Full Syllabus "Test Drive" Mock Tests (Dec 2026)</li>
-                  <li>✔ 3 Hour Board Pattern Proctored Evaluation</li>
-                  <li>✔ Strategic Exam Mentorship & Time Optimization</li>
-                  <li>✔ Comprehensive Performance & Rank Prediction Analysis</li>
-                  <li>✔ Quick Evaluation with Live Explanation & Tips/Traps</li>
+                  <li>✔ <strong>Advanced Chapter-wise</strong> Competitive + Board Tests</li>
+                  <li>✔ <strong>24 Full Syllabus</strong> "Test Drive" Mock Tests (Dec 2026)</li>
+                  <li>✔ <strong>3 Hour Board Pattern</strong> Proctored Evaluation</li>
+                  <li>✔ <strong>Strategic Exam Mentorship</strong> & <strong>Time Optimization</strong></li>
+                  <li>✔ Comprehensive <strong>Performance & Rank Prediction</strong> Analysis</li>
+                  <li>✔ <strong>Quick Evaluation</strong> with <strong>Live Explanation</strong> & Tips/Traps</li>
                 </ul>
               </div>
 

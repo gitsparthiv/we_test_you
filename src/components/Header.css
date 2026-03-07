@@ -35,12 +35,19 @@
 }
 
 .logo {
-  color: #d8ff2f;
-  font-size: 32px;
-  letter-spacing: 1px;
-  font-weight: 800;
-  white-space: nowrap;
-  text-shadow: 0 0 15px rgba(216, 255, 47, 0.3);
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 50px; /* Adjust based on logo proportions */
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover .logo-img {
+  transform: scale(1.05);
 }
 
 .nav-right {
@@ -94,8 +101,8 @@
     padding: 12px 40px;
   }
 
-  .logo {
-    font-size: 28px;
+  .logo-img {
+    height: 40px;
   }
 
   .book-btn {
@@ -110,8 +117,8 @@
     padding: 10px 20px;
   }
 
-  .logo {
-    font-size: 24px;
+  .logo-img {
+    height: 35px;
   }
 
   .book-btn {
@@ -131,8 +138,8 @@
     padding: 8px 15px;
   }
 
-  .logo {
-    font-size: 22px;
+  .logo-img {
+    height: 30px;
   }
 
   .book-btn {

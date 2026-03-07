@@ -38,15 +38,17 @@
     padding: 80px 20px 40px;
 }
 
-.big-text {
-    font-size: clamp(80px, 18vw, 400px);
-    font-weight: 900;
-    color: #e6e6e6;
-    letter-spacing: 5px;
-    text-align: center;
-    white-space: nowrap;
-    font-family: 'Bebas Neue', sans-serif;
-    line-height: 1;
+.footer-big-image {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    object-fit: contain;
+    opacity: 1; /* Changed from 0.8 to make it clear */
+    transition: transform 0.5s ease;
+}
+
+.footer-container:hover .footer-big-image {
+    transform: scale(1.02);
 }
 
 /* ===================== BOTTOM BAR ===================== */
@@ -281,14 +283,8 @@
     }
 
     .footer-hero {
-        height: 60vh;
-        min-height: 380px;
+        min-height: 250px;
         padding: 40px 20px;
-    }
-
-    .big-text {
-        font-size: clamp(60px, 16vw, 200px);
-        letter-spacing: 4px;
     }
 
     .bottom-bar {
@@ -330,13 +326,7 @@
     }
 
     .footer-hero {
-        height: 50vh;
-        min-height: 320px;
-    }
-
-    .big-text {
-        font-size: clamp(48px, 20vw, 140px);
-        letter-spacing: 2px;
+        min-height: 200px;
     }
 
     .bottom-bar {

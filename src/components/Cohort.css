@@ -148,13 +148,18 @@
 }
 
 .feature-list li {
+    font-family: 'Inter', sans-serif;
     font-size: 14px;
     margin-bottom: 10px;
-    line-height: 1.5;
+    line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
+    letter-spacing: 0.2px;
+}
+
+.feature-list li strong {
+    font-family: 'Inter', sans-serif;
+    color: #d7ff45;
+    font-weight: 600;
 }
 
 /* ================= CARD FOOTER ================= */

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 
 import "./Footer.css";
 import { WhatsAppIcon, GmailIcon } from "./Icons";
+import footerImg from "../assets/footer_image.png";
 
 const Footer = () => {
   const [modalType, setModalType] = useState(null);
@@ -23,7 +24,7 @@ const Footer = () => {
 
       {/* Main Gradient Section */}
       <div className="footer-hero">
-        <div className="big-text">WE TEST U</div>
+        <img src={footerImg} alt="We Test U" className="footer-big-image" />
       </div>
 
       {/* Bottom Bar */}
