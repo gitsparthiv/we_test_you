@@ -190,13 +190,44 @@
 
 /* ================= RESPONSIVE ================= */
 
+@media (max-width: 1024px) {
+    .faculty-track {
+        animation-duration: 30s;
+    }
+}
+
 @media (max-width: 768px) {
-    .faculty-section { padding: 80px 0; }
+    .faculty-section { padding: 60px 0; }
     .faculty-header { margin-bottom: 40px; }
+    
+    .faculty-slider {
+        overflow-x: auto;
+        padding: 20px 20px 40px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    .faculty-slider::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .faculty-track {
+        animation: none;
+        width: max-content;
+        padding-right: 20px;
+    }
+
+    /* Hide the duplicated cards on mobile for manual scroll */
+    .faculty-track .faculty-card:nth-child(n+5) {
+        display: none;
+    }
     
     .faculty-card {
         width: 280px;
         height: 400px;
+        scroll-snap-align: center;
+        flex-shrink: 0;
     }
     
     .faculty-info { padding: 24px; }
@@ -204,9 +235,11 @@
 }
 
 @media (max-width: 480px) {
+    .faculty-section { padding: 40px 0; }
+    
     .faculty-card {
-        width: 240px;
-        height: 360px;
+        width: 260px;
+        height: 380px;
     }
     .faculty-info { padding: 20px; }
     .faculty-name { font-size: 16px; }

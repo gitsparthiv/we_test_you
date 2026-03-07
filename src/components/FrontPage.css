@@ -95,7 +95,7 @@ html, body {
     flex: 0.8;
     width: 100%;
     max-width: 420px;
-    height: 160px;
+    min-height: 170px;
     position: relative;
     display: flex;
     align-items: center;
@@ -105,6 +105,8 @@ html, body {
 .banner {
     position: absolute;
     width: 100%;
+    top: 50%;
+    left: 0;
     padding: 25px 30px;
     background: rgba(20, 20, 20, 0.6);
     backdrop-filter: blur(20px);
@@ -118,7 +120,7 @@ html, body {
     text-align: center;
     cursor: pointer;
     opacity: 0;
-    transform: translateX(30px) scale(0.95);
+    transform: translateY(-50%) translateX(30px) scale(0.95);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.05);
@@ -126,7 +128,7 @@ html, body {
 
 .banner.show {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    transform: translateY(-50%) translateX(0) scale(1);
 }
 
 .banner-title {
@@ -161,7 +163,7 @@ html, body {
 }
 
 .banner.clickable:hover {
-    transform: scale(1.03);
+    transform: translateY(-50%) scale(1.03);
     box-shadow: 0 0 25px rgba(216, 255, 47, 0.35);
 }
 
@@ -208,7 +210,7 @@ html, body {
     position: relative;
     z-index: 2;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(6, 1fr);
     gap: 12px;
     padding: 0 5%;
     width: 100%;
@@ -382,19 +384,11 @@ html, body {
    RESPONSIVE — LARGEST → SMALLEST
    ==================================================== */
 
-/* ================= < 1200px (SMALL LAPTOP) ================= */
+/* ================= < 1400px (SMALL DESKTOP) ================= */
 
-@media (max-width: 1200px) {
-    .top-section {
-        padding: 90px 40px 0;
-    }
-
+@media (max-width: 1400px) {
     .program-grid {
-        padding: 0 40px;
-    }
-
-    .features-section {
-        padding: 5px 40px 15px;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -404,76 +398,95 @@ html, body {
     .main-container {
         height: auto;
         min-height: 100vh;
-        overflow: auto;
+        overflow-y: auto;
+        justify-content: flex-start;
+        padding-bottom: 30px;
+    }
+
+    .top-section {
+        padding: 100px 5% 20px;
+        flex: none;
+        min-height: auto;
     }
 
     .hero-wrapper {
         flex-direction: column;
         text-align: center;
-        gap: 40px;
+        gap: 35px;
     }
 
     .hero-content {
-        max-width: 800px;
+        max-width: 700px;
     }
 
     .hero-content p {
-        margin: 16px auto 0;
+        margin: 12px auto 0;
+        max-width: 500px;
     }
 
     .hero-banners {
         justify-content: center;
-        max-width: 100%;
+        max-width: 400px;
+        min-height: 155px;
         margin: 0 auto;
     }
 
     .program-grid {
         grid-template-columns: repeat(3, 1fr);
-        margin-top: 30px;
+        margin-top: 25px;
+        gap: 12px;
     }
 
-    .feature-slide {
-        width: 240px;
-        height: 160px;
+    .program-card {
+        height: 125px;
     }
 
-    /* Show CTA on touch devices */
+    .features-section {
+        padding: 15px 5% 30px;
+    }
+
     .banner-cta {
         opacity: 1;
     }
 }
 
-/* ================= < 768px (TABLET PORTRAIT) ================= */
+/* ================= < 768px (iPAD MINI) ================= */
 
 @media (max-width: 768px) {
     .top-section {
-        padding: 90px 25px 0;
+        padding: 90px 5% 15px;
+    }
+
+    .hero-wrapper {
+        gap: 30px;
     }
 
     .top-text {
-        font-size: clamp(26px, 7vw, 42px);
+        font-size: clamp(22px, 5.5vw, 36px);
     }
 
     .typing-line {
-        min-height: 46px;
-        font-size: clamp(26px, 7vw, 42px);
+        min-height: 40px;
+        font-size: clamp(22px, 5.5vw, 36px);
     }
 
     .hero-content p {
         font-size: 15px;
+        line-height: 1.5;
     }
 
     .hero-banners {
-        max-width: 380px;
-        height: 150px;
+        max-width: 360px;
+        min-height: 140px;
     }
 
     .banner {
-        padding: 22px 24px;
+        padding: 20px 22px;
+        border-radius: 18px;
     }
 
     .banner-title {
-        font-size: 20px;
+        font-size: 19px;
         margin-bottom: 5px;
     }
 
@@ -487,14 +500,15 @@ html, body {
     }
 
     .program-grid {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 0 25px;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 0 5%;
         gap: 10px;
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     .program-card {
-        height: 120px;
+        height: 115px;
+        border-radius: 16px;
     }
 
     .program-content {
@@ -502,20 +516,16 @@ html, body {
     }
 
     .program-icon {
-        font-size: 24px;
-        margin-bottom: 6px;
+        font-size: 22px;
+        margin-bottom: 5px;
     }
 
     .program-card h3 {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     .program-card p {
         font-size: 11px;
-    }
-
-    .features-section {
-        padding: 5px 20px 20px;
     }
 
     .feature-slide {
@@ -526,17 +536,21 @@ html, body {
     .features-track {
         gap: 16px;
     }
+
+    .features-section {
+        padding: 10px 4% 25px;
+    }
 }
 
-/* ================= < 480px (MOBILE) ================= */
+/* ================= < 480px (iPHONE 14 PRO MAX) ================= */
 
 @media (max-width: 480px) {
     .top-section {
-        padding: 85px 18px 0;
+        padding: 80px 18px 10px;
     }
 
     .hero-wrapper {
-        gap: 28px;
+        gap: 24px;
     }
 
     .hero-content {
@@ -545,46 +559,60 @@ html, body {
     }
 
     .hero-content p {
-        font-size: 14px;
-        margin: 10px 0 0;
+        font-size: 13.5px;
+        margin: 8px 0 0;
+        max-width: 100%;
+    }
+
+    .top-text {
+        font-size: clamp(20px, 6vw, 30px);
+    }
+
+    .typing-line {
+        min-height: 34px;
+        font-size: clamp(20px, 6vw, 30px);
+    }
+
+    .typing {
+        border-right-width: 3px;
     }
 
     .hero-banners {
         max-width: 100%;
-        height: 145px;
+        min-height: 125px;
         margin: 0 auto;
     }
 
     .banner {
-        padding: 20px 18px;
-        border-radius: 16px;
+        padding: 16px 14px;
+        border-radius: 14px;
     }
 
     .banner-title {
-        font-size: 17px;
-        margin-bottom: 5px;
+        font-size: 16px;
+        margin-bottom: 4px;
         letter-spacing: 0.5px;
     }
 
     .banner-highlight {
-        font-size: 26px;
+        font-size: 25px;
     }
 
     .banner-cta {
-        font-size: 11px;
-        margin-top: 6px;
+        font-size: 10.5px;
+        margin-top: 4px;
         opacity: 1;
     }
 
     .program-grid {
-        padding: 0 18px;
         grid-template-columns: repeat(2, 1fr);
+        padding: 0 18px;
         gap: 8px;
-        margin-top: 20px;
+        margin-top: 18px;
     }
 
     .program-card {
-        height: 105px;
+        height: 100px;
         border-radius: 14px;
     }
 
@@ -598,7 +626,7 @@ html, body {
     }
 
     .program-card h3 {
-        font-size: 14px;
+        font-size: 13px;
     }
 
     .program-card p {
@@ -606,38 +634,46 @@ html, body {
     }
 
     .features-section {
-        padding: 5px 14px 15px;
+        padding: 8px 14px 20px;
     }
 
     .feature-slide {
-        width: 200px;
-        height: 140px;
+        width: 180px;
+        height: 125px;
     }
 
     .features-track {
-        gap: 14px;
-        animation-duration: 18s;
+        gap: 12px;
+        animation-duration: 20s;
     }
 }
 
-/* ================= < 360px (GALAXY FOLD / TINY) ================= */
+/* ================= < 414px (GALAXY S20 ULTRA / PIXEL 7) ================= */
 
-@media (max-width: 360px) {
+@media (max-width: 414px) {
     .top-section {
-        padding: 80px 14px 0;
+        padding: 78px 16px 10px;
     }
 
-    .hero-wrapper {
-        gap: 22px;
+    .top-text {
+        font-size: 24px;
+    }
+
+    .typing-line {
+        min-height: 32px;
+        font-size: 24px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
     }
 
     .hero-banners {
-        height: 135px;
+        min-height: 118px;
     }
 
     .banner {
-        padding: 16px 14px;
-        border-radius: 14px;
+        padding: 14px 12px;
     }
 
     .banner-title {
@@ -645,22 +681,16 @@ html, body {
     }
 
     .banner-highlight {
-        font-size: 22px;
+        font-size: 23px;
     }
 
     .program-grid {
-        padding: 0 14px;
-        gap: 6px;
-        margin-top: 16px;
+        padding: 0 16px;
+        gap: 8px;
     }
 
     .program-card {
         height: 95px;
-        border-radius: 12px;
-    }
-
-    .program-content {
-        padding: 8px;
     }
 
     .program-icon {
@@ -669,24 +699,200 @@ html, body {
     }
 
     .program-card h3 {
-        font-size: 13px;
+        font-size: 12.5px;
+    }
+
+    .program-card p {
+        font-size: 9.5px;
+    }
+
+    .feature-slide {
+        width: 165px;
+        height: 115px;
+    }
+
+    .features-track {
+        gap: 10px;
+        animation-duration: 18s;
+    }
+}
+
+/* ================= < 393px (iPHONE 12 PRO) ================= */
+
+@media (max-width: 393px) {
+    .top-section {
+        padding: 75px 14px 8px;
+    }
+
+    .hero-wrapper {
+        gap: 20px;
+    }
+
+    .top-text {
+        font-size: 22px;
+        letter-spacing: -0.5px;
+    }
+
+    .typing-line {
+        min-height: 30px;
+        font-size: 22px;
+    }
+
+    .hero-content p {
+        font-size: 12.5px;
+        line-height: 1.45;
+    }
+
+    .hero-banners {
+        min-height: 112px;
+    }
+
+    .banner {
+        padding: 12px 10px;
+        border-radius: 12px;
+    }
+
+    .banner-title {
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .banner-highlight {
+        font-size: 21px;
+    }
+
+    .banner-cta {
+        font-size: 10px;
+        margin-top: 3px;
+    }
+
+    .program-grid {
+        padding: 0 14px;
+        gap: 7px;
+        margin-top: 15px;
+    }
+
+    .program-card {
+        height: 90px;
+        border-radius: 12px;
+    }
+
+    .program-content {
+        padding: 8px;
+    }
+
+    .program-icon {
+        font-size: 17px;
+        margin-bottom: 2px;
+    }
+
+    .program-card h3 {
+        font-size: 12px;
     }
 
     .program-card p {
         font-size: 9px;
     }
 
+    .features-section {
+        padding: 6px 12px 18px;
+    }
+
     .feature-slide {
-        width: 160px;
-        height: 110px;
+        width: 150px;
+        height: 105px;
     }
 
     .features-track {
-        gap: 10px;
-        animation-duration: 14s;
+        gap: 8px;
+        animation-duration: 16s;
+    }
+}
+
+/* ================= < 360px (GALAXY FOLD / TINY) ================= */
+
+@media (max-width: 360px) {
+    .top-section {
+        padding: 72px 12px 6px;
+    }
+
+    .hero-wrapper {
+        gap: 16px;
+    }
+
+    .top-text {
+        font-size: 20px;
+    }
+
+    .typing-line {
+        min-height: 28px;
+        font-size: 20px;
+    }
+
+    .hero-content p {
+        font-size: 12px;
+    }
+
+    .hero-banners {
+        min-height: 105px;
+    }
+
+    .banner {
+        padding: 10px 8px;
+        border-radius: 10px;
+    }
+
+    .banner-title {
+        font-size: 13px;
+    }
+
+    .banner-highlight {
+        font-size: 19px;
+    }
+
+    .banner-cta {
+        font-size: 9px;
+    }
+
+    .program-grid {
+        padding: 0 12px;
+        gap: 6px;
+        margin-top: 12px;
+    }
+
+    .program-card {
+        height: 82px;
+        border-radius: 10px;
+    }
+
+    .program-content {
+        padding: 6px;
+    }
+
+    .program-icon {
+        font-size: 15px;
+        margin-bottom: 2px;
+    }
+
+    .program-card h3 {
+        font-size: 11px;
+    }
+
+    .program-card p {
+        font-size: 8px;
     }
 
     .features-section {
-        padding: 5px 10px 12px;
+        padding: 4px 10px 14px;
+    }
+
+    .feature-slide {
+        width: 130px;
+        height: 90px;
+    }
+
+    .features-track {
+        gap: 6px;
+        animation-duration: 14s;
     }
 }
