@@ -3,6 +3,9 @@
     background: black;
     position: relative;
     color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ===================== TOP BAR ===================== */
@@ -25,8 +28,7 @@
 /* ===================== HERO SECTION ===================== */
 
 .footer-hero {
-    height: 80vh;
-    min-height: 500px;
+    flex: 1;
     background: linear-gradient(to bottom, #000000, #7a1e00, #c94b00);
     display: flex;
     align-items: center;
