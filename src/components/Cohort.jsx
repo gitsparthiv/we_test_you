@@ -112,65 +112,55 @@ const Cohort = () => {
         <div className="card">
           <img src={img1} alt="Class 10" />
           <div className="overlay">
-            <h2>CLASS 10</h2>
-            <div className="class-starting-price">
-  <span className="starting-text">Starts as low as</span> 
-  <span className="starting-price">₹{prices["10"]?.singleActual || 0}</span>
-</div>
+            <div className="card-header">
+              <h2>CLASS 10 (For 2027)</h2>
+              <div className="class-starting-price">
+                <span className="starting-text">Starts as low as</span> 
+                <span className="starting-price">₹{prices["10"]?.singleActual || 0}</span>
+              </div>
+            </div>
 
-            <div className="division-row">
-              {/* ================= CLASS 10 — FASTRACK ================= */}
-<div className="division-half">
-    <h3>Fastrack Division</h3>
-    <ul className="feature-list">
-        <li>✔ Full Mock Practice</li>
-        <li>✔ Board Pattern Simulation</li>
-        <li>✔ Time Management Focus</li>
-        <li>✔ Detailed Report Card</li>
-    </ul>
+            <div className="subject-pills">
+              <span>Science</span>
+              <span>Mathematics</span>
+              <span>English</span>
+            </div>
 
-    {/* ✅ WRAPPED IN price-group — now matches Single Subject */}
-    <div className="price-group">
-        <div className="price-label">All Subjects</div>
-        <Price
-            actual={prices["10"]?.fastrackActual || 0}
-            old={prices["10"]?.fastrackOld || 0}
-        />
-    </div>
-
-    <button onClick={() => handleRegister("10", "Fastrack")}>
-        Register Now
-    </button>
-</div>
-
-              <div className="division-half">
-                <h3>Concrete Division</h3>
+            <div className="unified-content">
+              <div className="points-grid">
                 <ul className="feature-list">
-                  <li>✔ Chapter-wise Testing</li>
-                  <li>✔ Full-Length Mock Exams</li>
-                  <li>✔ Performance Analytics</li>
-                  <li>✔ Exam Strategy Guidance</li>
+                  <li>✔ <strong>Chapter-wise Fortnightly</strong> Concept Sprint Tests</li>
+                  <li>✔ <strong>16 Full Syllabus</strong> "Test Drive" Mock Tests (Dec 2026)</li>
+                  <li>✔ <strong>3 Hour Board Pattern</strong> Proctored Evaluation</li>
+                  <li>✔ <strong>Quick Evaluation</strong> with <strong>Live Explanation</strong> & <strong>Answer Keys</strong></li>
+                  <li>✔ <strong>Easy repeat schedule</strong> for Defaulters</li>
+                  <li>✔ <strong>Tips and Traps Counselling</strong> & <strong>Performance Analysis</strong></li>
                 </ul>
+              </div>
 
-                <div className="price-group">
-                  <div className="price-label">Single Subject</div>
-                  <Price
-                    actual={prices["10"]?.singleActual || 0}
-                    old={prices["10"]?.singleOld || 0}
-                  />
+              <div className="card-footer">
+                <div className="pricing-container">
+                  <div className="price-item">
+                    <span className="price-label">Single Subject</span>
+                    <Price
+                      actual={prices["10"]?.singleActual || 0}
+                      old={prices["10"]?.singleOld || 0}
+                    />
+                  </div>
+                  <div className="price-item">
+                    <span className="price-label">Full Package</span>
+                    <Price
+                      actual={prices["10"]?.allActual || 0}
+                      old={prices["10"]?.allOld || 0}
+                    />
+                  </div>
                 </div>
-
-                <div className="price-group bundle-group">
-                  <div className="price-label">All Subjects</div>
-                  <Price
-                    actual={prices["10"]?.allActual || 0}
-                    old={prices["10"]?.allOld || 0}
-                  />
-                </div>
-
-                <button onClick={() => handleRegister("10", "Concrete")}>
+                <button className="register-btn" onClick={() => handleRegister("10", "Concrete")}>
                   Register Now
                 </button>
+              </div>
+              <div className="card-disclaimer">
+                * These are just test conduction charges and not tutorial classes
               </div>
             </div>
           </div>
@@ -180,64 +170,56 @@ const Cohort = () => {
         <div className="card">
           <img src={img2} alt="Class 11" />
           <div className="overlay">
-            <h2>CLASS 11</h2>
-            <div className="class-starting-price">
-  <span className="starting-text">Starts as low as</span> 
-  <span className="starting-price">₹{prices["11"]?.singleActual || 0}</span>
-</div>
+            <div className="card-header">
+              <h2>CLASS 11 (For 2027)</h2>
+              <div className="class-starting-price">
+                <span className="starting-text">Starts as low as</span> 
+                <span className="starting-price">₹{prices["11"]?.singleActual || 0}</span>
+              </div>
+            </div>
 
-            <div className="division-row">
-              {/* ================= CLASS 11 — FASTRACK ================= */}
-<div className="division-half">
-    <h3>Fastrack Division</h3>
-    <ul className="feature-list">
-        <li>✔ Only Full Mock Practice</li>
-        <li>✔ Board-Level Question Patterns</li>
-        <li>✔ Time-bound Simulation Tests</li>
-        <li>✔ Detailed Evaluation Report</li>
-    </ul>
+            <div className="subject-pills">
+              <span>Physics</span>
+              <span>Chemistry</span>
+              <span>Mathematics</span>
+              <span>English</span>
+            </div>
 
-    <div className="price-group">
-        <div className="price-label">All Subjects</div>
-        <Price
-            actual={prices["11"]?.fastrackActual || 0}
-            old={prices["11"]?.fastrackOld || 0}
-        />
-    </div>
-
-    <button onClick={() => handleRegister("11", "Fastrack")}>
-        Register Now
-    </button>
-</div>
-
-              <div className="division-half">
-                <h3>Concrete Division</h3>
+            <div className="unified-content">
+              <div className="points-grid">
                 <ul className="feature-list">
-                  <li>✔ Subject-wise Deep Testing</li>
-                  <li>✔ Monthly Full Mock Exams</li>
-                  <li>✔ Concept Reinforcement Focus</li>
-                  <li>✔ Performance Tracking Dashboard</li>
+                  <li>✔ Comprehensive <strong>Chapter-wise Fortnightly</strong> Tests</li>
+                  <li>✔ <strong>24 Full Syllabus</strong> "Test Drive" Mock Tests (Dec 2026)</li>
+                  <li>✔ <strong>3 Hour Board Pattern</strong> Proctored Evaluation</li>
+                  <li>✔ <strong>Quick Evaluation</strong> with <strong>Live Explanation</strong> & <strong>Answer Keys</strong></li>
+                  <li>✔ <strong>Easy repeat schedule</strong> for Defaulters</li>
+                  <li>✔ <strong>Multiple Dates</strong> for Same Chapter & <strong>Performance Tracking</strong></li>
                 </ul>
+              </div>
 
-                <div className="price-group">
-                  <div className="price-label">Single Subject</div>
-                  <Price
-                    actual={prices["11"]?.singleActual || 0}
-                    old={prices["11"]?.singleOld || 0}
-                  />
+              <div className="card-footer">
+                <div className="pricing-container">
+                  <div className="price-item">
+                    <span className="price-label">Single Subject</span>
+                    <Price
+                      actual={prices["11"]?.singleActual || 0}
+                      old={prices["11"]?.singleOld || 0}
+                    />
+                  </div>
+                  <div className="price-item">
+                    <span className="price-label">Full Package</span>
+                    <Price
+                      actual={prices["11"]?.allActual || 0}
+                      old={prices["11"]?.allOld || 0}
+                    />
+                  </div>
                 </div>
-
-                <div className="price-group bundle-group">
-                  <div className="price-label">All Subjects</div>
-                  <Price
-                    actual={prices["11"]?.allActual || 0}
-                    old={prices["11"]?.allOld || 0}
-                  />
-                </div>
-
-                <button onClick={() => handleRegister("11", "Concrete")}>
+                <button className="register-btn" onClick={() => handleRegister("11", "Concrete")}>
                   Register Now
                 </button>
+              </div>
+              <div className="card-disclaimer">
+                * These are just test conduction charges and not tutorial classes
               </div>
             </div>
           </div>
@@ -247,64 +229,56 @@ const Cohort = () => {
         <div className="card">
           <img src={img3} alt="Class 12" />
           <div className="overlay">
-            <h2>CLASS 12</h2>
-            <div className="class-starting-price">
-  <span className="starting-text">Starts as low as</span> 
-  <span className="starting-price">₹{prices["12"]?.singleActual || 0}</span>
-</div>
+            <div className="card-header">
+              <h2>CLASS 12 (For 2027)</h2>
+              <div className="class-starting-price">
+                <span className="starting-text">Starts as low as</span> 
+                <span className="starting-price">₹{prices["12"]?.singleActual || 0}</span>
+              </div>
+            </div>
 
-            <div className="division-row">
-             {/* ================= CLASS 12 — FASTRACK ================= */}
-<div className="division-half">
-    <h3>Fastrack Division</h3>
-    <ul className="feature-list">
-        <li>✔ Full-Length Board Mocks</li>
-        <li>✔ Strict Exam Hall Simulation</li>
-        <li>✔ Time Optimization Strategy</li>
-        <li>✔ Comprehensive Performance Report</li>
-    </ul>
+            <div className="subject-pills">
+              <span>Physics</span>
+              <span>Chemistry</span>
+              <span>Mathematics</span>
+              <span>English</span>
+            </div>
 
-    <div className="price-group">
-        <div className="price-label">All Subjects</div>
-        <Price
-            actual={prices["12"]?.fastrackActual || 0}
-            old={prices["12"]?.fastrackOld || 0}
-        />
-    </div>
-
-    <button onClick={() => handleRegister("12", "Fastrack")}>
-        Register Now
-    </button>
-</div>
-
-              <div className="division-half">
-                <h3>Concrete Division</h3>
+            <div className="unified-content">
+              <div className="points-grid">
                 <ul className="feature-list">
-                  <li>✔ Advanced Chapter-wise Tests</li>
-                  <li>✔ Competitive + Board Pattern</li>
-                  <li>✔ Rank Prediction Analysis</li>
-                  <li>✔ Strategic Exam Mentorship</li>
+                  <li>✔ <strong>Advanced Chapter-wise</strong> Competitive + Board Tests</li>
+                  <li>✔ <strong>24 Full Syllabus</strong> "Test Drive" Mock Tests (Dec 2026)</li>
+                  <li>✔ <strong>3 Hour Board Pattern</strong> Proctored Evaluation</li>
+                  <li>✔ <strong>Strategic Exam Mentorship</strong> & <strong>Time Optimization</strong></li>
+                  <li>✔ Comprehensive <strong>Performance & Rank Prediction</strong> Analysis</li>
+                  <li>✔ <strong>Quick Evaluation</strong> with <strong>Live Explanation</strong> & Tips/Traps</li>
                 </ul>
+              </div>
 
-                <div className="price-group">
-                  <div className="price-label">Single Subject</div>
-                  <Price
-                    actual={prices["12"]?.singleActual || 0}
-                    old={prices["12"]?.singleOld || 0}
-                  />
+              <div className="card-footer">
+                <div className="pricing-container">
+                  <div className="price-item">
+                    <span className="price-label">Single Subject</span>
+                    <Price
+                      actual={prices["12"]?.singleActual || 0}
+                      old={prices["12"]?.singleOld || 0}
+                    />
+                  </div>
+                  <div className="price-item">
+                    <span className="price-label">Full Package</span>
+                    <Price
+                      actual={prices["12"]?.allActual || 0}
+                      old={prices["12"]?.allOld || 0}
+                    />
+                  </div>
                 </div>
-
-                <div className="price-group bundle-group">
-                  <div className="price-label">All Subjects</div>
-                  <Price
-                    actual={prices["12"]?.allActual || 0}
-                    old={prices["12"]?.allOld || 0}
-                  />
-                </div>
-
-                <button onClick={() => handleRegister("12", "Concrete")}>
+                <button className="register-btn" onClick={() => handleRegister("12", "Concrete")}>
                   Register Now
                 </button>
+              </div>
+              <div className="card-disclaimer">
+                * These are just test conduction charges and not tutorial classes
               </div>
             </div>
           </div>

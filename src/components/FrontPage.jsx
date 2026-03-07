@@ -22,8 +22,8 @@ const words = [
 const programs = [
   { classValue: "10", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "10", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
-  { classValue: "11", division: "Fastrack", label: "Fastrack Division", theme: "black", icon: <FaRocket /> },
-  { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "black", icon: <FaLayerGroup /> },
+  { classValue: "11", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
+  { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
   { classValue: "12", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
   { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
 ];
@@ -113,8 +113,8 @@ const FrontPage = () => {
               <span className="typing">{displayText}</span>
             </div>
             <p>
-              Structured offline mock examinations for CBSE Classes 10, 11 & 12
-              in a real board-style environment.
+              Experience the real board atmosphere with our structured subject-wise 
+              offline mock examinations for CBSE Classes 10, 11 & 12.
             </p>
           </div>
 
@@ -125,8 +125,8 @@ const FrontPage = () => {
               onClick={scrollToCohorts}
             >
               <div className="banner-title">INAUGURATION OFFER</div>
-              <div className="banner-highlight">Starting @ ₹2990</div>
-              <div className="banner-cta">View Cohorts ↓</div>
+              <div className="banner-highlight">Starting @ ₹2000</div>
+              <div className="banner-cta">Explore Cohorts <span className="arrow">→</span></div>
             </div>
 
             <div
@@ -134,10 +134,10 @@ const FrontPage = () => {
               onClick={scrollToCohorts}
             >
               <div className="banner-title">
-                Focused on <span className="cbse-blink">CBSE</span> Classes
+                FOCUSED ON <span className="cbse-blink">CBSE</span> BOARD
               </div>
-              <div className="banner-highlight">10 • 11 • 12</div>
-              <div className="banner-cta">View Cohorts ↓</div>
+              <div className="banner-highlight">CLASSES 10, 11, 12</div>
+              <div className="banner-cta">Explore Cohorts <span className="arrow">→</span></div>
             </div>
           </div>
 

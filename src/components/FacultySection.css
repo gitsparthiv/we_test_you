@@ -1,114 +1,247 @@
 /* ================= FACULTY SECTION ================= */
 
 .faculty-section {
-    background: #000;
+    background-color: #000;
     padding: 80px 0;
     overflow: hidden;
     position: relative;
-  }
-  
-  .faculty-title {
-    text-align: center;
-    font-size: 60px;
-    color: #d7ff45;
-    margin-bottom: 50px;
-  }
-  
-  /* ================= SLIDER ================= */
-  
-  .faculty-slider {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    border-top: 1px solid rgba(215, 255, 69, 0.1);
+}
+
+.faculty-container {
+    max-width: 1400px;
+    margin: 0 auto;
     position: relative;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  .faculty-track {
+}
+
+/* ================= HEADER ================= */
+
+.faculty-header {
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.faculty-subtitle {
+    display: block;
+    color: #d7ff45;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.faculty-title {
+    font-size: clamp(32px, 5vw, 64px);
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin: 0;
+}
+
+.title-underline {
+    width: 60px;
+    height: 4px;
+    background: #d7ff45;
+    margin: 24px auto 0;
+    border-radius: 2px;
+}
+
+/* ================= SLIDER ================= */
+
+.faculty-slider {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0 40px;
+}
+
+.faculty-track {
     display: flex;
     gap: 30px;
-    animation: scrollFaculty 25s linear infinite;
-  }
-  
-  /* Infinite Scroll Animation */
-  
-  @keyframes scrollFaculty {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-  
-  /* ================= CARD ================= */
-  
-  .faculty-card {
-    min-width: 280px;
-    height: 360px;
-  
-    background: linear-gradient(145deg, #111, #000);
-    border: 2px solid #d7ff45;
-    border-radius: 18px;
-  
+    animation: scrollFaculty 40s linear infinite;
+    width: max-content;
+}
+
+.faculty-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollFaculty {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); }
+}
+
+/* ================= CARD ================= */
+
+.faculty-card {
+    width: 320px;
+    height: 460px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 32px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
-  
-    transition: 0.3s ease;
-  }
-  
-  .faculty-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 0 25px rgba(215, 255, 69, 0.3);
-  }
-  
-  /* ================= IMAGE AREA ================= */
-  
-  .faculty-image {
-    height: 60%;
-    background: #111;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .image-placeholder {
-    width: 80%;
-    height: 80%;
-    border: 2px dashed #d7ff45;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #d7ff45;
-    font-weight: 600;
-  }
-  
-  /* ================= INFO AREA ================= */
-  
-  .faculty-info {
-    padding: 20px;
-    text-align: center;
-    color: white;
-  }
-  
-  .faculty-info h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-  }
-  
-  .faculty-info p {
-    font-size: 15px;
-    color: #d7ff45;
-    margin-bottom: 6px;
-  }
-  
-  .faculty-info span {
-    font-size: 14px;
-    opacity: 0.8;
-  }
-  .faculty-image img {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.faculty-card:hover {
+    transform: translateY(-15px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(215, 255, 69, 0.4);
+    box-shadow: 0 25px 50px -12px rgba(215, 255, 69, 0.2);
+}
+
+/* ================= IMAGE AREA ================= */
+
+.faculty-image-wrapper {
+    height: 65%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.faculty-image {
+    width: 100%;
+    height: 100%;
+}
+
+.faculty-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
+    transition: transform 0.8s ease;
+    filter: grayscale(0.2);
+}
+
+.faculty-card:hover .faculty-image img {
+    transform: scale(1.1);
+    filter: grayscale(0);
+}
+
+.faculty-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+/* ================= INFO AREA ================= */
+
+.faculty-info {
+    padding: 30px;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.faculty-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.2;
+    letter-spacing: 0.2px;
+}
+
+.faculty-subject {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #d7ff45;
+    font-weight: 500;
+    margin-bottom: 16px;
+    opacity: 0.9;
+    line-height: 1.6;
+    letter-spacing: 0.3px;
+}
+
+.faculty-experience {
+    margin-top: auto;
+}
+
+.exp-badge {
+    font-family: 'Inter', sans-serif;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.faculty-card:hover .exp-badge {
+    background: rgba(215, 255, 69, 0.1);
+    color: #d7ff45;
+    border-color: rgba(215, 255, 69, 0.2);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+    .faculty-track {
+        animation-duration: 30s;
+    }
+}
+
+@media (max-width: 768px) {
+    .faculty-section { padding: 60px 0; }
+    .faculty-header { margin-bottom: 40px; }
+    
+    .faculty-slider {
+        overflow-x: auto;
+        padding: 20px 20px 40px;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+
+    .faculty-slider::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+    }
+
+    .faculty-track {
+        animation: none;
+        width: max-content;
+        padding-right: 20px;
+    }
+
+    /* Hide the duplicated cards on mobile for manual scroll */
+    .faculty-track .faculty-card:nth-child(n+5) {
+        display: none;
+    }
+    
+    .faculty-card {
+        width: 280px;
+        height: 400px;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+    }
+    
+    .faculty-info { padding: 24px; }
+    .faculty-name { font-size: 18px; }
+}
+
+@media (max-width: 480px) {
+    .faculty-section { padding: 40px 0; }
+    
+    .faculty-card {
+        width: 260px;
+        height: 380px;
+    }
+    .faculty-info { padding: 20px; }
+    .faculty-name { font-size: 16px; }
+    .faculty-subject { font-size: 12px; }
+}

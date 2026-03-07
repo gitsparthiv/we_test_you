@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Header.css";
+import logo from "../assets/logo.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -73,7 +74,7 @@ useEffect(() => {
         onClick={handleLogoClick}
         style={{ cursor: "pointer" }}
       >
-        WeTestU
+        <img src={logo} alt="WeTestU Logo" className="logo-img" />
       </div>
 
       <div className="nav-right">
