@@ -161,14 +161,18 @@ const FrontPage = () => {
         ))}
       </div>
 
-      {/* ================= FEATURES ================= */}
-      <div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
-        {features.map((img, index) => (
-          <div key={index} className="feature-card">
-            <img src={img} alt={`feature-${index}`} />
-          </div>
-        ))}
-      </div>
+     {/* ================= FEATURES CAROUSEL ================= */}
+<div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
+  <div className="features-carousel">
+    <div className="features-track">
+      {[...features, ...features].map((img, index) => (
+        <div key={index} className="feature-slide">
+          <img src={img} alt={`feature-${index}`} />
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
 
     </div>
   );
