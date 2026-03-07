@@ -121,7 +121,7 @@ const Cohort = () => {
             <div className="division-row">
               {/* ================= CLASS 10 — FASTRACK ================= */}
 <div className="division-half">
-    <h3>Fastrack Division</h3>
+    <h3>Test Drive</h3>
     <ul className="feature-list">
         <li>✔ Full Mock Practice</li>
         <li>✔ Board Pattern Simulation</li>
@@ -144,7 +144,7 @@ const Cohort = () => {
 </div>
 
               <div className="division-half">
-                <h3>Concrete Division</h3>
+                <h3>Concept Sprint </h3>
                 <ul className="feature-list">
                   <li>✔ Chapter-wise Testing</li>
                   <li>✔ Full-Length Mock Exams</li>
@@ -157,7 +157,7 @@ const Cohort = () => {
                   <Price
                     actual={prices["10"]?.singleActual || 0}
                     old={prices["10"]?.singleOld || 0}
-                  />
+                  />Concept Sprint
                 </div>
 
                 <div className="price-group bundle-group">
@@ -211,7 +211,7 @@ const Cohort = () => {
 </div>
 
               <div className="division-half">
-                <h3>Concrete Division</h3>
+                <h3>Concept Sprint </h3>
                 <ul className="feature-list">
                   <li>✔ Subject-wise Deep Testing</li>
                   <li>✔ Monthly Full Mock Exams</li>
@@ -278,7 +278,7 @@ const Cohort = () => {
 </div>
 
               <div className="division-half">
-                <h3>Concrete Division</h3>
+                <h3>Concept Sprint</h3>
                 <ul className="feature-list">
                   <li>✔ Advanced Chapter-wise Tests</li>
                   <li>✔ Competitive + Board Pattern</li>

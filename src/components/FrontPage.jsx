@@ -113,7 +113,7 @@ const FrontPage = () => {
               <span className="typing">{displayText}</span>
             </div>
             <p>
-              Structured offline mock examinations for CBSE Classes 10, 11 & 12
+              Structured offline subject-wise mock examinations for CBSE Classes 10, 11 & 12
               in a real board-style environment.
             </p>
           </div>
@@ -134,7 +134,7 @@ const FrontPage = () => {
               onClick={scrollToCohorts}
             >
               <div className="banner-title">
-                Focused on <span className="cbse-blink">CBSE</span> Classes
+                Focused on <span className="cbse-blink">CBSE</span> BOARD FOR
               </div>
               <div className="banner-highlight">10 • 11 • 12</div>
               <div className="banner-cta">View Cohorts ↓</div>
