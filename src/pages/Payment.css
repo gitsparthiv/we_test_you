@@ -41,7 +41,6 @@
 .subject,
 .grandtotal,
 .subtotal {
-  font-family: "Bebas Neue", cursive;
   font-size: 22px;
   letter-spacing: 2px;
   color: #d9ff00;
@@ -49,7 +48,6 @@
 
 .subject-name,
 .discount {
-  font-family: "Bebas Neue", cursive;
   font-size: 18px;
   letter-spacing: 2px;
 }
@@ -65,7 +63,6 @@
   border-radius: 20px;
   border: 1px solid #444;
 
-  font-family: "Bebas Neue", cursive;
   font-size: 26px;
   letter-spacing: 2px;
   text-align: center;
@@ -176,7 +173,6 @@
   border: 1.5px solid rgba(217, 255, 0, 0.7);
   border-radius: 12px;
 
-  font-family: "Bebas Neue", cursive;
   font-size: 20px;
   letter-spacing: 1px;
   cursor: pointer;

@@ -159,6 +159,9 @@ const Cohort = () => {
                   Register Now
                 </button>
               </div>
+              <div className="card-disclaimer">
+                * These are just test conduction charges and not tutorial classes
+              </div>
             </div>
           </div>
         </div>
@@ -215,6 +218,9 @@ const Cohort = () => {
                   Register Now
                 </button>
               </div>
+              <div className="card-disclaimer">
+                * These are just test conduction charges and not tutorial classes
+              </div>
             </div>
           </div>
         </div>
@@ -270,6 +276,9 @@ const Cohort = () => {
                 <button className="register-btn" onClick={() => handleRegister("12", "Concrete")}>
                   Register Now
                 </button>
+              </div>
+              <div className="card-disclaimer">
+                * These are just test conduction charges and not tutorial classes
               </div>
             </div>
           </div>
