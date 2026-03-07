@@ -16,9 +16,9 @@ const Footer = () => {
 
       {/* Top Contact Bar */}
       <div className="top-bar">
-        <div>Sunrise Greens, Canal Bank Rd, Newtown, Ghuni, West Bengal 700162</div>
-        <div>foranything@algo2trade.com </div>
-        <div>+91 98747 95959</div>
+        <div>Registered Office: Sunrise Greens, Canal Bank Rd, Newtown, Ghuni, West Bengal 700162</div>
+        <div>foranything@wetestu.in</div>
+        <div>+91 99030 43511</div>
       </div>
 
       {/* Main Gradient Section */}
@@ -41,7 +41,7 @@ const Footer = () => {
 
         <div className="social-icons">
   <a 
-    href="https://wa.me/919874795959" 
+    href="https://wa.me/99030 43511" 
     target="_blank" 
     rel="noopener noreferrer"
   >
@@ -49,7 +49,7 @@ const Footer = () => {
   </a>
 
   <a 
-    href="mailto:foranything@algo2trade.com"
+    href="mailto:foranything@wetestu.in"
   >
     <GmailIcon />
   </a>
