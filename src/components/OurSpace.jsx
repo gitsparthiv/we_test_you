@@ -5,18 +5,24 @@ const OurSpace = () => {
   const bgRef = useRef(null);
 
   /* ✅ JS-based parallax — works on ALL devices */
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!bgRef.current) return;
-      const rect = bgRef.current.getBoundingClientRect();
-      const speed = 0.4; // 0 = no effect, 1 = full scroll speed
-      const yOffset = rect.top * speed;
-      bgRef.current.style.backgroundPositionY = `${yOffset}px`;
-    };
+useEffect(() => {
+  const handleScroll = () => {
+    if (!bgRef.current) return;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const rect = bgRef.current.getBoundingClientRect();
+    const speed = 0.18;
+    let yOffset = rect.top * speed;
+
+    yOffset = Math.max(-60, Math.min(60, yOffset));
+
+    bgRef.current.style.backgroundPosition = `center calc(50% + ${yOffset}px)`;
+  };
+
+  handleScroll();
+  window.addEventListener("scroll", handleScroll, { passive: true });
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   return (
     <section className="hero-section">
