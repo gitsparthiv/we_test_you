@@ -42,15 +42,19 @@ html, body {
   align-items: center;
 }
 
+.hero-content {
+  flex: 1;
+}
+
 .top-text {
-  font-size: 50px;
+  font-size: clamp(28px, 4vw, 50px);
   color: #d7ff45;
   line-height: 1.15;
 }
 
 .typing-line {
   min-height: 58px;
-  font-size: 50px;
+  font-size: clamp(28px, 4vw, 50px);
 }
 
 .typing {
@@ -60,7 +64,7 @@ html, body {
 
 .hero-content p {
   margin-top: 12px;
-  font-size: 19px;
+  font-size: clamp(14px, 1.5vw, 19px);
   color: #ddd;
 }
 
@@ -93,8 +97,8 @@ html, body {
   transform: translateY(10px) scale(0.97);
   transition: 0.5s ease;
   box-shadow:
-    0 0 30px rgba(215, 255, 69, 0.18),
-    inset 0 0 50px rgba(215, 255, 69, 0.05);
+      0 0 30px rgba(215, 255, 69, 0.18),
+      inset 0 0 50px rgba(215, 255, 69, 0.05);
 }
 
 .banner.show {
@@ -250,14 +254,13 @@ html, body {
 .features-track {
   display: flex;
   width: max-content;
-  /* gap: 20px; */
   will-change: transform;
   animation: ribbonScroll 18s linear infinite;
 }
 
 .feature-slide {
   flex: 0 0 auto;
-  width: 220px; /* adjust if you want bigger/smaller */
+  width: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -266,7 +269,6 @@ html, body {
 .feature-slide img {
   width: 100%;
   height: 180px;
-  /* object-fit: contain; */
   transition: transform 0.3s ease;
 }
 
@@ -275,16 +277,14 @@ html, body {
 }
 
 @keyframes ribbonScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(calc(-50% - 10px));
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 10px)); }
 }
+
 .features-carousel:hover .features-track {
   animation-play-state: paused;
 }
+
 /* ================= FADE ANIMATION ================= */
 
 .fade-section {
@@ -299,169 +299,290 @@ html, body {
 }
 
 /* ====================================================
-   RESPONSIVE — LARGEST → SMALLEST (NO DUPLICATES)
-   ==================================================== */
+ RESPONSIVE — LARGEST → SMALLEST
+ ==================================================== */
 
-/* ================= < 1200px ================= */
+/* ================= < 1200px (SMALL LAPTOP) ================= */
 
 @media (max-width: 1200px) {
   .program-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ================= < 1000px ================= */
-
-@media (max-width: 1000px) {
-  .hero-wrapper {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 40px;
-  }
-
-  .hero-content {
-    max-width: 600px;
-  }
-
-  .hero-banners {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    min-height: 160px;
-    margin-top: 20px;
-  }
-
-  .banner {
-    width: 100%;
-  }
-
-  .program-grid {
-    margin-top: 60px;
-    padding: 0 40px;
-  }
-
-  .features-section {
-    padding: 20px 40px;
+      grid-template-columns: repeat(3, 1fr);
   }
 
   .top-section {
-    padding: 100px 40px 0;
-  }
-}
-
-/* ================= < 768px (TABLET) ================= */
-
-@media (max-width: 768px) {
-  .top-text {
-    font-size: 36px;
-  }
-
-  .typing-line {
-    font-size: 36px;
-    min-height: 44px;
-  }
-
-  .hero-content p {
-    font-size: 16px;
+      padding: 100px 60px 0;
   }
 
   .program-grid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 0 30px;
-    gap: 14px;
-    margin-top: 50px;
-  }
-
-  .program-card {
-    height: 130px;
-  }
-
-  .hero-banners {
-    margin: 0 auto;
+      padding: 0 60px;
   }
 
   .features-section {
-    padding: 20px 30px;
+      padding: 10px 60px 30px;
+  }
+}
+
+/* ================= < 1000px (TABLET LANDSCAPE) ================= */
+
+@media (max-width: 1000px) {
+  .hero-wrapper {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+  }
+
+  .hero-content {
+      max-width: 600px;
+      text-align: center;
+  }
+
+  .hero-banners {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      min-height: 160px;
+      margin: 20px auto 0;
+  }
+
+  .banner {
+      width: 100%;
+  }
+
+  .program-grid {
+      margin-top: 60px;
+      padding: 0 40px;
+  }
+
+  .features-section {
+      padding: 20px 40px;
+  }
+
+  .top-section {
+      padding: 100px 40px 0;
+  }
+}
+
+/* ================= < 768px (TABLET PORTRAIT) ================= */
+
+@media (max-width: 768px) {
+  .top-section {
+      padding: 90px 30px 0;
+  }
+
+  .program-grid {
+      grid-template-columns: repeat(2, 1fr);
+      padding: 0 30px;
+      gap: 14px;
+      margin-top: 50px;
+  }
+
+  .program-card {
+      height: 130px;
+  }
+
+  .program-content {
+      padding: 16px;
+  }
+
+  .program-icon {
+      font-size: 22px;
+  }
+
+  .hero-banners {
+      margin: 0 auto;
+  }
+
+  .features-section {
+      padding: 15px 20px 25px;
   }
 
   .feature-slide {
-    width: 180px;
+      width: 180px;
   }
 
   .feature-slide img {
-    height: 150px;
+      height: 150px;
+  }
+
+  .banner {
+      padding: 28px 30px;
   }
 
   .banner-title {
-    font-size: 22px;
+      font-size: 22px;
+      margin-bottom: 10px;
   }
 
   .banner-highlight {
-    font-size: 34px;
+      font-size: 34px;
   }
 
+  /* Always show CTA on touch devices */
   .banner-cta {
-    opacity: 1;
-    font-size: 12px;
+      opacity: 1;
+      font-size: 12px;
   }
 }
 
 /* ================= < 480px (MOBILE) ================= */
 
 @media (max-width: 480px) {
+  .top-section {
+      padding: 85px 20px 0;
+  }
+
   .hero-wrapper {
-    align-items: center;
-    text-align: center;
-    gap: 30px;
+      align-items: center;
+      text-align: center;
+      gap: 25px;
   }
 
   .hero-content {
-    text-align: left;
-    width: 100%;
+      text-align: left;
+      width: 100%;
+      max-width: 100%;
+  }
+
+  .hero-content p {
+      font-size: 14px;
   }
 
   .hero-banners {
-    max-width: 300px;
-    min-height: 140px;
-    margin: 0 auto;
-  }
-}
-
-/* ================= < 360px (GALAXY FOLD) ================= */
-
-@media (max-width: 360px) {
-  .top-text {
-    font-size: 24px;
+      max-width: 100%;
+      min-height: 130px;
+      margin: 0 auto;
   }
 
-  .typing-line {
-    font-size: 24px;
-    min-height: 32px;
-  }
-
-  .hero-banners {
-    max-width: 260px;
-    min-height: 130px;
+  .banner {
+      padding: 22px 20px;
+      border-radius: 16px;
   }
 
   .banner-title {
-    font-size: 16px;
+      font-size: 17px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
   }
 
   .banner-highlight {
-    font-size: 24px;
+      font-size: 28px;
+  }
+
+  .banner-cta {
+      font-size: 11px;
+      margin-top: 6px;
+      opacity: 1;
+  }
+
+  .program-grid {
+      padding: 0 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 35px;
+      margin-bottom: 10px;
   }
 
   .program-card {
-    height: 110px;
+      height: 110px;
+      border-radius: 12px;
+  }
+
+  .program-content {
+      padding: 12px;
+  }
+
+  .program-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+  }
+
+  .program-card h3 {
+      font-size: 14px;
+  }
+
+  .program-card p {
+      font-size: 11px;
+  }
+
+  .features-section {
+      padding: 10px 16px 20px;
   }
 
   .feature-slide {
-    width: 150px;
+      width: 150px;
   }
 
   .feature-slide img {
-    height: 120px;
+      height: 130px;
+  }
+
+  .features-track {
+      animation-duration: 14s;
+  }
+}
+
+/* ================= < 360px (GALAXY FOLD / TINY) ================= */
+
+@media (max-width: 360px) {
+  .top-section {
+      padding: 80px 16px 0;
+  }
+
+  .hero-banners {
+      min-height: 120px;
+  }
+
+  .banner {
+      padding: 18px 16px;
+      border-radius: 14px;
+  }
+
+  .banner-title {
+      font-size: 15px;
+      margin-bottom: 6px;
+  }
+
+  .banner-highlight {
+      font-size: 22px;
+  }
+
+  .program-grid {
+      padding: 0 16px;
+      gap: 8px;
+      margin-top: 30px;
+  }
+
+  .program-card {
+      height: 100px;
+      border-radius: 10px;
+  }
+
+  .program-content {
+      padding: 10px;
+  }
+
+  .program-icon {
+      font-size: 18px;
+  }
+
+  .program-card h3 {
+      font-size: 13px;
+  }
+
+  .program-card p {
+      font-size: 10px;
+  }
+
+  .feature-slide {
+      width: 130px;
+  }
+
+  .feature-slide img {
+      height: 100px;
+  }
+
+  .features-track {
+      animation-duration: 12s;
   }
 }
