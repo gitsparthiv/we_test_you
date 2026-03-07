@@ -1,181 +1,210 @@
-/* ===== PAYMENT PAGE ===== */
+/* =========================
+   PAYMENT PAGE WRAPPER
+========================= */
+.payment-page {
+  min-height: 100vh;
+  background: #000;
+  padding: 90px 16px 30px;
+}
+
+/* =========================
+   MAIN GLASS CONTAINER
+========================= */
 .booking-container {
-    background: rgba(255, 255, 255, 0.08);
-    
-    /* Glass blur */
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 25px auto;
+  padding: 30px;
+  padding-bottom: 95px;
+  border-radius: 35px;
 
-    /* White glass border */
-    border: 1.5px solid rgba(255, 255, 255, 0.4);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
 
-    color: #fff;
-    padding: 30px;
-    border-radius: 35px;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
 
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 60px;
-    margin: 80px auto;
-    max-width: 1200px;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
 
-    /* Pure glass glow */
-    box-shadow: 
-        0 0 25px rgba(255, 255, 255, 0.2),
-        inset 0 0 20px rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.2),
+    inset 0 0 20px rgba(255, 255, 255, 0.08);
 }
-.subject , .grandtotal,.subtotal {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: #d9ff00;
+
+/* =========================
+   TEXT STYLES
+========================= */
+.subject,
+.grandtotal,
+.subtotal {
+  font-family: "Bebas Neue", cursive;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #d9ff00;
 }
-.subject-name,.discount{
-    font-family: 'Bebas Neue', cursive;
-    font-size: 18px;
-    letter-spacing: 2px
+
+.subject-name,
+.discount {
+  font-family: "Bebas Neue", cursive;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
-/* SECTION TITLE */
+
+/* =========================
+   SECTION TITLE
+========================= */
 .section-title {
-    font-family: 'Bebas Neue', cursive;
-    font-size: 26px;
-    background-color: #d9ff00;
-    color: #000;
-    letter-spacing: 2px;
-    margin: 0 auto 30px auto;   /* centers horizontally */
-    border: 1px solid #444;
-    display: block;             /* change from inline-block to block */
-    padding: 8px 25px;
-    border-radius: 20px;
-    text-align: center;         /* center text inside */
-    width: fit-content;         /* keeps size based on content */
+  display: block;
+  width: fit-content;
+  margin: 0 auto 30px auto;
+  padding: 8px 25px;
+  border-radius: 20px;
+  border: 1px solid #444;
+
+  font-family: "Bebas Neue", cursive;
+  font-size: 26px;
+  letter-spacing: 2px;
+  text-align: center;
+
+  background-color: #d9ff00;
+  color: #000;
 }
 
-/* FORM */
+/* =========================
+   FORM
+========================= */
 .form-group {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 6px;
-    font-size: 16px;
-    color: #fff;
-    letter-spacing: 1px;
+  display: block;
+  margin-bottom: 6px;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 1px;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    background: #111;
-    color: #fff;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #111;
+  color: #fff;
 }
 
-/* SUMMARY BOX */
-.summary-box {
-    border-left: 2px solid #333;
-    padding-left: 50px;
-}
-
-/* TABLE */
-.summary-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-.summary-table th {
-    text-align: left;
-    padding-bottom: 15px;
-    font-size: 14px;
-    opacity: .6;
-    border-bottom: 1px solid #333;
-}
-
-.summary-table td {
-    padding: 12px 0;
-    border-bottom: 1px solid #222;
-}
-
-.summary-table .right {
-    text-align: right;
-}
-
-/* TOTAL ROWS */
-.total-row {
-    font-weight: bold;
-    font-size: 15px;
-}
-
-.grand-total {
-    font-size: 18px;
-    font-weight: bold;
-    border-top: 2px solid #555;
-}
-
-/* PAY BUTTON */
-.pay-btn {
-    margin-top: 30px;
-    padding: 14px 30px;
-    background: #d9ff00;
-    border: none;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 10px;
-    float: right;
-    transition: .3s;
-}
-
-.pay-btn:disabled {
-    background: #444;
-    cursor: not-allowed;
-    opacity: 0.6;
-}
-
-.pay-btn:hover:not(:disabled) {
-    transform: scale(1.05);
-}
-
-/* RESPONSIVE */
-@media(max-width: 900px) {
-    .booking-container {
-        grid-template-columns: 1fr;
-    }
-
-    .summary-box {
-        border-left: none;
-        padding-left: 0;
-        border-top: 2px solid #333;
-        padding-top: 30px;
-    }
-}
-/* ===== Validation Styling ===== */
-
+/* =========================
+   VALIDATION
+========================= */
 .input-error {
   border: 1px solid #ff4d4d !important;
 }
 
 .error-text {
+  margin-top: 4px;
   color: #ff4d4d;
   font-size: 12px;
-  margin-top: 4px;
-}
-/* ===== PAYMENT PAGE WRAPPER (BLACK BG + SAFE PADDING) ===== */
-.payment-page {
-  min-height: 100vh;
-  background: #000;
-  padding: 90px 16px 30px; /* pushes content down below navbar on phone */
 }
 
-/* Keep your glass box perfect on desktop */
-.booking-container {
-  width: 100%;
+/* =========================
+   RIGHT SIDE / SUMMARY
+========================= */
+.summary-box {
+  border-left: 2px solid #333;
+  padding-left: 50px;
 }
 
-/* ===== TABLET ===== */
+.grand-total {
+  font-size: 18px;
+  font-weight: bold;
+  border-top: 2px solid #555;
+}
+
+/* =========================
+   ACTION AREA
+========================= */
+.action-buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* =========================
+   PAY BUTTON
+========================= */
+.pay-btn {
+  padding: 14px 30px;
+  border: none;
+  border-radius: 10px;
+  background: #d9ff00;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.pay-btn:disabled {
+  background: #444;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pay-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 10px 20px;
+  margin: 0;
+
+  background: transparent;
+  color: #d9ff00;
+  border: 1.5px solid rgba(217, 255, 0, 0.7);
+  border-radius: 12px;
+
+  font-family: "Bebas Neue", cursive;
+  font-size: 20px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn-bottom-left {
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+}
+
+.back-btn:active {
+  transform: scale(0.96);
+}
+
+.back-btn:hover {
+  background: rgba(217, 255, 0, 0.12);
+  border-color: #d9ff00;
+  box-shadow:
+    0 0 12px rgba(217, 255, 0, 0.4),
+    inset 0 0 6px rgba(217, 255, 0, 0.2);
+  transform: translateX(-6px) scale(1.03);
+}
+
+/* =========================
+   TABLET
+========================= */
 @media (max-width: 900px) {
   .payment-page {
     padding: 90px 14px 24px;
@@ -186,29 +215,49 @@
     gap: 30px;
     margin: 0 auto;
     padding: 22px;
+    padding-bottom: 22px;
   }
 
   .summary-box {
     border-left: none;
-    padding-left: 0;
     border-top: 2px solid #333;
+    padding-left: 0;
     padding-top: 22px;
   }
 
+  .action-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: stretch;
+  }
+
   .pay-btn {
-    float: none;
     width: 100%;
+  }
+
+  .back-btn-bottom-left {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+  }
+
+  .back-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-/* ===== PHONE ===== */
+/* =========================
+   PHONE
+========================= */
 @media (max-width: 600px) {
   .payment-page {
-    padding: 95px 12px 20px; /* increase if navbar still collides */
+    padding: 95px 12px 20px;
   }
 
   .booking-container {
     padding: 18px;
+    padding-bottom: 18px;
     border-radius: 22px;
     gap: 22px;
   }
@@ -248,9 +297,16 @@
     padding: 12px 16px;
     border-radius: 10px;
   }
+
+  .back-btn {
+    font-size: 18px;
+    padding: 12px 16px;
+  }
 }
 
-/* ===== VERY SMALL PHONES ===== */
+/* =========================
+   VERY SMALL PHONES
+========================= */
 @media (max-width: 380px) {
   .payment-page {
     padding-top: 105px;
@@ -258,6 +314,7 @@
 
   .booking-container {
     padding: 16px;
+    padding-bottom: 16px;
   }
 
   .section-title {
