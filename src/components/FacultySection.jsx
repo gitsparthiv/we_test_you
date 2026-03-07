@@ -11,7 +11,7 @@ const facultyData = [
   },
   {
     name: "Mr Santanu Sarkar",
-    subject: "Science, Mathematics, Computer Applications ",
+    subject: "Science, Mathematics, Computer Applications, Biology",
     experience: "25+ Years Experience",
     image: "https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001877.png"
   },
