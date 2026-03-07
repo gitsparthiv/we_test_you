@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 
+/* ================= BASE ================= */
+
 .cohort-container {
-    min-height: 100vh;   /* changed from height */
+    min-height: 100vh;
     background: #000;
     padding: 18px 40px;
-    /* font-family: 'Bebas Neue', sans-serif; */
     display: flex;
     flex-direction: column;
 }
 
 /* ================= TITLE ================= */
+
 .title h1 {
     font-size: 78px;
     color: #e6e6e6;
@@ -19,6 +21,7 @@
 }
 
 /* ================= GRID ================= */
+
 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -27,13 +30,14 @@
 }
 
 /* ================= CARD ================= */
+
 .card {
     position: relative;
     border-radius: 18px;
-    overflow: hidden;
-    display: flex;          /* important */
+    overflow: hidden;              /* ← FIXED: was visible, image bled out */
+    display: flex;
     flex-direction: column;
-    height: 100%;
+    min-height: 100%;
     transition: transform 0.3s ease;
 }
 
@@ -52,6 +56,7 @@
 }
 
 /* ================= OVERLAY ================= */
+
 .overlay {
     position: relative;
     z-index: 2;
@@ -59,11 +64,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    flex: 1;  
+    flex: 1;
     color: #fff;
 }
 
-/* CLASS TITLE */
 .overlay h2 {
     font-size: 44px;
     color: #d8ff2f;
@@ -71,23 +75,24 @@
 }
 
 /* ================= DIVISION ROW ================= */
+
 .division-row {
     display: flex;
+    align-items: stretch;
     gap: 16px;
     margin-top: 20px;
-    flex: 1;    
+    flex: 1;
 }
 
 /* ================= INTERNAL BOX ================= */
+
 .division-half {
     flex: 1;
-    /* background: rgba(0, 0, 0, 0.65); */
-    border: 1px solid rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,.18);
     padding: 24px;
     border-radius: 14px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .division-half:hover {
@@ -95,6 +100,7 @@
 }
 
 /* ================= HEADINGS ================= */
+
 .division-half h3 {
     font-size: 21px;
     color: #d8ff2f;
@@ -102,6 +108,7 @@
 }
 
 /* ================= FEATURE LIST ================= */
+
 .feature-list {
     list-style: none;
     padding: 0;
@@ -115,31 +122,7 @@
     opacity: 0.95;
 }
 
-/* ================= PRICE ================= */
-.price {
-    margin: 12px 0;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-/* ================= BIG STARTING PRICE ================= */
-
-.starting-price {
-    font-size: 22px;
-    font-weight: 700;
-    color: #fff;
-    margin-top: 10px;
-    margin-bottom: 6px;
-    letter-spacing: 0.5px;
-}
-
-.starting-price span {
-    font-size: 30px;
-    color: #d8ff2f;
-    font-weight: 800;
-}
-
-/* ================= BUNDLE PRICE (Smaller Now) ================= */
+/* ================= PRICE (SINGLE DECLARATION) ================= */
 
 .price {
     margin: 6px 0 10px 0;
@@ -149,32 +132,22 @@
 }
 
 .old-price {
-    font-size: 14px;  /* reduced */
+    font-size: 14px;
     color: #ff4d4d;
     text-decoration: line-through;
     font-weight: 500;
 }
 
 .new-price {
-    font-size: 18px;  /* reduced */
-    font-weight: 600;
-    color: #d8ff2f;
-}
-/* .old-price {
     font-size: 18px;
-    color: #ff4d4d;
-    text-decoration: line-through;
     font-weight: 600;
-}
-
-.new-price {
-    font-size: 22px;
-    font-weight: bold;
     color: #d8ff2f;
-} */
+}
 
 /* ================= BUTTON ================= */
+
 .division-half button {
+    margin-top: auto;              /* ← pushes to bottom, aligns both */
     background: #d7ff45;
     color: #000;
     border: none;
@@ -191,62 +164,101 @@
     background: #b6e600;
 }
 
-/* ================= HEIGHT-BASED RESPONSIVE (SAFE) ================= */
+/* ================= CLASS STARTING PRICE ================= */
 
-/* For shorter laptop screens (like 1366x768) */
+.class-starting-price {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: -6px;
+    margin-bottom: 12px;
+}
+
+.starting-text {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.starting-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #d8ff2f;
+}
+
+/* ================= PRICE GROUP ================= */
+
+.price-group {
+    margin-top: 10px;
+}
+
+.price-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d8ff2f;
+    margin-bottom: 4px;
+}
+
+.price-group:not(.bundle-group) .new-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.price-group:not(.bundle-group) .old-price {
+    font-size: 1.1rem;
+}
+
+.price-group:not(.bundle-group) .price-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ================= BUNDLE PRICE ================= */
+
+.bundle-group {
+    margin-top: 6px;
+    opacity: 0.75;
+}
+
+/* ================= FADE ANIMATION ================= */
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    will-change: opacity, transform;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ====================================================
+   RESPONSIVE — ORDERED LARGEST → SMALLEST
+   ==================================================== */
+
+/* ================= HEIGHT QUERIES ================= */
+
 @media (max-height: 850px) {
-
-    .cohort-container {
-        padding: 14px 35px;
-    }
-
-    .title h1 {
-        font-size: 64px;
-    }
-
-    .overlay {
-        padding: 18px;
-    }
-
-    .division-half {
-        padding: 18px;
-        min-height: 220px;
-    }
-
-    .feature-list li {
-        font-size: 17px;
-    }
+    .cohort-container { padding: 14px 35px; }
+    .title h1 { font-size: 64px; }
+    .overlay { padding: 18px; }
+    .division-half { padding: 18px; }
+    .feature-list li { font-size: 17px; }
 }
 
-/* For very short screens */
 @media (max-height: 750px) {
-
-    .title h1 {
-        font-size: 56px;
-    }
-
-    .overlay h2 {
-        font-size: 36px;
-    }
-
-    .division-half {
-        min-height: 200px;
-        padding: 16px;
-    }
-
-    .feature-list li {
-        font-size: 16px;
-    }
-
-    .division-row {
-        margin-top: 14px;
-    }
+    .title h1 { font-size: 56px; }
+    .overlay h2 { font-size: 36px; }
+    .division-half { padding: 16px; }
+    .feature-list li { font-size: 16px; }
+    .division-row { margin-top: 14px; }
 }
 
-/* ================= WIDTH RESPONSIVE ================= */
+/* ================= LAPTOP / SMALL DESKTOP ================= */
 
-@media(max-width: 1100px) {
-
+@media (max-width: 1100px) {
     .cohort-container {
         height: auto;
         padding: 30px;
@@ -265,136 +277,132 @@
         flex-direction: column;
     }
 }
-/* ================= SCROLL GROW ANIMATION ================= */
 
-/* .cohort-container {
-    opacity: 0;
-    transform: translateY(100px) scale(0.95);
-    transition: all 1s ease;
+/* ================= TABLET (NEW — was missing) ================= */
+
+@media (max-width: 768px) {
+    .title h1 {
+        font-size: 48px;
+    }
+
+    .overlay h2 {
+        font-size: 34px;
+    }
+
+    .feature-list li {
+        font-size: 17px;
+    }
+
+    .cohort-container {
+        padding: 20px;
+    }
+
+    .card {
+        min-height: auto;
+    }
+
+    .division-half {
+        padding: 18px;
+    }
+
+    .price-group:not(.bundle-group) .new-price {
+        font-size: 1.5rem;
+    }
 }
 
-.cohort-container.cohort-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-} */
-/* ================= SAFE FADE-UP ANIMATION ================= */
+/* ================= MOBILE (SINGLE MERGED BLOCK) ================= */
 
-.fade-up {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-    will-change: opacity, transform;
+@media (max-width: 480px) {
+    .cohort-container {
+        padding: 14px 16px;
+    }
+
+    .title h1 {
+        font-size: 36px;
+        margin-bottom: 4px;
+    }
+
+    .card {
+        border-radius: 14px;
+        min-height: auto;
+        height: auto;
+    }
+
+    .overlay {
+        padding: 16px 14px 20px;
+    }
+
+    .overlay h2 {
+        font-size: 28px;
+        margin-bottom: 6px;
+    }
+
+    .class-starting-price {
+        margin-bottom: 8px;
+    }
+
+    .class-starting-price .starting-text {
+        font-size: 0.8rem;
+    }
+
+    .class-starting-price .starting-price {
+        font-size: 1.1rem;
+    }
+
+    .division-row {
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .division-half {
+        padding: 14px;
+        border-radius: 10px;
+        min-height: auto;
+        height: auto;
+    }
+
+    .division-half h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+    }
+
+    .feature-list {
+        margin: 8px 0;
+    }
+
+    .feature-list li {
+        font-size: 14px;
+        margin-bottom: 5px;
+        line-height: 1.35;
+    }
+
+    .price-group:not(.bundle-group) .new-price {
+        font-size: 1.3rem;
+    }
+
+    .price-group:not(.bundle-group) .old-price {
+        font-size: 0.9rem;
+    }
+
+    .price-group:not(.bundle-group) .price-label {
+        font-size: 0.9rem;
+    }
+
+    .old-price {
+        font-size: 12px;
+    }
+
+    .new-price {
+        font-size: 16px;
+    }
+
+    .division-half button {
+        padding: 10px;
+        font-size: 14px;
+        margin-top: 14px;       /* ← no !important needed */
+    }
+
+    .grid {
+        gap: 16px;
+    }
 }
-
-.fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-.starting-price {
-    font-size: 17px;
-    font-weight: 700;
-    color: #d8ff2f;
-    margin-top: 8px;
-    margin-bottom: 4px;
-    text-transform: uppercase;
-}
-/* ================= CLASS LEVEL STARTING PRICE ================= */
-
-.class-starting-price {
-    margin-top: -6px;
-    margin-bottom: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 0.3px;
-}
-
-.class-starting-price span {
-    font-size: 26px;
-    font-weight: 800;
-    color: #d8ff2f;
-}
-/* ================= NEW CONCRETE PRICE STRUCTURE ================= */
-
-/* ================= PRICE GROUP ================= */
-
-.price-group {
-    margin-top: 10px;
-}
-
-/* Label */
-
-.price-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #d8ff2f;
-    margin-bottom: 4px;
-    letter-spacing: 0.3px;
-}
-
-/* Default Row */
-
-.price-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-/* ================= PRIMARY PRICE (Single Subject) ================= */
-
-.primary-price .old-price {
-    font-size: 15px;
-    color: #ff4d4d;
-    text-decoration: line-through;
-}
-
-.primary-price .new-price {
-    font-size: 22px;   /* BIG */
-    font-weight: 800;
-    color: #ffffff;
-}
-
-/* ================= BUNDLE PRICE (All Subjects) ================= */
-
-.bundle-group {
-    margin-top: 6px;
-    opacity: 0.75;   /* Slightly faded */
-}
-
-.bundle-price .old-price {
-    font-size: 12px;  /* Smaller */
-    color: #ff6b6b;
-    text-decoration: line-through;
-}
-
-.bundle-price .new-price {
-    font-size: 16px;  /* Smaller than primary */
-    font-weight: 600;
-    color: #cccccc;   /* Slightly muted */
-}
-.price-group:not(.bundle-group) .new-price {
-    font-size: 1.8rem;
-    font-weight: 700;
-  }
-  
-  .price-group:not(.bundle-group) .old-price {
-    font-size: 1.1rem;
-  }
-  .price-group:not(.bundle-group) .price-label {
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-  .class-starting-price{
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  
-  .starting-text{
-    font-size: 0.95rem;
-  }
-  
-  .starting-price{
-    font-size: 1.4rem;
-    font-weight: 700;
-  }

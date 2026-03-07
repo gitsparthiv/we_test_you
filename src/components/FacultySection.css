@@ -18,8 +18,10 @@
   
   .faculty-slider {
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     position: relative;
+    -webkit-overflow-scrolling: touch;
   }
   
   .faculty-track {

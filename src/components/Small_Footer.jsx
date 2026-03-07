@@ -4,7 +4,7 @@ import { WhatsAppIcon, GmailIcon } from "./Icons";
 
 const Small_Footer = () => {
   const [modalType, setModalType] = useState(null);
-  // modalType: "terms" | "privacy" | "refund" | null
+  // modalType: "terms" | "refund" | null
 
   const closeModal = () => setModalType(null);
 
@@ -18,52 +18,52 @@ const Small_Footer = () => {
 
   return (
     <footer className="small-footer">
+
       {/* Top Section */}
-     <div className="sf-top">
+      <div className="sf-top">
 
-  <div className="sf-contact">
-    <div className="sf-contact-item">
-      +91 98747 95959
-    </div>
-    <div className="sf-contact-item">
-      foranything@algo2trade.com
-    </div>
-  </div>
+        <div className="sf-contact">
+          <div className="sf-contact-item">
+            +91 98747 95959
+          </div>
+          <div className="sf-contact-item">
+            foranything@algo2trade.com
+          </div>
+        </div>
 
-  <div className="sf-big-brand">WETESTU</div>
+        <div className="sf-big-brand">WETESTU</div>
 
-  <div className="sf-social">
-    <a 
-      href="https://wa.me/919874795959" 
-      target="_blank" 
-      rel="noopener noreferrer"
-    >
-      <WhatsAppIcon />
-    </a>
+        <div className="sf-social">
+          <a 
+            href="https://wa.me/919874795959" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <WhatsAppIcon />
+          </a>
 
-    <a href="mailto:foranything@algo2trade.com">
-      <GmailIcon />
-    </a>
-  </div>
+          <a href="mailto:foranything@algo2trade.com">
+            <GmailIcon />
+          </a>
+        </div>
 
-</div>
+      </div>
 
       <div className="sf-divider"></div>
 
       {/* Bottom Section */}
       <div className="sf-bottom">
+
         <div className="sf-links">
+
           <button className="sf-link-btn" onClick={() => setModalType("terms")}>
             Terms and Conditions
-          </button>
-
-          <button className="sf-link-btn" onClick={() => setModalType("privacy")}>
-            Privacy Policy
           </button>
 
           <button className="sf-link-btn" onClick={() => setModalType("refund")}>
             Refund Policy
           </button>
+
         </div>
 
         <div className="sf-cif">
@@ -74,17 +74,17 @@ const Small_Footer = () => {
         <div className="sf-addr">
           Sunrise Greens, Canal Bank Rd, Newtown, Ghuni, West Bengal 700162
         </div>
+
       </div>
 
       {/* ===== Modal ===== */}
       {modalType && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+
             <h2>
               {modalType === "terms"
                 ? "Terms & Conditions"
-                : modalType === "privacy"
-                ? "Privacy Policy"
                 : "Refund Policy"}
             </h2>
 
@@ -131,30 +131,7 @@ const Small_Footer = () => {
                 </div>
               )}
 
-              {/* ===== PRIVACY ===== */}
-              {modalType === "privacy" && (
-                <div className="refund-wrapper">
-                  <h3 className="refund-title">Privacy Policy</h3>
-                  <p className="effective-date">Effective Date: [Insert Date]</p>
-
-                  <div className="refund-section">
-                    <h4>Information We Collect</h4>
-                    <p>Name, email, phone, and registration details.</p>
-                  </div>
-
-                  <div className="refund-section">
-                    <h4>How We Use Information</h4>
-                    <p>To process registration and communicate updates.</p>
-                  </div>
-
-                  <div className="refund-section">
-                    <h4>Data Security</h4>
-                    <p>We do not sell or misuse personal information.</p>
-                  </div>
-                </div>
-              )}
-
-              {/* ===== REFUND (Copied Exactly From Footer.jsx) ===== */}
+              {/* ===== REFUND ===== */}
               {modalType === "refund" && (
                 <div className="refund-wrapper">
 
@@ -208,14 +185,17 @@ const Small_Footer = () => {
 
                 </div>
               )}
+
             </div>
 
             <button className="close-btn" onClick={closeModal}>
               Close
             </button>
+
           </div>
         </div>
       )}
+
     </footer>
   );
 };

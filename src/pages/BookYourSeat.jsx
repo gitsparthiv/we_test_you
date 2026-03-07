@@ -92,9 +92,7 @@ const BookYourSeat = () => {
     if (!cohortClass) {
       navigate("/");
       setTimeout(() => {
-        document
-          .getElementById("cohorts")
-          ?.scrollIntoView({ behavior: "smooth" });
+        document.getElementById("cohorts")?.scrollIntoView({ behavior: "smooth" });
       }, 100);
     }
   }, [cohortClass, navigate]);
@@ -104,7 +102,7 @@ const BookYourSeat = () => {
   ========================= */
   useEffect(() => {
     fetch(
-      "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv",
+      "https://docs.google.com/spreadsheets/d/12MzE06sluUJV2UJon_q9Q5n6H5X6INqeiy0-KhwpnkA/export?format=csv"
     )
       .then((response) => response.text())
       .then((csvText) => {
@@ -118,13 +116,10 @@ const BookYourSeat = () => {
               const {
                 class: className,
                 subject,
-
-                // ✅ NEW: package prices directly from sheet
                 actual_fastrack,
                 old_fastrack,
                 actual_concrete,
                 old_concrete,
-
                 type,
                 title,
                 date,
@@ -132,20 +127,15 @@ const BookYourSeat = () => {
 
               if (!parsedData[className]) parsedData[className] = [];
 
-              let subjectObj = parsedData[className].find(
-                (s) => s.name === subject,
-              );
+              let subjectObj = parsedData[className].find((s) => s.name === subject);
 
               if (!subjectObj) {
                 subjectObj = {
                   name: subject,
-
-                  // ✅ save both package prices
                   fastrackActual: Number(actual_fastrack ?? 0),
                   fastrackOld: Number(old_fastrack ?? 0),
                   concreteActual: Number(actual_concrete ?? 0),
                   concreteOld: Number(old_concrete ?? 0),
-
                   sessions: [],
                   mockTests: [],
                 };
@@ -183,7 +173,7 @@ const BookYourSeat = () => {
   /* =========================
      CART CALCULATION
   ========================= */
-const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
+  const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
 
   /* =========================
      FUNCTIONS
@@ -197,8 +187,6 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
     const key = name + "-" + currentClass;
 
     if (selectedSubjects.some((item) => item.key === key)) {
-      // no alert, feels smoother with your new "ADDED ✓" UX
-
       showToast("Already in cart");
       pulseCart();
       return;
@@ -232,7 +220,7 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
      UI
   ========================= */
   return (
-    <div className="registration-wrapper">
+    <div className={`registration-wrapper ${hasItems ? "has-cart" : "no-cart"}`}>
       {toast.show && <div className="bys-toast">{toast.message}</div>}
 
       <div className="main-content">
@@ -255,20 +243,16 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
                   currentVenue === venue ? "active" : ""
                 } ${venue !== "Newtown" ? "disabled" : ""}`}
                 onClick={() => {
-                  if (
-                    selectedSubjects.length > 0 &&
-                    currentVenue &&
-                    venue !== currentVenue
-                  ) {
+                  if (selectedSubjects.length > 0 && currentVenue && venue !== currentVenue) {
                     alert(
-                      `You have already selected ${currentVenue} venue. Remove all items from cart to change venue.`,
+                      `You have already selected ${currentVenue} venue. Remove all items from cart to change venue.`
                     );
                     return;
                   }
 
                   if (venue !== "Newtown") {
                     alert(
-                      `${venue} venue is coming soon. Currently only Newtown is available.`,
+                      `${venue} venue is coming soon. Currently only Newtown is available.`
                     );
                     return;
                   }
@@ -293,10 +277,7 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
           {!loading && loadError && (
             <div className="bys-error">
               <div>{loadError}</div>
-              <button
-                className="bys-retry"
-                onClick={() => window.location.reload()}
-              >
+              <button className="bys-retry" onClick={() => window.location.reload()}>
                 Retry
               </button>
             </div>
@@ -331,9 +312,7 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
                 !loadError &&
                 classSubjects.map((subject, index) => {
                   const displayOldPrice =
-                    cohortBatch === "Fastrack"
-                      ? subject.fastrackOld
-                      : subject.concreteOld;
+                    cohortBatch === "Fastrack" ? subject.fastrackOld : subject.concreteOld;
 
                   const displayNewPrice =
                     cohortBatch === "Fastrack"
@@ -357,7 +336,6 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
                     <React.Fragment key={index}>
                       <tr className="subject-row">
                         <td>
-                          {/* ✅ Subject left + button right (for mobile/ipad via CSS) */}
                           <div className="subject-head-row">
                             <h3 className="subject-title">{subject.name}</h3>
 
@@ -372,12 +350,8 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
                                 <span className="add-chip">
                                   {isAdded ? "ADDED ✓" : "ADD +"}
                                 </span>
-                                <span className="old-price-bys">
-                                  ₹{displayOldPrice}
-                                </span>
-                                <span className="new-price-bys">
-                                  ₹{displayNewPrice}
-                                </span>
+                                <span className="old-price-bys">₹{displayOldPrice}</span>
+                                <span className="new-price-bys">₹{displayNewPrice}</span>
                               </div>
                             </button>
                           </div>
@@ -389,7 +363,6 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
 
                       <tr>
                         <td colSpan="3" style={{ padding: 0 }}>
-                          {/* ✅ fixed header + scroll only content (needs CSS) */}
                           <div className="chapter-wrap">
                             <div className="mobile-chapter-head">
                               <span>Chapter</span>
@@ -397,12 +370,7 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
                             </div>
 
                             <div className="chapter-scroll-container">
-                              <table
-                                style={{
-                                  width: "100%",
-                                  borderCollapse: "collapse",
-                                }}
-                              >
+                              <table style={{ width: "100%", borderCollapse: "collapse" }}>
                                 <colgroup>
                                   <col style={{ width: "22%" }} />
                                   <col style={{ width: "56%" }} />
@@ -411,17 +379,13 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
 
                                 <tbody>
                                   {(cohortBatch !== "Fastrack"
-                                    ? (subject.sessions || []).concat(
-                                        subject.mockTests || [],
-                                      )
+                                    ? (subject.sessions || []).concat(subject.mockTests || [])
                                     : subject.mockTests || []
                                   ).map((item, i) => (
                                     <tr key={i} className="chapter-row">
                                       <td className="ghost-cell">—</td>
                                       <td className="chapter-cell">
-                                        {item.chapter
-                                          ? item.chapter
-                                          : item.name}
+                                        {item.chapter ? item.chapter : item.name}
                                       </td>
                                       <td className="date-cell">{item.date}</td>
                                     </tr>
@@ -440,25 +404,21 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
         </div>
       </div>
 
-      {/* CART PANEL */}
-      <div
-        className={`cart-panel ${cartPulse ? "cart-pulse" : ""}`}
-        ref={cartRef}
-      >
-        <h2 className={cartPulse ? "cart-title-glow" : ""}>Your Cart</h2>
+      {/* CART PANEL (only when items exist) */}
+      {hasItems && (
+        <div
+          className={`cart-panel ${cartPulse ? "cart-pulse" : ""}`}
+          ref={cartRef}
+        >
+          <h2 className={cartPulse ? "cart-title-glow" : ""}>Your Cart</h2>
 
-        <div className="cart-items">
-          {hasItems && (
+          <div className="cart-items">
             <div className="cart-excel">
-              <div className="excel-row">
-                CLASS : {selectedSubjects[0].className}
-              </div>
+              <div className="excel-row">CLASS : {selectedSubjects[0].className}</div>
               <div className="excel-row">
                 PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
               </div>
-              <div className="excel-row">
-                VENUE : {currentVenue || "NOT SELECTED"}
-              </div>
+              <div className="excel-row">VENUE : {currentVenue || "NOT SELECTED"}</div>
 
               <div className="excel-space"></div>
 
@@ -470,47 +430,42 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
               {selectedSubjects.map((item) => (
                 <div className="excel-row" key={item.key}>
                   <span className="subject-name">
-                    {item.name
-                      .replace(" Full Package", "")
-                      .replace(" Mock Package", "")}
+                    {item.name.replace(" Full Package", "").replace(" Mock Package", "")}
                   </span>
 
                   <span className="cost">
                     {item.price}
-                    <span
-                      className="remove"
-                      onClick={() => removeItem(item.key)}
-                    >
+                    <span className="remove" onClick={() => removeItem(item.key)}>
                       ✕
                     </span>
                   </span>
                 </div>
               ))}
             </div>
-          )}
+          </div>
+
+          <div className="total">
+            <div style={{ fontWeight: "bold" }}>Total: ₹ {total}</div>
+          </div>
+
+          <button
+            className="checkout"
+            disabled={!canCheckout}
+            onClick={() =>
+              navigate("/payment", {
+                state: {
+                  selectedSubjects,
+                  total,
+                  cohortBatch,
+                  venue: currentVenue,
+                },
+              })
+            }
+          >
+            Proceed to Checkout
+          </button>
         </div>
-
-       <div className="total">
-  <div style={{ fontWeight: "bold" }}>Total: ₹ {total}</div>
-</div>
-
-        <button
-          className="checkout"
-          disabled={!canCheckout}
-          onClick={() =>
-            navigate("/payment", {
-              state: {
-                selectedSubjects,
-                total,
-                cohortBatch,
-                venue: currentVenue,
-              },
-            })
-          }
-        >
-          Proceed to Checkout
-        </button>
-      </div>
+      )}
 
       {/* Floating cart icon */}
       {hasItems &&
@@ -524,7 +479,7 @@ const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
             🛒
             <span className="bys-float-badge">{selectedSubjects.length}</span>
           </button>,
-          document.body,
+          document.body
         )}
     </div>
   );

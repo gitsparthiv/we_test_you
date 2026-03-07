@@ -1,67 +1,93 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&display=swap');
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;   
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* ===== SECTION ===== */
-.hero-section{
-    position:relative;
-    width:100%;
-    height:100vh;
-    overflow:hidden;
+/* ================= SECTION ================= */
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    overflow: hidden;
 }
 
-/* ===== PARALLAX BACKGROUND ===== */
-.hero-bg{
-    position:relative;
-    height:100vh;
-    width:100%;
+/* ================= BACKGROUND ================= */
+
+.hero-bg {
+    position: relative;
+    height: 100%;
+    width: 100%;
     background-image: url("../assets/our_class2-modified.jpg");
-    background-position:center;
-    background-size:cover;
-    background-repeat:no-repeat;
-    padding-bottom: 80px; 
-    background-attachment: fixed;   /* 🔥 PARALLAX MAGIC */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
-    display:flex;
-    align-items:flex-end;
+    /* ❌ REMOVED background-attachment: fixed */
+    /* ✅ JS handles parallax now — works on ALL devices */
+
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 80px;
+
+    will-change: background-position;    /* smooth GPU rendering */
 }
 
-/* ===== BLACK CONTENT BOX ===== */
-.content-box{
-    width:40%;
-    background:#000;
-    color:#fff;
-    padding:60px;
-    z-index:2;
+/* ================= DARK OVERLAY ================= */
+
+.hero-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.2) 50%,
+        transparent 100%
+    );
+    z-index: 1;
 }
 
-.content-box h1{
-    font-size:90px;
-    line-height:0.9;
-    font-weight:700;
+/* ================= CONTENT BOX ================= */
+
+.content-box {
+    width: 40%;
+    background: #000;
+    color: #fff;
+    padding: 60px;
+    z-index: 2;
+    position: relative;
 }
 
-/* ===== TICKER ===== */
-.ticker{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60px;
-    background:#d8ff2f;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    z-index:3;
+.content-box h1 {
+    font-size: clamp(40px, 7vw, 90px);
+    line-height: 0.9;
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
 }
 
-.ticker-track{
-    display:flex;
-    width:max-content;
-    animation:scroll 25s linear infinite;
+/* ================= TICKER ================= */
+
+.ticker {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background: #d8ff2f;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    z-index: 3;
+}
+
+.ticker-track {
+    display: flex;
+    width: max-content;
+    animation: scroll 25s linear infinite;
 }
 
 .ticker-content {
@@ -75,47 +101,108 @@
     font-size: 20px;
     margin-right: 60px;
     color: #000;
+    font-family: 'Oswald', sans-serif;
 }
 
 @keyframes scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-50%);
-    }
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
 }
 
-/* ===== NEXT SECTION OVERLAY EFFECT ===== */
+/* ================= NEXT SECTION ================= */
+
 .hero-section + section {
-    position:relative;
-    z-index:5;
-    background:#000;
+    position: relative;
+    z-index: 5;
+    background: #000;
 }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width: 1000px){
-    .content-box{
-        width:60%;
-        padding:40px;
-    }
+/* ====================================================
+   RESPONSIVE
+   ==================================================== */
 
-    .content-box h1{
-        font-size:60px;
+@media (max-width: 1200px) {
+    .content-box {
+        width: 50%;
+        padding: 50px;
     }
 }
 
-@media(max-width: 600px){
-    .content-box{
-        width:100%;
+@media (max-width: 1000px) {
+    .content-box {
+        width: 60%;
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 450px;
     }
 
-    .content-box h1{
-        font-size:40px;
+    .content-box {
+        width: 75%;
+        padding: 35px;
     }
 
-    /* background-attachment fixed not supported well on mobile */
-    .hero-bg{
-        background-attachment: scroll;
+    .ticker {
+        height: 50px;
+    }
+
+    .ticker-content span {
+        font-size: 17px;
+        margin-right: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 400px;
+    }
+
+    .hero-bg {
+        padding-bottom: 60px;
+    }
+
+    .content-box {
+        width: 100%;
+        padding: 28px 22px;
+    }
+
+    .content-box h1 {
+        font-size: 36px;
+        line-height: 0.95;
+    }
+
+    .ticker {
+        height: 44px;
+    }
+
+    .ticker-content span {
+        font-size: 14px;
+        margin-right: 30px;
+    }
+
+    .ticker-track {
+        animation-duration: 18s;
+    }
+}
+
+@media (max-width: 360px) {
+    .content-box {
+        padding: 22px 18px;
+    }
+
+    .content-box h1 {
+        font-size: 30px;
+    }
+
+    .ticker {
+        height: 40px;
+    }
+
+    .ticker-content span {
+        font-size: 12px;
+        margin-right: 25px;
     }
 }

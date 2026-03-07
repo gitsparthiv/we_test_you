@@ -16,8 +16,18 @@
 
   z-index: 9999;
 
+  transition: transform 1s ease, opacity 1s ease;
+  will-change: transform, opacity;
+}
+.navbar-show {
+  transform: translateY(0);
+  opacity: 1;
 }
 
+.navbar-hide {
+  transform: translateY(-120%);
+  opacity: 0;
+}
 .logo {
   color: #d8ff2f;
   font-size: 28px;
