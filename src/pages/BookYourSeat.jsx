@@ -190,7 +190,7 @@ const BookYourSeat = () => {
 
         <div className="filter-section">
           <div className="filter-row">
-            <span>VENUE :</span>
+            <span>VENUES</span>
             {[
               { name: "Garia", img: gariaImg },
               { name: "Dumdum", img: dumdumImg },
