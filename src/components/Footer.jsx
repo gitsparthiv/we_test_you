@@ -3,6 +3,8 @@ import React, { useState } from "react";
 
 import "./Footer.css";
 import { WhatsAppIcon, GmailIcon } from "./Icons";
+import logo from "../assets/logo.png";
+
 import footerImg from "../assets/footer_image.png";
 
 const Footer = () => {
@@ -13,51 +15,61 @@ const Footer = () => {
     setModalType(null);
   };
   return (
-    <div className="footer-container">
-
-      {/* Top Contact Bar */}
-      <div className="top-bar">
-        <div>Registered Office: Sunrise Greens, Canal Bank Rd, Newtown, Ghuni, West Bengal 700162</div>
-        <div>foranything@wetestu.in</div>
-        <div>+91 99030 43511</div>
+    <footer className="footer-ultra-boutique">
+      <div className="ub-bg-layer">
+        <img src={footerImg} alt="Background" className="ub-bg-image" />
+        <div className="ub-overlay-gradient"></div>
       </div>
 
-      {/* Main Gradient Section */}
-      <div className="footer-hero">
-        <img src={footerImg} alt="We Test U" className="footer-big-image" />
-      </div>
+      <div className="ub-container">
+        <div className="ub-top-section">
+          <div className="ub-brand-identity">
+            <img src={logo} alt="WeTestU" className="ub-logo" />
+            <div className="ub-tagline">Architects of Academic Precision</div>
+          </div>
 
-      {/* Bottom Bar */}
-      <div className="bottom-bar">
-        <div className="bottom-links">
-        <span onClick={() => setModalType("terms")}>
-  Terms & Conditions
-</span>
-
-<span onClick={() => setModalType("refund")}>
-  Refund Policy
-</span>
-        
+          <div className="ub-quick-connect">
+             <div className="ub-contact-card">
+                <span className="ub-label">Inquiries</span>
+                <a href="mailto:foranything@wetestu.in" className="ub-value">foranything@wetestu.in</a>
+             </div>
+             <div className="ub-contact-card">
+                <span className="ub-label">Hotline</span>
+                <a href="tel:+919903043511" className="ub-value">+91 99030 43511</a>
+             </div>
+          </div>
         </div>
 
-        <div className="social-icons">
-  <a 
-    href="https://wa.me/99030 43511" 
-    target="_blank" 
-    rel="noopener noreferrer"
-  >
-    <WhatsAppIcon />
-  </a>
+        <div className="ub-mid-section">
+          <div className="ub-nav-cluster">
+            <button className="ub-nav-btn" onClick={() => setModalType("terms")}>
+               <span>Terms of Engagement</span>
+            </button>
+            <button className="ub-nav-btn" onClick={() => setModalType("refund")}>
+               <span>Trust & Refund Policy</span>
+            </button>
+          </div>
 
-  <a 
-    href="mailto:foranything@wetestu.in"
-  >
-    <GmailIcon />
-  </a>
-</div>
+          <div className="ub-social-vault">
+            <a href="https://wa.me/919903043511" target="_blank" rel="noopener noreferrer" className="ub-social-circle">
+               <WhatsAppIcon />
+            </a>
+            <a href="mailto:foranything@wetestu.in" className="ub-social-circle">
+               <GmailIcon />
+            </a>
+          </div>
+        </div>
 
-        <div className="copyright">
-         WETESTU is a division of Hubristic Purveyors Pvt. Ltd, bearing CIN: U74999WB2018PTC228083 
+        <div className="ub-bottom-bar">
+          <div className="ub-legal-column">
+             <div className="ub-division">A DIVISION OF HUBRISTIC PURVEYORS PVT. LTD</div>
+             <div className="ub-address">SUNRISE GREENS, CANAL BANK RD, NEWTOWN, WB 700162</div>
+          </div>
+          
+          <div className="ub-meta-column">
+             <div className="ub-copyright">© {new Date().getFullYear()} WETESTU</div>
+             <div className="ub-cin">CIN: U74999WB2018PTC228083</div>
+          </div>
         </div>
       </div>
       {modalType && (
@@ -222,7 +234,7 @@ const Footer = () => {
   </div>
 )}
 
-    </div>
+    </footer>
   );
 };
 

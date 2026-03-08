@@ -25,8 +25,16 @@ const programs = [
   { classValue: "12", label: "Class 12", theme: "yellow", icon: <FaLayerGroup /> },
 ];
 
-/* FEATURE DATA */
-const features = [feature1, feature2, feature3, feature4, feature5, feature6];
+/* FEATURE TEXT DATA */
+const featureTexts = [
+  "SUBJECT-WISE MOCK EXAMS",
+  "REAL BOARD ATMOSPHERE",
+  "EXPERT EVALUATION",
+  "PERSONALIZED FEEDBACK",
+  "DETAILED ANALYTICS",
+  "CBSE CLASSES 10, 11 & 12",
+  "MINDSET COACHING"
+];
 
 const FrontPage = () => {
   const navigate = useNavigate();
@@ -41,16 +49,19 @@ const FrontPage = () => {
   const [activeBanner, setActiveBanner] = useState(0);
 
   /* Navigation */
-  const handleRegister = (selectedClass, selectedBatch) => {
-    navigate("/book-seat", {
-      state: { selectedClass, selectedBatch },
-    });
+  const handleBadgeClick = (selectedClass) => {
+    scrollToCohorts(selectedClass);
   };
 
-  /* ✅ Scroll to Cohorts */
-  const scrollToCohorts = () => {
+  /* ✅ Scroll to Cohorts and specific class */
+  const scrollToCohorts = (classId) => {
     const section = document.getElementById("cohorts");
     if (section) {
+      if (typeof classId === "string") {
+        window.location.hash = classId;
+        // Dispatch custom event in case hash hasn't changed
+        window.dispatchEvent(new CustomEvent("cohort-navigate"));
+      }
       section.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -94,81 +105,110 @@ const FrontPage = () => {
   }, [displayText, isDeleting, currentWordIndex]);
 
   return (
-    <div className="main-container">
+    <div className="main-container boutique-theme">
+      {/* Dynamic Background Elements */}
+      <div className="mesh-gradient"></div>
+      <div className="grain-overlay"></div>
+      <div className="glass-blob-1"></div>
+      <div className="glass-blob-2"></div>
 
-      {/* ================= HERO ================= */}
-      <div className={`top-section fade-section ${showHero ? "visible" : ""}`}>
-        <div className="hero-wrapper">
+      {/* ================= BOUTIQUE HERO ================= */}
+      <div className={`boutique-hero fade-section ${showHero ? "visible" : ""}`}>
+        
+        {/* Background Decorative Outline Text */}
+        <div className="bg-outline-text">TEST PREP</div>
 
-          {/* LEFT — TEXT */}
-          <div className="hero-content">
-            <h1 className="top-text">
-              Tuition Teaches You.<br />
-              Offline Mock Tests Make You
-            </h1>
-            <div className="typing-line">
+        <div className="boutique-wrapper">
+          
+          {/* LEFT — MASSIVE ARCHITECTURAL TEXT */}
+          <div className="boutique-content">
+            <div className="title-group">
+              <h1 className="main-title solid">TUITION TEACHES YOU.</h1>
+              <h1 className="main-title outline">MOCK TESTS MAKE YOU</h1>
+            </div>
+            
+            <div className="typing-monolith">
               <span className="typing">{displayText}</span>
             </div>
-            <p>
-              Experience the real board atmosphere with our structured subject-wise 
-              offline mock examinations for CBSE Classes 10, 11 & 12.
-            </p>
-          </div>
 
-          {/* RIGHT — BANNERS */}
-          <div className="hero-banners">
-            <div
-              className={`banner clickable ${activeBanner === 0 ? "show" : ""}`}
-              onClick={scrollToCohorts}
-            >
-              <div className="banner-title">INAUGURATION OFFER</div>
-              <div className="banner-highlight">Starting @ ₹2000</div>
-              <div className="banner-cta">Explore Cohorts <span className="arrow">→</span></div>
+            <div className="hero-description">
+              <p>
+                A high-performance offline subject-wise mock examination system 
+                engineered for CBSE Classes 10, 11 & 12.
+              </p>
             </div>
 
-            <div
-              className={`banner clickable ${activeBanner === 1 ? "show" : ""}`}
-              onClick={scrollToCohorts}
-            >
-              <div className="banner-title">
-                FOCUSED ON <span className="cbse-blink">CBSE</span> BOARD
+            {/* INTEGRATED PROGRAM BADGES (Repositioned) */}
+            <div className={`program-badges ${showPrograms ? "visible" : ""}`}>
+              {programs.map((item, index) => (
+                <div
+                  key={index}
+                  className="badge-card"
+                  onClick={() => handleBadgeClick(item.classValue)}
+                >
+                  <span className="badge-label">{item.label}</span>
+                  <span className="badge-arrow">→</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT — THE GLASS MONOLITH (BANNERS) */}
+          <div className="monolith-banners">
+            <div className="monolith-track">
+              <div
+                className={`monolith-banner ${activeBanner === 0 ? "active" : ""}`}
+                onClick={scrollToCohorts}
+              >
+                <div className="m-tag">OFFER</div>
+                <div className="m-title">STARTS AT</div>
+                
+                <div className="m-details">
+                  <span>• ALL CHAPTERS INCLUDED</span>
+                  <span>• FOR ANY ONE SUBJECT</span>
+                  <span>• EXPERT FEEDBACK</span>
+                </div>
+
+                <div className="m-price">₹2000</div>
+                <div className="m-cta">EXPLORE NOW</div>
               </div>
-              <div className="banner-highlight">CLASSES 10, 11, 12</div>
-              <div className="banner-cta">Explore Cohorts <span className="arrow">→</span></div>
+
+              <div
+                className={`monolith-banner ${activeBanner === 1 ? "active" : ""}`}
+                onClick={scrollToCohorts}
+              >
+                <div className="m-tag">BOARDS</div>
+                <div className="m-title">CBSE FOCUSED</div>
+                
+                <div className="m-details">
+                  <span>• SYLLABUS-ALIGNED</span>
+                  <span>• LATEST PATTERNS</span>
+                  <span>• EVALUATION READY</span>
+                </div>
+
+                <div className="m-classes">10 • 11 • 12</div>
+                <div className="m-cta">JOIN THE COHORT</div>
+              </div>
             </div>
           </div>
 
         </div>
-      </div>
 
-      {/* ================= PROGRAM GRID ================= */}
-      <div className={`program-grid fade-section ${showPrograms ? "visible" : ""}`}>
-        {programs.map((item, index) => (
-          <div
-            key={index}
-            className={`program-card ${item.theme}`}
-            onClick={() => handleRegister(item.classValue)}
-          >
-            <div className="program-content">
-              <div className="program-icon">{item.icon}</div>
-              <h3>{item.label}</h3>
+        {/* ================= INTEGRATED CINEMATIC TEXT TICKER ================= */}
+        <div className={`boutique-strip fade-section ${showFeatures ? "visible" : ""}`}>
+          <div className="ticker-container">
+            <div className="ticker-track">
+              {[...featureTexts, ...featureTexts].map((text, index) => (
+                <div key={index} className="ticker-item">
+                  <span className="dot">•</span>
+                  {text}
+                </div>
+              ))}
             </div>
           </div>
-        ))}
-      </div>
-
-     {/* ================= FEATURES CAROUSEL ================= */}
-<div className={`features-section fade-section ${showFeatures ? "visible" : ""}`}>
-  <div className="features-carousel">
-    <div className="features-track">
-      {[...features, ...features].map((img, index) => (
-        <div key={index} className="feature-slide">
-          <img src={img} alt={`feature-${index}`} />
         </div>
-      ))}
-    </div>
-  </div>
-</div>
+
+      </div>
 
     </div>
   );

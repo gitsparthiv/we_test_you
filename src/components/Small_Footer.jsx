@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Small_Footer.css";
 import { WhatsAppIcon, GmailIcon } from "./Icons";
+import logo from "../assets/logo.png";
 
 const Small_Footer = () => {
   const [modalType, setModalType] = useState(null);
@@ -17,64 +18,34 @@ const Small_Footer = () => {
   }, []);
 
   return (
-    <footer className="small-footer">
-
-      {/* Top Section */}
-      <div className="sf-top">
-
-        <div className="sf-contact">
-          <div className="sf-contact-item">
-            +91 98747 95959
-          </div>
-          <div className="sf-contact-item">
-            foranything@algo2trade.com
-          </div>
+    <footer className="small-footer-high-boutique">
+      <div className="shb-container">
+        
+        <div className="shb-brand">
+          <img src={logo} alt="WeTestU" className="shb-logo" />
+          <div className="shb-sep"></div>
+          <span className="shb-tag">Boutique Mock Exams.</span>
         </div>
 
-        <div className="sf-big-brand">WETESTU</div>
+        <div className="shb-nav">
+          <button className="shb-nav-link" onClick={() => setModalType("terms")}>Terms</button>
+          <button className="shb-nav-link" onClick={() => setModalType("refund")}>Refunds</button>
+        </div>
 
-        <div className="sf-social">
-          <a 
-            href="https://wa.me/919874795959" 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
+        <div className="shb-social">
+          <a href="https://wa.me/919903043511" target="_blank" rel="noopener noreferrer" className="shb-icon">
             <WhatsAppIcon />
           </a>
-
-          <a href="mailto:foranything@algo2trade.com">
+          <a href="mailto:foranything@wetestu.in" className="shb-icon">
             <GmailIcon />
           </a>
         </div>
 
       </div>
 
-      <div className="sf-divider"></div>
-
-      {/* Bottom Section */}
-      <div className="sf-bottom">
-
-        <div className="sf-links">
-
-          <button className="sf-link-btn" onClick={() => setModalType("terms")}>
-            Terms and Conditions
-          </button>
-
-          <button className="sf-link-btn" onClick={() => setModalType("refund")}>
-            Refund Policy
-          </button>
-
-        </div>
-
-        <div className="sf-cif">
-          WETESTU is a division of Hubristic Purveyors Pvt. Ltd, bearing CIN:
-          U74999WB2018PTC228083
-        </div>
-
-        <div className="sf-addr">
-          Sunrise Greens, Canal Bank Rd, Newtown, Ghuni, West Bengal 700162
-        </div>
-
+      <div className="shb-bottom">
+        <span className="shb-copy">© {new Date().getFullYear()} WETESTU. All rights reserved.</span>
+        <span className="shb-division">Division of Hubristic Purveyors Pvt. Ltd</span>
       </div>
 
       {/* ===== Modal ===== */}

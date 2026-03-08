@@ -1,421 +1,302 @@
-.footer-container {
-    overflow-x: hidden;
-    background: black;
+.footer-ultra-boutique {
     position: relative;
-    color: white;
-    min-height: 40vh;
+    background: #000;
+    color: #fff;
+    padding: 100px 60px 40px;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    min-height: 450px;
+}
+
+/* ================= BACKGROUND LAYER ================= */
+
+.ub-bg-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.ub-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+    filter: grayscale(1) brightness(0.5);
+    transform: scale(1.1);
+    transition: transform 10s linear;
+}
+
+.footer-ultra-boutique:hover .ub-bg-image {
+    transform: scale(1);
+}
+
+.ub-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.8) 50%, transparent 100%);
+}
+
+/* ================= CONTAINER ================= */
+
+.ub-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ================= TOP SECTION ================= */
+
+.ub-top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 40px;
+}
+
+.ub-logo {
+    height: 45px;
+    width: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.ub-tagline {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.ub-quick-connect {
+    display: flex;
+    gap: 60px;
+}
+
+.ub-contact-card {
     display: flex;
     flex-direction: column;
 }
 
-/* ===================== TOP BAR ===================== */
-
-.top-bar {
-    position: absolute;
-    top: 15px;
-    left: 60px;
-    right: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-size: 13px;
-    letter-spacing: 1px;
-    z-index: 99;
-    gap: 12px;
-}
-
-/* ===================== HERO SECTION ===================== */
-
-.footer-hero {
-    height: 250px; 
-    background: linear-gradient(to bottom, #000000, #7a1e00, #c94b00);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    padding: 40px 20px 20px;
-}
-
-.footer-big-image {
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    object-fit: contain;
-    opacity: 1; 
-    transition: transform 0.5s ease;
-}
-
-.footer-container:hover .footer-big-image {
-    transform: scale(1.02);
-}
-
-/* ===================== BOTTOM BAR ===================== */
-
-.bottom-bar {
-    background: #c94b00;
-    padding: 12px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    font-size: 13px;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.bottom-links {
-    display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
-}
-
-.bottom-links span {
-    cursor: pointer;
+.ub-label {
+    font-size: 10px;
+    font-weight: 800;
+    color: #d7ff45;
+    text-transform: uppercase;
     letter-spacing: 2px;
-    font-weight: 500;
-    white-space: nowrap;
+    margin-bottom: 5px;
+}
+
+.ub-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
-.bottom-links span:hover {
-    text-decoration: underline;
-    opacity: 0.85;
+.ub-value:hover {
+    opacity: 0.6;
 }
 
-/* ===================== SOCIAL ICONS ===================== */
+/* ================= MID SECTION ================= */
 
-.social-icons {
+.ub-mid-section {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 14px;
+    margin-bottom: 80px;
 }
 
-.social-icons a {
+.ub-nav-cluster {
+    display: flex;
+    gap: 40px;
+}
+
+.ub-nav-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    padding: 10px 0;
+    position: relative;
+}
+
+.ub-nav-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.ub-nav-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #d7ff45;
+    transition: width 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+}
+
+.ub-nav-btn:hover::after {
+    width: 100%;
+}
+
+.ub-social-vault {
+    display: flex;
+    gap: 15px;
+}
+
+.ub-social-circle {
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.02);
 }
 
-.social-icons svg {
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
+.ub-social-circle:hover {
+    background: #d7ff45;
+    border-color: #d7ff45;
+    transform: translateY(-5px) scale(1.1);
 }
 
-.social-icons svg:hover {
-    transform: scale(1.15);
+.ub-social-circle svg {
+    width: 20px;
+    height: 20px;
+    fill: #fff;
 }
 
-/* ===================== COPYRIGHT ===================== */
-
-.copyright {
-    color: white;
-    letter-spacing: 1.5px;
-    font-size: 13px;
-    text-align: center;
-    flex: 1 1 100%;
+.ub-social-circle:hover svg {
+    fill: #000;
 }
 
-/* ===================== MODAL OVERLAY ===================== */
+/* ================= BOTTOM BAR ================= */
+
+.ub-bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 40px;
+}
+
+.ub-division {
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 5px;
+}
+
+.ub-address {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.ub-meta-column {
+    text-align: right;
+}
+
+.ub-copyright {
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.ub-cin {
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.15);
+    letter-spacing: 1px;
+}
+
+/* ================= MODAL STYLES (Ultra Refined) ================= */
 
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(20px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
-    padding: 20px;
-    box-sizing: border-box;
+    z-index: 9999;
 }
 
-/* ===================== MODAL BOX ===================== */
-
 .modal-box {
-    background: white;
-    width: 620px;
-    max-width: 100%;
-    max-height: 90vh;
-    padding: 40px 35px 60px;
-    border-radius: 12px;
+    background: #000;
+    border: 1px solid rgba(215, 255, 69, 0.2);
+    width: 800px;
+    max-width: 95%;
+    max-height: 85vh;
+    padding: 80px;
+    border-radius: 0; /* Boxy boutique look */
     position: relative;
-    animation: fadeIn 0.3s ease-in-out;
-    box-sizing: border-box;
 }
 
 .modal-box h2 {
-    font-size: 26px;
-    margin-bottom: 18px;
-    color: #222;
+    font-size: 42px;
+    font-weight: 900;
+    letter-spacing: -2px;
+    margin-bottom: 40px;
+    color: #fff;
 }
 
 .modal-content {
-    max-height: calc(90vh - 140px);
+    max-height: 40vh;
     overflow-y: auto;
-    font-size: 14.5px;
-    line-height: 1.7;
-    padding-right: 8px;
+    padding-right: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.8;
 }
 
-/* Scrollbar */
-.modal-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.modal-content::-webkit-scrollbar-thumb {
-    background: #c94b00;
-    border-radius: 10px;
-}
+.modal-content::-webkit-scrollbar { width: 1px; }
+.modal-content::-webkit-scrollbar-thumb { background: #d7ff45; }
 
 .close-btn {
-    position: absolute;
-    bottom: 18px;
-    right: 22px;
-    padding: 9px 22px;
-    background: black;
-    color: white;
+    margin-top: 40px;
+    background: #fff;
+    color: #000;
+    padding: 15px 40px;
     border: none;
-    border-radius: 6px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .close-btn:hover {
-    background: #333;
+    background: #d7ff45;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.92); }
-    to   { opacity: 1; transform: scale(1); }
-}
-
-/* ===================== TERMS & REFUND ===================== */
-
-.terms-wrapper,
-.refund-wrapper {
-    color: #333;
-}
-
-.terms-title,
-.refund-title {
-    font-size: 28px;
-    color: #c94b00;
-    margin-bottom: 5px;
-}
-
-.effective-date {
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 16px;
-}
-
-.intro-text {
-    font-size: 14px;
-    margin-bottom: 18px;
-    color: #444;
-}
-
-.terms-section,
-.refund-section {
-    margin-bottom: 18px;
-}
-
-.terms-section h4,
-.refund-section h4 {
-    color: #7a1e00;
-    font-size: 17px;
-    margin-bottom: 6px;
-}
-
-.terms-section p,
-.refund-section p {
-    font-size: 13.5px;
-    color: #555;
-    margin: 4px 0;
-}
-
-.terms-section ul,
-.refund-section ul {
-    padding-left: 20px;
-    margin: 5px 0;
-}
-
-.terms-section li,
-.refund-section li {
-    font-size: 13.5px;
-    color: #555;
-    margin-bottom: 4px;
-}
-
-/* ====================================================
-   RESPONSIVE — LARGEST → SMALLEST
-   ==================================================== */
-
-/* ================= TABLET / SMALL LAPTOP ================= */
+/* ================= RESPONSIVE ================= */
 
 @media (max-width: 1024px) {
-    .top-bar {
-        left: 30px;
-        right: 30px;
-    }
-
-    .bottom-bar {
-        padding: 12px 30px;
-    }
+    .footer-ultra-boutique { padding: 60px 30px 30px; }
+    .ub-top-section { flex-direction: column; align-items: flex-start; gap: 40px; }
+    .ub-quick-connect { width: 100%; justify-content: space-between; gap: 20px; }
 }
-
-/* ================= TABLET PORTRAIT ================= */
 
 @media (max-width: 768px) {
-    .top-bar {
-        position: static;
-        flex-direction: column;
-        text-align: center;
-        gap: 8px;
-        padding: 18px 20px;
-        font-size: 13px;
-        background: #111;
-    }
-
-    .footer-hero {
-        height: 200px;
-        padding: 40px 20px;
-    }
-
-    .bottom-bar {
-        flex-direction: column;
-        text-align: center;
-        padding: 18px 20px;
-        gap: 18px;
-    }
-
-    .bottom-links {
-        flex-direction: column;
-        gap: 14px;
-    }
-
-    .social-icons {
-        justify-content: center;
-    }
-
-    .modal-box {
-        padding: 30px 22px 55px;
-    }
-
-    .modal-box h2 {
-        font-size: 22px;
-    }
-
-    .modal-content {
-        max-height: calc(90vh - 130px);
-    }
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 480px) {
-    .top-bar {
-        padding: 14px 16px;
-        font-size: 12px;
-        letter-spacing: 0.5px;
-    }
-
-    .footer-hero {
-        height: 150px;
-    }
-
-    .bottom-bar {
-        padding: 12px 16px;
-        font-size: 12px;
-        gap: 14px;
-    }
-
-    .bottom-links {
-        gap: 10px;
-    }
-
-    .bottom-links span {
-        letter-spacing: 1px;
-        font-size: 12px;
-    }
-
-    .social-icons svg {
-        width: 24px;
-        height: 24px;
-    }
-
-    .copyright {
-        font-size: 11px;
-        letter-spacing: 0.8px;
-    }
-
-    /* MODAL */
-    .modal-overlay {
-        padding: 12px;
-    }
-
-    .modal-box {
-        padding: 22px 16px 50px;
-        border-radius: 10px;
-        max-height: 94vh;
-    }
-
-    .modal-box h2 {
-        font-size: 20px;
-        margin-bottom: 12px;
-    }
-
-    .modal-content {
-        max-height: calc(94vh - 110px);
-        font-size: 13px;
-    }
-
-    .close-btn {
-        padding: 8px 18px;
-        font-size: 13px;
-        bottom: 14px;
-        right: 16px;
-    }
-
-    .terms-title,
-    .refund-title {
-        font-size: 22px;
-    }
-
-    .terms-section h4,
-    .refund-section h4 {
-        font-size: 15px;
-    }
-}
-
-/* ================= EXTRA SMALL (Galaxy Fold etc.) ================= */
-
-@media (max-width: 360px) {
-    .big-text {
-        font-size: clamp(40px, 22vw, 100px);
-    }
-
-    .top-bar {
-        font-size: 11px;
-        padding: 12px;
-    }
-
-    .bottom-bar {
-        padding: 14px 12px;
-    }
-
-    .modal-box {
-        padding: 18px 14px 46px;
-    }
-
-    .close-btn {
-        padding: 7px 14px;
-        font-size: 12px;
-    }
+    .ub-mid-section { flex-direction: column; align-items: flex-start; gap: 40px; }
+    .ub-nav-cluster { flex-direction: column; gap: 15px; }
+    .ub-bottom-bar { flex-direction: column; align-items: flex-start; gap: 30px; text-align: left; }
+    .ub-meta-column { text-align: left; }
+    .ub-quick-connect { flex-direction: column; gap: 20px; }
 }

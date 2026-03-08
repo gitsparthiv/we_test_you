@@ -41,7 +41,7 @@ const FacultySection = () => {
 
         <div className="faculty-slider">
           <div className="faculty-track">
-            {[...facultyData, ...facultyData].map((faculty, index) => (
+            {[...facultyData, ...facultyData, ...facultyData, ...facultyData].map((faculty, index) => (
               <div className="faculty-card" key={index}>
                 <div className="faculty-image-wrapper">
                   <div className="faculty-image">
