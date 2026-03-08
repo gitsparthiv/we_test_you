@@ -141,7 +141,9 @@ const BookYourSeat = () => {
   }, []);
 
   const classSubjects = data[currentClass] || [];
-  const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
+  const discount = selectedSubjects.length > 1 ? Math.round(subtotal * 0.2) : 0;
+  const total = subtotal - discount;
 
   /* =========================
      FUNCTIONS
@@ -330,6 +332,16 @@ const BookYourSeat = () => {
           </div>
           <div className="cart-footer">
             <div className="cart-total">
+              <span className="total-label">SUBTOTAL:</span>
+              <span className="total-value">₹{subtotal}</span>
+            </div>
+            {discount > 0 && (
+              <div className="cart-total discount-row">
+                <span className="total-label">DISCOUNT (20%):</span>
+                <span className="total-value">-₹{discount}</span>
+              </div>
+            )}
+            <div className="cart-total final-total">
               <span className="total-label">TOTAL:</span>
               <span className="total-value">₹{total}</span>
             </div>
@@ -340,6 +352,8 @@ const BookYourSeat = () => {
                 navigate("/payment", {
                   state: {
                     selectedSubjects,
+                    subtotal,
+                    discount,
                     total,
                     cohortBatch,
                     venue: currentVenue,

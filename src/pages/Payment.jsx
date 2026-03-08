@@ -19,6 +19,8 @@ const Payment = () => {
 
   const {
     selectedSubjects = [],
+    subtotal = 0,
+    discount = 0,
     total = 0,
     cohortBatch = "",
     venue = "",
@@ -98,7 +100,7 @@ const Payment = () => {
             studentEmail: form.StudentEmail,
             studentPhone: form.StudentPhone,
             selectedSubjects,
-            total,
+            finalTotal: total,
             cohortBatch,
             venue,
           },
@@ -181,6 +183,16 @@ const Payment = () => {
 
                 <div className="excel-space"></div>
 
+                <div className="excel-row">
+                  <span>SUBTOTAL</span>
+                  <span>₹{subtotal}</span>
+                </div>
+                {discount > 0 && (
+                  <div className="excel-row discount-row">
+                    <span>DISCOUNT (20%)</span>
+                    <span>-₹{discount}</span>
+                  </div>
+                )}
                 <div className="excel-row grand-total">
                   <span>TOTAL</span>
                   <span>₹{total}</span>

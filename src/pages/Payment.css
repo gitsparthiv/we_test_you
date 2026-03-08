@@ -202,7 +202,7 @@
 }
 
 .summary-items-container {
-  max-height: 180px; /* 4 items @ ~45px each */
+  max-height: 300px; /* Increased to show more items */
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: thin;
@@ -252,10 +252,18 @@
 }
 
 
+.discount-row {
+  color: #ff4444 !important;
+}
+
+.discount-row span {
+  color: #ff4444 !important;
+}
+
 .grand-total {
   margin-top: 5px;
   border-top: none;
-  padding-top: 0;
+  padding-top: 10px;
   color: var(--primary);
   display: flex;
   flex-direction: column;
