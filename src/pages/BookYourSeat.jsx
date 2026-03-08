@@ -7,6 +7,7 @@ import gariaImg from "../assets/garia.png";
 import dumdumImg from "../assets/dumdum.png";
 import newtownImg from "../assets/newtown.png";
 import howrahImg from "../assets/howrah.png";
+import venueLabelImg from "../assets/venue.png";
 
 const CACHE_KEY = "bys_data_v2"; // Bumped version for new design
 
@@ -189,30 +190,32 @@ const BookYourSeat = () => {
         </div>
 
         <div className="filter-section">
-          <div className="filter-row">
-            <span>VENUES</span>
-            {[
-              { name: "Garia", img: gariaImg },
-              { name: "Dumdum", img: dumdumImg },
-              { name: "Newtown", img: newtownImg },
-              { name: "Howrah", img: howrahImg },
-            ].map((venue) => (
-              <button
-                key={venue.name}
-                className={`venue-img-btn ${currentVenue === venue.name ? "active" : ""} ${
-                  venue.name !== "Newtown" ? "disabled" : ""
-                }`}
-                onClick={() => {
-                  if (venue.name !== "Newtown") {
-                    alert(`${venue.name} is coming soon. Newtown is currently active.`);
-                    return;
-                  }
-                  setCurrentVenue(venue.name);
-                }}
-              >
-                <img src={venue.img} alt={venue.name} />
-              </button>
-            ))}
+          <div className="venue-glass-container">
+            <div className="filter-row">
+              <img src={venueLabelImg} className="venue-label-img" alt="VENUES" />
+              {[
+                { name: "Garia", img: gariaImg },
+                { name: "Dumdum", img: dumdumImg },
+                { name: "Newtown", img: newtownImg },
+                { name: "Howrah", img: howrahImg },
+              ].map((venue) => (
+                <button
+                  key={venue.name}
+                  className={`venue-img-btn ${currentVenue === venue.name ? "active" : ""} ${
+                    venue.name !== "Newtown" ? "disabled" : ""
+                  }`}
+                  onClick={() => {
+                    if (venue.name !== "Newtown") {
+                      alert(`${venue.name} is coming soon. Newtown is currently active.`);
+                      return;
+                    }
+                    setCurrentVenue(venue.name);
+                  }}
+                >
+                  <img src={venue.img} alt={venue.name} />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

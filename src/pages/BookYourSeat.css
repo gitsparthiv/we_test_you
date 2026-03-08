@@ -110,13 +110,34 @@ body {
 .filter-row {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 25px;
   flex-wrap: wrap;
+}
+
+.venue-glass-container {
+  background: linear-gradient(110deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 12px 24px;
+  box-shadow: 
+    0 15px 45px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(217, 255, 0, 0.04);
+  display: inline-flex;
+}
+
+.venue-label-img {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
 }
 
 .venue-img-btn {
   position: relative;
-  height: 50px;
+  height: 55px;
+  width: 140px;
   border: 2px solid var(--surface);
   padding: 0;
   background: var(--surface);
@@ -192,15 +213,7 @@ body {
   pointer-events: none;
 }
 
-.filter-row span {
-  font-family: var(--font-bebas);
-  font-size: 25px;
-  letter-spacing: 2px;
-  background-color: var(--primary);
-  color: var(--bg);
-  text-transform: uppercase;
-  padding: 6px 24px;
-}
+/* Venue label style removed as it is replaced by an image */
 
 .filter-btn {
   font-family: var(--font-bebas);
