@@ -3,6 +3,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { useLayoutEffect } from "react";
 import Papa from "papaparse";
+import gariaImg from "../assets/garia.png";
+import dumdumImg from "../assets/dumdum.png";
+import newtownImg from "../assets/newtown.png";
+import howrahImg from "../assets/howrah.png";
 
 const CACHE_KEY = "bys_data_v2"; // Bumped version for new design
 
@@ -187,21 +191,26 @@ const BookYourSeat = () => {
         <div className="filter-section">
           <div className="filter-row">
             <span>VENUE :</span>
-            {["Garia", "Dumdum", "Newtown", "Howrah"].map((venue) => (
+            {[
+              { name: "Garia", img: gariaImg },
+              { name: "Dumdum", img: dumdumImg },
+              { name: "Newtown", img: newtownImg },
+              { name: "Howrah", img: howrahImg },
+            ].map((venue) => (
               <button
-                key={venue}
-                className={`filter-btn ${currentVenue === venue ? "active" : ""} ${
-                  venue !== "Newtown" ? "disabled" : ""
+                key={venue.name}
+                className={`venue-img-btn ${currentVenue === venue.name ? "active" : ""} ${
+                  venue.name !== "Newtown" ? "disabled" : ""
                 }`}
                 onClick={() => {
-                  if (venue !== "Newtown") {
-                    alert(`${venue} is coming soon. Newtown is currently active.`);
+                  if (venue.name !== "Newtown") {
+                    alert(`${venue.name} is coming soon. Newtown is currently active.`);
                     return;
                   }
-                  setCurrentVenue(venue);
+                  setCurrentVenue(venue.name);
                 }}
               >
-                {venue}
+                <img src={venue.img} alt={venue.name} />
               </button>
             ))}
           </div>
