@@ -195,10 +195,33 @@
 }
 .excel-row.detail-main {
   color: var(--text-dim);
-  font-size: 16px;
+  font-size: 25px;
   border-bottom: none;
   padding: 3px 0;
   text-transform: uppercase;
+}
+
+.summary-items-container {
+  max-height: 180px; /* 4 items @ ~45px each */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+  margin-top: 10px;
+  padding-right: 15px;
+}
+
+.summary-items-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.summary-items-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.summary-items-container::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
 }
 
 .excel-header {
@@ -207,6 +230,7 @@
   border-bottom: 2px solid var(--text);
   padding-bottom: 8px;
   font-size: 25px;
+  padding-right: 15px;
 }
 .excel-header span{
   font-family: var(--font-bebas);
@@ -247,12 +271,12 @@
 
 .grand-total span:last-child {
   font-family: var(--font-bebas) !important;
-  font-size: 48px;
+  font-size: 40px;
   line-height: 1;
 }
 
 .action-buttons {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .pay-btn {

@@ -127,7 +127,7 @@ const Payment = () => {
       <div className="booking-container">
         {/* LEFT SIDE: FORM */}
         <div className="form-section">
-          <h2 className="section-title">REGISTRATION DETAILS</h2>
+          <h2 className="section-title">PAYMENT DETAILS</h2>
           
           <div className="form-grid">
             {Object.keys(form).map((key) => (
@@ -161,7 +161,6 @@ const Payment = () => {
             {selectedSubjects.length > 0 && (
               <>
                 <div className="excel-row detail-main">CLASS: {selectedSubjects[0].className}</div>
-                <div className="excel-row detail-main">PACKAGE: {cohortBatch.toUpperCase()}</div>
                 <div className="excel-row detail-main">VENUE: {venue.toUpperCase()}</div>
 
                 <div className="excel-header excel-row">
@@ -169,14 +168,16 @@ const Payment = () => {
                   <span>PRICE</span>
                 </div>
 
-                {selectedSubjects.map((item, index) => (
-                  <div className="excel-row" key={index}>
-                    <span className="subject-name">
-                      {item.name.toUpperCase()}
-                    </span>
-                    <span>₹{item.price}</span>
-                  </div>
-                ))}
+                <div className="summary-items-container">
+                  {selectedSubjects.map((item, index) => (
+                    <div className="excel-row" key={index}>
+                      <span className="subject-name">
+                        {item.name.toUpperCase()}
+                      </span>
+                      <span>₹{item.price}</span>
+                    </div>
+                  ))}
+                </div>
 
                 <div className="excel-space"></div>
 

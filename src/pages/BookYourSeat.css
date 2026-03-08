@@ -61,7 +61,7 @@ body {
 }
 
 .title-box::before {
-  content: "REGISTRATION";
+  content: "PAYMENT";
   position: absolute;
   top: -40px;
   left: -20px;

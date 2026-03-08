@@ -153,7 +153,7 @@ const BookYourSeat = () => {
       return;
     }
 
-    const packageType = type || (cohortBatch === "Fastrack" ? "Fastrack Package" : "Concrete Package");
+    const packageType = type || "Package";
     setSelectedSubjects((prev) => [
       ...prev,
       { key, name, price, className: currentClass, packageType },
@@ -176,9 +176,9 @@ const BookYourSeat = () => {
 
       <div className="main-content">
         <div className="title-box">
-          <h1>REGISTRATION 2026–27</h1>
+          <h1>TEST DETAILS</h1>
           <div className="class-line">
-            CLASS {currentClass} • {cohortBatch?.toUpperCase()}
+            CLASS {currentClass}
           </div>
         </div>
 
@@ -256,7 +256,7 @@ const BookYourSeat = () => {
                                 </div>
                                 <button
                                   className={`add-subject-btn ${chapterIsAdded ? "is-added" : ""}`}
-                                  onClick={() => addItem(chapterAddName, subject.concreteActual, "Concrete Package")}
+                                  onClick={() => addItem(chapterAddName, subject.concreteActual, "Package")}
                                   disabled={chapterIsAdded}
                                 >
                                   {chapterIsAdded ? "ADDED ✓" : "ADD TO CART"}
@@ -274,7 +274,7 @@ const BookYourSeat = () => {
                                 </div>
                                 <button
                                   className={`add-subject-btn ${mockIsAdded ? "is-added" : ""}`}
-                                  onClick={() => addItem(mockAddName, subject.fastrackActual, "Fastrack Package")}
+                                  onClick={() => addItem(mockAddName, subject.fastrackActual, "Package")}
                                   disabled={mockIsAdded}
                                 >
                                   {mockIsAdded ? "ADDED ✓" : "ADD TO CART"}

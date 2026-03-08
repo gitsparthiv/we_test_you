@@ -20,12 +20,9 @@ const words = [
 
 /* PROGRAM DATA */
 const programs = [
-  { classValue: "10", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
-  { classValue: "10", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
-  { classValue: "11", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
-  { classValue: "11", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
-  { classValue: "12", division: "Fastrack", label: "Fastrack Division", theme: "yellow", icon: <FaRocket /> },
-  { classValue: "12", division: "Concrete", label: "Concrete Division", theme: "yellow", icon: <FaLayerGroup /> },
+  { classValue: "10", label: "Class 10", theme: "yellow", icon: <FaLayerGroup /> },
+  { classValue: "11", label: "Class 11", theme: "yellow", icon: <FaLayerGroup /> },
+  { classValue: "12", label: "Class 12", theme: "yellow", icon: <FaLayerGroup /> },
 ];
 
 /* FEATURE DATA */
@@ -150,12 +147,11 @@ const FrontPage = () => {
           <div
             key={index}
             className={`program-card ${item.theme}`}
-            onClick={() => handleRegister(item.classValue, item.division)}
+            onClick={() => handleRegister(item.classValue)}
           >
             <div className="program-content">
               <div className="program-icon">{item.icon}</div>
-              <h3>Class {item.classValue}</h3>
-              <p>{item.label}</p>
+              <h3>{item.label}</h3>
             </div>
           </div>
         ))}

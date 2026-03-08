@@ -155,7 +155,7 @@ const Cohort = () => {
                     />
                   </div>
                 </div>
-                <button className="register-btn" onClick={() => handleRegister("10", "Concrete")}>
+                <button className="register-btn" onClick={() => handleRegister("10")}>
                   Register Now
                 </button>
               </div>
@@ -214,7 +214,7 @@ const Cohort = () => {
                     />
                   </div>
                 </div>
-                <button className="register-btn" onClick={() => handleRegister("11", "Concrete")}>
+                <button className="register-btn" onClick={() => handleRegister("11")}>
                   Register Now
                 </button>
               </div>
@@ -273,7 +273,7 @@ const Cohort = () => {
                     />
                   </div>
                 </div>
-                <button className="register-btn" onClick={() => handleRegister("12", "Concrete")}>
+                <button className="register-btn" onClick={() => handleRegister("12")}>
                   Register Now
                 </button>
               </div>
