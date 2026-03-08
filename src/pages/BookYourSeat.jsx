@@ -3,9 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { useLayoutEffect } from "react";
 import Papa from "papaparse";
-import { createPortal } from "react-dom";
 
-const CACHE_KEY = "bys_data_v1";
+const CACHE_KEY = "bys_data_v2"; // Bumped version for new design
 
 const BookYourSeat = () => {
   const navigate = useNavigate();
@@ -30,7 +29,6 @@ const BookYourSeat = () => {
 
   const [currentVenue, setCurrentVenue] = useState("Newtown");
   const [selectedSubjects, setSelectedSubjects] = useState([]);
-
   const [loading, setLoading] = useState(() => {
     try {
       const cached = sessionStorage.getItem(CACHE_KEY);
@@ -41,38 +39,17 @@ const BookYourSeat = () => {
   });
 
   const [loadError, setLoadError] = useState("");
-
-  // toast + cart pulse
   const [toast, setToast] = useState({ show: false, message: "" });
   const toastTimerRef = useRef(null);
-
-  const [cartPulse, setCartPulse] = useState(false);
-  const cartPulseTimerRef = useRef(null);
-
-  // cart ref for scroll
-  const cartRef = useRef(null);
 
   const hasItems = selectedSubjects.length > 0;
 
   const showToast = (message) => {
     setToast({ show: true, message });
-
     if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
     toastTimerRef.current = setTimeout(() => {
       setToast({ show: false, message: "" });
     }, 1800);
-  };
-
-  const pulseCart = () => {
-    setCartPulse(true);
-    if (cartPulseTimerRef.current) clearTimeout(cartPulseTimerRef.current);
-    cartPulseTimerRef.current = setTimeout(() => setCartPulse(false), 600);
-  };
-
-  const scrollToCart = () => {
-    if (cartRef.current) {
-      cartRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   /* =========================
@@ -81,7 +58,6 @@ const BookYourSeat = () => {
   useEffect(() => {
     return () => {
       if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-      if (cartPulseTimerRef.current) clearTimeout(cartPulseTimerRef.current);
     };
   }, []);
 
@@ -111,7 +87,6 @@ const BookYourSeat = () => {
           skipEmptyLines: true,
           complete: (result) => {
             const parsedData = {};
-
             result.data.forEach((row) => {
               const {
                 class: className,
@@ -126,7 +101,6 @@ const BookYourSeat = () => {
               } = row;
 
               if (!parsedData[className]) parsedData[className] = [];
-
               let subjectObj = parsedData[className].find((s) => s.name === subject);
 
               if (!subjectObj) {
@@ -151,12 +125,10 @@ const BookYourSeat = () => {
 
             setData(parsedData);
             setLoading(false);
-            setLoadError("");
-
             try {
               sessionStorage.setItem(CACHE_KEY, JSON.stringify(parsedData));
-            } catch {
-              // ignore
+            } catch (e) {
+              console.warn("Could not cache data", e);
             }
           },
         });
@@ -169,94 +141,63 @@ const BookYourSeat = () => {
   }, []);
 
   const classSubjects = data[currentClass] || [];
-
-  /* =========================
-     CART CALCULATION
-  ========================= */
-  const total = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
+  const discount = selectedSubjects.length > 1 ? Math.round(subtotal * 0.2) : 0;
+  const total = subtotal - discount;
 
   /* =========================
      FUNCTIONS
   ========================= */
-  const addItem = (name, price) => {
-    if (!currentVenue) {
-      alert("Please select a venue first.");
-      return;
-    }
-
+  const addItem = (name, price, type) => {
     const key = name + "-" + currentClass;
-
     if (selectedSubjects.some((item) => item.key === key)) {
-      showToast("Already in cart");
-      pulseCart();
+      showToast("ALREADY IN CART");
       return;
     }
 
-    const packageType =
-      cohortBatch === "Fastrack" ? "Fastrack Package" : "Concrete Package";
-
+    const packageType = type || "Package";
     setSelectedSubjects((prev) => [
       ...prev,
       { key, name, price, className: currentClass, packageType },
     ]);
-
-    showToast("Added to cart");
-    pulseCart();
+    showToast("ADDED TO CART");
   };
 
   const removeItem = (key) => {
     setSelectedSubjects((prev) => prev.filter((item) => item.key !== key));
-    showToast("Removed from cart");
-    pulseCart();
+    showToast("REMOVED FROM CART");
   };
-
-  const canCheckout = hasItems && currentVenue !== "";
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  /* =========================
-     UI
-  ========================= */
   return (
-    <div className={`registration-wrapper ${hasItems ? "has-cart" : "no-cart"}`}>
+    <div className={`registration-wrapper ${!hasItems ? "cart-empty" : ""}`}>
       {toast.show && <div className="bys-toast">{toast.message}</div>}
 
       <div className="main-content">
         <div className="title-box">
-          <h1>REGISTRATION 2026–27</h1>
-          <h2 className="class-line">
-            CLASS {currentClass} • {cohortBatch?.toUpperCase()}
-          </h2>
+          <h1>TEST DETAILS</h1>
+          <div className="class-line">
+            CLASS {currentClass}
+          </div>
         </div>
 
         <div className="filter-section">
           <div className="filter-row">
-            <span>Venue</span>
-
+            <span>VENUE :</span>
             {["Garia", "Dumdum", "Newtown", "Howrah"].map((venue) => (
               <button
-                style={{ fontFamily: "Bebas Neue" }}
                 key={venue}
-                className={`filter-btn ${
-                  currentVenue === venue ? "active" : ""
-                } ${venue !== "Newtown" ? "disabled" : ""}`}
+                className={`filter-btn ${currentVenue === venue ? "active" : ""} ${
+                  venue !== "Newtown" ? "disabled" : ""
+                }`}
                 onClick={() => {
-                  if (selectedSubjects.length > 0 && currentVenue && venue !== currentVenue) {
-                    alert(
-                      `You have already selected ${currentVenue} venue. Remove all items from cart to change venue.`
-                    );
-                    return;
-                  }
-
                   if (venue !== "Newtown") {
-                    alert(
-                      `${venue} venue is coming soon. Currently only Newtown is available.`
-                    );
+                    alert(`${venue} is coming soon. Newtown is currently active.`);
                     return;
                   }
-
                   setCurrentVenue(venue);
                 }}
               >
@@ -267,131 +208,98 @@ const BookYourSeat = () => {
         </div>
 
         <div className="table-box">
-          {loading && (
-            <div className="bys-loading-overlay">
-              <div className="bys-spinner" />
-              <div className="bys-loading-text">Loading subjects…</div>
-            </div>
-          )}
-
-          {!loading && loadError && (
-            <div className="bys-error">
-              <div>{loadError}</div>
-              <button className="bys-retry" onClick={() => window.location.reload()}>
-                Retry
-              </button>
-            </div>
-          )}
-
           <table className="custom-table">
-            <colgroup>
-              <col style={{ width: "22%" }} />
-              <col style={{ width: "56%" }} />
-              <col style={{ width: "22%" }} />
-            </colgroup>
-
             <thead>
               <tr>
-                <th>Subject</th>
-                <th>Chapter</th>
-                <th>Schedule</th>
+                <th>AVAILABLE SUBJECTS</th>
               </tr>
             </thead>
-
             <tbody>
               {loading &&
-                Array.from({ length: 6 }).map((_, i) => (
-                  <tr key={`sk-${i}`} className="bys-skeleton-row">
-                    <td colSpan="3">
-                      <div className="bys-skeleton-line" />
-                    </td>
+                Array.from({ length: 4 }).map((_, i) => (
+                  <tr key={i} className="subject-row">
+                    <td style={{ padding: "40px", color: "var(--text-dim)" }}>LOADING SUBJECTS...</td>
                   </tr>
                 ))}
-
+              {!loading && loadError && (
+                <tr className="subject-row">
+                  <td style={{ padding: "40px", color: "#ff4444" }}>{loadError}</td>
+                </tr>
+              )}
               {!loading &&
                 !loadError &&
                 classSubjects.map((subject, index) => {
-                  const displayOldPrice =
-                    cohortBatch === "Fastrack" ? subject.fastrackOld : subject.concreteOld;
+                  const chapterAddName = subject.name + " Chapters";
+                  const chapterKey = chapterAddName + "-" + currentClass;
+                  const chapterIsAdded = selectedSubjects.some((it) => it.key === chapterKey);
 
-                  const displayNewPrice =
-                    cohortBatch === "Fastrack"
-                      ? subject.fastrackActual
-                      : subject.concreteActual;
-
-                  const addName =
-                    cohortBatch === "Fastrack"
-                      ? subject.name + " Mock Package"
-                      : subject.name + " Full Package";
-
-                  const addPrice =
-                    cohortBatch === "Fastrack"
-                      ? subject.fastrackActual
-                      : subject.concreteActual;
-
-                  const key = addName + "-" + currentClass;
-                  const isAdded = selectedSubjects.some((it) => it.key === key);
+                  const mockAddName = subject.name + " Mocks";
+                  const mockKey = mockAddName + "-" + currentClass;
+                  const mockIsAdded = selectedSubjects.some((it) => it.key === mockKey);
 
                   return (
                     <React.Fragment key={index}>
                       <tr className="subject-row">
                         <td>
-                          <div className="subject-head-row">
-                            <h3 className="subject-title">{subject.name}</h3>
-
-                            <button
-                              className={`add-subject-btn ${isAdded ? "is-added" : ""}`}
-                              onClick={() => addItem(addName, addPrice)}
-                              type="button"
-                              aria-label={`${isAdded ? "Added" : "Add"} ${subject.name} to cart`}
-                              disabled={isAdded}
-                            >
-                              <div className="price-box">
-                                <span className="add-chip">
-                                  {isAdded ? "ADDED ✓" : "ADD +"}
-                                </span>
-                                <span className="old-price-bys">₹{displayOldPrice}</span>
-                                <span className="new-price-bys">₹{displayNewPrice}</span>
+                          <div className="subject-item-container">
+                            <div className="subject-info">
+                              <h3>{subject.name}</h3>
+                            </div>
+                            
+                            <div className="subject-actions">
+                              {/* CHAPTERS ACTION */}
+                              <div className="action-item">
+                                <div className="action-price-info">
+                                  <span className="action-label">ALL CHAPTERS</span>
+                                  <div className="prices">
+                                    <span className="old-price-bys">₹{subject.concreteOld}</span>
+                                    <span className="new-price-bys">₹{subject.concreteActual}</span>
+                                  </div>
+                                </div>
+                                <button
+                                  className={`add-subject-btn ${chapterIsAdded ? "is-added" : ""}`}
+                                  onClick={() => addItem(chapterAddName, subject.concreteActual, "Package")}
+                                  disabled={chapterIsAdded}
+                                >
+                                  {chapterIsAdded ? "ADDED ✓" : "ADD TO CART"}
+                                </button>
                               </div>
-                            </button>
+
+                              {/* MOCK TESTS ACTION */}
+                              <div className="action-item">
+                                <div className="action-price-info">
+                                  <span className="action-label">MOCK TESTS</span>
+                                  <div className="prices">
+                                    <span className="old-price-bys">₹{subject.fastrackOld}</span>
+                                    <span className="new-price-bys">₹{subject.fastrackActual}</span>
+                                  </div>
+                                </div>
+                                <button
+                                  className={`add-subject-btn ${mockIsAdded ? "is-added" : ""}`}
+                                  onClick={() => addItem(mockAddName, subject.fastrackActual, "Package")}
+                                  disabled={mockIsAdded}
+                                >
+                                  {mockIsAdded ? "ADDED ✓" : "ADD TO CART"}
+                                </button>
+                              </div>
+                            </div>
                           </div>
                         </td>
-
-                        <td>—</td>
-                        <td>—</td>
                       </tr>
-
-                      <tr>
-                        <td colSpan="3" style={{ padding: 0 }}>
+                      <tr className="chapter-details-row">
+                        <td>
                           <div className="chapter-wrap">
-                            <div className="mobile-chapter-head">
-                              <span>Chapter</span>
-                              <span>Schedule</span>
-                            </div>
-
                             <div className="chapter-scroll-container">
-                              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                                <colgroup>
-                                  <col style={{ width: "22%" }} />
-                                  <col style={{ width: "56%" }} />
-                                  <col style={{ width: "22%" }} />
-                                </colgroup>
-
-                                <tbody>
-                                  {(cohortBatch !== "Fastrack"
-                                    ? (subject.sessions || []).concat(subject.mockTests || [])
-                                    : subject.mockTests || []
-                                  ).map((item, i) => (
-                                    <tr key={i} className="chapter-row">
-                                      <td className="ghost-cell">—</td>
-                                      <td className="chapter-cell">
-                                        {item.chapter ? item.chapter : item.name}
-                                      </td>
-                                      <td className="date-cell">{item.date}</td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
+                              <div className="chapter-list">
+                                {(subject.sessions || []).concat(subject.mockTests || []).map((item, i) => (
+                                  <div key={i} className="chapter-item">
+                                    <span className="chapter-name">
+                                      {item.chapter ? item.chapter : item.name}
+                                    </span>
+                                    <span className="chapter-date">{item.date}</span>
+                                  </div>
+                                ))}
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -404,83 +312,60 @@ const BookYourSeat = () => {
         </div>
       </div>
 
-      {/* CART PANEL (only when items exist) */}
       {hasItems && (
-        <div
-          className={`cart-panel ${cartPulse ? "cart-pulse" : ""}`}
-          ref={cartRef}
-        >
-          <h2 className={cartPulse ? "cart-title-glow" : ""}>Your Cart</h2>
-
+        <div className="cart-panel">
+          <div className="cart-header">
+            <h2>
+              YOUR CART <span className="cart-count">{selectedSubjects.length}</span>
+            </h2>
+          </div>
           <div className="cart-items">
-            <div className="cart-excel">
-              <div className="excel-row">CLASS : {selectedSubjects[0].className}</div>
-              <div className="excel-row">
-                PACKAGE : {selectedSubjects[0].packageType.toUpperCase()}
+            {selectedSubjects.map((item) => (
+              <div className="cart-item" key={item.key}>
+                <div className="cart-item-name">{item.name}</div>
+                <div className="cart-item-price">₹{item.price}</div>
+                <button className="remove-btn" onClick={() => removeItem(item.key)}>
+                  ✕
+                </button>
               </div>
-              <div className="excel-row">VENUE : {currentVenue || "NOT SELECTED"}</div>
-
-              <div className="excel-space"></div>
-
-              <div className="excel-row excel-header">
-                <span className="subject-head">SUBJECT</span>
-                <span className="cost-head">COST</span>
-              </div>
-
-              {selectedSubjects.map((item) => (
-                <div className="excel-row" key={item.key}>
-                  <span className="subject-name">
-                    {item.name.replace(" Full Package", "").replace(" Mock Package", "")}
-                  </span>
-
-                  <span className="cost">
-                    {item.price}
-                    <span className="remove" onClick={() => removeItem(item.key)}>
-                      ✕
-                    </span>
-                  </span>
-                </div>
-              ))}
+            ))}
+          </div>
+          <div className="cart-footer">
+            <div className="cart-total">
+              <span className="total-label">SUBTOTAL:</span>
+              <span className="total-value">₹{subtotal}</span>
             </div>
+            {discount > 0 && (
+              <div className="cart-total discount-row">
+                <span className="total-label">DISCOUNT (20%):</span>
+                <span className="total-value">-₹{discount}</span>
+              </div>
+            )}
+            <div className="cart-total final-total">
+              <span className="total-label">TOTAL:</span>
+              <span className="total-value">₹{total}</span>
+            </div>
+            <button
+              className="checkout-btn"
+              disabled={!hasItems}
+              onClick={() => {
+                navigate("/payment", {
+                  state: {
+                    selectedSubjects,
+                    subtotal,
+                    discount,
+                    total,
+                    cohortBatch,
+                    venue: currentVenue,
+                  },
+                });
+              }}
+            >
+              PROCEED TO CHECKOUT
+            </button>
           </div>
-
-          <div className="total">
-            <div style={{ fontWeight: "bold" }}>Total: ₹ {total}</div>
-          </div>
-
-          <button
-            className="checkout"
-            disabled={!canCheckout}
-            onClick={() =>
-              navigate("/payment", {
-                state: {
-                  selectedSubjects,
-                  total,
-                  cohortBatch,
-                  venue: currentVenue,
-                },
-              })
-            }
-          >
-            Proceed to Checkout
-          </button>
         </div>
       )}
-
-      {/* Floating cart icon */}
-      {hasItems &&
-        createPortal(
-          <button
-            className={`bys-float-cart ${cartPulse ? "bys-float-pulse" : ""}`}
-            onClick={scrollToCart}
-            aria-label="View cart"
-            type="button"
-          >
-            🛒
-            <span className="bys-float-badge">{selectedSubjects.length}</span>
-          </button>,
-          document.body
-        )}
     </div>
   );
 };

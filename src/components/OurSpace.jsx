@@ -32,6 +32,7 @@ useEffect(() => {
           <h1>
             PROCTORED<br />EXAMINATION CENTRE
           </h1>
+          <p className="disclaimer-text">Indicative Centre picture only</p>
         </div>
       </div>
 

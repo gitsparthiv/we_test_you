@@ -1,323 +1,380 @@
-/* =========================
-   PAYMENT PAGE WRAPPER
-========================= */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700&display=swap");
+
+:root {
+  --primary: #d9ff00;
+  --bg: #000000;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --text: #ffffff;
+  --text-dim: #999999;
+  --border: rgba(255, 255, 255, 0.1);
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-inter: "Inter", sans-serif;
+}
+
 .payment-page {
   min-height: 100vh;
-  background: #000;
-  padding: 90px 16px 30px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-bebas); /* Bebas everywhere */
+  padding: 80px 5% 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
 }
 
-/* =========================
-   MAIN GLASS CONTAINER
-========================= */
 .booking-container {
-  position: relative;
   width: 100%;
   max-width: 1200px;
-  margin: 25px auto;
-  padding: 30px;
-  padding-bottom: 95px;
-  border-radius: 35px;
-
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: 60px;
-
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1.5px solid rgba(255, 255, 255, 0.4);
-
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-
-  box-shadow:
-    0 0 25px rgba(255, 255, 255, 0.2),
-    inset 0 0 20px rgba(255, 255, 255, 0.08);
+  position: relative;
+  align-items: start;
 }
 
 /* =========================
-   TEXT STYLES
+   LEFT SIDE - FORM
 ========================= */
-.subject,
-.grandtotal,
-.subtotal {
-  font-family: "Bebas Neue", cursive;
-  font-size: 22px;
-  letter-spacing: 2px;
-  color: #d9ff00;
+.form-section {
+  display: flex;
+  flex-direction: column;
 }
 
-.subject-name,
-.discount {
-  font-family: "Bebas Neue", cursive;
-  font-size: 18px;
-  letter-spacing: 2px;
-}
-
-/* =========================
-   SECTION TITLE
-========================= */
 .section-title {
-  display: block;
-  width: fit-content;
-  margin: 0 auto 30px auto;
-  padding: 8px 25px;
-  border-radius: 20px;
-  border: 1px solid #444;
-
-  font-family: "Bebas Neue", cursive;
-  font-size: 26px;
+  font-family: var(--font-bebas);
+  font-size: 48px;
+  color: var(--text);
+  margin-bottom: 30px;
   letter-spacing: 2px;
-  text-align: center;
-
-  background-color: #d9ff00;
-  color: #000;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-/* =========================
-   FORM
-========================= */
+.section-title::after {
+  content: "";
+  height: 2px;
+  flex: 1;
+  background: linear-gradient(90deg, var(--primary), transparent);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  display: block;
-  margin-bottom: 6px;
-  font-size: 16px;
-  color: #fff;
+  font-family: var(--font-bebas);
+  font-size: 20px;
+  color: var(--text-dim);
+  margin-bottom: 8px;
   letter-spacing: 1px;
 }
 
 .form-group input {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #333;
-  background: #111;
-  color: #fff;
-}
-
-/* =========================
-   VALIDATION
-========================= */
-.input-error {
-  border: 1px solid #ff4d4d !important;
-}
-
-.error-text {
-  margin-top: 4px;
-  color: #ff4d4d;
-  font-size: 12px;
-}
-
-/* =========================
-   RIGHT SIDE / SUMMARY
-========================= */
-.summary-box {
-  border-left: 2px solid #333;
-  padding-left: 50px;
-}
-
-.grand-total {
-  font-size: 18px;
-  font-weight: bold;
-  border-top: 2px solid #555;
-}
-
-/* =========================
-   ACTION AREA
-========================= */
-.action-buttons {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-/* =========================
-   PAY BUTTON
-========================= */
-.pay-btn {
-  padding: 14px 30px;
-  border: none;
-  border-radius: 10px;
-  background: #d9ff00;
-  color: #000;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.pay-btn:disabled {
-  background: #444;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.pay-btn:hover:not(:disabled) {
-  transform: scale(1.05);
-}
-
-/* =========================
-   BACK BUTTON
-========================= */
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-
-  padding: 10px 20px;
-  margin: 0;
-
-  background: transparent;
-  color: #d9ff00;
-  border: 1.5px solid rgba(217, 255, 0, 0.7);
-  border-radius: 12px;
-
-  font-family: "Bebas Neue", cursive;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 15px;
+  color: var(--text);
+  font-family: var(--font-bebas) !important; /* Force Bebas */
   font-size: 20px;
   letter-spacing: 1px;
-  cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.back-btn-bottom-left {
-  position: absolute;
-  left: 30px;
-  bottom: 30px;
+.form-group input::placeholder {
+  color: #444;
 }
 
-.back-btn:active {
-  transform: scale(0.96);
+.form-group input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: var(--surface-2);
+}
+
+.input-error {
+  border-color: #ff4444 !important;
+}
+
+.error-text {
+  color: #ff4444;
+  font-family: var(--font-bebas);
+  font-size: 16px;
+  margin-top: 5px;
+  letter-spacing: 1px;
+}
+
+.back-btn {
+  margin: 40px auto 0;
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-dim);
+  padding: 12px 30px;
+  font-family: var(--font-bebas);
+  font-size: 20px;
+  cursor: pointer;
+  width: fit-content;
+  min-width: 250px;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
 }
 
 .back-btn:hover {
-  background: rgba(217, 255, 0, 0.12);
-  border-color: #d9ff00;
-  box-shadow:
-    0 0 12px rgba(217, 255, 0, 0.4),
-    inset 0 0 6px rgba(217, 255, 0, 0.2);
-  transform: translateY(-6px) scale(1.03);
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(217, 255, 0, 0.05);
 }
 
 /* =========================
-   TABLET
+   RIGHT SIDE - SUMMARY
 ========================= */
-@media (max-width: 900px) {
-  .payment-page {
-    padding: 90px 14px 24px;
-  }
+.summary-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 30px;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+  border-left: 4px solid var(--primary);
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.5);
+}
 
+.summary-header {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.summary-header h3 {
+  font-family: var(--font-bebas);
+  font-size: 34px;
+  color: var(--primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.summary-header::after {
+  content: "ORDER SUMMARY";
+  position: absolute;
+  top: -12px;
+  right: 0;
+  font-size: 11px;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  opacity: 0.5;
+}
+
+.summary-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.excel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--border);
+  font-family: var(--font-bebas) !important; /* Force Bebas */
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+.excel-row span{
+  font-family: var(--font-bebas);
+}
+.excel-row.detail-main {
+  color: var(--text-dim);
+  font-size: 25px;
+  border-bottom: none;
+  padding: 3px 0;
+  text-transform: uppercase;
+}
+
+.summary-items-container {
+  max-height: 300px; /* Increased to show more items */
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) transparent;
+  margin-top: 10px;
+  padding-right: 15px;
+}
+
+.summary-items-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.summary-items-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.summary-items-container::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 10px;
+}
+
+.excel-header {
+  margin-top: 20px;
+  color: var(--text-dim);
+  border-bottom: 2px solid var(--text);
+  padding-bottom: 8px;
+  font-size: 25px;
+  padding-right: 15px;
+}
+.excel-header span{
+  font-family: var(--font-bebas);
+}
+.excel-space {
+  height: 20px;
+  position: relative;
+  margin: 10px 0;
+}
+
+.excel-space::before {
+  content: "";
+  position: absolute;
+  left: -30px;
+  right: -30px;
+  top: 50%;
+  height: 1px;
+  background: var(--border);
+}
+
+
+.discount-row {
+  color: #ff4444 !important;
+}
+
+.discount-row span {
+  color: #ff4444 !important;
+}
+
+.grand-total {
+  margin-top: 5px;
+  border-top: none;
+  padding-top: 10px;
+  color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.grand-total span:first-child {
+  font-size: 16px;
+  color: var(--text-dim);
+  letter-spacing: 3px;
+}
+
+.grand-total span:last-child {
+  font-family: var(--font-bebas) !important;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.action-buttons {
+  margin-top: 10px;
+}
+
+.pay-btn {
+  width: 100%;
+  background: var(--primary);
+  color: var(--bg);
+  border: none;
+  padding: 18px;
+  font-family: var(--font-bebas);
+  font-size: 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 2px;
+}
+
+.pay-btn:hover:not(:disabled) {
+  letter-spacing: 4px;
+  filter: brightness(1.1);
+}
+
+.pay-btn:disabled {
+  background: var(--surface-2);
+  color: var(--text-dim);
+  cursor: not-allowed;
+}
+
+/* =========================
+   RESPONSIVENESS
+========================= */
+@media (max-width: 1024px) {
+  .payment-page {
+    padding-top: 100px;
+  }
+  
   .booking-container {
     grid-template-columns: 1fr;
-    gap: 30px;
-    margin: 0 auto;
-    padding: 22px;
-    padding-bottom: 22px;
+    gap: 40px;
+  }
+  
+  .summary-box {
+    position: static;
+    max-width: 100%;
+    box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 34px;
   }
 
   .summary-box {
-    border-left: none;
-    border-top: 2px solid #333;
-    padding-left: 0;
-    padding-top: 22px;
+    padding: 20px;
   }
 
-  .action-buttons {
-    margin-top: 30px;
-    display: flex;
-    justify-content: stretch;
+  .grand-total span:last-child {
+    font-size: 40px;
   }
+}
 
-  .pay-btn {
-    width: 100%;
+
+
+/* =========================
+   RESPONSIVENESS
+========================= */
+@media (max-width: 1024px) {
+  .booking-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-
-  .back-btn-bottom-left {
+  
+  .summary-box {
     position: static;
-    width: 100%;
-    margin-top: 12px;
-  }
-
-  .back-btn {
-    width: 100%;
-    justify-content: center;
   }
 }
 
-/* =========================
-   PHONE
-========================= */
-@media (max-width: 600px) {
-  .payment-page {
-    padding: 95px 12px 20px;
-  }
-
-  .booking-container {
-    padding: 18px;
-    padding-bottom: 18px;
-    border-radius: 22px;
-    gap: 22px;
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
   }
 
   .section-title {
-    font-size: 20px;
-    margin-bottom: 18px;
-    padding: 7px 18px;
+    font-size: 36px;
   }
 
-  .form-group label {
-    font-size: 14px;
-  }
-
-  .form-group input {
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .excel-row,
-  .subject-name,
-  .discount,
-  .cost {
-    font-size: 16px;
-    letter-spacing: 1px;
-  }
-
-  .subject,
-  .grandtotal,
-  .subtotal {
-    font-size: 18px;
-    letter-spacing: 1px;
-  }
-
-  .pay-btn {
-    font-size: 18px;
-    padding: 12px 16px;
-    border-radius: 10px;
-  }
-
-  .back-btn {
-    font-size: 18px;
-    padding: 12px 16px;
-  }
-}
-
-/* =========================
-   VERY SMALL PHONES
-========================= */
-@media (max-width: 380px) {
   .payment-page {
-    padding-top: 105px;
-  }
-
-  .booking-container {
-    padding: 16px;
-    padding-bottom: 16px;
-  }
-
-  .section-title {
-    font-size: 18px;
+    padding-top: 80px;
   }
 }

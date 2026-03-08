@@ -5,7 +5,7 @@
 .cohort-container {
     min-height: 100vh;
     background: #000;
-    padding: 100px 80px;
+    padding: 60px 80px;
     display: flex;
     flex-direction: column;
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -16,7 +16,7 @@
 .title h1 {
     font-size: clamp(40px, 6vw, 78px);
     color: #fff;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     font-weight: 800;
     text-align: center;
     letter-spacing: -2px;
@@ -262,4 +262,19 @@
     .overlay h2 { font-size: 28px; }
     .feature-list li { font-size: 13px; }
     .new-price { font-size: 20px; }
+}
+
+/* ================= DISCLAIMER ================= */
+
+.card-disclaimer {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
+    margin-top: 15px;
+    font-style: italic;
+    text-align: left;
+    letter-spacing: 0.2px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 12px;
+    line-height: 1.4;
 }
