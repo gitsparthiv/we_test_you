@@ -22,7 +22,13 @@ const Small_Footer = () => {
       <div className="shb-container">
         
         <div className="shb-brand">
-          <img src={logo} alt="WeTestU" className="shb-logo" />
+          <img 
+            src={logo} 
+            alt="WeTestU" 
+            className="shb-logo" 
+            onClick={() => window.location.href = "/"}
+            style={{ cursor: "pointer" }}
+          />
           <div className="shb-sep"></div>
           <span className="shb-tag">Boutique Mock Exams.</span>
         </div>

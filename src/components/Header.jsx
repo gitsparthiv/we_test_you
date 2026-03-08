@@ -45,11 +45,7 @@ useEffect(() => {
 }, []);
 
   const handleLogoClick = () => {
-    if (location.pathname !== "/") {
-      navigate("/");
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    window.location.href = "/";
   };
 
   const handleBookSeat = () => {

@@ -24,7 +24,13 @@ const Footer = () => {
       <div className="ub-container">
         <div className="ub-top-section">
           <div className="ub-brand-identity">
-            <img src={logo} alt="WeTestU" className="ub-logo" />
+            <img 
+              src={logo} 
+              alt="WeTestU" 
+              className="ub-logo" 
+              onClick={() => window.location.href = "/"}
+              style={{ cursor: "pointer" }}
+            />
             <div className="ub-tagline">Architects of Academic Precision</div>
           </div>
 
