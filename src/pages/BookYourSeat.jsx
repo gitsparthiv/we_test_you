@@ -3,13 +3,8 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./BookYourSeat.css";
 import { useLayoutEffect } from "react";
 import Papa from "papaparse";
-import gariaImg from "../assets/garia.png";
-import dumdumImg from "../assets/dumdum.png";
-import newtownImg from "../assets/newtown.png";
-import howrahImg from "../assets/howrah.png";
-import venueLabelImg from "../assets/venue.png";
 
-const CACHE_KEY = "bys_data_v2"; // Bumped version for new design
+const CACHE_KEY = "bys_data_v3"; // Bumped version for new design
 
 const BookYourSeat = () => {
   const navigate = useNavigate();
@@ -94,38 +89,37 @@ const BookYourSeat = () => {
             const parsedData = {};
             result.data.forEach((row) => {
               const {
-                class: className,
-                subject,
-                actual_fastrack,
-                old_fastrack,
-                actual_concrete,
-                old_concrete,
-                type,
-                title,
-                date,
+                Class,
+                Subject,
+                Track,
+                Tests,
+                Frequency,
+                Price,
+                StrikeThroughPrice,
+                Discount,
               } = row;
 
-              if (!parsedData[className]) parsedData[className] = [];
-              let subjectObj = parsedData[className].find((s) => s.name === subject);
+              if (!Class || !Subject) return;
+
+              if (!parsedData[Class]) parsedData[Class] = [];
+              let subjectObj = parsedData[Class].find((s) => s.name === Subject);
 
               if (!subjectObj) {
                 subjectObj = {
-                  name: subject,
-                  fastrackActual: Number(actual_fastrack ?? 0),
-                  fastrackOld: Number(old_fastrack ?? 0),
-                  concreteActual: Number(actual_concrete ?? 0),
-                  concreteOld: Number(old_concrete ?? 0),
-                  sessions: [],
-                  mockTests: [],
+                  name: Subject,
+                  tracks: [],
                 };
-                parsedData[className].push(subjectObj);
+                parsedData[Class].push(subjectObj);
               }
 
-              if (type === "session") {
-                subjectObj.sessions.push({ chapter: title, date });
-              } else if (type === "mock") {
-                subjectObj.mockTests.push({ name: title, date });
-              }
+              subjectObj.tracks.push({
+                track: Track,
+                tests: Tests,
+                frequency: Frequency,
+                price: Number(Price ?? 0),
+                oldPrice: Number(StrikeThroughPrice ?? 0),
+                discount: Discount,
+              });
             });
 
             setData(parsedData);
@@ -153,8 +147,8 @@ const BookYourSeat = () => {
   /* =========================
      FUNCTIONS
   ========================= */
-  const addItem = (name, price, type) => {
-    const key = name + "-" + currentClass;
+  const addItem = (name, price, type, forcedKey) => {
+    const key = forcedKey || (name + "-" + currentClass);
     if (selectedSubjects.some((item) => item.key === key)) {
       showToast("ALREADY IN CART");
       return;
@@ -183,182 +177,148 @@ const BookYourSeat = () => {
 
       <div className="main-content">
         <div className="title-box">
-          <h1>TEST DETAILS</h1>
-          <div className="class-line">
-            CLASS {currentClass}
+          <p className="academic-res-tagline">ACADEMIC RESERVATION</p>
+          <h1>SELECT YOUR EVALUATION TRACKS</h1>
+          <div className="class-line-new">
+            CLASS {currentClass} • ADMISSIONS OPEN
           </div>
         </div>
 
+        <div className="section-header-bys">
+          <span className="section-num">01.</span> CHOOSE TEST VENUE
+        </div>
         <div className="filter-section">
           <div className="venue-glass-container">
             <div className="filter-row">
-              <img src={venueLabelImg} className="venue-label-img" alt="VENUES" />
               {[
-                { name: "Garia", img: gariaImg },
-                { name: "Dumdum", img: dumdumImg },
-                { name: "Newtown", img: newtownImg },
-                { name: "Howrah", img: howrahImg },
+                { name: "Newtown", active: true },
+                { name: "Garia", active: false },
+                { name: "Dumdum", active: false },
+                { name: "Howrah", active: false },
               ].map((venue) => (
                 <button
                   key={venue.name}
-                  className={`venue-img-btn ${currentVenue === venue.name ? "active" : ""} ${
-                    venue.name !== "Newtown" ? "disabled" : ""
+                  className={`venue-text-btn-new ${currentVenue === venue.name ? "active" : ""} ${
+                    !venue.active ? "disabled" : ""
                   }`}
                   onClick={() => {
-                    if (venue.name !== "Newtown") {
-                      alert(`${venue.name} is coming soon. Newtown is currently active.`);
+                    if (!venue.active) {
+                      showToast(`${venue.name.toUpperCase()} IS COMING SOON`);
                       return;
                     }
                     setCurrentVenue(venue.name);
                   }}
                 >
-                  <img src={venue.img} alt={venue.name} />
+                  <div className="venue-btn-content">
+                    <span className="venue-name-new">{venue.name === "Newtown" ? "New Town" : venue.name}</span>
+                    <span className="venue-status-new">{venue.active ? "ACTIVE" : "COMING SOON"}</span>
+                  </div>
                 </button>
               ))}
             </div>
           </div>
         </div>
 
-        <div className="table-box">
-          <table className="custom-table">
-            <thead>
-              <tr>
-                <th>AVAILABLE SUBJECTS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading &&
-                Array.from({ length: 4 }).map((_, i) => (
-                  <tr key={i} className="subject-row">
-                    <td style={{ padding: "40px", color: "var(--text-dim)" }}>LOADING SUBJECTS...</td>
-                  </tr>
-                ))}
-              {!loading && loadError && (
-                <tr className="subject-row">
-                  <td style={{ padding: "40px", color: "#ff4444" }}>{loadError}</td>
-                </tr>
-              )}
-              {!loading &&
-                !loadError &&
-                classSubjects.map((subject, index) => {
-                  const chapterAddName = subject.name + " Chapters";
-                  const chapterKey = chapterAddName + "-" + currentClass;
-                  const chapterIsAdded = selectedSubjects.some((it) => it.key === chapterKey);
+        <div className="section-header-bys">
+          <span className="section-num">02.</span> SELECT TRACKS
+        </div>
 
-                  const mockAddName = subject.name + " Mocks";
-                  const mockKey = mockAddName + "-" + currentClass;
-                  const mockIsAdded = selectedSubjects.some((it) => it.key === mockKey);
+        <div className="tracks-container">
+          {!loading &&
+            !loadError &&
+            classSubjects.map((subject, sIdx) => (
+              <div key={sIdx} className="subject-block">
+                <div className="subject-header-new">{subject.name}</div>
+                <div className="tracks-list-new">
+                  {subject.tracks.map((trackInfo, tIdx) => {
+                    const uniqueKey = `${subject.name}-${trackInfo.track}-${currentClass}`;
+                    const isAdded = selectedSubjects.some((it) => it.key === uniqueKey);
 
-                  return (
-                    <React.Fragment key={index}>
-                      <tr className="subject-row">
-                        <td>
-                          <div className="subject-item-container">
-                            <div className="subject-info">
-                              <h3>{subject.name}</h3>
-                            </div>
-                            
-                            <div className="subject-actions">
-                              {/* CHAPTERS ACTION */}
-                              <div className="action-item">
-                                <div className="action-price-info">
-                                  <span className="action-label">ALL CHAPTERS</span>
-                                  <div className="prices">
-                                    <span className="old-price-bys">₹{subject.concreteOld}</span>
-                                    <span className="new-price-bys">₹{subject.concreteActual}</span>
-                                  </div>
-                                </div>
-                                <button
-                                  className={`add-subject-btn ${chapterIsAdded ? "is-added" : ""}`}
-                                  onClick={() => addItem(chapterAddName, subject.concreteActual, "Package")}
-                                  disabled={chapterIsAdded}
-                                >
-                                  {chapterIsAdded ? "ADDED ✓" : "ADD TO CART"}
-                                </button>
-                              </div>
-
-                              {/* MOCK TESTS ACTION */}
-                              <div className="action-item">
-                                <div className="action-price-info">
-                                  <span className="action-label">MOCK TESTS</span>
-                                  <div className="prices">
-                                    <span className="old-price-bys">₹{subject.fastrackOld}</span>
-                                    <span className="new-price-bys">₹{subject.fastrackActual}</span>
-                                  </div>
-                                </div>
-                                <button
-                                  className={`add-subject-btn ${mockIsAdded ? "is-added" : ""}`}
-                                  onClick={() => addItem(mockAddName, subject.fastrackActual, "Package")}
-                                  disabled={mockIsAdded}
-                                >
-                                  {mockIsAdded ? "ADDED ✓" : "ADD TO CART"}
-                                </button>
-                              </div>
-                            </div>
+                    return (
+                      <div
+                        key={tIdx}
+                        className={`track-card-new ${isAdded ? "is-added" : ""}`}
+                      >
+                        <div className="track-info-new">
+                          <div className="track-name-new">{trackInfo.track}</div>
+                          <div className="track-subtext-new">
+                            {trackInfo.tests} Tests • {trackInfo.frequency}
                           </div>
-                        </td>
-                      </tr>
-                      <tr className="chapter-details-row">
-                        <td>
-                          <div className="chapter-wrap">
-                            <div className="chapter-scroll-container">
-                              <div className="chapter-list">
-                                {(subject.sessions || []).concat(subject.mockTests || []).map((item, i) => (
-                                  <div key={i} className="chapter-item">
-                                    <span className="chapter-name">
-                                      {item.chapter ? item.chapter : item.name}
-                                    </span>
-                                    <span className="chapter-date">{item.date}</span>
-                                  </div>
-                                ))}
-                              </div>
-                            </div>
+                        </div>
+                        <div className="track-actions-new">
+                          <div className="track-prices-new">
+                            <span className="old-price-new">₹{trackInfo.oldPrice}</span>
+                            <span className="new-price-new">₹{trackInfo.price}</span>
                           </div>
-                        </td>
-                      </tr>
-                    </React.Fragment>
-                  );
-                })}
-            </tbody>
-          </table>
+                          <button
+                            className={`track-add-btn-new ${isAdded ? "is-added" : ""}`}
+                            onClick={() => {
+                              if (isAdded) {
+                                removeItem(uniqueKey);
+                              } else {
+                                addItem(
+                                  `${subject.name} (${trackInfo.track})`,
+                                  trackInfo.price,
+                                  "Package",
+                                  uniqueKey
+                                );
+                              }
+                            }}
+                          >
+                            {isAdded ? "✓" : "+"}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
         </div>
       </div>
 
       {hasItems && (
         <div className="cart-panel">
           <div className="cart-header">
-            <h2>
-              YOUR CART <span className="cart-count">{selectedSubjects.length}</span>
-            </h2>
+            <h2>SELECTION SUMMARY</h2>
           </div>
           <div className="cart-items">
-            {selectedSubjects.map((item) => (
-              <div className="cart-item" key={item.key}>
-                <div className="cart-item-name">{item.name}</div>
-                <div className="cart-item-price">₹{item.price}</div>
-                <button className="remove-btn" onClick={() => removeItem(item.key)}>
-                  ✕
-                </button>
-              </div>
-            ))}
+            {selectedSubjects.map((item) => {
+              // Extract original track name if stored in name
+              const trackPart = item.name.includes("(") ? item.name.split("(")[1].replace(")", "") : "";
+              const subjectPart = item.name.split(" (")[0];
+
+              return (
+                <div className="cart-item" key={item.key}>
+                  <div className="cart-item-info-new">
+                    <div className="cart-item-name">{subjectPart.toUpperCase()}</div>
+                    <div className="cart-item-track-new">{trackPart}</div>
+                  </div>
+                  <div className="cart-item-price">₹{item.price}</div>
+                  <button className="remove-btn" onClick={() => removeItem(item.key)}>
+                    ✕
+                  </button>
+                </div>
+              );
+            })}
           </div>
           <div className="cart-footer">
             <div className="cart-total">
-              <span className="total-label">SUBTOTAL:</span>
+              <span className="total-label">Subtotal</span>
               <span className="total-value">₹{subtotal}</span>
             </div>
             {discount > 0 && (
               <div className="cart-total discount-row">
-                <span className="total-label">DISCOUNT (20%):</span>
+                <span className="total-label">Discount (20%)</span>
                 <span className="total-value">-₹{discount}</span>
               </div>
             )}
-            <div className="cart-total final-total">
-              <span className="total-label">TOTAL:</span>
+            <div className="cart-total final-total-new">
+              <span className="total-label">Total Amount</span>
               <span className="total-value">₹{total}</span>
             </div>
             <button
-              className="checkout-btn"
+              className="checkout-btn-new"
               disabled={!hasItems}
               onClick={() => {
                 navigate("/payment", {
@@ -373,8 +333,11 @@ const BookYourSeat = () => {
                 });
               }}
             >
-              PROCEED TO CHECKOUT
+              PROCEED TO ADMISSION
             </button>
+            <p className="secure-checkout-tag">
+              <span className="lock-icon">🔒</span> SECURE ENCRYPTED CHECKOUT
+            </p>
           </div>
         </div>
       )}

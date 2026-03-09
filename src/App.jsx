@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import LandingPage from "./pages/LandingPage";
 import BookYourSeat from "./pages/BookYourSeat";
@@ -8,13 +8,12 @@ import PaymentSuccess from "./pages/PaymentSuccess.jsx";
 import PaymentFailed from "./pages/PaymentFailed.jsx";
 
 import Header from "./components/Header";
-import Footer from "./components/Footer";               // OLD footer (Landing page only)
-import Small_Footer from "./components/Small_Footer";  // NEW footer (other pages)
+import Footer from "./components/Footer";       
 import ScrollToTop from "./pages/ScrollToTop";
 
 function AppLayout() {
-  const location = useLocation();
-  const isLanding = location.pathname === "/";
+  
+  
 
   return (
     <>
@@ -29,7 +28,7 @@ function AppLayout() {
         <Route path="/payment-failed" element={<PaymentFailed />} />
       </Routes>
 
-      {isLanding ? <Footer /> : <Small_Footer />}
+      <Footer />
     </>
   );
 }
