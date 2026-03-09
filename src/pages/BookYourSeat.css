@@ -293,9 +293,9 @@ body {
    SELECTION SUMMARY (CART)
 ========================= */
 .cart-panel {
-  background: rgba(15, 15, 15, 0.98);
+  background: rgba(10, 10, 10, 0.98);
   border: 1px solid var(--border);
-  padding: 30px;
+  padding: 40px 30px;
   position: sticky;
   top: 100px;
   z-index: 100;
@@ -304,28 +304,30 @@ body {
 }
 
 .cart-header {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 15px;
 }
 
 .cart-header h2 {
   font-family: var(--font-bebas);
-  font-size: 24px;
-  letter-spacing: 1px;
+  font-size: 36px;
+  letter-spacing: 1.5px;
   color: var(--text);
 }
 
 .cart-items {
   max-height: 400px;
   overflow-y: auto;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 15px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: none;
 }
 
 .cart-item-info-new {
@@ -335,19 +337,21 @@ body {
 .cart-item-name {
   font-family: var(--font-inter);
   font-weight: 800;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
+  letter-spacing: 0.5px;
 }
 
 .cart-item-track-new {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--text-dim);
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
 .cart-item-price {
   font-family: var(--font-inter);
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 18px;
   margin-left: auto;
   margin-right: 15px;
   color: var(--text);
@@ -356,10 +360,11 @@ body {
 .remove-btn {
   background: transparent;
   border: none;
-  color: var(--text-dim);
+  color: rgba(255, 255, 255, 0.15);
   cursor: pointer;
   padding: 5px;
-  font-size: 14px;
+  font-size: 18px;
+  transition: color 0.2s ease;
 }
 
 .remove-btn:hover {
@@ -367,53 +372,81 @@ body {
 }
 
 .cart-footer {
-  border-top: 1px dotted var(--border);
-  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  padding-top: 25px;
 }
 
 .cart-total {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
-  font-size: 14px;
+  align-items: center;
+  margin: 12px 0;
+}
+
+.total-label {
+  font-size: 18px;
   color: var(--text-dim);
+  font-weight: 500;
+}
+
+.total-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.discount-row-new {
+  margin: 15px 0;
+}
+
+.discount-row-new .total-label {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.discount-row-new .total-value {
+  color: var(--primary);
+  font-weight: 700;
 }
 
 .final-total-new {
-  margin: 25px 0 20px;
-  padding-top: 15px;
-  color: var(--text);
+  margin: 35px 0 25px;
+  padding-top: 25px;
+  border-top: 1px dotted var(--border);
+  display: flex;
+  justify-content: space-between;
   align-items: baseline;
 }
 
 .final-total-new .total-label {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
   color: var(--text);
 }
 
 .final-total-new .total-value {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 800;
   color: var(--text);
 }
 
 .checkout-btn-new {
   width: 100%;
-  padding: 18px;
+  padding: 22px;
   background: var(--primary);
   color: var(--bg);
   border: none;
   font-family: var(--font-bebas);
-  font-size: 18px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 800;
   letter-spacing: 1.5px;
   cursor: pointer;
-  margin-bottom: 15px;
-  transition: filter 0.2s ease;
+  margin-bottom: 18px;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .checkout-btn-new:hover:not(:disabled) {
+  transform: translateY(-2px);
   filter: brightness(1.1);
 }
 
@@ -424,23 +457,20 @@ body {
 
 .secure-checkout-tag {
   text-align: center;
-  font-size: 10px;
-  color: var(--text-dim);
-  letter-spacing: 1px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 1.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  gap: 8px;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .lock-icon {
   font-size: 12px;
-}
-
-.cart-footer {
-  padding: 30px;
-  background: #080808;
-  border-top: 1px solid var(--border);
+  opacity: 0.3;
 }
 
 .cart-total {

@@ -308,8 +308,8 @@ const BookYourSeat = () => {
               <span className="total-value">₹{subtotal}</span>
             </div>
             {discount > 0 && (
-              <div className="cart-total discount-row">
-                <span className="total-label">Discount (20%)</span>
+              <div className="cart-total discount-row-new">
+                <span className="total-label">Multi-Track Discount (20%)</span>
                 <span className="total-value">-₹{discount}</span>
               </div>
             )}
