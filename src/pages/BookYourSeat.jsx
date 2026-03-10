@@ -141,7 +141,7 @@ const BookYourSeat = () => {
 
   const classSubjects = data[currentClass] || [];
   const subtotal = selectedSubjects.reduce((sum, item) => sum + item.price, 0);
-  const discount = selectedSubjects.length > 1 ? Math.round(subtotal * 0.2) : 0;
+  const discount = selectedSubjects.length > 1 ? Math.round(subtotal * 0.19355) : 0;
   const total = subtotal - discount;
 
   /* =========================
