@@ -248,7 +248,7 @@
 }
 
 .info-label {
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-dim);
   letter-spacing: 1.5px;
@@ -256,8 +256,8 @@
 
 .info-value {
   font-family: var(--font-bebas);
-  font-size: 20px;
-  letter-spacing: 1px;
+  font-size: 15px;
+  letter-spacing: 2px;
 }
 
 .items-table-boutique {
@@ -268,7 +268,7 @@
   display: flex;
   justify-content: space-between;
   font-family: var(--font-inter);
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 800;
   color: var(--text-dim);
   letter-spacing: 2px;
