@@ -335,6 +335,17 @@
   width: 100%;
   font-size: 120%;
 }
+.subtotal , .subtotal-price ,.disct-price , .discount{
+  font-family: var(--font-bebas);
+  font-size: 25px;
+  letter-spacing: 3px;
+}
+.subtotal-price{
+  color: var(--primary);
+}
+.disct-price{
+  color: red;
+}
 /* Button & Animations */
 .pay-btn-boutique {
   width: 100%;

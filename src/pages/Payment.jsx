@@ -255,8 +255,8 @@ const Payment = () => {
 
                 <div className="totals-section-boutique">
                   <div className="total-row-boutique">
-                    <span>SUBTOTAL</span>
-                    <span>₹{subtotal}</span>
+                    <span className="subtotal">SUBTOTAL</span>
+                    <span className="subtotal-price">₹{subtotal}</span>
                   </div>
 
                   {discount > 0 && (
