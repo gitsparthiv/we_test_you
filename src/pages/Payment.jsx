@@ -261,8 +261,8 @@ const Payment = () => {
 
                   {discount > 0 && (
                     <div className="total-row-boutique discount-text">
-                      <span>DISCOUNT</span>
-                      <span>-₹{discount}</span>
+                      <span className="discount">DISCOUNT</span>
+                      <span className="disct-price">-₹{discount}</span>
                     </div>
                   )}
 
@@ -282,7 +282,7 @@ const Payment = () => {
               onClick={handlePay}
             >
               <div className="btn-content">
-                {isPaying ? "PROCESSING..." : " CONFIRM PAYMENT"}
+                {isPaying ? `PROCESSING...` : `PAY ₹${total}`}
               </div>
             </button>
             <p className="secure-tag">

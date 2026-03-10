@@ -328,6 +328,13 @@
   text-shadow: 0 0 30px var(--primary-glow);
 }
 
+.total-row-boutique{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 120%;
+}
 /* Button & Animations */
 .pay-btn-boutique {
   width: 100%;
